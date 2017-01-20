@@ -89,7 +89,7 @@ public class semiDB_Test {
 
 	public static void main(String[] args) {
 		semiDB_Test db = new semiDB_Test();
-		//System.out.println(db.dbTest());
-		System.out.println(db.dbcpTest());
+		System.out.println(db.dbTest());
+		//System.out.println(db.dbcpTest());
 	}
 }
