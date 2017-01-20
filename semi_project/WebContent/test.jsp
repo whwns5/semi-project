@@ -14,7 +14,7 @@
 	<h3>another</h3>
 	<h2>dd</h2>
 	
-	<!-- ---------------Á¶½Âµ¿ DB test ¿µ¿ª -->
+	<!-- -------------Á¶½Âµ¿ DB test ¿µ¿ª -->
 	<section>
 	<article>
 	<table>
