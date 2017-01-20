@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+    <jsp:useBean id="sdto" class="seung.db.DBtestDTO"/>
+    <jsp:setProperty property="*" name="sdto"/>
+    <jsp:useBean id="sdao" class="seung.db.DBtest"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,5 +13,22 @@
 	<h3>ff  ししいぉいぉいしぉしししうしいけぞしいけぞいしぞう</h3>
 	<h3>another</h3>
 	<h2>dd</h2>
+	
+	<section>
+	<article>
+	<table>
+	<tr>
+	<td>idx</td>
+	<td>name</td>
+	<td>email</td>
+	<td>dept</td>
+	</tr>
+	<tr>
+	<td colspan="4"><%=sdao.testDB()%></td>
+	</tr>
+	</table>
+	</article>
+	</section>
+	
 </body>
 </html>
