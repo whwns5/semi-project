@@ -1,0 +1,1313 @@
+11/23
+
+최상위 클래스는 object!!!
+
+super 키워드 - 부모 클래스를 가리키는 키워드
+this 키워드 - 나 자신을 가리키는 키워드
+
+- 인자 생성자를 만들면 기본 생성자를 꼭 만들어야 자식 클래스에서 오류가 나지 않는다
+- 멤버 메서드에서 부모 클래스에 이미 만들어놓은 메서드를 호출하려면
+  ex) super.getInfo(); 식으로 부모 클래스에 있는 메서드를 호출하면 됨
+
+1.패키지의 영역
+2.import 로 기능을 불러올때 영역
+3.나머지는 모두 클래스의 영역
+
+*오류
+null pointer Exception = 
+null = 데이터가 없다고 표시하는 데이터
+
+오버라이딩
+- 부모 클래스의 메서드중 사용하지 않으려는 메서드의 경우
+  그 메서드를 사용하지 않거나 변경해서 사용하는 기능
+
+
+1. 추상 클래스
+
+- 한개 이상의 추상메소드를 가지는 클래스
+
+1) 추상메서드
+- 메서드에 몸체 없이 선언만 하는것
+추상 메서드 앞에 abstract란 붙여야 한다.
+
+2) abstract
+- 추상메서드를 한개라도 가진 클래스 역시 class 앞에 abstract를 붙여서 추상 클래스로 만들어야 한다
+
+- 추상이라는 단어에는 강제성이 내포되어 있다
+  추상 클래스를 상속받은 클래스에서는 추상 메서드를 강제적으로 오버라이딩 해야 한다
+  부모 클래스에게 불완전한 코드를 물려받았기에 자식 클래스 역시 불완전하기 때문
+
+- 추상 클래스는 new해서 객체 생성을 할 수가 없다
+  불완전한 설계도이기 때문에 물건을 만들수 없는 이치
+
+- 반드시 상속을 통해서 완성된다
+
+- 상속받은 자식 클래스로는 객체 생성이 가능하다
+  
+
+
+11/24
+
+1. final
+
+- final 지정자는 abstract 와 반대 개념!!
+- 상속을 못받게 하는게 목적
+- 오버라이딩이 안되도록 방지하는 목적
+- 상수는 대문자로만~
+
+2. interface
+
+- 메뉴판용도 어떤어떤것을 만들어야 하는지에 대한 제시용도
+- 기능에 대한 확장개념!!
+- 부모로서 자식 클래스를 관리가 가능((ex)나비 일경우 곤충이라는
+부모 클래스가 있지만 fly라는 양부모 클래스에게 자격을 받아 실행이 가능)
+
+3.innerClass = 내부클래스
+
+- 클래스 안에 별도의 클래스를 넣어서 효율적인 관리를 하기 위한 방법
+- 클래스 이름 앞에 static이라는 예약어만 붙이면 정적 내부클래스라고 부른다.
+
+1).Named local class
+
+- java에서 유일하게 상속이 불가능한 class
+- 컴파일하게 되면 OuterClass$숫자+로컬클래스명의 클래스 파일이 생성된다.
+
+
+
+11/25
+
+과제!!
+
+1. 선생님 정보 입력
+2. 학생 정보 입력
+3. 선생님 정보 보기
+4. 학생 정보 보기
+5. 모든 정보 보기
+6. 종료
+
+메뉴>
+1번 누를시
+=선생님 정보 입력=
+1)이름:
+2)나이:
+3)과목:
+
+2번 누를시
+=학생 정보 입력=
+1)이름:
+2)나이:
+3)전공:
+
+정보는 10개까지 입력이 되도록
+
+instance of는 어디에 사용하는 연산자인지?
+
+힌트 : 객체에 사용되는 연산자
+
+
+
+11/28
+
+1. 예외처리
+
+- error 오타처럼 표시되는 에러
+
+- 하지만 Exception 은(IOException은 입출력 관련 예외상황)사용자가 처리할 수 없기 때문에 throws 한다
+
+- RuntimeException 은 사용자가 코딩을 통해 수정이 가능한 부분
+
+- 여러개의 catch 문을 사용할 경우 작은 Exception 부터 작성 해야 됨
+
+- finally 자원(메모리 공간)을 반환시키기 위한 키워드
+
+- throws 예외 전가 키워드 throw 예외 발생 키워드
+
+
+11/29
+
+- 예기치못한 외적인 상황 = 예외
+
+- throw는 순차적으로 코드를 수행하지 않고 점프를 시키기 위해서 일부러 사용자 에러를 발생시킬 경우 사용한다
+
+- 사용자의 편의성을 위해 만들어진 클래스를 유틸리티 라고 한다
+
+1.String 의 원본 불변의 법칙~!
+
+2.열거형 클래스의 규칙 - 뒤에 데이터가 있는지 물어보고 참이면 반복
+
+
+12/1
+
+thread?
+
+- 시작 부터 중간 끝 을 가지고 있는 실행단위!!
+
+종속스레드: main스레드가 종료되면 함께 종료됨(setDaemon 으로 설정)
+
+독립스레드: 종속스레드처럼 main으로부터 파생되었지만 main스레드와 상관없이 실행됨(보통 작성하는 스레드)
+
+synchronized: 직렬화 한번에 하나씩만 실행되도록 하는 키워드
+
+
+12/2
+
+GUI
+
+- graphics user interface 의 약자로 일반적으로 윈도우 프로그램이라 불린다.
+
+
+12/5
+
+Event source - 이벤트 근원지
+
+이벤트 발생한 내용을 객체에 담고
+
+담은 내용을 가지고 이벤트를 발생시킨다
+
+
+XXXAdapter = class
+XXXListener = Interface
+
+랜더링 = 코드로 구성된 그림을 실제로 표현하는방법
+
+
+
+12/6
+
+!!! Iterator<String> key=map.keySet().iterator(); !!!
+!!! Iterator는 열거형 클래스 열거형은 while문 !!!
+
+1. 데이터베이스?
+
+- 유용한 데이터의 집합
+
+1)검색에 용이하게 데이터를 저장
+2)수정이 가능해야 함
+3)삭제가 용이해야 함
+
+관계형 데이터베이스
+- 오라클,사이베이스,인포믹스
+
+웹 프로그램만 따로 사용할 수 있는 OS 를 설치 
+
+C: 이외의 드라이브에 설치
+
+
+
+12/7
+
+!!! 꾸준히 공부해야 하는 데이터베이스 !!!
+
+info - 자료를 쉽게 찾을 수 있도록 가공해놓은 것
+data - 가공되지 않은 자료
+
+- 행과 열로 구성되어있는 테이블로 구성되어 있다
+- 테이블은 데이터를 구성하는 최소한의 단위
+- 수행하고자 하는 코드를 드래그해서 F9버튼 클릭
+- NOT NULL -> 어떤값이 무조건 들어가야함
+- 공백과 중복을 만들면 안됨
+- 제1정규화 데이터가 공백이 없도록 구성
+- 제2정규화 데이터가 중복되지 않도록 구성
+- 기본이 되는 자료형 문자(VARCHAR)뒤에 붙는 숫자는 글자열의 단위를 표현한다
+  숫자(NUMBER)뒤에 붙는 숫자는 단위를 표현,날짜(DATE)
+- 영문자를 표현할때는 한공간에 한글자가 들어가지만 한글을 넣을 경우
+  한글자에 3공간을 차지한다
+
+- select ~ from 문법의 기본구조를 이룸
+- 데이터배이스 내의 주석표현 --
+- null : 0도 아니고 빈 공간도 아니다 미확정 알수없는 값을 의미한다
+         어떤 값인지 알수 없지만 어떤 값이 존재한다
+- 문자와 문자열의 구분이 없음
+- 별칭을 쓸데만 3과 분이 된다
+
+- 'disticnt' 중복을 제외하고 조건에 맞는 부분만 출력
+
+- 'where select from' where절의 형식
+- ex)"emp로부터 불러온 급여가 2000이 넘는 사람들의 사번 이름 급여 정보를 출력하라~"
+
+      select empno,ename,sal
+      from emp
+      where sal>=2000
+     
+- 데이터베이스 에서는 대문자와 소문자를 구분하지 않는다
+!!! 단 ''단일 따옴표 안에 문자열 데이터는 대소문자를 구분하므로 정확히 같게 적어야함 !!!
+
+- 날짜 데이터는 문자열이면서 숫자열이다
+ex) where hiredate >='1982-01-01'
+    대한 결과는 1982년 1월1일 이후 출생자를 검색하는 조건문으로
+    ''을 통해 문자열로 표현하지만 >= 를 통해 수치를 비교
+
+- 와일드카드 : % 또는 _ 를 통해 표현
+ex)like 'J%' J로 시작하는 문자열을 검색
+   like '%J' J로 끝나는 문자열을 검색
+   like '%J%  앞 중간 끝 어디에든 J가 포함되어있는 문자열을 검색
+   like '_A%' 앞에서 두번째에 A가 포함되어 있는 문자열을 검색
+
+
+12/8
+
+논리연산자
+
+- AND : where deptno=10 and job='MANAGER'
+        내선번호가 10번이고 직책이 매니저인 사람을 검색
+        where sal>=2000 and sal<=3000
+        
+        급여가 2000보다 크고 3000보다 작은 사람을 검색
+        이런 식으로 범위를 지정해 검색하는것이 가능하다
+
+        똑같은 예제를 between 형식을 이용하면 더 쉽게 사용 가능하다
+        ex)where sal between 2000 and 3000
+
+- OR : 두가지 이상의 조건문 중 한가지라도 충족할 경우 전부 검색해서 출력한다
+       where hiredate >='1982-01-01' or job='MANAGER'
+       입사 날짜가 1982년 1월1일 이후 이거나 직책이 매니저인 사람을 검색하는 조건문
+
+- IN : AND는 두개 이상의 컬럼을 가지고 검색해야 하지만 IN의 경우 하나의 컬럼안에서
+       검색이 가능하다
+       ex)select * from emp where comm in (300,500,1400)
+       커미션이 300 500 1400 을 받고 있는 사람을 검색하는 조건문
+
+- NOT : 검색조건을 세운 값만을 제외한 나머지를 검색한 부정조건문
+        원하는 컬럼명 앞에 not을 추가
+        where not deptno=10
+        다른 방법으로는 where deptno<>10 로 표현하기도 한다
+
+!!! select * from emp where sal not between 2000 and 3000 !!!
+!!! select * from emp where not sal between 2000 and 3000 !!!
+
+between 컬럼명 앞이 아닌 비트윈 앞에 넣어야 옳음 저 두가지 식은 전혀 다른값을 표현한다
+
+select * from emp where comm not in (300,500,1400)
+in 안에 있는 값 말고도 null 이라는 값이 존재한다는것을 기억해야함
+
+select * from emp where ename not like '%A%'
+
+
+- is null 그리고 is not null
+
+     컬럼값 comm 을 받고 있지 않은 사람만을 검색
+     ex) select * from emp where comm is null
+     컬럼 값 comm 을 받고 있는 사람만을 검색
+     ex) select * from emp where comm is not null
+
+- other by
+ex) select ename,empno,sal,deptno from emp order by ename asc --오름차순
+    asc 를 넣어서 이름으로 오름차순을 설정
+
+ex) select ename,empno,sal,deptno from emp order by ename desc --내림차순
+    desc 를 넣어서 이름으로 내림차순을 설정
+
+ex) select ename,empno,sal,deptno from emp order by deptno,sal desc --다중정렬
+    처음 설정되어 있는 deptno 자리번호로 오름차순을 한 후 뒤에 있는 급여조건으로
+    재 내림차순 정렬을 함 처음 설정된 자리번호로 인한 정렬이 하나의 그룹이 되어
+    그룹 내에서 급여조건으로 내림차순 정렬이 됨
+    (컬럼명,정렬방식),(컬럼명,정렬방식) 으로 다중정렬이 가능해짐
+
+
+
+12/9
+
+1. SYSDATE
+- 시스템의 현재 날짜를 출력
+  select empno,ename,hiredate,sysdate-hiredate from emp
+  현재 날짜에서 입사날짜를 빼는 방법으로 근무 기간을 계산하기도 한다
+  select empno,ename,hiredate,trunc(sysdate-hiredate,0) from emp
+  trenc를 사용해서 소수점이하 버림을 하면 더 쉽게 계산이 가능해짐
+
+2. MONTHS_BETWEEN
+- 날짜와 날짜 사이의 개월을 계산
+ex)select empno,ename,hiredate,sysdate,months_between(sysdate,hiredate)
+   from emp     을 사용해 근무한날을 계산이 가능
+
+3. ADD_MINTHS
+- 날짜와 개월을 더한 날짜 계산
+  select sysdate,add_months(sysdate,3) from dual
+
+4. NEXT_DAY
+- 날짜후의 첫 요일의 날짜를 계산
+ex)next_day(sysdate,3) 오늘 이후 돌아오는 첫 화요일을 출력
+1,일요일 2,월요일 ........ 7,토요일 의 순서
+
+5. LAST_DAY
+- 월의 마지막 날짜를 계산
+
+6. 형변환
+- to_char 숫자나 날짜를 문자열로 변환
+ex)select empno,ename,job,nvl(to_char(mgr),'CEO') from emp
+여기서 nvl은 mgr컬럼에 null값이 있을 경우 CEO라는 문자열로 대체 하는 언어이고
+원래 mgr컬럼은 7902등 숫자열로 되어 있지만 'CEO'라는 문자열을 넣기 위해
+to_char로 컬럼 전체를 문자열로 변환시킨다
+
+- to_number 날짜나 문자를 숫자열로 변환
+ex)select 3+'5' from dual의 경우 '5'는 문자이기 때문에 연산이 불가능하다
+하지만 select 3+to_number('5') from dual 로 변환하면 숫자열로 인식해 연산이 가능해짐
+
+- to-date 문자열을 날짜열로 변환(sysdate가 2016-12-09일 일 경우임)
+ex)select sysdate-'2016-12-07' from dual 의 경우 날짜열과 문자열의 연산이기때문에
+불가능 하지만 select sysdate-to_date('2016-12-07','yyyy-mm-dd')from dual로
+변환해주면 2016-12-07 까지도 날짜로 인식해 연산이 가능해진다
+
+7. instr
+- select instr('welcome to oracle','o',3,2)
+  문자열의 3번째부터 'o'가 두번째 들어가는 위치를 찾아준다
+
+8. substr
+- select empno,ename,hiredate from emp
+  where substr(ename,3,1)='R' 을 사용하면 사원이름중 3번째 문자열에 1개의 문자가 'R'인 사람을 검색
+
+- select empno,ename,hiredate from emp
+  where substr(ename,-1,1)='N'데이터 베이스는 뒷부분부터 숫자를 셀때 -를 붙이면 되므로
+  간단히 -1,1 을 넣게 되면 이름에 마지막 글자가 'N'인 사람을 검색할 수 있게 된다
+
+- 한글자만을 검색하지 않고 여러 글자를 검색하고 싶을경우
+  select empno,ename,hiredate from emp
+  where substr(hiredate,3,2)=87 입사날짜에서 3번째 글자부터 2글자가 87이라는 숫자를 검색하므로
+  87년이 포함되는 사원을 검색할 수 있게 된다
+
+9. length
+-  이름이 5글자인 사원을 검색해 소문자로 표현하는 방법
+  select empno,lower(ename),hiredate from emp 
+  where length(ename)=5
+  lower 을 사용해 ename 컬럼을 소문자로 표현하고 문자열이 5개인 ename컬럼을 검색한다
+
+!!! nvl !!!
+급여에 커미션을 더하는 연산같은 경우 어떤 사원은 커미션이 없는 경우가 있다
+그럼 null값으로 설정이 되어 있는데 null은 숫자도 문자열도 아닌 특정할 수 없는
+값으로 이루어져 있어서 연산이 안되기 때문에 빈공간으로 표현이 된다
+이때 nvl(컬럼명,0)을 넣어주면 null값이 0으로 강제 입력이 됨
+
+
+
+12/12
+
+
+1.decode 문의 형식
+  decode(데이터,비교값,참일때 출력할데이터,거짓일때의 데이터)
+select ename,deptno,
+    decode(deptno,10,'ACCOUNTING',
+        20,'RESERACH',30,'SALES',40,'OPERATION')  as "부서명"
+from emp
+
+부서번호가 10,20,30,40번 일때 해당하는 부서명을 넣어주는 예제문
+
+
+2.case 문의 형식
+  case 표현식 when 조건1 then 결과1
+            when 조건2 then 결과2
+            when 조건3 then 결과3
+            else 결과n
+        end
+
+select ename,job,sal,
+    case when job='SALESMAN' then round(sal*1.05)
+        when job='MANAGER' then round(sal*1.15)
+        else sal
+        end as sal2
+from emp
+
+직책이 매니저 일때 15% 세일즈맨 일때 5%의 급여 인상을 해서 출력하는 예제문
+
+
+select ename,deptno,
+    case when deptno=10 then 'ACCOUNTING'
+    when deptno=20 then 'RESERCH'
+    when deptno=30 then 'SALES'
+    when deptno=40 then 'OPERATION'
+    end as "부서명" 
+from emp
+
+
+1번에서 사용된 예제문을 case문으로 나타낸 예제문
+
+
+
+3.그룹함수
+!!!연산을 할 경우 null값은 자동으로 제외한 후 연산!!!
+
+1)종류
+- sum : 합을 나타내는 함수
+- avg : 평균을 나타내는 함수
+- max : 최대치를 나타내는 함수
+- min : 최저치를 나타내는 함수
+
+2)group by절
+
+단일함수와 그룹함수는 함께 사용할 수 없다
+
+select deptno,avg(sal)
+from emp
+where deptno=10
+group by deptno
+
+deptno는 단일함수 sal은 avg를 사용한 그룹함수이기 때문에 함께 사용이 안되지만
+group by 를 사용해 deptno를 그룹화해서 연산이 가능해진다
+
+연산의 순서가 from,where,group by,select 순으로 이어지기 때문에
+이미 whwere에 조건이 지나가버려 조건문을 추가할 수가 없다
+조건문을 추가하고 싶은 경우엔 아래처럼 having 을 써서 사용한다
+
+부서의 급여 평균이 2000이 넘는 부서를 출력하는 예제이다
+select deptno,avg(sal)
+from emp
+group by deptno
+having avg(sal)>=2000
+
+
+4.join
+
+1)equal join
+
+두개의 테이블을 공통이 되는 하나의 컬럼을 통해 연결하는 방법
+공통이 되는 하나의 컬럼이 양쪽 테이블에 존재하기 때문에 모호성을 해결해야 됨
+
+select e.empno,e.ename,d.deptno,d.dname
+from emp e,dept d
+where e.deptno=d.deptno
+
+이 예제는 emp테이블과 dept테이블을 합쳐서 사원이름,부서번호,부서이름을 표현하는 예제이다
+
+2)nonequal join
+
+equal join과 다르게 두개의 테이블에 공통되는 컬럼이 없는 경우 사용되는 방법이다
+
+select e.empno,e.ename,e.sal,s.grade
+from emp e,salgrade s
+where e.sal between s.losal and s.hisal
+
+예제의 내용은 사원번호 사원이름 급여 급여 등급을 조회해
+사원의 급여를 급여 등급에 맞게 표시하는 예제
+
+
+3)self join
+
+equal join과 기본적으로 형식이 같지만 서로 다른 테이블이 아닌
+자기 자신을 하나 더 연결하는 방식
+
+select e1.empno,e1.ename,e1.mgr,e2.ename
+from emp e1,emp e2
+where e1.mgr=e2.empno
+
+사원번호 사원이름 상사이름 등을 조회해
+사원이름 옆에 바로 상사의 사번과 이름을 표시하는 예제이다
+
+4)outerjoin
+
+self join에 동일한 내용이 없어서 빠지는 데이터를 추가하는 방식이다
+
+select e1.empno,e1.ename,e1.mgr,e2.ename
+from emp e1,emp e2
+where e1.mgr=e2.empno(+)
+
+3번 self join 예제문에 (+)를 추가한건데 3번의 예제문에 king은 상사가 없으므로
+제외된 데이터를 (+)로 추가해서 표현하는 방식이다
+
+
+
+12/13
+
+1.서브쿼리의 문법과 종류
+
+- 형식은 쿼리 안에 독립적으로 실행 가능한 쿼리가 하나 더 들어가있음
+- 소 괄호 안에 하위 쿼리를 넣어서 실행되며 소 괄호 안의 쿼리가 먼저 실행된다
+- 두개의 쿼리를 하나로 줄여서 프로그램이 실행되는 속도를 줄이기 위해 사용한다
+
+ex)scott의 급여와 동일하거나 더 많이 받는 사원명과 급여를 출력
+
+select dname
+from dept
+where deptno=(select deptno
+		from emp
+		where ename='SMITH')
+	
+
+- 하위쿼리를 만들면 그 내용을 담고 있는 가상의 테이블이 생기는 방식으로
+  하위쿼리에도 별칭을 줄 수 있다 
+
+select emp.ename,a.dname
+from emp,
+(select deptno,dname
+	from dept
+	where deptno=10) a -- a 라는 이름의 하위쿼리(가상테이블)
+where emp.deptno=a.deptno
+
+
+- 서브쿼리의 결과물에 따라서 단일형 서브쿼리와 다중형 서브쿼리로 나눠진다
+
+ex)'KING' , 'BLAKE' 라는 이름을 가진 사원이 속한 부서의 사원들의 이름과 사원번호를 출력하시오
+   이 다중형 서브쿼리의 경우 연산이 들어가야 실행이 가능해진다 (IN,ANY,ALL 등등)
+
+select deptno from emp          select ename,hiredate,deptno
+where ename='KING'        +     from emp  
+OR ename='BLAKE'                where deptno in(30,10)
+
+	select ename,hiredate,deptno
+	from emp
+	where deptno in(select deptno from emp
+=   	    where ename='KING'
+      	    OR ename='BLAKE')
+    	    and (ename <>'KING' AND ename!='BLAKE')
+
+마지막 줄의 <> 와 != 는 부정형으로써 본인인 KING 과 BLAKE 를 빼고 출력하기 위해 넣어졌다.
+
+
+2.CREATE 문
+
+- 이미 만들어져서 사용하고 있는 table 을 모두 확인할 수 있는 코드는 select * from tab
+- table 안의 형식을 보고 싶을땐 desc table 명
+
+1) 테이블을 생성하는 형식
+
+create table student(
+    --컬럼명+자료형+제약조건의 형식으로 이루어진다
+    name varchar2(21) not null,
+    age number(3),
+    addr varchar2(50),
+    tel varchar2(20) )
+
+name age addr tel 이란 컬럼명을 가진 테이블이 만들어졌고
+각각 21,3,50,20 만큼의 공간을 가지고 생성되었다
+()안의 공간은 알파벳과 숫자가 기준이고 한글의 경우 1글자에 3의 공간을 차지한다
+
+- desc (테이블명) : 해당 테이블의 컬럼명들과 공간의 크기 null값의 유무등 구성을 출력해준다
+
+
+CREATE 문을 사용해 테이블을 만들며 그 안에 기본에 있던 EMP 테이블로부터 데이터를 복사하고 싶을때
+
+
+create table emp1
+as select empno,ename,hiredate from emp
+
+=> emp1 이라는 테이블을 만들어 emp 테이블에 있던 empno,ename,hiredate 를 가져와 복사해넣었다
+
+
+2) 컬럼 추가
+
+alter table emp1
+add(email varchar2(10)) => 10글자를 넣을 수 있는 email이라는 컬럼을 새로 추가했다
+
+
+3) 컬럼 수정
+
+alter table emp1
+modify(email varchar(50)) => 10글자를 넣을 수 있던 email컬럼의 크기를 50으로 늘렸다
+
+
+4) 컬럼 삭제
+alter table emp1
+drop column email => email 이라는 컬럼을 삭제했다
+
+
+5) table 삭제
+drop table emp1
+purge recyclebin => table 삭제는 드랍 명령어를 통해 이루어 지는데
+                    삭제 후에도 잔여데이터가 남기 때문에 쓰레기통을 비워주면 완벽히 이루어진다
+
+
+
+3.데이터의 삽입,삭제,수정
+
+1)insert 문
+
+insert into values 의 형식으로 이루어짐 table에 데이터를 추가하고 싶을 때 사용
+
+inert into student(name,age,addr,tel)
+values('홍길동',20,'서울','[02-2222-1212]')  이런 형식으로 추가하게 됨
+
+컬럼의 순서만 알고 있다면 굳이 적지 않아도 데이터 추가를 할 수 있다
+
+insert into student 
+values('둘리',30,'부천','[032-2222-2222]')  이렇게 컬럼을 적지 않아도 추가가 가능
+
+insert into student(name,tel)
+values('하니','[02-3333-4444]')   이렇게 원하는 컬럼에 대한 데이터만 추가도 가능
+
+
+2)update 문
+
+update set where 의 형식으로 이루어짐 이미 있는 데이터의 수정을 위해 사용된다
+
+update student
+set tel='02-2222-1212'
+where name='홍길동'     위 insert에서 추가했던 홍길동의 전화번호 형식이 수정되었다
+
+
+3)delete 문
+
+delete from where 의 형식으로 이루어짐 이미 있는 데이터의 삭제를 위해 사용된다
+
+delete
+from student
+where name='하니'    '하니' 라는 이름의 데이터 내용이 삭제된다
+
+
+
+12/14
+
+1.JDBC (JAVA DATABASE)
+
+1)장점
+- 자바 언어로 작성된 API이므로 운영체제에 독립적이다
+- DB종류와 관계없이 프로그래밍이 가능하다
+- 다른 DB종류를 연동하더라도 
+
+2)JDBC 절차
+- 1단계 [Java.sql패키지 import]
+Import java.sql.*;
+
+- 2단계 [JDBC드라이버 로드]
+Class.forName("oracle.jdbc.driver.OracleDriver")
+
+- 3단계 
+
+
+
+3)jdbc드라이버 불러오기
+
+패키지를 만든 후 우클릭으로 빌드패스 -> 애드익스터널아카이브 -> 다운받은 드라이버 불러오기
+
+!!!메뉴가 안보일 경우 (컨피그빌드패스 -> 라이브러리 -> 애드익스터널jar)!!!
+
+
+4)ORACLE 연결하기 위해선 URL을 알고 있어야 한다
+
+데이터베이스 서비스 아이디
+
+
+5)tranjection(물리적적용구간)
+어떤 작업을 하고 있는 구간,단위
+
+
+6)PreparedStaement
+형식 : sqp을 먼저 만들어야 함 creatstatement는 인자를 받지 않고 실행하지만
+PreparedStaement는 sql을 받고 실행
+
+
+12/16
+
+부모와 자식간에 상속관계를 가지면 자식은 부모의 생성자를 호출한다	
+
+
+
+12/19
+
+HTML 이란 태그로 이루어져 있다
+태그는 한쌍으로 이루어져 있다
+
+블록태그 - 한줄 전체에 영향을 미치는 태그
+
+인라인태그 - 컨텐츠의 크기만큼만 영향을 미치는 태그
+
+물리태그 - 물리적인 적용이 바로 이루어짐
+
+속성태그 - 세부적인 속성을 다룸
+
+크롬을 기준으로 실행되어야함
+1. 색상을 표현하는 방법은 2가지
+  1)color="red","green" 등 직접입력방식
+  2)좌측 위 파레뜨 모양의 아이콘을 눌러서 원하는 색깔을 직접 눌러서 사용
+
+2.태그
+
+1)<p>
+- 단락과 단락을 구분하기 위해 공간을 형성시켜준다
+- 범위가 한줄이기 때문에 공백이 한줄이 생김
+
+2)<pre>
+- 본문 내용 그대로를 표시
+- 단! 앞부분에 공백이 없어야 똑같이 표시된다
+
+3)<mark>
+- 특정내용을 강조하기 위해서
+
+4)<b>단순의미 강조
+- 두꺼운 폰트로 바꿔준다.
+
+5)<strong>의미 부여 강조
+- b와 똑같이 표현이 되지만 웹표준에 맞추어 표시한다.
+- 의미 부여 강조는 브라우져가 알게 하기 위해 입력한다.
+% 웹표준의 궁극적인 목적은 비장애인과 장애인 모두가 사용이 가능해야 한다
+  여기서 장애인은 시각장애인을 지칭
+
+6)<i>,<em>기울임
+-똑같이 기울임의 기능을 가지고 있지만 i는 단순한 기울임
+ em은 브라우져에게 의미를 부여하는 기능을 추가하고 있다.
+
+7)<hr>개행
+
+3.<img>태그
+- 단일태그로 /닫기를 할 필요가 없다
+- 기본적인 태그 형식은 <img src="해당경로와 파일명">
+
+1)이미지를 불러오는 기법
+
+최상위의 위치는 Root
+c:
+
+- 절대 경로 기법 : root 에서부터 자원이 있는 위치까지의 경로
+
+- 상대 경로 기법 : 현재 내 위치로부터 자원이 있는 위치까지의 경로
+
+
+2)alt
+- 장애인분들이 사용하는 리더스크린에서는 이미지를 읽어올 내용이 없으므로
+  alt를 추가 작성해주면 이미지 대신 alt내용을 읽어온다
+
+3)title
+- 기본적으로 alt와 같은 내용을 작성하며 마우스를 갖다 댈 경우 이미지에 대한
+  설명으로 뜬다
+
+4)width,height
+- 이미지의 가로와 세로의 크기 조절이 가능하다
+  하지만 많이 사용하지는 않음
+
+5)hspace,vspace
+- 이미지의 가로 세로에 추가로 공백을 넣는 기능
+
+
+
+12/20
+
+table
+
+<tr> table row 행을 만드는 태그
+<td> table data 
+
+table의 크기는 가장 많은 열이 기준이 된다
+
+table 속성값
+cellspacing : 셀과 셀 사이의 간격
+cellpadding : 셀 안의 내용과 셀 사이의 간격
+
+<td> <th>의 속성값
+colspan : 가로방향 셀과 합치기
+
+rowspan : 세로방향 셀과 합치기
+
+thead -> tfoot -> tbody 의 순으로 정의해야함
+이 순서를 맞추는게 웹표준의 순서임
+
+
+
+12/22
+
+
+1. Java Script
+
+- html과 css의 정적인 언어를 동적인 환경으로 바꿔주기 위한 언어
+
+- 브라우저 <- window -> bom객체(브라우저에서 제공하는 객체)
+	      |
+    화면 <- document
+
+1)javascript,css,html => 서버가 아닌 클라이언트에서 해석해서 사용하는 클라이언트언어
+
+2)javascript = 이벤트성 언어
+
+3)onload onkeydown onkeypress onkeyup onmouseover 
+
+4)메소드와 함수의 차이는 메소드는 종속적인 기능 함수는 독립적인 기능
+
+5)javasctipt 에서는 오버로딩은 구현할 수 없다
+
+6)javascript는 가져오는 값이 문자열로 되어있다
+
+7)함수를 만드는법은 function 으로 아주 간단하다
+
+8)javascript 에서는 최상위 객체로 window가 있다 화면을 나타내는 객체로는 document
+
+9)javascript 에서는 모든 이벤트발생을 on으로 시작한다
+
+10)switch 조건에는 정수가 들어가야 한다. 하지만 javascript에서는 자료의 모호성이 있기때문에
+   어떤 값이라도 넣을 수가 있다.
+
+11)
+
+
+
+12/27
+
+jdk표준버전은 5,6,7
+
+tomcat -> download tmocat7 -> core란에서 결정 mac은(zip,tar.gz)
+window는 64bit windows zip 다운받기  여기서 32,64비트는 window 버전이 아니라 jdk의 버전을 따라간다
+-> oracle database를 사용하기 때문에 설정을 한가지 해야한다
+conf -> sever.xml을 editplus 로 연다 -> 71번째 줄의 port를 변경한다 -> 
+73번째 줄 "8443" 뒤에 URIEcoding="utf-8" 을 추가해준다
+
+
+
+이클립스 실행후 jspwork로 폴더를 추가해서 변경
+window -> general -> workspace -> 맨아래쪽 text file encoding other 을 utf-8로 변경
+
+
+더미서버 생성 -> 우클릭 -> new -> other -> server -> tomcat 7.0 설정후 download된 폴더 지정
+
+
+프로젝트 생성
+new -> dynamic web project -> 이름 설정 -> Generate web박스 체크 -> finish -> javaee 버전으로 돌리는 팝업이 뜨면 no를 선택
+
+
+window -> preference -> web -> jspfiles -> encoding 안의 설정을 utf-8로 변경
+jspfiles -> editor -> templates -> new jsp file(html) -> 선택후 edit -> 사진대로 변경
+
+
+window -> showview -> other -> severs -> 아래쪽에 생긴 tomcat v7.0을 실행한다
+-> module을 클릭 -> add web Module을 선택 자신이 생성한 프로젝트를 등록한다.
+-> start the sever을 작동 -> 웹브라우져를 켜서 주소를 입력해 서버작동을 확인한다.
+
+
+
+http://localhost:9090/myweb/hi
+
+
+1.서블릿
+
+
+패키지 폴더 명의 명명규칙은 작업하는 업체의 도메인을 거꾸로 써서 만든다
+
+HelloServlet hello=new HelloServlet();
+
+
+
+12/28
+
+
+절대경로 지정의 시작은 /로 시작한다 그리고 가장 첫 시작은 프로젝트 이름!
+
+JSP?
+
+Java Server Page의 약자로 어렵게 구현하던 서블릿을 스크립트 언어로 구현한것이다
+스크립트 언어는 한 화면을 한번에 컴파일하는것이 아니라 한줄씩 읽고 표현하는 것이 특징이다
+
+1) Directive
+
+- 설정정보를 지정할때 사용 <%@ 로 시작을 한다. jsp작업을 하면 무조건 상단에 기입해야함
+- 페이지에 대한 전반적인 내용을 설명
+- <%@ page 이름 속성1="값1" 속성2="값2"......> 의 형식을 가진다
+
+- Directive 속성
+
+contentType JSP가 생성할 문서의 타입을 지정한다
+
+import JSP 페이지에서 사용할 자바 클래스를 지정한다
+
+! .metadata -> .plugins ->org.eclipse.wst -> tmp0 -> work !
+ JSP는 원본파일의 보호를 위해 복사본을 만들어서 실행시킨다
+
+2) Script
+
+3) 기본객체
+
+4) 정적인 데이터
+
+5) 액션태그
+
+6) 커스텀태그
+
+
+스크립팅 원소
+
+기능 : JSP페이지에서 자바코드를 직접 기술할 수 있게 하는 기능이다
+
+종류와 형태
+
+1)선언(declaration) <%!자바코드%>
+
+2)스크립트릿(scriptlet) <%자바코드%>
+
+3)식(expression) <%=자바코드%>
+
+
+jsp에서 4가지의 다른 언어가 사용된다
+
+해석 순서가 있는데 그 순서는
+
+1.jsva 2.javascript 3.css 4.html 으로 실행된다.
+
+
+
+<웹사이트 만들기>
+왼쪽에서 오른쪽
+위에서 아래로
+
+1.정보수집
+
+1)로그인 및 회원가입
+2)제목
+3)메뉴
+4)사진
+5)하위메뉴
+6)사이트 정보
+
+2.레이아웃 설계
+
+3.컨텐츠의 순서 정의
+
+
+
+
+
+Copyright ⓒ 서울신문사 All rights reserved. 
+
+<header> 상단부를 구분하는 태그
+<section>중단부를 구분하는 태그
+<article>중단부중 내용을 표시하는 태그
+<footer>하단부를 구분하는 태그
+
+
+12/29
+
+
+1.Request객체가 제공하는 기본기능
+
+- 클라이언트가 전송한 요청 파라미터 읽기기능
+파라미터란 사용자가 남긴 데이터를 받을수 있게 함 ex)아이디 비밀번호 등
+
+- 서버와 관련된 정보 읽기 기능
+
+- 클라이언트가 전송한 요청 헤더, 쿠키 읽기 기능
+
+getremoteAddr()메서드를 이용하면 사용자 접속 IP를 확인가능
+getremotePort()접속포트
+getServerName()접속서버이름
+getServerPort()접속서버포트
+getMethod()접속방식
+getPretocol()접속프로토콜
+
+2)파라미터 읽어오기 메소드
+
+!화면에서 화면으로 넘어가는 데이터는 자료형이 숫자이더라도 무조건 문자열로 넘어간다
+-String | getParameter(String name)
+
+폼 페이지로부터 데이터를 받아서 처리해주는 페이지를 표시할때는
+이름 뒤에 _ok를 붙인다
+폼이 여러개 사용될 경우 페이지 이름이 아닌 폼 이름 뒤에 _OK를 붙여서 생성한다
+
+
+
+
+!!!!!!!!!!!!!!!웹프로그램 개발순서!!!!!!!!!!!!!!!!
+
+1.DB스키마 설계
+
+2.디자인 설계(개발자의 관점에서는 HTML 컨텐츠 뼈대 설계 EX)어떤 컨텐츠를 보여줄지에 대한 뼈대))
+
+3.기능 구현(DAO&DAT)
+
+4.컨트롤러 작성(_ok.jsp)
+
+
+
+데이터 베이스 연동
+
+- ojdbc14 드라이버를 web-inf 폴더의 lib 폴더 안에 복사해넣는다
+
+
+
+
+1/3
+
+
+다형성
+
+- 하나의 클래스로 여러개의 객체를 관리하는 기법
+
+
+자바빈
+
+- 웹에서 사용하는 객체
+- jsp에서 비지니스 로직과 HTML 등 디자인 요소를 구분하여 관리에 대한 어려움을 해소하기 위해 사용함
+
+
+DTO : 정보를 담당하는 클래스 접미어에 붙인다
+
+- 카트의 역할을 한다
+- 멤버 변수를 담고 있다
+
+
+DAO : 기능을 담당하는 클래스 접미어에 붙여서 구분
+
+- 비지니스로직을 담고 있다
+
+
+Action Tag
+
+- 클라이언트 혹은 서버에게 어떤 행동을 지시
+- 
+
+
+Property = 멤버변수
+
+
+
+1/6
+
+
+DBCP
+
+DataBase Connect Pool
+
+- 서버가 구동되기 시작하면 연결자들을 대폭 생성한다.
+- tomcat 서버안에는 DBCP 기능이 구현되어 있어 기능을 가져다 사용할 수 있다.
+- 기능을 구현하고 싶을때는 웹페이지 검색보다는 프로그램을 제공하는 업체의 기술을 확인하는게 빠르다.
+- 공통라이브러리는 commons로 시작한다
+
+
+
+- DBCP
+- COLLECTIONS
+- POOL
+- 드라이버 라이브러리
+
+위 4가지를 구축해야 사용이 가능하다.
+
+
+
+톰캣 사이트로 이동 -> download.archaiv -> parent directory -> commons.collections/binaries/4-4.1bin.zip ->
+
+dbcp/binaries/2-2.1.1-bin.zip 아래서4번째 -> pool/binaries/2-2.4.2-bin.zip 동일하게 아래서 4번째
+
+-> 각각폴더에 압축을 풀고 각 폴더에서 734,171,110 사이즈의 jar파일만 꺼낸후 삭제한다. ->
+
+추출한 3개의 파일을 복사해서 web-inf 폴더 안의 lib 폴더에 복사한다 단 작업은 서버를 정지시키고 해야함
+
+-> tomcat 사이트 document 7.0 -> 9)jdbc datasource 클릭 -> 4)oracle클릭 -> how to 내용의 1~2번까지를 따라서 적용()
+
+-> 1번은 sever.xml에 context.xml에 넣을 내용은 아래를 참조 2번은 web.xml에 (보이지 않는 특수문자가 있을 수 있기 때문에 메모장에 한번 붙여넣은 후 다시 붙여넣는다.) -> -> -> -> -> -> -> ->
+
+
+1. 1번 내용을 sever.xml 37번째줄에서 엔터 후 38번째 줄을 만들어서 거기에 붙여넣기한다
+
+<Resource name="jdbc/myoracle" auth="Container"
+              type="javax.sql.DataSource" driverClassName="oracle.jdbc.driver.OracleDriver"
+              url="jdbc:oracle:thin:@localhost:1521:orcl"
+              username="scott" password="1234" maxActive="20" maxIdle="10"
+              maxWait="-1"/>
+
+
+
+2.context.xml 19번째줄에 바로 붙여넣기(전 줄에 있는 <Context>를 18번째 줄로)
+
+<ResourceLink global="jdbc/myoracle" name="jdbc/myoracle"
+	type="javax.sql.DataSource"/>
+
+
+
+3. web.xml 파일을 열어서 18번째줄에 그대로 붙여넣는다
+
+<resource-ref>
+ <description>Oracle Datasource example</description>
+ <res-ref-name>jdbc/myoracle</res-ref-name>
+ <res-type>javax.sql.DataSource</res-type>
+ <res-auth>Container</res-auth>
+</resource-ref>
+
+
+
+4. 사용할때마다 빌려쓰겠다는 코드(java에 있는 기능이 아니기 때문에 네이밍 패키지를 가져와야 사용가능해짐)
+
+import javax.sql.*;
+import javax.naming.*;
+2가지를 추가해야함
+
+Context initContext = new InitialContext();
+Context envContext  = (Context)initContext.lookup("java:/comp/env");
+DataSource ds = (DataSource)envContext.lookup("jdbc/myoracle");
+Connection conn = ds.getConnection();
+
+
+
+1/10
+
+
+Scope?
+
+ 데이터를 저장할 수 있는 범위
+
+- page
+
+현재 페이지에서만 데이터를 유지
+
+- request
+
+페이지간 연결시 한번만 데이터 유지(첫번째 페이지에서 두번째 페이지로 전달)
+
+- session
+
+웹브라우저를 닫기 전 혹은 세션이 종료될때까지 유지
+(ex:로그인 정보)
+
+- application
+
+서버가 종료될때까지 데이터를 유지
+
+
+
+
+1/13
+
+
+폴더 상위로 올라가기 표현
+
+hong/aaa/bbb/ccc/
+
+subsring(1,2) 1번값부터 2번값 직전까지의 문자를 추출한다
+
+2번값의 힌트는 lastofindex
+
+!!!!!!! 까페에서 cos.jar 파일을 다운받아서 web-inf안의 lib폴더에 복사해넣는다 !!!!!!!
+
+
+
+1/17
+
+
+페이징
+
+
+1) 총게시물수
+
+2) 리스트수
+
+3) 한페이징에 보여줄 페이지 수
+
+4) 현재 자신이 위치한 페이지
+
+
+총 페이지의 수 = 총게시물수/보여줄 리스트의 수+1
+
+if == 0 --1 (만약에 나누어 떨어진다면 다시 -1)
+
+(총게시물/보여줄 리스트 수==0) -1
+
+
+ex)총게시물수가 36이고 리스트를 5개씩 보여준다면
+
+   7페이지가 나오고 거기에 남은 1개를 더 보여주기 위해 8페이지를 만들게 됨
+
+
+편리하게 사용하기 위해서 페이징끼리도 페이징을 해서 묶는다.
+
+{1 2 3 4 5} {6 7 8 9 10} {11 12 13 14}
+
+이렇게 보여주는 이유는 내가 현재 보고 있는 위치를 보여주기 위함.
+
+
+
+
+
+
+
+1/19
+
+
+1.세미 프로젝트의 목적
+
+
+
+
+혼자가 아닌 다른 사람들과 협동을 하며 프로젝트를 진행함으로서
+
+협동심 및 사회성을 키우며 사람과 사람과의 관계를 배우게 되고,
+
+현재 본인의 실력 및 스스로 기술을 습득하는 능력을 키우는데 있으며,
+
+궁극적인 목적으로는 파이널 프로젝트에서 발생할것 같은
+
+많은 문제점을 찾아 방안을 모색하는 것을 목적으로 두고 있다.
+(결과보다 과정 얼마만큼의 많은 문제점을 찾느냐에 점수가 배당됨)
+
+또한 성인 및 사회인으로서의 책임감을 배양함에 있어 본인이 하는 행동이
+
+본인이 아닌 다른사람에게 피해가 갈 수 있다는 부분에 대해서 꼭 인지를 하고 경험하여야 한다.
+
+
+
+
+2.세미 프로젝트를 하면서 지켜야 할 것
+
+
+1)팀장도 팀원이다.(팀장에게 기대지 않기. 책이전가하지 않기)
+
+2)무조건 반대하거나 부정하지 않기
+  (반대 및 부정을 할때는 그에 따른 방향성을 같이 제시하기)
+
+3)공과 사를 명확히 구분할것!(삐치지 말것)
+
+
+
+
+3.세미 프로젝트를 함에 있어서의 제약
+
+
+1)지금까지 배운 내용을 토대로 직접 구현을 하는것에 목적을 둠
+
+2)외부에서 지원해주는 API 사용금지
+
+3)외부에서 지원해주는 디자인기능(부트스트랩) 사용 금지
+
+4)본인이 알고 있는 좋은 기능 및 프로그램을 팀원들이 필요성을 느끼기 전까지 강요하지 않기.
+  (무엇이 왜 필요한지에 대해서 느껴야지 의미가 있음)
+
+
+
+
+4.세미 프로젝트 제시 ITEM
+
+
+1)쇼핑몰(주제 상관없음)
+
+2)음식 주문 사이트(음식 주제 상관없음)
+
+3)세미나룸 예약 사이트
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
