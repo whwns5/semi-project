@@ -3,6 +3,7 @@
     <jsp:useBean id="sdto" class="seung.db.DBtestDTO"/>
     <jsp:setProperty property="*" name="sdto"/>
     <jsp:useBean id="sdao" class="seung.db.DBtest"/>
+    <jsp:useBean id="semidao" class="semi.db.semiDB_Test"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -31,6 +32,12 @@
 	</article>
 	</section>
 	<!-- ------------------------------ -->
+	<section>
+	<article>
+	<p>test: <%=semidao.dbcpTest()%></p>
+	</article>
+	</section>
+	
 	
 </body>
 </html>
