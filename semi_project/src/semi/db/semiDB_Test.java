@@ -2,6 +2,8 @@ package semi.db;
 
 import java.sql.*;
 
+import seung.db.DBtest;
+
 
 public class semiDB_Test {
 	
@@ -88,8 +90,11 @@ public class semiDB_Test {
 	}
 
 	public static void main(String[] args) {
-		semiDB_Test db = new semiDB_Test();
-		System.out.println(db.dbTest());
+		//semiDB_Test db = new semiDB_Test();
+		//System.out.println(db.dbTest());
 		//System.out.println(db.dbcpTest());
+		DBtest dbt = new DBtest();
+		System.out.println(dbt.testDB());
+		
 	}
 }

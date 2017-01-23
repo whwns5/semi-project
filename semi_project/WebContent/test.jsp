@@ -3,7 +3,11 @@
     <jsp:useBean id="sdto" class="seung.db.DBtestDTO"/>
     <jsp:setProperty property="*" name="sdto"/>
     <jsp:useBean id="sdao" class="seung.db.DBtest"/>
+<<<<<<< HEAD
     <jsp:useBean id="semidao" class="semi.db.semiDB_Test"/>
+=======
+    <jsp:useBean id="semi" class="semi.db.semiDB_Test"></jsp:useBean>
+>>>>>>> branch 'master' of https://github.com/whwns5/semi-project.git
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -32,6 +36,7 @@
 	</article>
 	</section>
 	<!-- ------------------------------ -->
+<<<<<<< HEAD
 	<section>
 	<article>
 	<p>test: <%=semidao.dbcpTest()%></p>
@@ -39,5 +44,8 @@
 	</section>
 	
 	
+=======
+	<td><%=semi.dbcpTest() %></td>
+>>>>>>> branch 'master' of https://github.com/whwns5/semi-project.git
 </body>
 </html>

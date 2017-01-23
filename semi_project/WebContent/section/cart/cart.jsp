@@ -7,13 +7,24 @@
 <title>Insert title here</title>
 </head>
 <style>
-.cartTable{
-border:2px solid black;
-width:680px;
-margin:0px auto;
-}
 h1{
 text-align:center;
+}
+table, th {    
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    padding: 15px;
+}
+.img{
+text-align:left;
+float:left;
 }
 </style>
 <body>
@@ -32,10 +43,7 @@ text-align:center;
 <tbody>
 <tr>
 <td><input type="checkbox" checked="checked" value=""></td>
-<td><a href="#"><img src="" width="78" height="78" alt=""></a></td>
-<td></td>
-<td></td>
-<td></td>
+<td colspan="4"><a href="#"><img class="img" src="" width="78" height="78" alt=""></a></td>
 </tr>
 </tbody>
 </thead>
