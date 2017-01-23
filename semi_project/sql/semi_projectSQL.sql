@@ -109,3 +109,5 @@ CREATE TABLE coupon_table(
 );
 /* 쿠폰 테이블 시퀀스 */
 CREATE SEQUENCE coupon_table_idx MINVALUE 0 START WITH 1;
+
+select * from COUPON_TABLE
