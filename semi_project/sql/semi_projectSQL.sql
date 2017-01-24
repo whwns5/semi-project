@@ -24,6 +24,7 @@ CREATE TABLE product_table(
 	product_idx NUMBER PRIMARY KEY,
 	category_id NUMBER,
 	product_name VARCHAR2(50),
+	product_code VARCHAR2(100),
 	product_color VARCHAR2(20),
 	product_size VARCHAR2(20),
 	product_num NUMBER,
@@ -52,6 +53,7 @@ CREATE TABLE payment_table(
   	payment_idx NUMBER PRIMARY KEY,
 	member_id VARCHAR2(20),
 	product_idx NUMBER,
+	payment_totalprice NUMBER,
 	payment_num NUMBER,
 	payment_addr VARCHAR2(100),
 	payment_tel VARCHAR2(20)
