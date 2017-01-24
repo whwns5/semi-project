@@ -13,16 +13,23 @@ CREATE TABLE member_table(
 	member_coupon VARCHAR2(20)
   );
   
-/* 카테고리 테이블 */
-CREATE TABLE category_table(
-	category_id NUMBER,
-	category_name VARCHAR2(20)
+/* 대분류 카테고리 테이블 */
+CREATE TABLE largecategory_table(
+	largecategory_id NUMBER,
+	largecategory_name VARCHAR2(20)
   );
+
+/* 소분류 카테고리 테이블 */
+CREATE TABLE smallcategory_table(
+	smallcategory_id NUMBER,
+	smallcategory_name VARCHAR2(20),
+	largecategory_id NUMBER
+);
   
 /* 상품 테이블 */
 CREATE TABLE product_table(
 	product_idx NUMBER PRIMARY KEY,
-	category_id NUMBER,
+	smallcategory_id NUMBER,
 	product_name VARCHAR2(50),
 	product_code VARCHAR2(100),
 	product_color VARCHAR2(20),

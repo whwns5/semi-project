@@ -13,8 +13,9 @@ public class Sql {
 	
 	/** 상품 테이블 삽입 */
 	public static final String PRODUCT_INSERT = "INSERT INTO product_table VALUES(product_table_idx.NEXTVAL, " // product_idx
-			+ "?, " // category_id
+			+ "?, " // smallcategory_id
 			+ "?, " // product_name
+			+ "?, " // product_code
 			+ "?, " // product_color
 			+ "?, " // product_size
 			+ "?, " // product_num
@@ -24,8 +25,9 @@ public class Sql {
 			+ "SYSDATE"; // product_regdate
 	
 	/** 상품 테이블 수정 */
-	public static final String PRODUCT_UPDATE = "UPDATE product_table SET category_id = ?, "
+	public static final String PRODUCT_UPDATE = "UPDATE product_table SET smallcategory_id = ?, "
 			+ "product_name = ?, "
+			+ "product_code = ?, "
 			+ "product_color = ? "
 			+ "product_size = ? "
 			+ "product_num = ? "

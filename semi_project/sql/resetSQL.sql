@@ -1,6 +1,8 @@
 
 DROP TABLE member_table;
 DROP TABLE category_table;
+DROP TABLE largecategory_table;
+DROP TABLE smallcategory_table;
 DROP TABLE product_table;
 DROP TABLE cart_table;
 DROP TABLE payment_table;
