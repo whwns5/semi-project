@@ -7,581 +7,303 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<section id="contents-cart" class="contents-cart"
-		style="visibility: visible;"> <section class="cart-title">
-	<h1 class="sr-only">장바구니</h1>
-	</section>
-	<div class="tabs-wrap">
-		<div class="tabs">
-			<span class="normal-cart">일반구매 (1)</span> <a href=""
-				class="subscribe-cart no-hand">정기배송 (<span class="subscribe-cnt">0</span>)
-			</a>
-		</div>
-	</div>
-	<div id="sharing-cart">
-		<div class="wrap">
-			<h5>다른 친구에게 공유하기</h5>
-			<div class="sharingBtn">
-				<button class="twitter">twitter</button>
-				<button class="mail">mail</button>
-				<button class="facebook">facebook</button>
-				<button class="url">URL</button>
-			</div>
-			<div class="url-box">
-				<h6>
-					Ctrl+C 키를 누르면 복사하실 수 있습니다.<br>
-				</h6>
-				<input id="sharingUrl" type="text"> <span class="close">닫기</span>
-			</div>
-			<div class="info-box">
-				<div class="text-content">
-					내 장바구니에서 선택한 상품들을<br>다른 친구들에게 공유해보세요!
-				</div>
-				<div class="gray-text">(30개 까지만 공유가 가능합니다.)</div>
-			</div>
-		</div>
-	</div>
-
-
-
-
-	<table class="cartTable"
-		summary="장바구니 상품명, 제품가격, 선택한수량, 총결제비용 정보 및 결제 상품으로 선택,해제 및 수량변경, 삭제 기능 제공표">
-		<caption class="none">장바구니</caption>
-		<colgroup>
-			<col width="50">
-			<col width="80">
-			<col width="*">
-			<col width="90">
-			<col width="90">
-		</colgroup>
-		<thead>
-			<tr class="head">
-				<th scope="col" class="all-select-event"><input
-					title="모든 상품을 결제상품으로 설정" type="checkbox" checked="checked"
-					class="all-deal-select"><span>&nbsp;&nbsp;전체선택</span></th>
-				<th scope="colgroup" id="th-product-box" colspan="2">상품정보</th>
-				<th scope="col" id="th-unit-total-price">상품금액</th>
-				<th scope="col" id="th-delivery-fee">배송비</th>
-			</tr>
-		</thead>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		<tbody id="cartTable-other">
-			<tr>
-				<td colspan="5" class="cart-bundle-title"><h2
-						class="title bundle">업체상품</h2></td>
-			</tr>
-
-
-
-			<tr class="cart-deal-item count0 cart-sc-items last-cart-sc-items"
-				data-item-status="CHECKED" data-adult="false" data-index="0"
-				data-count="1" data-bundle-id="899899578" data-bundle-type="PRODUCT"
-				data-app="" data-group-type="partner">
-				<td class="product-select-event"><input type="checkbox"
-					title="베리벨로 프라임GS 26 접이식 자전거 상품을 결제상품으로 설정" checked="checked"
-					value="899899578" class="dealSelectChk"></td>
-				<td><a
-					href="http://www.coupang.com/vp/products/7371127?vendorItemId=3048142279"
-					class="moveProduct"> <img
-						src="//img1a.coupangcdn.com/image/vendor_inventory/images/2016/09/13/13/8/350f9b92-b8e6-4d5c-9895-157a16e78004.jpg"
-						width="78" height="78" class="product-img img"
-						alt="베리벨로 프라임GS 26 접이식 자전거">
-				</a></td>
-				<td class="product-box">
-					<div class="product-name-part">
-						<a
-							href="http://www.coupang.com/vp/products/7371127?vendorItemId=3048142279"
-							class="product-name moveProduct modify-color">베리벨로 프라임GS 26
-							접이식 자전거, 블랙</a>
-
-
-
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+</tr>
+<tr>
+	<td align="center">
+<style>
+div.cart_wrap table.list_table td div.updatebtn{width:31px;display:inline-block;float:right;margin-left:-15px;}
+</style>
+<!-- start container -->
+<div id="container">
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tbody>
+	<tr>
+		<td>
+			<!-- 메인 컨텐츠 -->
+			<div class="main_wrap">
+				<div class="cart_wrap">
+					<h3 class="title mt_20">
+						장바구니
+						<p class="line_map"><a class="on">장바구니</a> &gt; <a>주문/결제</a> &gt; <a>주문완료</a></p>
+					</h3>
+					<div class="info_area hide">
+						<span class="name"> 님은  회원입니다.</span>
+						<span class="coupon">쿠폰 : <strong>0</strong>개</span>
+						<span class="point">적립금 : <strong>0</strong>원</span>
 					</div>
-
-					<div id="3048142279" class="option-item modify-float"
-						data-quantity="1" data-vi="3048142279" data-vip=""
-						data-pid="7371127" data-itemid="32494956">
-						<div class="option-item-info">
-							<div class="option-name">
-								<span class="option-item-name" style="display: none;">베리벨로
-									프라임GS 26 접이식 자전거, 블랙</span>
-
-
-
-
-							</div>
-
-
-							<div class="delivery-date modify-padding"
-								style="visibility: visible;">
-								<strong class="arrive-date"><span
-									class="arrive-date-txt"></span><span class="arrive-date-day">화요일
-								</span><span class="arrive-date-date">1/31</span></strong> 도착 예정<span
-									class="delivery-message"></span>
-							</div>
-
-
-						</div>
-						<div class="option-price-part">
-
-
-							<span class="unit-cost"><span class="sr-only">제품가격</span>75,000원</span>
-							<span class="select-select"> <select
-								class="quantity-select"
-								data-url="/memberCartItem/quantity/899899578/" data-quantity="1"
-								data-all="true" title="베리벨로 프라임GS 26 접이식 자전거, 블랙 수량변경">
-
-
-									<option value="1" selected="selected">1</option>
-
-									<option value="2">2</option>
-
-									<option value="3">3</option>
-
-									<option value="4">4</option>
-
-									<option value="5">5</option>
-
-									<option value="6">6</option>
-
-									<option value="7">7</option>
-
-									<option value="8">8</option>
-
-									<option value="9">9</option>
-
-									<option value="10">10+</option>
-
-							</select>
-							</span> <span class="select-text none"> <input type="text"
-								class="quantity-text" title="베리벨로 프라임GS 26 접이식 자전거, 블랙 수량변경"
-								maxlength="4" value="1"
-								data-url="/memberCartItem/quantity/899899578/" data-all="true">
-								<input type="button" class="quantity-chg none" value="수량변경">
-							</span> <span class="unit-price-area"><span class="unit-price"><span
-									class="sr-only">구매가격</span>75,000원</span></span> <a
-								href="/memberCartItem/delete/899899578?isAllChecked=true"
-								data-url="/memberCartItem/delete/899899578" data-all="true"
-								class="delete-option"><span class="sr-only">베리벨로
-									프라임GS 26 접이식 자전거, 블랙 상품삭제</span></a>
-
-
-
-						</div>
-					</div>
-
-
-
-
-
-
-
-
-
-				</td>
-				<td class="unit-total-price" headers="th-unit-total-price">
-
-
-
-					<div>75,000원</div>
-
-
-
-				</td>
-
-				<td class="delivery-fee" rowspan="1" headers="th-delivery-fee">
-
-
-
-
-
-					9,000원<br>
-
-
-
-
-
-					<p>
-						<a
-							href="http://www.coupang.com/vp/vendors/A00079119/products?vendorName=&amp;productId=7371127&amp;outboundShippingPlaceId=21722&amp;freeShipOverAmount=0"
-							class="add-product-link sc-link"
-							data-coulog="{&quot;logCategory&quot;:&quot;event&quot;, &quot;logType&quot;:&quot;click&quot;, &quot;logLabel&quot;:&quot;open_scp_cart&quot;}">묶음배송추가
-							&gt;</a>
-					</p>
-				</td>
-
-			</tr>
-
-
-			<tr class="bundle-price-total">
-				<td colspan="5">
-					<h3 class="sr-only">업체상품 주문금액 정보</h3> 상품가격 <span
-					class="total-product-price number">75,000</span>원<span
-					class="coupon-area"> <span class="symbol symbol-plus"><span
-							class="sr-only">더하기</span></span> 배송비 <span
-						class="delivery-charge number">9,000</span>원 <span
-						class="symbol symbol-equal"><span class="sr-only">결과는</span></span>
-						주문금액 <span class="total-order-price number">84,000</span>원
-				</span>
-				</td>
-			</tr>
-
-		</tbody>
-
-
-
-
-	</table>
-
-	<div class="order-table-foot">
-
-		<span class="all-select-product"> <label> <input
-				title="모든 상품을 결제상품으로 설정" type="checkbox" checked="checked"
-				class="all-select-event"> 전체선택 <span
-				class="cart-count-bottom">( <em>1</em> / 1 )
-			</span>
-		</label> <a href="javascript:void(0);" data-login="true"
-			class="selected-delete">전체삭제</a> <a href="javascript:void(0);"
-			data-login="true" class="selected-soldout-delete">품절/판매종료상품 전체삭제</a>
-		</span>
-
-		<div class="payment-benefit" style="z-index: 1;">
-			<div class="credit-benefit">
-				<h3 class="benefit-button" tabindex="0">무이자 할부 혜택</h3>
-				<div class="installment-creditLayer" style="display: none;">
-
-					<table class="benefit-table"
-						summary="무자이할부 가능 카드사, 적용금액, 할부개월, 기간 정보 제공표">
-						<caption>무이자 할부 혜택</caption>
+					<!-- 담은 상품 -->
+					<table class="list_table" summary="담은 상품의 정보, 판매가, 수량, 할인금액, 결제 예정가, 적립금을 확인할 수 있습니다.">
+						<caption>담은 상품<span class="CLS_basketTotalCount">(1개)</span></caption>
+						<colgroup>
+							<col style="width:65px">
+							<col style="width:auto">
+							<col style="width:95px">
+							<col style="width:85px">
+							<!--<col style="width:85px" />
+							<col style="width:95px" />-->
+							<col style="width:85px">
+							<col style="width:75px">
+						</colgroup>
 						<thead>
 							<tr>
-								<th scope="col">카드사</th>
-								<th scope="col" class="ApplicableAmount">적용금액</th>
-								<th scope="col" class="monthInstallments">할부개월</th>
-								<th scope="col" class="benefitEtc">기간</th>
+								<th scope="col"><input type="checkbox" title="담은 상품 전체선택" class="allCheck" checked=""></th>
+								<th scope="col">상품정보</th>
+								<th scope="col">판매가</th>
+								<th scope="col">수량</th>
+								<!--<th scope="col">행사할인</th>-->
+								<!--<th scope="col">회원할인</th>-->
+								<th scope="col">결제 예정가</th>
+								<!--<th scope="col">적립금</th>-->
+								<th scope="col">선택</th>
 							</tr>
 						</thead>
 						<tbody>
-
 							<tr>
-								<td><img class="logoImg"
-									src="http://img1a.coupangcdn.com/image/static/common/cardbenefit/20140818/SHINHAN-PC-cc02d7c6-3324-4479-960b-ccd38862281c.png"
-									width="72" height="26" alt="신한카드"></td>
-								<td>5만원 이상</td>
-								<td>2,3,4,5,6 개월</td>
-								<td><span class="benefitDate">2017.01.11 ~
-										2017.01.31</span>
-									<p class="benefitPeriod">(총 21 일)</p></td>
-							</tr>
+								<td>
+									<form name="form_0" method="post" action="../front/basket.php">
+										<input type="hidden" name="mode">
+										<input type="hidden" name="code" value="">
+										<input type="hidden" name="productcode" value="001001001000000168">
+										<input type="hidden" name="orgquantity" value="1">
+										<input type="hidden" name="orgoption1" value="1">
+										<input type="hidden" name="orgoption2" value="0">
+										<input type="hidden" name="option1" value="1">
+										<input type="hidden" name="option2" value="0">
+										<input type="hidden" name="opts" value="0">
+										<input type="hidden" name="brandcode" value="">
+										<input type="hidden" name="assemble_list" value="">
+										<input type="hidden" name="assemble_idx" value="0">
+										<input type="hidden" name="package_idx" value="0">
+										<input type="hidden" name="quantity" value="1">		<!-- 기존 수량값을 보관하는 변수이므로 건들면 안됨 -->
 
-							<tr>
-								<td><img class="logoImg"
-									src="http://img1a.coupangcdn.com/image/static/common/cardbenefit/20140818/BC-PC-161f8fdf-b9f6-40e9-aaac-967983855523.png"
-									width="72" height="26" alt="BC(비씨)카드"></td>
-								<td>5만원 이상</td>
-								<td>2,3,4,5 개월</td>
-								<td><span class="benefitDate">2017.01.11 ~
-										2017.01.31</span>
-									<p class="benefitPeriod">(총 21 일)</p></td>
-							</tr>
+										<input type="hidden" name="temp_quantity" value="179000">		
+			
+										<input type="hidden" name="temp_row_sellprice" value="179000">
 
-							<tr>
-								<td><img class="logoImg"
-									src="http://img1a.coupangcdn.com/image/static/common/cardbenefit/20140818/KB-PC-a0def1d8-e070-4bf3-b8bd-4c9dee9ccf0c.png"
-									width="72" height="26" alt="KB국민카드"></td>
-								<td>5만원 이상</td>
-								<td>2,3,4,5,6 개월</td>
-								<td><span class="benefitDate">2017.01.11 ~
-										2017.01.31</span>
-									<p class="benefitPeriod">(총 21 일)</p></td>
+										<input name="checkProduct" class="checkProduct" value="286200" type="checkbox" checked="">
+									</form>
+								</td>
+								<td class="info" width="500">
+									<a href="../front/productdetail.php?productcode=001001001000000168">
+																																<img src="../data/shopimages/product/0010010010000001683.jpg" width="126">
+																			</a>
+									<span class="name">
+									<a href="../front/productdetail.php?productcode=001001001000000168">
+										틴턴 크로스백 O6FBCB90									</a>
+									<br>
+									<span class="option">옵션 : PEWTER</span><span class="option">(1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   개&nbsp;0원)</span>									</span>
+								</td>
+								<td><strong>179,000</strong></td>
+								<td>
+									<form name="form_v_0">
+																		<div class="qty">
+										<!--<input type="text" name="quantity_v" value="1" title="수량을 입력하세요." readonly/>-->
+										<input type="text" name="quantity_v" value="1" title="수량을 입력하세요." readonly="">
+										<a href="javascript:change_quantity('up',0)"><img src="../img/button/cart_qty_up.gif" alt="수량 1개 더하기" style="cursor:pointer"></a>
+										<a href="javascript:change_quantity('dn',0)"><img src="../img/button/cart_qty_down.gif" alt="수량 1개 빼기" style="cursor:pointer"></a>
+									</div>
+									<div class="updatebtn">
+										<a href="javascript:CheckForm('upd',0)"><img src="../image/cart/c_modify_btn.gif" type="image"></a>
+									</div>
+									</form>
+								</td>
+																<td><strong>179,000</strong></td>
+								<!--<td class="point"  width="110"><img src="../img/icon/cart_point_icon.gif" alt="적립금" />0</td>-->
+								<td class="button" width="70">
+									<a href="javascript:;" class="CLS_DirectBuyBtn" target="_self"><img src="../img/button/cart_buy_btn.gif" alt="바로구매"></a>
+									<a href="javascript:;" class="CLS_WishlistBtn" target="_self"><img src="../img/button/cart_wishlist_btn.gif" alt="위시리스트"></a>
+									<a href="javascript:CheckForm('del_chk','286200')"><img src="../img/button/cart_remove_btn.gif" alt="삭제"></a>
+								</td>
 							</tr>
-
-							<tr>
-								<td><img class="logoImg"
-									src="http://img1a.coupangcdn.com/image/static/common/cardbenefit/20151111/HYUNDAI-PC-ed449784-4c88-4eef-b2e1-c6033eb5539d.png"
-									width="72" height="26" alt="현대카드"></td>
-								<td>5만원 이상</td>
-								<td>2,3,4,5 개월</td>
-								<td><span class="benefitDate">2017.01.11 ~
-										2017.01.31</span>
-									<p class="benefitPeriod">(총 21 일)</p></td>
-							</tr>
-
-							<tr>
-								<td><img class="logoImg"
-									src="http://img1a.coupangcdn.com/image/static/common/cardbenefit/20140818/SAMSUNG-PC-f2e8b2a0-8dd8-4ab4-9d85-fda4ba0c4094.png"
-									width="72" height="26" alt="삼성카드"></td>
-								<td>5만원 이상</td>
-								<td>2,3,4,5 개월</td>
-								<td><span class="benefitDate">2017.01.11 ~
-										2017.01.31</span>
-									<p class="benefitPeriod">(총 21 일)</p></td>
-							</tr>
-
-							<tr>
-								<td><img class="logoImg"
-									src="http://img1a.coupangcdn.com/image/static/common/cardbenefit/20140818/LOTTE-PC-798747ba-5b0c-42d2-a48a-d7d2c8c38a2e.png"
-									width="72" height="26" alt="롯데카드"></td>
-								<td>5만원 이상</td>
-								<td>2,3,4,5 개월</td>
-								<td><span class="benefitDate">2017.01.11 ~
-										2017.01.31</span>
-									<p class="benefitPeriod">(총 21 일)</p></td>
-							</tr>
-
-							<tr>
-								<td><img class="logoImg"
-									src="http://img1a.coupangcdn.com/image/static/common/cardbenefit/20140818/KEB-PC-18dd8e1f-4f3b-42f0-8656-fe555d0221dd.png"
-									width="72" height="26" alt="외환카드"></td>
-								<td>5만원 이상</td>
-								<td>2,3,4,5 개월</td>
-								<td><span class="benefitDate">2017.01.11 ~
-										2017.01.31</span>
-									<p class="benefitPeriod">(총 21 일)</p></td>
-							</tr>
-
-							<tr>
-								<td><img class="logoImg"
-									src="http://img1a.coupangcdn.com/image/static/common/cardbenefit/20140818/NH-PC-d48f0720-142b-4404-a0be-1098c1618e5f.png"
-									width="72" height="26" alt="NH농협(채움)카드"></td>
-								<td>5만원 이상</td>
-								<td>2,3,4,5 개월</td>
-								<td><span class="benefitDate">2017.01.11 ~
-										2017.01.31</span>
-									<p class="benefitPeriod">(총 21 일)</p></td>
-							</tr>
-
-							<tr>
-								<td><img class="logoImg"
-									src="http://img1a.coupangcdn.com/image/static/common/cardbenefit/20140818/HANA_SK-PC-b0812773-8f15-4d99-8ef0-a59e807b5b33.png"
-									width="72" height="26" alt="하나카드"></td>
-								<td>5만원 이상</td>
-								<td>2,3,4,5 개월</td>
-								<td><span class="benefitDate">2017.01.11 ~
-										2017.01.31</span>
-									<p class="benefitPeriod">(총 21 일)</p></td>
-							</tr>
-
-							<tr>
-								<td><img class="logoImg"
-									src="http://img1a.coupangcdn.com/image/static/common/cardbenefit/20140818/CITY-PC-17299bc7-8aec-43b3-a7f2-aa745ff17e01.png"
-									width="72" height="26" alt="씨티카드"></td>
-								<td>5만원 이상</td>
-								<td>2,3 개월</td>
-								<td><span class="benefitDate">2017.01.11 ~
-										2017.01.31</span>
-									<p class="benefitPeriod">(총 21 일)</p></td>
-							</tr>
-
-							<tr>
-								<td><img class="logoImg"
-									src="http://img1a.coupangcdn.com/image/static/common/cardbenefit/20160708/JEONBUK-PC-89b3e94f-e27e-4575-9294-a5a21279c692.png"
-									width="72" height="26" alt="전북은행카드"></td>
-								<td>5만원 이상</td>
-								<td>2,3,4,5 개월</td>
-								<td><span class="benefitDate">2017.01.01 ~
-										2017.01.31</span>
-									<p class="benefitPeriod">(총 31 일)</p></td>
-							</tr>
-
 						</tbody>
+												<tfoot>
+							<tr>
+								<td colspan="9" bgcolor="#fafafa">
+									<div class="result_box">
+										<span class="total">
+											<span class="txt">총 판매가</span>
+											<strong class="number">179,000 원</strong>
+										</span>
+										<!--<img class="icon" src="../img/icon/cart_list_icon_minus.gif" alt="-" />-->
+										<!--<span class="total">
+											<span class="txt">총 할인금액</span>
+											<strong class="number">179,000 원</strong>
+										</span>-->
+										<img class="icon" src="../img/icon/cart_list_icon_plus.gif" alt="+">
+										<span class="total">
+											<span class="txt">총 배송비</span>
+											<strong class="number">0 원</strong>
+										</span>
+										<img class="icon" src="../img/icon/cart_list_icon_equals.gif" alt="=">
+										<span class="total_payment">
+											<span class="txt">총 결제 금액</span>
+											<strong class="number">179,000<span>원</span></strong>
+										</span>
+									</div>
+								</td>
+							</tr>
+						</tfoot>
 					</table>
+					<!-- // 담은 상품 -->
 
+					<div class="button_area">
+						<div class="button_left">
+							<a href="javascript:;" target="_self"><img src="../img/button/cart_select_all_btn.gif" alt="전체선택" class="allCheckButton"></a>
+							<a href="javascript:;" target="_self"><img src="../img/button/cart_select_cancel_btn.gif" alt="선택해제" class="allUnCheckButton"></a>
+							<a href="javascript:basket_clear();" target="_self"><img src="../img/button/cart_delete_all_btn.gif" alt="전체삭제" class=""></a>
+						</div>
+						<div class="button_right">
+						
+							<a href="javascript:;" class="estimate_sheet  btn_B wide">견적서 출력</a>
+							<!-- 추가--> 
 
-
-					<div class="benefit-notice">
-
-						<p>-법인,개인사업자,체크,기프트,선불,하이브리드카드 제외</p>
-
-						<p>-신한BC/국민BC/씨티BC카드는 BC카드 행사로 적용됨</p>
-
-						<p>-해외항공권 구매 시 혜택 적용 불가(하나프리 결제 건)</p>
-
+							<a href="../" target="_self" class="btn_B wide">쇼핑 계속하기</a>
+							<a href="../front/login.php?buy=1&amp;chUrl=..%2Ffront%2Forder.php"></a>
+							<a href="javascript:;" class="selectProduct btn_B wide">선택상품 주문</a>
+							<a href="javascript:;" class="allBuyProduct btn_A wide">전체상품 주문</a>
+						</div>
 					</div>
-
-
-
-					<table class="benefit-table"
-						summary="부분무이자 가능 카드사, 적용금액, 할부개월, 기타 정보 제공표">
-						<caption>부분 무이자 할부 혜택</caption>
-						<thead>
-							<tr>
-								<th scope="col">카드사</th>
-								<th scope="col">적용금액</th>
-								<th scope="col">할부개월</th>
-								<th scope="col">기타</th>
-							</tr>
-						</thead>
-						<tbody>
-
-							<tr>
-
-								<td rowspan="3" class="creditCardCompany"><img
-									class="logoImg"
-									src="http://img2.coupangcdn.com/image/static/common/cardbenefit/20140818/SAMSUNG-PC-f2e8b2a0-8dd8-4ab4-9d85-fda4ba0c4094.png"
-									width="72" height="26" alt="삼성카드"></td>
-
-
-								<td>5만원 이상</td>
-								<td>6 개월</td>
-								<td>1 회차 수수료 고객 부담</td>
-							</tr>
-
-							<tr>
-
-
-								<td>5만원 이상</td>
-								<td>10 개월</td>
-								<td>1,2 회차 수수료 고객 부담</td>
-							</tr>
-
-							<tr>
-
-
-								<td>5만원 이상</td>
-								<td>12 개월</td>
-								<td>1,2,3 회차 수수료 고객 부담</td>
-							</tr>
-
-							<tr>
-
-								<td rowspan="2" class="creditCardCompany"><img
-									class="logoImg"
-									src="http://img2.coupangcdn.com/image/static/common/cardbenefit/20140818/LOTTE-PC-798747ba-5b0c-42d2-a48a-d7d2c8c38a2e.png"
-									width="72" height="26" alt="롯데카드"></td>
-
-
-								<td>5만원 이상</td>
-								<td>6 개월</td>
-								<td>1 회차 수수료 고객 부담</td>
-							</tr>
-
-							<tr>
-
-
-								<td>5만원 이상</td>
-								<td>10 개월</td>
-								<td>1,2 회차 수수료 고객 부담</td>
-							</tr>
-
-							<tr>
-
-								<td rowspan="2" class="creditCardCompany"><img
-									class="logoImg"
-									src="http://img2.coupangcdn.com/image/static/common/cardbenefit/20140818/KEB-PC-18dd8e1f-4f3b-42f0-8656-fe555d0221dd.png"
-									width="72" height="26" alt="외환카드"></td>
-
-
-								<td>5만원 이상</td>
-								<td>10 개월</td>
-								<td>1,2 회차 수수료 고객 부담</td>
-							</tr>
-
-							<tr>
-
-
-								<td>5만원 이상</td>
-								<td>15 개월</td>
-								<td>1,2,3 회차 수수료 고객 부담</td>
-							</tr>
-
-							<tr>
-
-								<td rowspan="2" class="creditCardCompany"><img
-									class="logoImg"
-									src="http://img2.coupangcdn.com/image/static/common/cardbenefit/20140818/HANA_SK-PC-b0812773-8f15-4d99-8ef0-a59e807b5b33.png"
-									width="72" height="26" alt="하나카드"></td>
-
-
-								<td>5만원 이상</td>
-								<td>10 개월</td>
-								<td>1,2 회차 수수료 고객 부담</td>
-							</tr>
-
-							<tr>
-
-
-								<td>5만원 이상</td>
-								<td>15 개월</td>
-								<td>1,2,3 회차 수수료 고객 부담</td>
-							</tr>
-
-						</tbody>
-					</table>
-
-
-
-					<div class="benefit-notice">
-
-						<p>-법인,개인사업자,체크,BC,기프트,선불,하이브리드카드 제외</p>
-
-						<p>-해외항공권 구매 시 혜택 적용 불가(하나프리 결제 건)</p>
-
+										<!-- 추천 -->
+				<div class="new_goods4ea">	
+					<div class="recomm_area">
+						<h3>추천!<span>다른 고객님들이 많이 구입하신 상품들</span></h3></div>
+						<ul class="list" style="  margin-top: 20px; margin-bottom: 20px;">
+														<li class="in_icon">
+								<div>			
+									<div class="goods_A">  
+										<a href="#">						
+										  
+											<p class="img190"><img src="../data/shopimages/product/002001001000000015.jpg" "="" width="190" height="190" alt=""></p>
+											<span class="subject">트리나 장지갑 O5SPLP07</span>
+											<span class="price">
+												<del>189,000원</del>&nbsp;
+												69,000원											</span>
+										</a>	
+									</div>
+																		<div class="layer_goods_icon" link_url="../front/productdetail.php?productcode=002001001000000015" style="display: none;">
+										<p class="icon">
+											<a href="javascript:;" link_url="../front/productdetail.php?productcode=002001001000000015" class="view" title="상세보기"></a>
+											<a href="javascript:;" option_chk="3" cart_chk="002001001000000015" class="cart" title="장바구니"></a>
+										</p>
+									</div>
+								</div>
+							</li>
+														<li class="in_icon">
+								<div>			
+									<div class="goods_A">  
+										<a href="#">						
+										  
+											<p class="img190"><img src="../data/shopimages/product/001001006000000127.jpg" "="" width="190" height="190" alt=""></p>
+											<span class="subject">[임직원]Queens O5FBCB61_CM</span>
+											<span class="price">
+												<del>298,000원</del>&nbsp;
+												149,000원											</span>
+										</a>	
+									</div>
+																		<div class="layer_goods_icon" link_url="../front/productdetail.php?productcode=001001006000000127" style="display: none;">
+										<p class="icon">
+											<a href="javascript:;" link_url="../front/productdetail.php?productcode=001001006000000127" class="view" title="상세보기"></a>
+											<a href="javascript:;" option_chk="3" cart_chk="001001006000000127" class="cart" title="장바구니"></a>
+										</p>
+									</div>
+								</div>
+							</li>
+														<li class="in_icon">
+								<div>			
+									<div class="goods_A">  
+										<a href="#">						
+										  
+											<p class="img190"><img src="../data/shopimages/product/001001005000000012.jpg" "="" width="190" height="190" alt=""></p>
+											<span class="subject">Reloy O4FBCL23_MB</span>
+											<span class="price">
+												<del>199,000원</del>&nbsp;
+												199,000원											</span>
+										</a>	
+									</div>
+																		<div class="layer_goods_icon" link_url="../front/productdetail.php?productcode=001001005000000012" style="display: none;">
+										<p class="icon">
+											<a href="javascript:;" link_url="../front/productdetail.php?productcode=001001005000000012" class="view" title="상세보기"></a>
+											<a href="javascript:;" option_chk="3" cart_chk="001001005000000012" class="cart" title="장바구니"></a>
+										</p>
+									</div>
+								</div>
+							</li>
+														<li class="in_icon">
+								<div>			
+									<div class="goods_A">  
+										<a href="#">						
+										  
+											<p class="img190"><img src="../data/shopimages/product/001001004000000155.jpg" "="" width="190" height="190" alt=""></p>
+											<span class="subject">[임직원]몰리백팩 O5FBBP29_NY</span>
+											<span class="price">
+												<del>259,000원</del>&nbsp;
+												129,500원											</span>
+										</a>	
+									</div>
+																		<div class="layer_goods_icon" link_url="../front/productdetail.php?productcode=001001004000000155" style="display: none;">
+										<p class="icon">
+											<a href="javascript:;" link_url="../front/productdetail.php?productcode=001001004000000155" class="view" title="상세보기"></a>
+											<a href="javascript:;" option_chk="3" cart_chk="001001004000000155" class="cart" title="장바구니"></a>
+										</p>
+									</div>
+								</div>
+							</li>
+						</ul>
 					</div>
-
+					<!-- // 추천 -->
 				</div>
 			</div>
-		</div>
-	</div>
+			<!-- //메인 컨텐츠 -->
+		</td>
+	</tr>
+	</tbody></table>
+</div>
+<!-- 장바구니로 이동 -->
+<form name="form1" id="ID_goodsviewfrm" method="post" action="../front/basket.php">
+	<input type="hidden" name="productcode"> 
+</form>
 
+<form name="productlist_basket" id="productlist_basket">
+	<input type="hidden" name="productcode2" id="productcode2">
+</form>
 
+<!--견적서 출력-->
+<form name="estimate_sheet_form" method="post">
+	<input type="hidden" name="strBasket">
+	<input type="hidden" name="rowid" value="">
+</form>
+<!---->
+<!-- WIDERPLANET  SCRIPT START 2015.6.30 -->
+<div id="wp_tg_cts" style="display:none;"></div>
+<script type="text/javascript">
+var wptg_tagscript_vars = wptg_tagscript_vars || [];
+wptg_tagscript_vars.push(
+(function() {
+	return {
+		wp_hcuid:"",  	/*Cross device targeting을 원하는 광고주는 로그인한 사용자의 Unique ID (ex. 로그인 ID, 고객넘버 등)를 암호화하여 대입.
+				 *주의: 로그인 하지 않은 사용자는 어떠한 값도 대입하지 않습니다.*/
+		ti:"22251",
+		ty:"Cart",
+		device:"web"
+		,items:[{ i: "001001001000000168", t: "틴턴 크로스백 O6FBCB90" }]
+	};
+}));
 
+</script>
+<script type="text/javascript" async="" src="//astg.widerplanet.com/js/wp_astg_4.0.js"></script>
+<!-- // WIDERPLANET  SCRIPT END 2015.6.30 -->
+	</td>
+</tr>
+<form name="wishform" method="post" action="../front/confirm_wishlist_cart.php" target="confirmwishlist"></form>
+<input type="hidden" name="basket_idx">
+<form name="delform" method="post" action="/front/basket.php"></form>
+<input type="hidden" name="mode">
+<input type="hidden" name="code" value="">
+<input type="hidden" name="productcode">
 
-
-
-
-	<div class="cart-total-price">
-		<div class="price-area">
-			<h2 class="sr-only" id="cart-total-price">장바구니 총 주문금액 정보</h2>
-			총 상품가격 <em class="final-product-price">75,000</em>원 <span
-				class="symbol-plus1"><span class="sr-only">더하기</span></span> 총 배송비 <em
-				class="final-delivery-charge">9,000</em>원 <span
-				class="symbol-equal1"><span class="sr-only">결과는</span></span> 총 주문금액
-			<em class="final-order-price">84,000</em>원
-		</div>
-
-
-
-	</div>
-
-
-
-
-	<div class="faraway-notice">
-		<strong>도서산간 배송안내 </strong> : 도서산간 추가배송비 발생 시 함께 결제할 수 있습니다. <span
-			class="faraway-address"></span><br> 로켓배송은 추가배송비도 무료
-	</div>
-
-
-
-
-
-	<div class="order-buttons">
-		<a class="goShopping" href="http://www.coupang.com">계속 쇼핑하기</a> <a
-			href="javascript:void(0);" class="goPayment" id="btnPay"
-			data-pay-url="/cart/orderV3?isAllChecked=true">구매하기</a>
-
-
-	</div>
-
-
-
-	<iframe id="ab_iframe" class="ab_test" src="" width="0" height="0"
-		frameborder="0" vspace="0"></iframe> </section>
+</tbody></table>
 </body>
 </html>
