@@ -40,8 +40,9 @@ public class ProductDAO {
 			
 			while(rs.next()){
 				int product_idx = rs.getInt("product_idx");
-				int category_id = rs.getInt("category_id");
+				int smallcategory_id = rs.getInt("smallcategory_id");
 				String product_name = rs.getString("product_name");
+				String product_code = rs.getString("product_code");
 				String product_color = rs.getString("product_color");
 				String product_size = rs.getString("product_size");
 				int product_num = rs.getInt("product_num");
@@ -50,8 +51,8 @@ public class ProductDAO {
 				String product_img = rs.getString("product_img");
 				Date product_regdate = rs.getDate("product_regdate");
 				
-				ProductDTO pdto = new ProductDTO(product_idx, category_id, product_name,
-						product_color, product_size, product_num, product_price,
+				ProductDTO pdto = new ProductDTO(product_idx, smallcategory_id, product_name, 
+						product_code, product_color, product_size, product_num, product_price, 
 						product_content, product_img, product_regdate);
 			
 				arr_pdto.add(pdto);
@@ -83,7 +84,7 @@ public class ProductDAO {
 			conn = semi.db.semiDB.getConn();
 			
 			ps = conn.prepareStatement(Sql.PRODUCT_INSERT);
-			ps.setInt(1, pdto.getCategory_id());
+			ps.setInt(1, pdto.getSmallcategory_id());
 			ps.setString(2, pdto.getProduct_name());
 			ps.setString(3, pdto.getProduct_color());
 			ps.setString(5, pdto.getProduct_size());
@@ -119,7 +120,7 @@ public class ProductDAO {
 			conn = semi.db.semiDB.getConn();
 			
 			ps = conn.prepareStatement(Sql.PRODUCT_UPDATE);
-			ps.setInt(1, pdto.getCategory_id());
+			ps.setInt(1, pdto.getSmallcategory_id());
 			ps.setString(2, pdto.getProduct_name());
 			ps.setString(3, pdto.getProduct_color());
 			ps.setString(4, pdto.getProduct_size());
