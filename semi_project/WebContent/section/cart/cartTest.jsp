@@ -18,8 +18,6 @@
 			</a>
 		</div>
 	</div>
-
-
 	<div id="sharing-cart">
 		<div class="wrap">
 			<h5>다른 친구에게 공유하기</h5>
