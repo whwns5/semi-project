@@ -65,12 +65,14 @@ display:inline;
 </form>
 </td>
 <td>
+<span style="float:left; padding:0; margin:0" class="image">
 <a href="">(이미지)</a>
-<span class="name">
-<a href="">(제품명)</a>
 </span>
+<span style="float:right; text-align:right" class="name">
+<a href="">(제품명)</a>
 <br>
-<span class="option">(옵션)</span>
+(옵션)
+</span>
 </td>
 <td>(판매가)</td>
 <td>(수량)</td>
