@@ -20,8 +20,6 @@
 		});
 	});
 </script>
-
-
 		<div class="containerBody sub_skin">
 		<!-- LNB -->
 		<div class="left_lnb">
