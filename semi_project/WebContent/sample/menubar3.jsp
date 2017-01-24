@@ -46,48 +46,89 @@ ul#navigation {
     position: fixed;
     margin: 0px;
     padding: 0px;
-    top: 100px;
+    top: 50px;
     right: 0px;
     list-style: none;
     z-index:9999;
 }
 ul#navigation li {
-    width: 100px;
+    width: 130px;
 }
-ul#navigation li a {
+ul#navigation li div{
     display: block;
-  	margin-left: 80px;
-    width: 100px;
-    height: 70px;    
-    background-color:#CFCFCF;
+  	margin-left: 94px;
+    width: 130px;
+    height: 50px;    
+    background-color:#716d6c;
     background-repeat:no-repeat;
     background-position:center center;
     border:1px solid #AFAFAF;
     -moz-border-radius:0px 10px 10px 0px;
-    -webkit-border-bottom-right-radius: 10px;
-    -webkit-border-top-right-radius: 10px;
-    -khtml-border-bottom-right-radius: 10px;
-    -khtml-border-top-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -webkit-border-top-left-radius: 10px;
+    -khtml-border-bottom-left-radius: 10px;
+    -khtml-border-top-left-radius: 10px;
     /*-moz-box-shadow: 0px 4px 3px #000;
     -webkit-box-shadow: 0px 4px 3px #000;
     */
-    opacity: 0.6;
+    opacity: 0.5;
     filter:progid:DXImageTransform.Microsoft.Alpha(opacity=60);
     transition:all 1s;
 }
-ul#navigation li a:hover{
-	margin-left: 5px;
+ul#navigation li div:hover{
+	opacity: 1;
+	margin-left: 0px;
+}
+ul#navigation li div a{
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+}
+ul#navigation li div a img{
+	display: block;
+	float: left;
+	margin-left : 5px;
+	margin-right : 5px;
+	margin-top : 15px;
+	margin-bottom : 15px;
+}
+ul#navigation li div a p{
+	margin: 0px;
+	padding-top: 19px;
+	margin-left: 50px;
+	font:12px dotum; 
+	color:#fff;
+}
+
+ul#navigation li:LAST-CHILD div{
+	height: 500px;
+}
+ul#navigation li:LAST-CHILD div img{
+	display: blockl;
+	float: left;
+	margin-left : 5px;
+	margin-right : 5px;
+	margin-top : 15px;
+	margin-bottom : 15px;
+}
+ul#navigation li:LAST-CHILD div p{
+	margin: 0px;
+	padding-top: 19px;
+	margin-left: 50px;
+	font:12px dotum; 
+	color:#fff;
 }
 </style>
 </head>
 <body>
 <ul id="navigation">
-            <li class="home"><a href="" title="Home"></a></li>
-            <li class="about"><a href="" title="About"></a></li>
-            <li class="search"><a href="" title="Search"></a></li>
-            <li class="photos"><a href="" title="Photos"></a></li>
-            <li class="rssfeed"><a href="" title="Rss Feed"></a></li>
-            <li class="podcasts"><a href="" title="Podcasts"></a></li>
-            <li class="contact"><a href="" title="Contact"></a></li>
+            <li class="home"><div><a href="" title="Home"><img src="/semi_project/img/icon/icon_brand_cate.png"/><p>로그아웃</p></a></div></li>
+            <li class="about"><div><a href="" title="About"><img src="/semi_project/img/icon/icon_brand_cate.png"><p>내정보보기</p></a></div></li>
+            <li class="search"><div><a href="" title="Search"><img src="/semi_project/img/icon/icon_brand_cate.png"><p>포인트</p></a></div></li>
+            <li class="photos"><div><a href="" title="Photos"><img src="/semi_project/img/icon/icon_brand_cate.png"><p>쿠폰</p></a></div></li>
+            <li class="rssfeed"><div><a href="" title="Rss Feed"><img src="/semi_project/img/icon/icon_brand_cate.png"><p>장바구니</p></a></div></li>
+            <li class="podcasts"><div><a href="" title="Podcasts"><img src="/semi_project/img/icon/icon_brand_cate.png"><p>장바구니</p></a></div></li>
+            <li class="contact"><div><img src="/semi_project/img/icon/icon_brand_cate.png"><p>투데이상품</p></div></li>
         </ul>
 </html>
