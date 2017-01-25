@@ -2,11 +2,11 @@
 /* 회원 테이블 */
 CREATE TABLE member_table(
   	member_id VARCHAR2(20) PRIMARY KEY,
-	member_type VARCHAR2(5),
+	member_type VARCHAR2(10),
 	member_name VARCHAR2(20),
 	member_pwd VARCHAR2(40),
 	member_birthday DATE,
-	member_sex VARCHAR2(5),
+	member_sex VARCHAR2(10),
 	member_email VARCHAR2(40),
 	member_tel VARCHAR2(20),
 	member_addr VARCHAR2(100),

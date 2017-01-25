@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <header>
-<p><a href="/semi_project/section/member/login/login.jsp">LOGIN</a> | <a href="/semi_project/section/member/join/join.jsp">JOIN US</a> | <a href="#">CART</a> | <a href="#">MYPAGE</a></p>
+<p><a href="/semi_project/section/member/login/login.jsp">LOGIN</a> | <a href="/semi_project/section/member/join/join.jsp">JOIN US</a> | <a href="#">CART</a> | <a href="#">MYPAGE</a> | <a href="/semi_project/section/member/join/del.jsp">회원탈퇴</a></p>
 <h1>KH SHOPPING MALL</h1>
 <nav>
 	<ui>

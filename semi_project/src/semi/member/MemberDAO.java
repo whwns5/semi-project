@@ -7,6 +7,10 @@ public class MemberDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	private ResultSet rs;
+	public static final int NOT_ID=1; //상수를 사용
+	public static final int	NOT_PWD=2;
+	public static final int LOGIN_OK=3;
+	public static final int ERROR=-1;
 	
 	public MemberDAO(){
 		System.out.println("MemberDAO()객체 생성됨!!");
@@ -16,21 +20,20 @@ public class MemberDAO {
 	public int memberJoin(MemberDTO dto){
 		try{
 			conn=semi.db.semiDB.getConn();
-			
-			String sql="insert into member_table(member_id,member_name,member_pwd,member_birthday,member_sex,member_email,member_tel,member_addr)"
-					+ " values(?,?,?,?,?,?,?,?)";
+			String sql="insert into member_table(member_id,member_name,member_pwd,member_sex,member_email,member_tel,member_addr)"
+					+ " values(?,?,?,?,?,?,?)";
 			ps=conn.prepareStatement(sql);
 			
 			ps.setString(1, dto.getMember_id());
 			ps.setString(2, dto.getMember_name());
 			ps.setString(3, dto.getMember_pwd());
-			ps.setDate(4, dto.getMember_birthday());
-			ps.setString(5, dto.getMember_sex());
-			ps.setString(6, dto.getMember_email());
-			ps.setString(7, dto.getMember_tel());
-			ps.setString(8, dto.getMember_addr());
+			ps.setString(4, dto.getMember_sex());
+			ps.setString(5, dto.getMember_email());
+			ps.setString(6, dto.getMember_tel());
+			ps.setString(7, dto.getMember_addr());
 			
 			int count=ps.executeUpdate();
+			System.out.println("2");
 			return count;
 			
 		}catch(Exception e){
@@ -38,10 +41,124 @@ public class MemberDAO {
 			return -1;
 		}finally{
 			try{
-				
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
 			}catch(Exception e2){
 				
 			}
 		}
 	}
+	/**아이디 중복검사 관련 메서드*/
+	public boolean idCheck(String userid){
+		try{
+			conn=semi.db.semiDB.getConn();
+			String sql="select member_id from member_table where member_id=?";
+			ps=conn.prepareStatement(sql);
+			
+			ps.setString(1, userid);
+			rs=ps.executeQuery();
+			return rs.next();
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}finally{
+			try{
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e2){
+				
+			}
+		}
+	}
+	/**회원 탈퇴 관련 메서드*/
+	public int memberdel(String member_id,String member_pwd){
+		try{
+			conn=semi.db.semiDB.getConn();
+			String dbpwd;
+			
+			String sql1="select pwd from member_table where member_id=? ";
+			String sql2="delete from member_table where member_id=?";
+			ps=conn.prepareStatement(sql1);
+			ps.setString(1, member_id);
+			rs=ps.executeQuery();
+			if(rs.next()){
+				dbpwd=rs.getString(member_pwd);
+				if(dbpwd.equals(member_pwd)){
+					ps=conn.prepareStatement(sql2);
+					ps.setString(1, member_id);
+					int count=ps.executeUpdate();
+					return count;
+				}
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			return -1;
+		}finally{
+			try{
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e2){
+				
+			}
+		}
+	}
+	public int loginCheck(String member_id, String member_pwd){
+		try {
+			conn=semi.db.semiDB.getConn();
+			String sql="select pwd from jsp_member where id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, member_id);
+			rs=ps.executeQuery();
+			
+			if(rs.next()){
+				String db_pwd=rs.getString("pwd");
+				if(member_pwd.equals(db_pwd)){
+					return LOGIN_OK;
+				}else{
+					return NOT_PWD;
+				}
+			}else{
+				return NOT_ID;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ERROR;
+		}finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch (Exception e2) {
+				
+			}
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
