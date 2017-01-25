@@ -7,6 +7,8 @@ public class ProductDTO {
 	private int product_idx;
 	/** 카테고리 아이디 (FK) */
 	private int smallcategory_id;
+	/** 카테고리 아이디 */
+	private String smallcategory_name;
 	/** 상품 명 */
 	private String product_name;
 	/** 상품 코드 */
@@ -45,6 +47,32 @@ public class ProductDTO {
 		this.product_content = product_content;
 		this.product_img = product_img;
 		this.product_regdate = product_regdate;
+	}
+
+	public ProductDTO(int product_idx, int smallcategory_id, String smallcategory_name, String product_name,
+			String product_code, String product_color, String product_size, int product_num, int product_price,
+			String product_content, String product_img, Date product_regdate) {
+		super();
+		this.product_idx = product_idx;
+		this.smallcategory_id = smallcategory_id;
+		this.smallcategory_name = smallcategory_name;
+		this.product_name = product_name;
+		this.product_code = product_code;
+		this.product_color = product_color;
+		this.product_size = product_size;
+		this.product_num = product_num;
+		this.product_price = product_price;
+		this.product_content = product_content;
+		this.product_img = product_img;
+		this.product_regdate = product_regdate;
+	}
+	
+	public String getSmallcategory_name() {
+		return smallcategory_name;
+	}
+
+	public void setSmallcategory_name(String smallcategory_name) {
+		this.smallcategory_name = smallcategory_name;
 	}
 
 	public int getProduct_idx() {

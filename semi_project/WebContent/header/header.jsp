@@ -54,18 +54,18 @@ document.onclick = mclose;
 		<nav>
 			<ul class="nav_menu" id="sddm">
 				<li><a class="a_largecategory" href="/semi_project/section/home.jsp"><p>HOME</p></a></li>
-				<li><a class="a_largecategory" href="#"
+				<li><a class="a_largecategory" href="/semi_project/section/product/productByItemList.jsp?lcid=bags"
 					onmouseover="mopen('m1')" 
 					onmouseout="mclosetime()" ><p>BAGS</p></a>
 					<div id="m1" 
             			onmouseover="mcancelclosetime()" 
             			onmouseout="mclosetime()">
-        				<a href="#"><p>BACK PACK</p></a>
-        				<a href="#"><p>MINI BAG</p></a>
-        				<a href="#"><p>CROSS BAG</p></a>
-        				<a href="#"><p>SHOULDER BAG</p></a>
-        				<a href="#"><p>TOTE BAG</p></a>
-        				<a href="#"><p>CLUTCH BAG</p></a>
+        				<a href="/semi_project/section/product/productByItemList.jsp?lcid=bags&scid=backpack"><p>BACK PACK</p></a>
+        				<a href="/semi_project/section/product/productByItemList.jsp?lcid=bags&scid=minibag"><p>MINI BAG</p></a>
+        				<a href="/semi_project/section/product/productByItemList.jsp?lcid=bags&scid=crossbag"><p>CROSS BAG</p></a>
+        				<a href="/semi_project/section/product/productByItemList.jsp?lcid=bags&scid=shoulderbag"><p>SHOULDER BAG</p></a>
+        				<a href="/semi_project/section/product/productByItemList.jsp?lcid=bags&scid=totebag"><p>TOTE BAG</p></a>
+        				<a href="/semi_project/section/product/productByItemList.jsp?lcid=bags&scid=clutchbag"><p>CLUTCH BAG</p></a>
         			</div>
 				</li>
 				<li><a class="a_largecategory" href="#"
@@ -74,11 +74,10 @@ document.onclick = mclose;
 					<div id="m2" 
             			onmouseover="mcancelclosetime()" 
             			onmouseout="mclosetime()">
-        				<a href="#"><p>LONG WALLET</p></a>
-        				<a href="#"><p>MIDIUM WALLET</p></a>
-        				<a href="#"><p>HARF WALLET</p></a>
-        				<a href="#"><p>CARD CASE</p></a>
-        				<a href="#"><p>TOTE BAG</p></a>
+        				<a href="/semi_project/section/product/productByItemList.jsp?lcid=wallets&scid=longwallet"><p>LONG WALLET</p></a>
+        				<a href="/semi_project/section/product/productByItemList.jsp?lcid=wallets&scid=midiumwallet"><p>MIDIUM WALLET</p></a>
+        				<a href="/semi_project/section/product/productByItemList.jsp?lcid=wallets&scid=harfwallet"><p>HARF WALLET</p></a>
+        				<a href="/semi_project/section/product/productByItemList.jsp?lcid=wallets&scid=cardcase"><p>CARD CASE</p></a>
         			</div>
 				</li>
 				<li><a class="a_largecategory" href="#"

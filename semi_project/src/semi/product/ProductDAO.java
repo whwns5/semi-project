@@ -75,6 +75,151 @@ public class ProductDAO {
 	}
 	
 	/** 
+	 * 카테고리 아이디 조회 관련 메서드
+	 * @param category_name, category_type
+	 * @return int
+	 * */
+	/*public int productGetCategoryId(String category_name, String category_type){
+		try{
+			conn = semi.db.semiDB.getConn();
+		
+			if(category_type.equals("lcid")){
+				ps = conn.prepareStatement(Sql.LARGECATEGORY_SELECT_WHERE);
+			} else if(category_type.equals("scid")){
+				ps = conn.prepareStatement(Sql.SMALLCATEGORY_SELECT_WHERE);
+			}
+			
+			ps.setString(1, category_name);
+			
+			rs = ps.executeQuery();
+			int category_id = 0;
+			
+			if(rs.next()){
+				category_id = rs.getInt(1);
+			}
+			return category_id;
+
+		} catch(Exception e){
+			e.printStackTrace();
+			return -1;
+		} finally {
+			try{
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}*/
+	
+	/** 
+	 * 상품 카테고리 별 조회 관련 메서드
+	 * @param category_id_s, category_type
+	 * @return ArrayList<ProductDTO>
+	 * */
+	public ArrayList<ProductDTO> productCategoryList(String category_id_s, String category_type){
+		try{
+			conn = semi.db.semiDB.getConn();
+			ps = null;
+			if(category_type.equals("lcid")){
+				ps = conn.prepareStatement(Sql.PRODUCT_LARGECATEGORY_SELECT_ALL);
+			} else if(category_type.equals("scid")){
+				ps = conn.prepareStatement(Sql.PRODUCT_SMALLCATEGORY_SELECT_ALL);
+			}
+			ps.setString(1, category_id_s);
+			
+			rs = ps.executeQuery();
+			
+			ArrayList<ProductDTO> arr_pdto = new ArrayList<ProductDTO>();
+			
+			while(rs.next()){
+				int product_idx = rs.getInt("product_idx");
+				int smallcategory_id = rs.getInt("smallcategory_id");
+				String smallcategory_name = rs.getString("smallcategory_name");
+				String product_name = rs.getString("product_name");
+				String product_code = rs.getString("product_code");
+				String product_color = rs.getString("product_color");
+				String product_size = rs.getString("product_size");
+				int product_num = rs.getInt("product_num");
+				int product_price = rs.getInt("product_price");
+				String product_content = rs.getString("product_content");
+				String product_img = rs.getString("product_img");
+				Date product_regdate = rs.getDate("product_regdate");
+				
+				ProductDTO pdto = new ProductDTO(product_idx, smallcategory_id, smallcategory_name, product_name, product_code, product_color, product_size, product_num, product_price, product_content, product_img, product_regdate);
+			
+				arr_pdto.add(pdto);
+			}
+			
+			return arr_pdto;
+
+		} catch(Exception e){
+			e.printStackTrace();
+			return null;
+		} finally {
+			try{
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	/** 
+	 * 상품 세부 카테고리 별 조회 관련 메서드
+	 * @param smallcategory_id
+	 * @return ArrayList<ProductDTO>
+	 * */
+	public ArrayList<ProductDTO> productSmallCategoryList(int smallcategory_id){
+		try{
+			conn = semi.db.semiDB.getConn();
+		
+			ps = conn.prepareStatement(Sql.PRODUCT_SMALLCATEGORY_SELECT_ALL);
+			ps.setInt(1, smallcategory_id);
+			
+			rs = ps.executeQuery();
+			
+			ArrayList<ProductDTO> arr_pdto = new ArrayList<ProductDTO>();
+			
+			while(rs.next()){
+				int product_idx = rs.getInt("product_idx");
+				int smallcategory_id_temp = rs.getInt("smallcategory_id");
+				String product_name = rs.getString("product_name");
+				String product_code = rs.getString("product_code");
+				String product_color = rs.getString("product_color");
+				String product_size = rs.getString("product_size");
+				int product_num = rs.getInt("product_num");
+				int product_price = rs.getInt("product_price");
+				String product_content = rs.getString("product_content");
+				String product_img = rs.getString("product_img");
+				Date product_regdate = rs.getDate("product_regdate");
+				
+				ProductDTO pdto = new ProductDTO(product_idx, smallcategory_id_temp, product_name, 
+						product_code, product_color, product_size, product_num, product_price, 
+						product_content, product_img, product_regdate);
+			
+				arr_pdto.add(pdto);
+			}
+			
+			return arr_pdto;
+
+		} catch(Exception e){
+			e.printStackTrace();
+			return null;
+		} finally {
+			try{
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	/** 
 	 * 상품 입력 관련 메서드
 	 * @param ProductDTO
 	 * @return int (실행횟수 혹은 에러)
