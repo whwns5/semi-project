@@ -1,1 +1,1 @@
-SELECT * FROM EMP;
+select * from PRODUCT_TABLE

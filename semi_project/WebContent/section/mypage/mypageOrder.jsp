@@ -118,6 +118,7 @@ border-collapse:collapse;
 				<dt>나의메모</dt>
 				<dd>
 					<ul>
+						<li><a href="#">1:1문의</a></li>
 						<li><a href="#">상품평</a></li>
 						<li><a href="#">Q&amp;A</a></li>
 					</ul>
