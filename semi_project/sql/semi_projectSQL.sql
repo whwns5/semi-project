@@ -30,14 +30,14 @@ CREATE TABLE smallcategory_table(
 CREATE TABLE product_table(
 	product_idx NUMBER PRIMARY KEY,
 	smallcategory_id NUMBER,
-	product_name VARCHAR2(50),
-	product_code VARCHAR2(100),
-	product_color VARCHAR2(20),
-	product_size VARCHAR2(20),
+	product_name VARCHAR2(1000),
+	product_code VARCHAR2(1000),
+	product_color VARCHAR2(200),
+	product_size VARCHAR2(1000),
 	product_num NUMBER,
 	product_price NUMBER,
-	product_content VARCHAR2(1000),
-	product_img VARCHAR2(200),
+	product_content VARCHAR2(3000),
+	product_img VARCHAR2(1000),
 	product_regdate DATE
   );
 /* 상품 아이디 시퀀스 */
