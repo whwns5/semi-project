@@ -7,6 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-login
+<section>
+	<article>
+	<form name="form" action="/semi_project/section/member/login/login_ok.jsp" method="post">
+		ID<input type="text" name="member_id">
+		PWD<input type="text" name="member_pwd">
+		<input type="submit" value="login">
+	</form>
+	</article>
+</section>
 </body>
 </html>

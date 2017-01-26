@@ -7,7 +7,7 @@ public class MemberDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	private ResultSet rs;
-	public static final int NOT_ID=1; //상수를 사용
+	public static final int NOT_ID=1; //상수를 사용 final을 붙임으로써 값을 바꿀수 없게 함
 	public static final int	NOT_PWD=2;
 	public static final int LOGIN_OK=3;
 	public static final int ERROR=-1;
@@ -75,22 +75,13 @@ public class MemberDAO {
 	public int memberdel(String member_id,String member_pwd){
 		try{
 			conn=semi.db.semiDB.getConn();
-			String dbpwd;
 			
-			String sql1="select pwd from member_table where member_id=? ";
-			String sql2="delete from member_table where member_id=?";
-			ps=conn.prepareStatement(sql1);
+			String sql="delete from member_table where member_id=? and member_pwd=?";
+			ps=conn.prepareStatement(sql);
 			ps.setString(1, member_id);
-			rs=ps.executeQuery();
-			if(rs.next()){
-				dbpwd=rs.getString(member_pwd);
-				if(dbpwd.equals(member_pwd)){
-					ps=conn.prepareStatement(sql2);
-					ps.setString(1, member_id);
-					int count=ps.executeUpdate();
-					return count;
-				}
-			}
+			ps.setString(2, member_pwd);
+			int count=ps.executeUpdate();
+			return count;			
 			
 		}catch(Exception e){
 			e.printStackTrace();
@@ -104,16 +95,18 @@ public class MemberDAO {
 			}
 		}
 	}
+	
 	public int loginCheck(String member_id, String member_pwd){
 		try {
 			conn=semi.db.semiDB.getConn();
-			String sql="select pwd from jsp_member where id=?";
+			String sql="select member_pwd from member_table where member_id=?";
 			ps=conn.prepareStatement(sql);
-			ps.setString(1, member_id);
+			ps.setString(1, member_id.toUpperCase());
+			
 			rs=ps.executeQuery();
 			
 			if(rs.next()){
-				String db_pwd=rs.getString("pwd");
+				String db_pwd=rs.getString("member_pwd");
 				if(member_pwd.equals(db_pwd)){
 					return LOGIN_OK;
 				}else{

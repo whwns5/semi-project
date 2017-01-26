@@ -17,6 +17,15 @@ function openCheck(){
 		document.joinfm.member_pwd.focus();
 	}
 }
+function openDel(){
+	var id = document.joinfm.aaa.value;
+	var pwd = document.joinfm.bbb.value;
+	var url = '/semi_project/section/member/join/del_ok.jsp?';
+	url = url + 'member_id='+id;
+	url = url + '&member_pwd='+pwd;
+	location.href=url;
+	
+}
 </script>
 </head>
 <body>
@@ -71,8 +80,11 @@ function openCheck(){
 			<tfoot>
 				<td>
 				<input type="submit" name="memberadd" value="회원 가입">
-				<a href="/semi_project/section/home.jsp"><input type="button" value="취소하기"></a>
+				<a href="/semi_project/section/home.jsp"><input type="button" value="취소하기"></a></td>
+				<td>
+				ID<input type="text" name="aaa">PWD<input type="text" name="bbb">
 				</td>
+				<td><input type="button" value="회원탈퇴" onclick="openDel()"></td>
 			</tfoot>
 		</table>
 	</form>
