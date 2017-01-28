@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="/semi_project/css/header/header.css?ver=4">
 <link rel="stylesheet" type="text/css" href="/semi_project/css/header/dropdownmenu.css?ver=3">
+
 <script>
 var timeout	= 500;
 var closetimer	= 0;
@@ -48,7 +49,22 @@ document.onclick = mclose;
 
 </script>
 <header>
-	<p><a href="/semi_project/section/member/login/login.jsp">LOGIN</a> | <a href="/semi_project/section/member/join/join.jsp">JOIN US</a> | <a href="#">CART</a> | <a href="#">MYPAGE</a></p>
+	<p>
+	<%
+	String user_name = (String)session.getAttribute("user_name");
+	System.out.println("=== " + user_name);
+	if ( user_name == null )
+	{
+	%>
+	<a href="/semi_project/section/member/login/login.jsp">LOGIN</a> 
+	<%
+	}else{
+	%>
+	<%=user_name %>님 환영합니다. | <a href="/semi_project/section/member/logout/logout_ok.jsp">LOGOUT</a>
+	<%
+	}
+	%>
+	| <a href="/semi_project/section/member/join/join.jsp">JOIN US</a> | <a href="#">CART</a> | <a href="/semi_project/section/member/join/change.jsp">MYPAGE</a></p>
 	<h1>KH SHOPPING MALL</h1>
 	<div class="nav_container">
 		<nav>

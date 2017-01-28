@@ -1,6 +1,9 @@
 package semi.member;
 
 import java.sql.*;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class MemberDAO {
 
@@ -95,13 +98,13 @@ public class MemberDAO {
 			}
 		}
 	}
-	
+	/**로그인 관련 메서드*/
 	public int loginCheck(String member_id, String member_pwd){
 		try {
 			conn=semi.db.semiDB.getConn();
-			String sql="select member_pwd from member_table where member_id=?";
+			String sql="select member_pwd from member_table where LOWER(member_id)=?";
 			ps=conn.prepareStatement(sql);
-			ps.setString(1, member_id.toUpperCase());
+			ps.setString(1, member_id.toLowerCase());
 			
 			rs=ps.executeQuery();
 			
@@ -127,6 +130,76 @@ public class MemberDAO {
 				
 			}
 		}
+	}
+	/**로그인 정보 저장 메서드*/
+	public String getUserInfo(String member_id){
+		try{
+			conn=semi.db.semiDB.getConn();
+			String sql="select member_name from member_table where LOWER(member_id)=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, member_id.toLowerCase());
+			rs=ps.executeQuery();
+			rs.next();
+			return rs.getString(1);
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}finally{
+			try{
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e2){}
+		}
+	}
+	/**회원 정보 보기 관련 메서드*/
+	public MemberDTO[] userInfo(String member_id)
+	{
+		try 
+		{
+			conn=semi.db.semiDB.getConn();
+			String sql="select * from member_table where member_id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, member_id.toUpperCase());
+			rs=ps.executeQuery();
+	
+			Vector<MemberDTO> v=new Vector<MemberDTO>();
+			if(rs.next()){
+			String id = rs.getString("member_id");
+			String type = rs.getString("member_type");
+			String name = rs.getString("member_name");
+			String pwd = rs.getString("member_pwd");
+			Date birthday = rs.getDate("member_birthday");
+			String sex = rs.getString("member_sex");
+			String email = rs.getString("member_email");
+			String tel = rs.getString("member_tel");
+			String addr = rs.getString("member_addr");
+			String coupon = rs.getString("member_coupon");
+			MemberDTO mDto = new MemberDTO(id, type, name, pwd, birthday, sex, email, tel, addr, coupon);
+			v.add(mDto);
+		
+			
+			}
+		
+			MemberDTO[] dto=new MemberDTO[v.size()];
+			v.copyInto(dto);
+			return dto;
+		}
+	
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			
+		}
+		finally
+		{
+			try{
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e2){}
+		}
+		return null;
 	}
 }
 

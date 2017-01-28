@@ -45,11 +45,11 @@ function openDel(){
 			</tr>
 			<tr>
 				<td>*비밀번호</td>
-				<td><input type="text" name="member_pwd" required="required"></td>
+				<td><input type="password" name="member_pwd" required="required"></td>
 			</tr>
 			<tr>
 				<td>*비밀번호 확인</td>
-				<td><input type="text" name="member_pwdCheck" required="required">입력하신 비밀번호를 한번 더 입력해주세요.</td>
+				<td><input type="password" name="member_pwdCheck" required="required">입력하신 비밀번호를 한번 더 입력해주세요.</td>
 			</tr>
 			<tr>
 				<td>*이름</td>
