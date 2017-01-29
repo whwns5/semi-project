@@ -86,7 +86,7 @@ border-collapse:collapse;
 						<td>주문정보</td>
 						<td>상품정보</td>
 						<td>옵션</td>
-						<td>주문금액</td>
+						<td>주문금액t</td>
 					</tr>
 				</thead>
 				<tbody>
