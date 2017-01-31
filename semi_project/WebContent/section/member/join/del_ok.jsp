@@ -6,6 +6,29 @@
 <jsp:useBean id="jdao" class="semi.member.MemberDAO"/>
 
 <%
-	int result=jdao.memberdel(member_id, member_pwd);
+String member_id = request.getParameter("member_id");
+String member_pwd = request.getParameter("member_pwd");
+int result=jdao.memberdel(member_id,member_pwd);
+
+if(result==0){
+	
+	%>
+	<script>
+		window.alert('회원탈퇴에 실패하셨습니다. 비밀번호를 확인해주세요.');
+		
+	</script>
+	<%
+}else{
+	%>
+	<script>
+		window.alert('회원탈퇴에 성공하셨습니다. 감사합니다.');
+	</script>
+	<%
+}
+%>
+<script>
+	location.href='/semi_project/section/member/join/join.jsp';
+</script>
+<%
 
 %>

@@ -17,6 +17,15 @@ function openCheck(){
 		document.joinfm.member_pwd.focus();
 	}
 }
+function openDel(){
+	var id = document.joinfm.aaa.value;
+	var pwd = document.joinfm.bbb.value;
+	var url = '/semi_project/section/member/join/del_ok.jsp?';
+	url = url + 'member_id='+id;
+	url = url + '&member_pwd='+pwd;
+	location.href=url;
+	
+}
 </script>
 </head>
 <body>
@@ -36,11 +45,11 @@ function openCheck(){
 			</tr>
 			<tr>
 				<td>*비밀번호</td>
-				<td><input type="text" name="member_pwd" required="required"></td>
+				<td><input type="password" name="member_pwd" required="required"></td>
 			</tr>
 			<tr>
 				<td>*비밀번호 확인</td>
-				<td><input type="text" name="member_pwdCheck" required="required">입력하신 비밀번호를 한번 더 입력해주세요.</td>
+				<td><input type="password" name="member_pwdCheck" required="required">입력하신 비밀번호를 한번 더 입력해주세요.</td>
 			</tr>
 			<tr>
 				<td>*이름</td>
@@ -71,8 +80,11 @@ function openCheck(){
 			<tfoot>
 				<td>
 				<input type="submit" name="memberadd" value="회원 가입">
-				<a href="/semi_project/section/home.jsp"><input type="button" value="취소하기"></a>
+				<a href="/semi_project/section/home.jsp"><input type="button" value="취소하기"></a></td>
+				<td>
+				ID<input type="text" name="aaa">PWD<input type="text" name="bbb">
 				</td>
+				<td><input type="button" value="회원탈퇴" onclick="openDel()"></td>
 			</tfoot>
 		</table>
 	</form>

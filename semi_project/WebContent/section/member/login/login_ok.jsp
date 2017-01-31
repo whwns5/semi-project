@@ -1,12 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<jsp:useBean id="jdto" class="semi.member.MemberDTO"/>
+<jsp:setProperty property="*" name="jdto"/>
+<jsp:useBean id="jdao" class="semi.member.MemberDAO"/>
 
-</body>
-</html>
+<%
+	request.setCharacterEncoding("utf-8");
+	String msg="";
+	String url="";
+	String member_id=request.getParameter("member_id");
+	String member_pwd=request.getParameter("member_pwd");
+	int result=jdao.loginCheck(member_id, member_pwd);
+	
+	if(result==1){
+		msg="로그인에 실패하였습니다. 아이디를 찾을수 없습니다.";
+		url="/semi_project/section/member/login/login.jsp";
+	}else if(result==2){
+		msg="로그인에 실패하였습니다. 비밀번호가 틀렸습니다.";
+		url="/semi_project/section/member/login/login.jsp";
+	}else if(result==3){
+		String user_name = jdao.getUserInfo(member_id);
+		session.setAttribute("user_id", member_id);
+		session.setAttribute("user_name", user_name);
+		Cookie ck = new Cookie("user_id", member_id);
+		ck.setMaxAge(60*60*24*30);
+		response.addCookie(ck);
+		msg="로그인에 성공하셨습니다.";
+		url="/semi_project/section/home.jsp";
+	}
+%>
+<script>
+	window.alert('<%=msg%>');
+	location.href='<%=url%>';
+</script>

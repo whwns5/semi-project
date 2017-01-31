@@ -1,1 +1,0 @@
-select * from PRODUCT_TABLE
