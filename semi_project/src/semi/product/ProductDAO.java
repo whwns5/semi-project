@@ -24,6 +24,48 @@ public class ProductDAO {
 	}
 	
 	/** 
+	 * 해당 카태고리별 총 갯수 조회 관련 메서드
+	 * @param category_id_s, category_type
+	 * @return count
+	 * */
+	public int getTotalCnt(String category_id_s, String category_type){
+		try{
+			conn = semi.db.semiDB.getConn();
+			
+			if(category_type.equals("lcid")){
+				ps = conn.prepareStatement(Sql.getPRODUCT_LARGECATEGORY_TOTALCOUNT());
+			} else if(category_type.equals("scid")){
+				ps = conn.prepareStatement(Sql.getPRODUCT_SMALLCATEGORY_TOTALCOUNT());
+			}
+			
+			ps.setString(1, category_id_s);
+			
+			rs = ps.executeQuery();
+			
+			rs.next();
+			
+			int count = rs.getInt(1);
+			
+			count = count == 0 ? 1 : count;
+		
+			return count;
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			return 1;
+		} finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)rs.close();
+				if(conn!=null)rs.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	
+	/** 
 	 * 상품 조회 관련 메서드
 	 * @param void
 	 * @return ArrayList<ProductDTO>
@@ -114,24 +156,27 @@ public class ProductDAO {
 	
 	/** 
 	 * 상품 카테고리 별 조회 관련 메서드
-	 * @param category_id_s, category_type
+	 * @param category_id_s, category_typem, cp, listSize, column, orderByType
 	 * @return ArrayList<ProductDTO>
 	 * */
-	public ArrayList<ProductDTO> productCategoryList(String category_id_s, String category_type){
+	public ArrayList<ProductDTO> productCategoryList(String category_id_s, String category_type, int cp, int listSize, String column, String orderByType){
 		try{
+
 			conn = semi.db.semiDB.getConn();
+
 			ps = null;
 			if(category_type.equals("lcid")){
-				ps = conn.prepareStatement(Sql.PRODUCT_LARGECATEGORY_SELECT_ALL);
+				ps = conn.prepareStatement(Sql.getPRODUCT_LARGECATEGORY_SELECT_ALL_ORDERYBY(cp, listSize, column, orderByType));
 			} else if(category_type.equals("scid")){
-				ps = conn.prepareStatement(Sql.PRODUCT_SMALLCATEGORY_SELECT_ALL);
+				ps = conn.prepareStatement(Sql.getPRODUCT_SMALLCATEGORY_SELECT_ALL_ORDERYBY(cp, listSize, column, orderByType));
 			}
-			ps.setString(1, category_id_s);
-			
+
+			ps.setString(1, category_id_s); // smallcategory_name OR largecategory_name
+
 			rs = ps.executeQuery();
-			
+
 			ArrayList<ProductDTO> arr_pdto = new ArrayList<ProductDTO>();
-			
+
 			while(rs.next()){
 				int product_idx = rs.getInt("product_idx");
 				int smallcategory_id = rs.getInt("smallcategory_id");
@@ -145,10 +190,11 @@ public class ProductDAO {
 				String product_content = rs.getString("product_content");
 				String product_img = rs.getString("product_img");
 				Date product_regdate = rs.getDate("product_regdate");
-				
+
 				ProductDTO pdto = new ProductDTO(product_idx, smallcategory_id, smallcategory_name, product_name, product_code, product_color, product_size, product_num, product_price, product_content, product_img, product_regdate);
-			
+				
 				arr_pdto.add(pdto);
+
 			}
 			
 			return arr_pdto;
@@ -168,11 +214,65 @@ public class ProductDAO {
 	}
 	
 	/** 
+	 * 상품 코드 별 조회 관련 메서드
+	 * @param category_id_s, category_typem, cp, listSize, column, orderByType
+	 * @return ArrayList<ProductDTO>
+	 * */
+	public ArrayList<ProductDTO> productCodeList(String product_code){
+		try{
+			conn = semi.db.semiDB.getConn();
+
+			ps = null;
+			ps = conn.prepareStatement(Sql.PRODUCT_CODE_SELECT_ALL);
+			ps.setString(1, product_code);
+
+			rs = ps.executeQuery();
+
+			ArrayList<ProductDTO> arr_pdto = new ArrayList<ProductDTO>();
+
+			while(rs.next()){
+				int product_idx = rs.getInt("product_idx");
+				int smallcategory_id = rs.getInt("smallcategory_id");
+				String product_name = rs.getString("product_name");
+				String product_code_temp = rs.getString("product_code");
+				String product_color = rs.getString("product_color");
+				String product_size = rs.getString("product_size");
+				int product_num = rs.getInt("product_num");
+				int product_price = rs.getInt("product_price");
+				String product_content = rs.getString("product_content");
+				String product_img = rs.getString("product_img");
+				Date product_regdate = rs.getDate("product_regdate");
+				
+				ProductDTO pdto = new ProductDTO(product_idx, smallcategory_id, product_name, 
+						product_code_temp, product_color, product_size, product_num, product_price, 
+						product_content, product_img, product_regdate);
+			
+				arr_pdto.add(pdto);
+			}
+			
+			return arr_pdto;
+
+		} catch(Exception e){
+			e.printStackTrace();
+
+			return null;
+		} finally {
+			try{
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	/** 
 	 * 상품 세부 카테고리 별 조회 관련 메서드
 	 * @param smallcategory_id
 	 * @return ArrayList<ProductDTO>
 	 * */
-	public ArrayList<ProductDTO> productSmallCategoryList(int smallcategory_id){
+	/*public ArrayList<ProductDTO> productSmallCategoryList(int smallcategory_id){
 		try{
 			conn = semi.db.semiDB.getConn();
 		
@@ -217,7 +317,7 @@ public class ProductDAO {
 				e.printStackTrace();
 			}
 		}
-	}
+	}*/
 	
 	/** 
 	 * 상품 입력 관련 메서드

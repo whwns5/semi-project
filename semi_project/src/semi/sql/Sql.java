@@ -7,7 +7,28 @@ public class Sql {
 	//////////////////////////////////////////////////////////////////
 	
 	///////////////// 상품 테이블 관련 (product_table) /////////////////
-
+	/** 상품 테이블 갯수 조회 */
+	//public static final String PRODUCT_TOTALCOUNT = "SELECT COUNT(*) FROM product_table WHERE smallcategory_id = ?";
+	/** 상품 테이블 대분류 별 갯수 조회 */
+	public static final String getPRODUCT_LARGECATEGORY_TOTALCOUNT(){
+		String sql = "SELECT COUNT(*) "
+				+ "FROM product_table "
+				+ "WHERE smallcategory_id IN (SELECT smallcategory_id "
+				+ 							 "FROM smallcategory_table "
+				+ 							 "WHERE largecategory_id = (SELECT largecategory_id "
+				+ 													   "FROM largecategory_table "
+				+ 													   "WHERE largecategory_name = ?))";
+		return sql;
+	}
+	/** 상품 테이블 대분류 별 갯수 조회 */
+	public static final String getPRODUCT_SMALLCATEGORY_TOTALCOUNT(){
+		String sql = "SELECT COUNT(*) "
+				+ 	 "FROM product_table "
+				+ 	 "WHERE smallcategory_id = (SELECT smallcategory_id "
+				+ 							   "FROM smallcategory_table "
+				+ 							   "WHERE smallcategory_name = ?)";
+		return sql;
+	}
 	/** 상품 테이블 전체 조회 */
 	public static final String PRODUCT_SELECT_ALL = "SELECT * FROM product_table";
 	/** 상품 카테고리 아이디 조회 */
@@ -15,9 +36,36 @@ public class Sql {
 	/** 상품 세부 카테고리 아이디 조회 */
 	//public static final String SMALLCATEGORY_SELECT_WHERE = "SELECT * FROM smallcategory_id WHERE smallcategory_name = ?";
 	/** 상품 테이블 카테고리 별 조회 */
-	public static final String PRODUCT_LARGECATEGORY_SELECT_ALL = "SELECT st.smallcategory_name, pt.* FROM product_table pt, smallcategory_table st WHERE pt.smallcategory_id = st.smallcategory_id AND pt.smallcategory_id IN (SELECT smallcategory_id FROM smallcategory_table WHERE largecategory_id = (SELECT largecategory_id FROM largecategory_table WHERE largecategory_name = ?))";
-	/** 상품 테이블 세부 카테고리 별 조회 */
-	public static final String PRODUCT_SMALLCATEGORY_SELECT_ALL = "SELECT st.smallcategory_name, pt.* FROM product_table pt, smallcategory_table st WHERE pt.smallcategory_id = st.smallcategory_id AND smallcategory_name = ?";
+	//public static final String PRODUCT_LARGECATEGORY_SELECT_ALL = "SELECT st.smallcategory_name, pt.* FROM product_table pt, smallcategory_table st WHERE pt.smallcategory_id = st.smallcategory_id AND pt.smallcategory_id IN (SELECT smallcategory_id FROM smallcategory_table WHERE largecategory_id = (SELECT largecategory_id FROM largecategory_table WHERE largecategory_name = ?))";
+	/** 상품 테이블 대분류 카테고리 별 정렬 조회 */
+	public static final String getPRODUCT_LARGECATEGORY_SELECT_ALL_ORDERYBY(int cp, int listSize, String column, String orderByType){
+		String sql = "SELECT b.* FROM "
+					+ "(SELECT rownum as rnum, a.* FROM " 
+					+  "(SELECT st.smallcategory_name, pt.* "
+					+   "FROM product_table pt, smallcategory_table st "
+					+   "WHERE pt.smallcategory_id = st.smallcategory_id "
+					+    "AND pt.smallcategory_id IN (SELECT smallcategory_id "
+					+                                "FROM smallcategory_table "
+					+                                "WHERE largecategory_id = (SELECT largecategory_id "
+					+                                							"FROM largecategory_table "
+					+                                							"WHERE largecategory_name = ?)) "
+					+   "ORDER BY pt." + column + " " + orderByType + ") a) b "
+					+ "WHERE rnum >= (" + cp + "-1)*" + listSize + "+ 1 AND rnum <= " + cp + "*" + listSize;
+		return sql;
+	}
+	/** 상품 테이블 세부 카테고리 별 정렬 조회 */
+	public static final String getPRODUCT_SMALLCATEGORY_SELECT_ALL_ORDERYBY(int cp, int listSize, String column, String orderByType){
+		String sql = "SELECT b.* FROM "
+					+ "(SELECT rownum as rnum, a.* FROM " 
+					+  "(SELECT st.smallcategory_name, pt.* "
+					+   "FROM product_table pt, smallcategory_table st "
+					+ 	"WHERE pt.smallcategory_id = st.smallcategory_id "
+					+ 		"AND smallcategory_name = ? ORDER BY pt." + column + " " + orderByType + ") a) b "
+					+ "WHERE rnum >= (" + cp + "-1)*" + listSize + "+ 1 AND rnum <= " + cp + "*" + listSize;
+		return sql;
+	}
+	/** 상품 테이블 코드 별 조회 */
+	public static final String PRODUCT_CODE_SELECT_ALL = "SELECT * FROM product_table WHERE product_code = ?";
 	/** 상품 테이블 삽입 */
 	public static final String PRODUCT_INSERT = "INSERT INTO product_table VALUES(product_table_idx.NEXTVAL, " // product_idx
 			+ "?, " // smallcategory_id
@@ -29,7 +77,7 @@ public class Sql {
 			+ "?, " // product_price
 			+ "?, " // product_content
 			+ "?, " // product_img
-			+ "SYSDATE"; // product_regdate
+			+ "SYSDATE)"; // product_regdate
 	
 	/** 상품 테이블 수정 */
 	public static final String PRODUCT_UPDATE = "UPDATE product_table SET smallcategory_id = ?, "
@@ -45,6 +93,35 @@ public class Sql {
 
 	/** 상품 테이블 삭제 */
 	public static final String PRODUCT_DELETE = "DELETE FROM product_table WHERE product_table_idx = ?";
+	
+	//////////////////////////////////////////////////////////////////
+	
+	/////////////////// Q&A 테이블 관련 (qna_table) ///////////////////
+	/** Q&A 테이블 전체 조회 */
+	public static final String QNA_SELECT_ALL = "SELECT * FROM qna_table";
+	/** Q&A 테이블 lef 최대값 조회 */
+	public static final String QNA_SELECT_MAX_REF = "SELECT MAX(qna_ref) FROM qna_table";
+	/** Q&A 테이블 삽입 */
+	public static final String QNA_INSERT = "INSERT INTO qna_table VALUES(qna_table_idx.NEXTVAL, "
+			+ "?, " // member_id
+			+ "?, " // qna_subject
+			+ "?, " // qna_content
+			+ "SYSDATE, " // qna_regdate
+			+ "?, " // qna_ref
+			+ "?, " // qna_lev
+			+ "?)"; // qna_sunbun 
+	/** Q&A 테이블 순번 업데이트 */
+	public static final String QNA_UPDATE_SUNBUN = "UPDATE qna_table SET qna_sunbun = qna_sunbun + 1 WHERE qna_ref = ? AND qna_sunbun >= ?";
+	/** Q&A 테이블 댓글 삽입 */
+	public static final String QNA_INSERT_REPLY = "INSERT INTO qna_table VALUES(qna_table_idx.NEXTVAL, "
+			+ "?, " // member_id
+			+ "?, " // qna_subject
+			+ "?, " // qna_content
+			+ "SYSDATE, "
+			+ "?, " // qna_ref
+			+ "?, " // qna_lev
+			+ "?)"; // qna_sunbun 
+			
 	
 	//////////////////////////////////////////////////////////////////
 	

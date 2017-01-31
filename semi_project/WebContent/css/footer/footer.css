@@ -1,0 +1,24 @@
+@CHARSET "UTF-8";
+div.footer_container{
+	background: #f7f7f7;
+}
+div.footer_container div.footer_menu{
+	background: #a9a9a9;
+}
+div.footer_container div.footer_info{
+	margin: auto;
+    width: 1100px;
+    text-align: left;
+    padding: 20px 0 25px;
+    position: relative;
+}
+div.footer_container div.footer_info ul.ul_info{
+	list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+div.footer_container div.footer_info ul.ul_info li{
+	font: 11px dotum;
+    color: #7e7e7e;
+    line-height: 18px;
+}

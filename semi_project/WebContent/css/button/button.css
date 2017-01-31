@@ -1,0 +1,53 @@
+@CHARSET "UTF-8";
+.submit-button {
+   border: 1px solid #f56213;
+   background: #f56213;
+   background: -webkit-gradient(linear, left top, left bottom, from(#f56213), to(#f56213));
+   background: -webkit-linear-gradient(top, #f56213, #f56213);
+   background: -moz-linear-gradient(top, #f56213, #f56213);
+   background: -ms-linear-gradient(top, #f56213, #f56213);
+   background: -o-linear-gradient(top, #f56213, #f56213);
+   background-image: -ms-linear-gradient(top, #f56213 0%, #f56213 100%);
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   border-radius: 5px;
+   -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+
+   color: #ffffff;
+   font-family: helvetica, serif;
+   padding: 8.5px 18px;
+   font-size: 14px;
+   text-decoration: none;
+   vertical-align: middle;
+   font-family:"청소년서체";
+   
+   width: 150px;
+   height: 50px;
+   cursor: pointer;
+   }
+.submit-button:hover {
+   border: 1px solid #cc4400;
+
+   background: #cc4400;
+   background: -webkit-gradient(linear, left top, left bottom, from(#cc4400), to(#cc4400));
+   background: -webkit-linear-gradient(top, #cc4400, #cc4400);
+   background: -moz-linear-gradient(top, #cc4400, #cc4400);
+   background: -ms-linear-gradient(top, #cc4400, #cc4400);
+   background: -o-linear-gradient(top, #cc4400, #cc4400);
+   background-image: -ms-linear-gradient(top, #cc4400 0%, #cc4400 100%);
+   color: #ffffff;
+   }
+.submit-button:active {
+
+   border: 1px solid #f56213;
+   background: #f56213;
+   background: -webkit-gradient(linear, left top, left bottom, from(#f56213), to(#cc4400));
+   background: -webkit-linear-gradient(top, #f56213, #f56213);
+   background: -moz-linear-gradient(top, #f56213, #f56213);
+   background: -ms-linear-gradient(top, #f56213, #f56213);
+   background: -o-linear-gradient(top, #f56213, #f56213);
+   background-image: -ms-linear-gradient(top, #f56213 0%, #f56213 100%);
+   color: #ffffff;
+ }

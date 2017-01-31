@@ -5,6 +5,17 @@ div.container_body{
     text-align: left;
     position: relative;
 }
+ul.main_middle_banner{
+	display: block;
+	width: 1100px;
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+ul.main_middle_banner li img{
+	width: 1100px;
+}
+
 div.product_list_wrap{
 	margin-top: 40px;
 }
@@ -30,7 +41,10 @@ div.product_list_wrap div.item_sort p.total{
     margin-top: 5px;
     margin-bottom: 10px;
 }
-
+div.product_list_wrap div.item_sort p.total span{
+	color: #e8380d;
+	
+}
 div.product_list_wrap div.item_sort div.sort ul.type{
 	list-style: none;
     margin: 0px;
@@ -61,6 +75,13 @@ div.product_list_wrap div.item_sort div.sort ul.type li a{
     display: block;
     text-decoration: none;
 }
+div.product_list_wrap div.item_sort div.sort ul.type li a:HOVER{
+	color: #e8380d;
+}
+div.product_list_wrap div.item_sort div.sort ul.type li a.on{
+    color: #e8380d;
+}
+
 
 div.product_list_wrap div.item_show{
 	overflow: hidden;
@@ -78,6 +99,10 @@ ul.ul_productlist li{
 	width: 274px;
 	height: 283px;
 	text-align: center;
+	
+}
+ul.ul_productlist li div.div_product{
+	z-index: 2;
 }
 ul.ul_productlist li div.div_product a{
 	display: block;
@@ -117,8 +142,15 @@ ul.ul_productlist li div.div_menu{
     height: 281px;
     /* border: 2px solid #E8380D; */
     text-align: center;
-    z-index: 5;
+    z-index: 4;
     cursor: pointer;
+    opacity: 0;
+}
+ul.ul_productlist li div.div_menu:HOVER{
+	
+}
+ul.ul_productlist li div.on{
+
 }
 ul.ul_productlist li div.div_menu p.p_menuicon{
 	margin-top: 110px;
@@ -136,4 +168,34 @@ ul.ul_productlist li div.div_menu p.p_menuicon a.a_detail{
 ul.ul_productlist li div.div_menu p.p_menuicon a.a_cart{
 	background-image: url("/semi_project/img/icon/cart_icon.png");
 }
-	
+
+div.item_page{
+	padding-top: 20px;
+    border-top: 1px solid #c0bebe;
+    margin-bottom: 80px;
+    
+    text-align: center;
+    position: relative;
+    vertical-align: middle;
+    margin-top: 20px;
+}
+div.item_page a{
+	display: inline-block;
+    font: bold 12px dotum;
+    color: #919191;
+    margin: 0px 4px;
+    height: 29px;
+    width: 29px;
+    line-height: 29px;
+    vertical-align: middle;
+    border: 1px solid #fff;
+    text-decoration: none;
+}
+div.item_page a.num:HOVER{
+	border: 1px solid #dcdcdc;
+    background-color: #f0f0f0;
+}
+div.item_page a.on{
+	border: 1px solid #dcdcdc;
+    background-color: #f0f0f0;
+}

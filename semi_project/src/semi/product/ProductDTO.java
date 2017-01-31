@@ -165,11 +165,12 @@ public class ProductDTO {
 
 	@Override
 	public String toString() {
-		return "ProductDTO [product_idx=" + product_idx + ", smallcategory_id=" + smallcategory_id + ", product_name="
-				+ product_name + ", product_code=" + product_code + ", product_color=" + product_color
-				+ ", product_size=" + product_size + ", product_num=" + product_num + ", product_price=" + product_price
-				+ ", product_content=" + product_content + ", product_img=" + product_img + ", product_regdate="
-				+ product_regdate + "]";
+		return "ProductDTO [product_idx=" + product_idx + ", smallcategory_id=" + smallcategory_id
+				+ ", smallcategory_name=" + smallcategory_name + ", product_name=" + product_name + ", product_code="
+				+ product_code + ", product_color=" + product_color + ", product_size=" + product_size
+				+ ", product_num=" + product_num + ", product_price=" + product_price + ", product_content="
+				+ product_content + ", product_img=" + product_img + ", product_regdate=" + product_regdate + "]";
 	}
 
+	
 }

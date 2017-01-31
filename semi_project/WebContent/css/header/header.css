@@ -1,0 +1,195 @@
+@CHARSET "UTF-8";
+a{
+	text-decoration: none;
+}
+ul{
+	list-style: none;
+}
+div#gnb div.gnb_container div.div_util{
+	width: 100%;
+	height: 34px;
+
+}
+div#gnb div.gnb_container div.div_util div.container_util{
+	width: 1100px;
+    margin: auto;
+    position: relative;
+
+}
+div#gnb div.gnb_container div.div_util div.container_util a.btn_favorite{
+	width: 100px;
+	height: 34px;
+    position: absolute;
+    left: 0px;
+    font-size: 11px;
+    color: #e8380d;
+    font-family: dotum;
+    top: 10px;
+}
+div#gnb div.gnb_container div.div_util div.container_util ul.nav_util{
+	float: right;
+    margin: 8px 0 0 0;
+    display: table;
+    vertical-align: middle;
+}
+div#gnb div.gnb_container div.div_util div.container_util ul.nav_util li{
+	display: table-cell;
+    text-align: center;
+    padding: 0px 15px;
+    position: relative;
+    vertical-align: middle;
+}
+div#gnb div.gnb_container div.div_util div.container_util ul.nav_util li a{ 
+	color: #e8380d;
+	font-size: 11px;
+	font-family: dotum;
+}
+div#gnb div.gnb_container div.div_logo {
+	margin: auto;
+    width: 1100px;
+    height: 95px;
+    position: relative;
+}
+div#gnb div.gnb_container div.div_logo h1{
+	text-align: center;
+}
+div#gnb div.gnb_container div.div_logo div.div_search{
+	position: absolute;
+    top: 23px;
+    right: 0px;
+    height: 32px;
+    width: 239px;
+    border-bottom: 1px solid #ffd8ce;
+}
+div#gnb div.gnb_container div.div_logo div.div_search input{
+	width: 211px;
+    border: none;
+    height: 30px;
+    font: 12px/30px dotum;
+    color: #ccc;
+    text-indent: 10px;
+}
+div#gnb div.gnb_container div.div_logo div.div_search a.a_search{
+	display: block;
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-image: url("/semi_project/img/icon/gnb_search.gif");
+    background-repeat: no-repeat;
+}
+div#gnb div.gnb_container div.div_nav{
+	display: block;
+	width: 100%;
+	height: 44px;
+	border: none;
+	background: #e8380d;
+}
+div#gnb div.gnb_container div.div_nav div.container_nav{
+	width: 1100px;
+    margin: auto;
+    position: relative;
+}
+div#gnb div.gnb_container div.div_nav div.container_nav nav ul.nav_menu{
+	list-style: none;
+	width: 1100px;
+	height: 44px;
+	margin: 0px;
+    padding: 0px;
+}
+div#gnb div.gnb_container div.div_nav div.container_nav nav ul.nav_menu li{
+	float: left;
+	height: 44px;
+	position: relative;
+	margin-left: 45px;
+}
+div#gnb div.gnb_container div.div_nav div.container_nav nav ul.nav_menu li a.a_largecategory{
+	font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 44px;
+}
+div#gnb div.gnb_container div.div_nav div.container_nav_depth{
+	display: block;
+	position: absolute;
+    border-top: 1px solid #000;
+    z-index: 140;
+    background: #fff;
+    padding: 0px;
+    width: 100%;
+	border-top-color: #ddd;
+	border-bottom: 1px solid #dbdbdb;
+	box-shadow: 0px 1px 5px rgba(0,0,0,.2);
+	/* visibility: hidden; */
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.5s;
+	
+}
+div#gnb div.gnb_container div.div_nav div.container_nav_depth div.nav_depth_menu{
+	display: block;
+	position: relative;
+	width: 1100px;
+	height: 300px;
+    margin: auto;
+    padding-top: 30px;
+	padding-bottom: 30px;
+}
+div#gnb div.gnb_container div.div_nav div.container_nav_depth div.back_nav_depth_menu{
+	display: block;
+	position: absolute;
+	width: 1100px;
+	height: 300px;
+	padding-top: 30px;
+    padding-bottom: 30px;
+	left: -1px;
+	top: -1px;
+	z-index: 5;
+	background-image: none;
+	opacity: 0;
+	transition: opacity 2s;
+}
+div#gnb div.gnb_container div.div_nav div.container_nav_depth div.content_nav_depth_menu{
+	display: block;
+	position: absolute;
+	width: 1100px;
+	height: 300px;
+	padding-top: 30px;
+    padding-bottom: 30px;
+	left: -1px;
+	top: -1px;
+	z-index: 10;
+}
+div#gnb div.gnb_container div.div_nav div.container_nav_depth div.nav_depth_menu ul.nav_depth_menu_ul{
+	z-index: 10;
+	display: block;
+	margin: 0px;
+	list-style: none;
+}
+div#gnb div.gnb_container div.div_nav div.container_nav_depth div.nav_depth_menu ul.nav_depth_menu_ul li{
+	margin-top: 15px;
+}
+div#gnb div.gnb_container div.div_nav div.container_nav_depth div.nav_depth_menu ul.nav_depth_menu_ul li:FIRST-CHILD{
+	margin-top: 0px;
+}
+div#gnb div.gnb_container div.div_nav div.container_nav_depth div.nav_depth_menu ul.nav_depth_menu_ul li a{
+	font-size: 20px;
+	color: #343434;
+	letter-spacing: -1px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
