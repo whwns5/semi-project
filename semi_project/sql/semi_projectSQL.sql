@@ -54,7 +54,7 @@ CREATE TABLE cart_table(
 	product_price NUMBER
   );
 /* 장바구니 아이디 시퀀스 */
-CREATE SEQUENCE cart_table_idx MINVALUE 0 START WITH 1;
+CREATE SEQUENCE cart_table_cart_idx MINVALUE 0 START WITH 1;
   
 /* 결제 테이블 */
 CREATE TABLE payment_table(
