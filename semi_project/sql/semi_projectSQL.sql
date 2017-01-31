@@ -50,7 +50,8 @@ CREATE TABLE cart_table(
 	member_id VARCHAR2(20),
 	product_idx NUMBER,
 	cart_num NUMBER,
-	cart_validity NUMBER
+	cart_validity NUMBER,
+	product_price NUMBER
   );
 /* 장바구니 아이디 시퀀스 */
 CREATE SEQUENCE cart_table_idx MINVALUE 0 START WITH 1;
