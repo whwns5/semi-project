@@ -1,0 +1,122 @@
+@CHARSET "UTF-8";
+.layer-form-container {
+   margin: 0px auto;
+   border: 0px solid #ffffff;
+   background: #ffffff;
+   background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
+   background: -webkit-linear-gradient(top, #ffffff, #ffffff);
+   background: -moz-linear-gradient(top, #ffffff, #ffffff);
+   background: -ms-linear-gradient(top, #ffffff, #ffffff);
+   background: -o-linear-gradient(top, #ffffff, #ffffff);
+   background-image: -ms-linear-gradient(top, #ffffff 0%, #ffffff 100%);
+   -webkit-border-radius: 2px;
+   -moz-border-radius: 2px;
+   border-radius: 2px;
+   -webkit-box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
+   -moz-box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
+   box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
+   font-family: 'Helvetica Neue',Helvetica,sans-serif;
+   text-decoration: none;
+   vertical-align: middle;
+   min-width:300px;
+   padding:20px;
+   width:500px;
+   font-family:"청소년서체";
+   }
+.layer-form-field {
+   border: 1px solid #52493f;
+   background: #ffffff;
+   -webkit-border-radius: 2px;
+   -moz-border-radius: 2px;
+   border-radius: 2px;
+   color: #52493f;
+   -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+   box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+   padding:8px;
+   margin-bottom:20px;
+   width:160px;
+   margin-left: 10px;
+   }
+.layer-form-field-id{
+   width:120px;
+   margin-right: 70px;
+}
+.layer-form-field-pwd{
+   width:120px;
+}
+.layer-form-field-subject{
+	
+   width:400px;
+}
+.layer-form-field:focus {
+   background: #d4d4d4;
+   color: #52493f;
+   }
+.layer-form-container h2 {
+   text-shadow: #ffffff 0 1px 0;
+   font-size:18px;
+   margin: 0 0 10px 0;
+   font-weight:bold;
+   text-align:center;
+    }
+.layer-form-title {
+   margin-bottom:10px;
+   color: #52493f;
+   text-shadow: #ffffff 0 1px 0;
+   }
+.layer-form-title h2{
+	font-size: 25px;
+}
+.layer-submit-container {
+   margin:8px 0;
+   text-align:right;
+   }
+.layer-submit-button {
+   border: 1px solid #f56213;
+   background: #f56213;
+   background: -webkit-gradient(linear, left top, left bottom, from(#f56213), to(#f56213));
+   background: -webkit-linear-gradient(top, #f56213, #f56213);
+   background: -moz-linear-gradient(top, #f56213, #f56213);
+   background: -ms-linear-gradient(top, #f56213, #f56213);
+   background: -o-linear-gradient(top, #f56213, #f56213);
+   background-image: -ms-linear-gradient(top, #f56213 0%, #f56213 100%);
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   border-radius: 5px;
+   -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+
+   color: #ffffff;
+   font-family: helvetica, serif;
+   padding: 8.5px 18px;
+   font-size: 14px;
+   text-decoration: none;
+   vertical-align: middle;
+   font-family:"청소년서체";
+   }
+.layer-submit-button:hover {
+   border: 1px solid #cc4400;
+
+   background: #cc4400;
+   background: -webkit-gradient(linear, left top, left bottom, from(#cc4400), to(#cc4400));
+   background: -webkit-linear-gradient(top, #cc4400, #cc4400);
+   background: -moz-linear-gradient(top, #cc4400, #cc4400);
+   background: -ms-linear-gradient(top, #cc4400, #cc4400);
+   background: -o-linear-gradient(top, #cc4400, #cc4400);
+   background-image: -ms-linear-gradient(top, #cc4400 0%, #cc4400 100%);
+   color: #ffffff;
+   }
+.layer-submit-button:active {
+
+   border: 1px solid #f56213;
+   background: #f56213;
+   background: -webkit-gradient(linear, left top, left bottom, from(#f56213), to(#cc4400));
+   background: -webkit-linear-gradient(top, #f56213, #f56213);
+   background: -moz-linear-gradient(top, #f56213, #f56213);
+   background: -ms-linear-gradient(top, #f56213, #f56213);
+   background: -o-linear-gradient(top, #f56213, #f56213);
+   background-image: -ms-linear-gradient(top, #f56213 0%, #f56213 100%);
+   color: #ffffff;
+   }

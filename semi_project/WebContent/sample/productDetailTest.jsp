@@ -13,6 +13,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/semi_project/css/button/button.css?ver=1">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/layer/layer.css?ver=1">
 <link rel="stylesheet" type="text/css" href="/semi_project/css/product/productDetail.css?ver=9">
 <script>
 function AddComma(data_value) {
@@ -378,36 +379,14 @@ function AddComma(data_value) {
 										<tr>
 											<td class="qna_date"><%=arr_qdto.get(i).getQna_regdate()%></td>
 											<td class="qna_subject">
-												<a href="javascript:showContent(0,'qna_content');">배송문의합니다.</a>
-												<span>(조은솔)</span>
+												<a href="javascript:showContent(<%=i%>,'qna_content');"><%=arr_qdto.get(i).getQna_subject()%></a>
+												<span>(<%=arr_qdto.get(i).getMember_id() %>)</span>
 												<div class="qna_content">
-													언제 출고되나요??	
+													<%=arr_qdto.get(i).getQna_content() %>
 												</div>
 											</td>
-											<td class="progress point_c">답변완료</td>
-										</tr>
-										<tr>
-											<td class="qna_date">2016.10.06</td>
-											<td class="qna_subject">
-												<a href="javascript:showContent(1,'qna_content');">배송문의</a>
-												<span>(이예진)</span>
-												<div class="qna_content">
-													이번주안으로 받고 싶은데 받을수 있을까요?
-												</div>
-											</td>
-											<td class="progress point_c">답변완료</td>
-										</tr>
-										<tr>
-											<td class="qna_date">2016.06.22</td>
-											<td class="qna_subject">
-												<a href="javascript:showContent(2,'qna_content');">주문했는데 핸드폰번호를 잘못남겼어요.</a>
-												<span>(이동희)</span>
-												<div class="qna_content">
-													핸드폰번호 010-3582-1354로 수정바랍니다.회원정보는 수정했는데 주문조회로 보니 수정이 안되더라구요 ㅠㅠ 저 번호로 연락주세요.
-												</div>
-											</td>
-											<td class="progress">접수중</td>
-										</tr>
+											<td class="progress">접수중</td> <!--  point_c 접수완료 -->
+										</tr>				
 								<%		
 										}
 									}
@@ -419,6 +398,30 @@ function AddComma(data_value) {
 							<a href="#"><font class="prlist">2</font></a>
 							<a href="#"><font class="prlist">3</font></a>
 							<input class="submit-button" type="button" value="문의작성">
+						</div>
+					</div>
+					<div class="qna_layer">
+						<div class="qna_layer_bg"></div>
+						<div class="qna_layer_pop">
+							<div class="qna_layer_content">	
+								<form class="layer-form-container" name="bbsWrite_ok" action="/myweb/section/bbs/bbsWrite_ok.jsp">
+									<div class="layer-form-title"><h2>상품 Q&A</h2></div>
+									<br />
+									<div class="layer-form-title">이름<input class="layer-form-field layer-form-field-id" type="text" name="writer"/>
+															비밀번호<input class="layer-form-field layer-form-field-pwd" type="password" name="pwd"/>
+									</div>
+									<br />
+									<div class="layer-form-title">제목<input class="layer-form-field layer-form-field-subject" type="text" name="subject"/>	
+									</div>
+									<br />
+									<div class="layer-form-title">문의 내용<textarea rows="20" cols="68" name="content"></textarea>
+									</div>
+									<div class="layer-submit-container">
+										<input class="layer-submit-button" type="submit" value="작성하기">
+										<input class="layer-submit-button" type="reset" value="나가기">
+									</div>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
