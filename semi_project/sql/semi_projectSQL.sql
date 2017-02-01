@@ -11,7 +11,8 @@ CREATE TABLE member_table(
 	member_email VARCHAR2(40),
 	member_tel VARCHAR2(20),
 	member_addr VARCHAR2(100),
-	member_coupon VARCHAR2(20)
+	member_coupon VARCHAR2(20),
+	member_regdate DATE
   );
 /* 회원 IDX 시퀀스 */
 CREATE SEQUENCE member_table_idx MINVALUE 0 START WITH 1;
@@ -75,6 +76,7 @@ CREATE SEQUENCE payment_table_idx MINVALUE 0 START WITH 1;
 /* 질문게시판 테이블 */
 CREATE TABLE qna_table(
 	qna_idx NUMBER PRIMARY KEY,
+	product_idx NUMBER,
 	member_id VARCHAR2(20),
 	qna_subject VARCHAR2(100),
 	qna_content VARCHAR2(1000),

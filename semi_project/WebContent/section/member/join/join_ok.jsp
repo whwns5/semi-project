@@ -8,8 +8,8 @@
 <jsp:useBean id="jdao" class="semi.member.MemberDAO"/>
 
 <%
-	
 	int result=jdao.memberJoin(jdto);
+	System.out.println(result);
 	String msg=result>0?"회원 가입을 축하합니다!":"회원 가입에 실패하였습니다.";
 %>
 

@@ -62,8 +62,7 @@ function openDel(){
 			</tr>
 			<tr>
 				<td>*주소</td>
-				<td><input type="text" readonly><input type="button" value="우편번호검색"><br>
-				<input type="text" name="member_addr" required="required"><br>
+				<td><input type="text" name="member_addr" required="required"></td>
 			</tr>
 			<tr>
 				<td>*휴대폰번호</td>
