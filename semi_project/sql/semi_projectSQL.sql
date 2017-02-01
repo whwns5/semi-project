@@ -11,7 +11,8 @@ CREATE TABLE member_table(
 	member_email VARCHAR2(40),
 	member_tel VARCHAR2(20),
 	member_addr VARCHAR2(100),
-	member_coupon VARCHAR2(20)
+	member_coupon VARCHAR2(20),
+	member_regdate DATE
   );
 /* 회원 IDX 시퀀스 */
 CREATE SEQUENCE member_table_idx MINVALUE 0 START WITH 1;

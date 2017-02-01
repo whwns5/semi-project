@@ -373,9 +373,10 @@ function AddComma(data_value) {
 										</tr>
 								<%	
 									} else {
+										for(int i = 0 ; i < arr_qdto.size() ; i++){			
 								%>
 										<tr>
-											<td class="qna_date">2016.11.02</td>
+											<td class="qna_date"><%=arr_qdto.get(i).getQna_regdate()%></td>
 											<td class="qna_subject">
 												<a href="javascript:showContent(0,'qna_content');">배송문의합니다.</a>
 												<span>(조은솔)</span>
@@ -408,6 +409,7 @@ function AddComma(data_value) {
 											<td class="progress">접수중</td>
 										</tr>
 								<%		
+										}
 									}
 								%>
 							</tbody>
