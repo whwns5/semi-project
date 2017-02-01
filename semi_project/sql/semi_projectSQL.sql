@@ -75,6 +75,7 @@ CREATE SEQUENCE payment_table_idx MINVALUE 0 START WITH 1;
 /* 질문게시판 테이블 */
 CREATE TABLE qna_table(
 	qna_idx NUMBER PRIMARY KEY,
+	product_idx NUMBER,
 	member_id VARCHAR2(20),
 	qna_subject VARCHAR2(100),
 	qna_content VARCHAR2(1000),

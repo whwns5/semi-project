@@ -1,3 +1,4 @@
+<%@page import="semi.qna.QnaDTO"%>
 <%@page import="java.io.File"%>
 <%@ page import="java.text.DecimalFormat"%>
 <%@ page import="semi.product.ProductDTO"%>
@@ -5,13 +6,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:useBean id="pdao" class="semi.product.ProductDAO" scope="session"/>
+<jsp:useBean id="qdao" class="semi.qna.QnaDAO" scope="session"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/semi_project/css/button/button.css?ver=1">
-<link rel="stylesheet" type="text/css" href="/semi_project/css/product/productDetail.css?ver=8">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/product/productDetail.css?ver=9">
 <script>
 function AddComma(data_value) {
 	return Number(data_value).toLocaleString('en').split(".")[0] + "원";
@@ -28,7 +30,7 @@ function AddComma(data_value) {
 	//String scid = request.getParameter("scid");
 	
 	//String product_code = request.getParameter("code");
-	int idx = 23;
+	int product_idx = 23;
 	String product_code = "O5FBBP39";
 	String lcid = "bags";
 	String scid = "backpack";
@@ -41,10 +43,12 @@ function AddComma(data_value) {
 	ProductDTO mainpDTO = null;
 	
 	for(int i = 0 ; i < arr_pdto.size() ; i++){
-		if(arr_pdto.get(i).getProduct_idx() == idx){
+		if(arr_pdto.get(i).getProduct_idx() == product_idx){
 			mainpDTO = arr_pdto.get(i);
 		}
 	}
+	ArrayList<QnaDTO> arr_qdto = null;
+	arr_qdto = qdao.qnaList();
 	
 	DecimalFormat dcformat = new DecimalFormat("###,###,###,###");
 	
@@ -260,7 +264,7 @@ function AddComma(data_value) {
 						<li><a class="last" href="#tab03">Q&A</a></li>
 					</ul>
 					<div class="tab_detail_img">
-						<img src="/semi_project/img/product/bags/backpack/O5FBBP59_WARM GREY/O5FBBP59_WARM GREY_1.jpg">
+						<img src="<%=product_path%>/<%=mainpDTO.getProduct_code()%>_<%=mainpDTO.getProduct_color()%>/<%=mainpDTO.getProduct_code()%>_<%=mainpDTO.getProduct_color()%>_1.jpg">
 					</div>
 				</div>
 				<script>
@@ -361,39 +365,51 @@ function AddComma(data_value) {
 						<table>
 							<colgroup><col style="width:100px"><col style="width:auto"><col style="width:100px"></colgroup>
 							<tbody>
-								<tr>
-									<td class="qna_date">2016.11.02</td>
-									<td class="qna_subject">
-										<a href="javascript:showContent(0,'qna_content');">배송문의합니다.</a>
-										<span>(조은솔)</span>
-										<div class="qna_content">
-											언제 출고되나요??	
-										</div>
-									</td>
-									<td class="progress point_c">답변완료</td>
-								</tr>
-								<tr>
-									<td class="qna_date">2016.10.06</td>
-									<td class="qna_subject">
-										<a href="javascript:showContent(1,'qna_content');">배송문의</a>
-										<span>(이예진)</span>
-										<div class="qna_content">
-											이번주안으로 받고 싶은데 받을수 있을까요?
-										</div>
-									</td>
-									<td class="progress point_c">답변완료</td>
-								</tr>
-								<tr>
-									<td class="qna_date">2016.06.22</td>
-									<td class="qna_subject">
-										<a href="javascript:showContent(2,'qna_content');">주문했는데 핸드폰번호를 잘못남겼어요.</a>
-										<span>(이동희)</span>
-										<div class="qna_content">
-											핸드폰번호 010-3582-1354로 수정바랍니다.회원정보는 수정했는데 주문조회로 보니 수정이 안되더라구요 ㅠㅠ 저 번호로 연락주세요.
-										</div>
-									</td>
-									<td class="progress">접수중</td>
-								</tr>
+								<%
+									if(arr_qdto.size() == 0){
+								%>	
+										<tr>
+											<td colspan="3" class="nothing">등록된 질문이 없습니다.</td>
+										</tr>
+								<%	
+									} else {
+								%>
+										<tr>
+											<td class="qna_date">2016.11.02</td>
+											<td class="qna_subject">
+												<a href="javascript:showContent(0,'qna_content');">배송문의합니다.</a>
+												<span>(조은솔)</span>
+												<div class="qna_content">
+													언제 출고되나요??	
+												</div>
+											</td>
+											<td class="progress point_c">답변완료</td>
+										</tr>
+										<tr>
+											<td class="qna_date">2016.10.06</td>
+											<td class="qna_subject">
+												<a href="javascript:showContent(1,'qna_content');">배송문의</a>
+												<span>(이예진)</span>
+												<div class="qna_content">
+													이번주안으로 받고 싶은데 받을수 있을까요?
+												</div>
+											</td>
+											<td class="progress point_c">답변완료</td>
+										</tr>
+										<tr>
+											<td class="qna_date">2016.06.22</td>
+											<td class="qna_subject">
+												<a href="javascript:showContent(2,'qna_content');">주문했는데 핸드폰번호를 잘못남겼어요.</a>
+												<span>(이동희)</span>
+												<div class="qna_content">
+													핸드폰번호 010-3582-1354로 수정바랍니다.회원정보는 수정했는데 주문조회로 보니 수정이 안되더라구요 ㅠㅠ 저 번호로 연락주세요.
+												</div>
+											</td>
+											<td class="progress">접수중</td>
+										</tr>
+								<%		
+									}
+								%>
 							</tbody>
 						</table>
 						<div class="paging bottom">
