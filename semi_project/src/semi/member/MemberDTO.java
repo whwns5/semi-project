@@ -4,6 +4,7 @@ import java.sql.*;
 
 public class MemberDTO {
 	
+
 	/**회원 인덱스*/private int member_idx;
 	/**회원 아이디*/private String member_id;
 	/**회원 타입*/private String member_type;
