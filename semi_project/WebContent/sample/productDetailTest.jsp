@@ -37,8 +37,8 @@ function AddComma(data_value) {
 	String scid = "backpack";
 	
 	String product_path = "/semi_project/img/product/" + lcid + "/" + scid;
-	//String com_path = "C:/Users/whwns/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
-	String com_path = "C:/Users/user1/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
+	String com_path = "C:/Users/whwns/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
+	//String com_path = "C:/Users/user1/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
 	ArrayList<ProductDTO> arr_pdto = null;
 	arr_pdto = pdao.productCodeList(product_code);
 	ProductDTO mainpDTO = null;
@@ -393,32 +393,41 @@ function AddComma(data_value) {
 								%>
 							</tbody>
 						</table>
+						<script>
+						function openQnaLayer() {
+							var qna_layer = document.getElementById('id_qna_layer');
+							qna_layer.style.display = 'block';
+						}
+						function closeQnaLayer() {
+							var qna_layer = document.getElementById('id_qna_layer');
+							qna_layer.style.display = '';
+						}
+						</script>
 						<div class="paging bottom">
 							<a class="on" href="#"><font class="choiceprlist"><b>1</b></font></a>
 							<a href="#"><font class="prlist">2</font></a>
 							<a href="#"><font class="prlist">3</font></a>
-							<input class="submit-button" type="button" value="문의작성">
+							<input class="submit-button" type="button" value="문의작성" onclick="openQnaLayer();">
 						</div>
 					</div>
-					<div class="qna_layer">
-						<div class="qna_layer_bg"></div>
+					<div class="qna_layer" id="id_qna_layer">
+						<div class="qna_layer_bg" onclick="closeQnaLayer();"></div>
 						<div class="qna_layer_pop">
 							<div class="qna_layer_content">	
-								<form class="layer-form-container" name="bbsWrite_ok" action="/myweb/section/bbs/bbsWrite_ok.jsp">
+								<form class="layer-form-container" name="qnaWrite_ok" action="/semi_project/section/qna/qnaWrite_ok.jsp">
 									<div class="layer-form-title"><h2>상품 Q&A</h2></div>
 									<br />
-									<div class="layer-form-title">이름<input class="layer-form-field layer-form-field-id" type="text" name="writer"/>
-															비밀번호<input class="layer-form-field layer-form-field-pwd" type="password" name="pwd"/>
+									<div class="layer-form-title">이름<input class="layer-form-field layer-form-field-id" type="text" name="member_id" value="whwns5" readonly="readonly"/>			
 									</div>
 									<br />
-									<div class="layer-form-title">제목<input class="layer-form-field layer-form-field-subject" type="text" name="subject"/>	
+									<div class="layer-form-title">제목<input class="layer-form-field layer-form-field-subject" type="text" name="qna_subject" required="required"/>	
 									</div>
 									<br />
-									<div class="layer-form-title">문의 내용<textarea rows="20" cols="68" name="content"></textarea>
+									<div class="layer-form-title">문의 내용<textarea class="layer-form-field-content" rows="20" cols="68" name="qna_content" required="required"></textarea>
 									</div>
 									<div class="layer-submit-container">
 										<input class="layer-submit-button" type="submit" value="작성하기">
-										<input class="layer-submit-button" type="reset" value="나가기">
+										<input class="layer-submit-button" type="button" value="나가기" onclick="closeQnaLayer();">
 									</div>
 								</form>
 							</div>

@@ -34,7 +34,6 @@
    -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
    box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
    padding:8px;
-   margin-bottom:20px;
    width:160px;
    margin-left: 10px;
    }
@@ -46,13 +45,28 @@
    width:120px;
 }
 .layer-form-field-subject{
-	
    width:400px;
+}
+.layer-form-field-content{
+   border: 1px solid #52493f;
+   background: #ffffff;
+   -webkit-border-radius: 2px;
+   -moz-border-radius: 2px;
+   border-radius: 2px;
+   color: #52493f;
+   -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+   box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+   padding:8px;
+}
+.layer-form-field-content:focus{
+	background: #d4d4d4;
+    color: #52493f;
 }
 .layer-form-field:focus {
    background: #d4d4d4;
    color: #52493f;
-   }
+}
 .layer-form-container h2 {
    text-shadow: #ffffff 0 1px 0;
    font-size:18px;
@@ -61,7 +75,6 @@
    text-align:center;
     }
 .layer-form-title {
-   margin-bottom:10px;
    color: #52493f;
    text-shadow: #ffffff 0 1px 0;
    }

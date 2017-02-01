@@ -412,6 +412,7 @@ div#body_contents div.product_detail{
 			color: #E8380D;
 		}
 		div.div_tab_detail03 div.qna_layer{
+			display: none;
 			position: fixed;
 			top: 0;
     		left: 0;
