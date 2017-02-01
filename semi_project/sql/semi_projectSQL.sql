@@ -1,7 +1,8 @@
 
 /* 회원 테이블 */
 CREATE TABLE member_table(
-  	member_id VARCHAR2(20) PRIMARY KEY,
+	member_idx NUMBER PRIMARY KEY,
+  	member_id VARCHAR2(20), 
 	member_type VARCHAR2(10),
 	member_name VARCHAR2(20),
 	member_pwd VARCHAR2(40),
@@ -12,6 +13,8 @@ CREATE TABLE member_table(
 	member_addr VARCHAR2(100),
 	member_coupon VARCHAR2(20)
   );
+/* 회원 IDX 시퀀스 */
+CREATE SEQUENCE member_table_idx MINVALUE 0 START WITH 1;
   
 /* 대분류 카테고리 테이블 */
 CREATE TABLE largecategory_table(
@@ -92,7 +95,10 @@ CREATE TABLE review_table(
 	review_content VARCHAR2(1000),
 	review_regdate DATE,
 	review_grade NUMBER,
-	review_img VARCHAR2(100)
+	review_img VARCHAR2(100),
+	review_ref NUMBER,
+	review_lev NUMBER,
+	review_sunbun NUMBER
   );
 /* 리뷰 테이블 시퀀스 */
 CREATE SEQUENCE review_table_idx MINVALUE 0 START WITH 1;
@@ -120,4 +126,3 @@ CREATE TABLE coupon_table(
 /* 쿠폰 테이블 시퀀스 */
 CREATE SEQUENCE coupon_table_idx MINVALUE 0 START WITH 1;
 
-select * from COUPON_TABLE
