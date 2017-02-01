@@ -79,6 +79,9 @@ ul#navigation li a:hover{
 }
 
 </style>
+<script type="text/javascript">
+	document.getElementById('1').set
+</script>
 </head>
 <body>
 		<div class="header"></div>

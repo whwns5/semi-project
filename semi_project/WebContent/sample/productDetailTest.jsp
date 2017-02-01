@@ -34,8 +34,8 @@ function AddComma(data_value) {
 	String scid = "backpack";
 	
 	String product_path = "/semi_project/img/product/" + lcid + "/" + scid;
-	String com_path = "C:/Users/whwns/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
-	
+	//String com_path = "C:/Users/whwns/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
+	String com_path = "C:/Users/user1/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
 	ArrayList<ProductDTO> arr_pdto = null;
 	arr_pdto = pdao.productCodeList(product_code);
 	ProductDTO mainpDTO = null;
