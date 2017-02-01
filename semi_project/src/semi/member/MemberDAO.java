@@ -36,7 +36,6 @@ public class MemberDAO {
 			ps.setString(7, dto.getMember_addr());
 			
 			int count=ps.executeUpdate();
-			System.out.println("2");
 			return count;
 			
 		}catch(Exception e){
@@ -200,6 +199,30 @@ public class MemberDAO {
 			}catch(Exception e2){}
 		}
 		return null;
+	}
+	/**회원 정보 수정 관련 메서드*/
+	public int memberChange(MemberDTO dto){
+		try{
+			conn = semi.db.semiDB.getConn();
+			String sql = "update member_table set"
+					+ "member_name = ?"
+					+ "member_pwd = ?"
+					+ "member_birthday = ?"
+					+ "member_sex = ?"
+					+ "member_email = ?"
+					+ "member_tel = ?"
+					+ "member_addr = ?"
+					+ "member_id = ?";
+			
+		}catch(Exception e){
+			
+		}finally{
+			try{
+				
+			}catch(Exception e2){
+				
+			}
+		}
 	}
 }
 

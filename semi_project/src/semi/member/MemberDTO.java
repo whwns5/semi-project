@@ -3,7 +3,8 @@ package semi.member;
 import java.sql.*;
 
 public class MemberDTO {
-
+	
+	/**회원 인덱스*/private String member_idx;
 	/**회원 아이디*/private String member_id;
 	/**회원 타입*/private String member_type;
 	/**회원 이름*/private String member_name;
@@ -17,11 +18,14 @@ public class MemberDTO {
 	
 	public MemberDTO() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public MemberDTO(String member_id, String member_type, String member_name, String member_pwd, Date member_birthday,
-			String member_sex, String member_email, String member_tel, String member_addr, String member_coupon) {
+	public MemberDTO(String member_idx, String member_id, String member_type, String member_name, String member_pwd,
+			Date member_birthday, String member_sex, String member_email, String member_tel, String member_addr,
+			String member_coupon) {
 		super();
+		this.member_idx = member_idx;
 		this.member_id = member_id;
 		this.member_type = member_type;
 		this.member_name = member_name;
@@ -32,6 +36,14 @@ public class MemberDTO {
 		this.member_tel = member_tel;
 		this.member_addr = member_addr;
 		this.member_coupon = member_coupon;
+	}
+
+	public String getMember_idx() {
+		return member_idx;
+	}
+
+	public void setMember_idx(String member_idx) {
+		this.member_idx = member_idx;
 	}
 
 	public String getMember_id() {
@@ -113,6 +125,7 @@ public class MemberDTO {
 	public void setMember_coupon(String member_coupon) {
 		this.member_coupon = member_coupon;
 	}
+	
 	
 }
 
