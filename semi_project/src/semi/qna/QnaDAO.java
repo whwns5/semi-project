@@ -147,6 +147,7 @@ public class QnaDAO {
 	 * */
 	public void updateSun(int ref, int sun){
 		try{
+			
 			ps = conn.prepareStatement(Sql.QNA_UPDATE_SUNBUN);
 			ps.setInt(1, ref);
 			ps.setInt(2, sun);
