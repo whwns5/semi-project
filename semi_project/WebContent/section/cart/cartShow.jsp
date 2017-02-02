@@ -2,10 +2,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="seung.cart.*" %>
-<%@ page import="seung.product.*" %>
-<jsp:useBean id="cdao" class="seung.cart.CartDAO" scope="session"/>
-<jsp:useBean id="pdao" class="seung.product.ProductDAO" scope="session"/>
+<%@ page import="semi.cart.*" %>
+<%@ page import="semi.product.*" %>
+<jsp:useBean id="cdao" class="semi.cart.CartDAO" scope="session"/>
+<jsp:useBean id="pdao" class="semi.product.ProductDAO" scope="session"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
