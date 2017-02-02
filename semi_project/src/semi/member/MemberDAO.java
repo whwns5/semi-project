@@ -23,8 +23,8 @@ public class MemberDAO {
 	public int memberJoin(MemberDTO dto){
 		try{
 			conn=semi.db.semiDB.getConn();
-			String sql="insert into member_table(member_id,member_name,member_pwd,member_sex,member_email,member_tel,member_addr)"
-					+ " values(?,?,?,?,?,?,?)";
+			String sql="insert into member_table(member_idx,member_id,member_name,member_pwd,member_sex,member_email,member_tel,member_addr)"
+					+ "values(member_table_idx.nextval,?,?,?,?,?,?,?)";
 			ps=conn.prepareStatement(sql);
 			
 			ps.setString(1, dto.getMember_id());
@@ -136,7 +136,7 @@ public class MemberDAO {
 			conn=semi.db.semiDB.getConn();
 			String sql="select member_name from member_table where LOWER(member_id)=?";
 			ps=conn.prepareStatement(sql);
-			ps.setString(1, member_id.toLowerCase());
+			ps.setString(1, member_id);
 			rs=ps.executeQuery();
 			rs.next();
 			return rs.getString(1);
@@ -153,17 +153,20 @@ public class MemberDAO {
 	}
 	/**회원 정보 보기 관련 메서드*/
 	public MemberDTO[] userInfo(String member_id)
-	{
+	{   
+		System.out.println("DAOsdad"+member_id);
 		try 
 		{
+			System.out.println("DAO"+member_id);
 			conn=semi.db.semiDB.getConn();
 			String sql="select * from member_table where member_id=?";
 			ps=conn.prepareStatement(sql);
-			ps.setString(1, member_id.toUpperCase());
+			ps.setString(1, member_id);
 			rs=ps.executeQuery();
 	
 			Vector<MemberDTO> v=new Vector<MemberDTO>();
 			if(rs.next()){
+			int idx = rs.getInt("member_idx");
 			String id = rs.getString("member_id");
 			String type = rs.getString("member_type");
 			String name = rs.getString("member_name");
@@ -174,16 +177,16 @@ public class MemberDAO {
 			String tel = rs.getString("member_tel");
 			String addr = rs.getString("member_addr");
 			String coupon = rs.getString("member_coupon");
-			MemberDTO mDto = new MemberDTO(id, type, name, pwd, birthday, sex, email, tel, addr, coupon);
+			MemberDTO mDto = new MemberDTO(idx, id, type, name, pwd, birthday, sex, email, tel, addr, coupon);
 			v.add(mDto);
 		
-			
+			     
+			System.out.println("idx"+idx);
 			}
-		
 			MemberDTO[] dto=new MemberDTO[v.size()];
 			v.copyInto(dto);
 			return dto;
-		}
+		}   
 	
 		catch(Exception e)
 		{
@@ -201,29 +204,29 @@ public class MemberDAO {
 		return null;
 	}
 	/**회원 정보 수정 관련 메서드*/
-	public int memberChange(MemberDTO dto){
-		try{
-			conn = semi.db.semiDB.getConn();
-			String sql = "update member_table set"
-					+ "member_name = ?"
-					+ "member_pwd = ?"
-					+ "member_birthday = ?"
-					+ "member_sex = ?"
-					+ "member_email = ?"
-					+ "member_tel = ?"
-					+ "member_addr = ?"
-					+ "member_id = ?";
-			
-		}catch(Exception e){
-			
-		}finally{
-			try{
-				
-			}catch(Exception e2){
-				
-			}
-		}
-	}
+//	public int memberChange(MemberDTO dto){
+//		try{
+//			conn = semi.db.semiDB.getConn();
+//			String sql = "update member_table set"
+//					+ "member_name = ?"
+//					+ "member_pwd = ?"
+//					+ "member_birthday = ?"
+//					+ "member_sex = ?"
+//					+ "member_email = ?"
+//					+ "member_tel = ?"
+//					+ "member_addr = ?"
+//					+ "member_id = ?";
+//			
+//		}catch(Exception e){
+//			
+//		}finally{
+//			try{
+//				
+//			}catch(Exception e2){
+//				
+//			}
+//		}
+//	}
 }
 
 

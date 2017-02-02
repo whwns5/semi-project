@@ -54,7 +54,20 @@ document.onclick = mclose;
 				<div class="container_util">
 					<a href="#" class="btn_favorite">즐겨찾기추가</a>
 					<ul class="nav_util">
-						<li><a href="/semi_project/section/member/login/login.jsp">LOGIN</a></li>
+						<li>	<%
+						String user_name = (String)session.getAttribute("user_name");
+						if ( user_name == null )
+						{
+						%>
+						<a href="/semi_project/section/member/login/login.jsp">LOGIN</a> 
+						<%
+						}else{
+						%>
+						<%=user_name %>님 환영합니다. | <a href="/semi_project/section/member/logout/logout_ok.jsp">LOGOUT</a>
+						<%
+						}
+						%>
+						| <a href="/semi_project/section/member/join/join.jsp">JOIN US</a> | <a href="#">CART</a> | <a href="/semi_project/section/member/join/list.jsp">MYPAGE</a></li>
 						<li><a href="/semi_project/section/member/join/join.jsp">JOIN US</a></li>
 						<li><a href="#">CART</a></li>
 						<li><a href="#">MYPAGE</a></li>

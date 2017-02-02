@@ -15,8 +15,10 @@
 	String member_email = "";
 	
 	String member_id = (String)session.getAttribute("user_id");
-
+	System.out.println(member_id+"AAAAAAAAAAAA");
+//	MemberDTO[] dto = jdao.userInfo(member_id);
 	MemberDTO[] dto = jdao.userInfo(member_id);
+	System.out.println(dto.length+"XXXXXXXXXXXXXX");
 	if(dto.length == 1) {
 		for(int i=0;i<dto.length;i++){
 			member_name = dto[i].getMember_name();
