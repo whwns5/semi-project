@@ -17,7 +17,7 @@ public class PayDAO {
 	
 	public int payInsert(String member_id, int product_idx, int payment_totalprice, int payment_num, String payment_addr, String payment_tel){
 		try {
-			conn=seung.db.seungDB.getConn();
+			conn=semi.db.semiDB.getConn();
 			String sql="insert into payment_table values(payment_table_idx.nextval,?,?,?,?,?,?)";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, member_id);

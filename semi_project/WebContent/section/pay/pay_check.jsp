@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8");  %>
 <%@ page import = "java.net.*" %>
-    <jsp:useBean id="pdto" class="seung.product.ProductDTO"/>
+    <jsp:useBean id="pdto" class="semi.product.ProductDTO"/>
     <jsp:setProperty property="*" name="pdto"/>
     <html>
 <head>
@@ -50,7 +50,7 @@ border:1px black solid;
 	
 	%>
 <body>
-<%@ include file="/header.jsp"%>
+<%@ include file="/header/header.jsp"%>
 <section>
 <article>
 <h4>결제 확인 창입니다.</h4>
@@ -112,7 +112,7 @@ border:1px black solid;
 	request.getRequestDispatcher("pay_complete.jsp").forward(request, response);
 */
 %>
-<%@ include file="/footer.jsp"%>
+<%@ include file="/footer/footer.jsp"%>
 </body>
 </html>
 

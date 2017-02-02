@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import seung.product.*;
+import semi.product.*;
 
 public class CartDAO {
 
@@ -24,7 +24,7 @@ public class CartDAO {
 	
 	public int productLoad(int cart_idx){
 		try {
-			conn=seung.db.seungDB.getConn();
+			conn=semi.db.semiDB.getConn();
 			String sql="select product_idx from cart_table where cart_idx=?";
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, cart_idx);
@@ -56,7 +56,7 @@ public class CartDAO {
 	
 	public int cartDel(int cart_idx, String member_id){
 		try {
-			conn=seung.db.seungDB.getConn();
+			conn=semi.db.semiDB.getConn();
 			String sql="delete from cart_table where cart_idx=? and member_id=?";
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, cart_idx);
@@ -86,7 +86,7 @@ public class CartDAO {
 	
 	public int cartSum(String member_id){
 		try {
-		conn=seung.db.seungDB.getConn();
+		conn=semi.db.semiDB.getConn();
 		String sql="select sum(product_price) from cart_table where member_id=?";
 		ps=conn.prepareStatement(sql);
 		ps.setString(1, member_id);
@@ -118,7 +118,7 @@ public class CartDAO {
 	
 	public void insert(String member_id, int product_id, int product_price){
 		try {
-			conn=seung.db.seungDB.getConn();
+			conn=semi.db.semiDB.getConn();
 			String sql="insert into cart_table values(cart_table_cart_idx.nextval,?,?,?,?,?)";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, member_id);
@@ -148,7 +148,7 @@ public class CartDAO {
 	
 	public ArrayList<CartDTO> cartList(String sid){
 		try {
-			conn=seung.db.seungDB.getConn();
+			conn=semi.db.semiDB.getConn();
 			String sql="select * from cart_table where member_id=?";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, sid);
@@ -188,7 +188,7 @@ public class CartDAO {
 	
 	public CartDTO show(String sid){
 		try {
-			conn=seung.db.seungDB.getConn();
+			conn=semi.db.semiDB.getConn();
 			System.out.println("CartDTO="+sid);
 			String sql="select * from cart_table where member_id=?";
 			ps=conn.prepareStatement(sql);

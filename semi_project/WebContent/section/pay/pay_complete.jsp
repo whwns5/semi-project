@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="seung.pay.*" %>
-<jsp:useBean id="paydto" class="seung.pay.PayDTO"/>
-<jsp:useBean id="paydao" class="seung.pay.PayDAO"/>
+    <%@ page import="semi.pay.*" %>
+<jsp:useBean id="paydto" class="semi.pay.PayDTO"/>
+<jsp:useBean id="paydao" class="semi.pay.PayDAO"/>
     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 
