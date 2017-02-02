@@ -7,23 +7,18 @@
 	ArrayList<QnaDTO> arr_qdto = null;
 	arr_qdto = qdao.qnaList();
 	
-	//{"employee":[{"firstName":"김","lastName":"차사"},{"firstName":"김이","lastName":"차사"}]}
+	//{"employee":[ {"firstName":"김","lastName":"차사"} , {"firstName":"김이","lastName":"차사"} ]}
+	String jsonStr = "";
+	
 	if(arr_qdto != null){
-%>
-		{"QnaDTO":[
-<%
+		jsonStr += "{\"QnaDTO\":[";
 		for(int i = 0 ; i < arr_qdto.size() ; i++){
-%>
-			{"qna_idx":"<%=arr_qdto.get(i).getQna_idx()%>","product_idx","<%=arr_qdto.get(i).getProduct_idx()%>"}
-<%
-			if( i < arr_qdto.size()-1 ){
-%>
-				,
-<%				
-			}
+			jsonStr += "{";
+			jsonStr += "\"qna_idx\":\"" + arr_qdto.get(i).getQna_idx() + "\"" + ",";
+			jsonStr += "\"product_idx\":\"" + arr_qdto.get(i).getProduct_idx() + "\"";
+			jsonStr += "}";
 		}
-%>
-				]}
-<%
+		
 	}
+
 %>

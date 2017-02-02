@@ -8,8 +8,9 @@
 <script type="text/javascript" src="ajax.js"></script>
 <script>
 function jsonParsing(responseText) {
-	var json = JSON.parse(responseText);
-	window.alert(json);
+	//var json = JSON.parse(responseText);
+	var a = '  t   b   c';
+	window.alert(a.trim());
 }
 
 function ajax_result(httpRequest) {
