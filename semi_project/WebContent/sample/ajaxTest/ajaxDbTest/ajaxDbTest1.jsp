@@ -8,9 +8,8 @@
 <script type="text/javascript" src="ajax.js"></script>
 <script>
 function jsonParsing(responseText) {
-	//var json = JSON.parse(responseText);
-	var a = '  t   b   c';
-	window.alert(a.trim());
+	var json = JSON.parse(responseText);
+	//document.getElementById("message").innerHTML = responseText;//보여주기
 }
 
 function ajax_result(httpRequest) {
@@ -36,5 +35,6 @@ function action_ajax(url) {
 </head>
 <body>
 	<input type="button" value="ajax시작" onclick="action_ajax('ajaxDbResultTest2.jsp');">
+	<div id="message"></div>
 </body>
 </html>

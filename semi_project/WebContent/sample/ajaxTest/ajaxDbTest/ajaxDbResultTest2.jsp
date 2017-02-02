@@ -17,8 +17,12 @@
 			jsonStr += "\"qna_idx\":\"" + arr_qdto.get(i).getQna_idx() + "\"" + ",";
 			jsonStr += "\"product_idx\":\"" + arr_qdto.get(i).getProduct_idx() + "\"";
 			jsonStr += "}";
+			
+			if( i < arr_qdto.size()-1 ){
+				jsonStr += ",";
+			}
 		}
-		
+		jsonStr += "]}";
 	}
-
 %>
+<%=jsonStr%>
