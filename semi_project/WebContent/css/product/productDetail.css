@@ -339,11 +339,16 @@ div#body_contents div.product_detail{
 			border: 1px solid #dcdcdc;
     		background-color: #f0f0f0;
 		}
-		div.paging a:HOVER{
+		div.paging a.num:HOVER{
 			border: 1px solid #dcdcdc;
     		background-color: #f0f0f0;
 		}
-		div.paging a .choiceprlist{
+		div.paging a font.choiceprlist{
+			font-family: 굴림;
+   			font-size: 9pt;
+   			font-weight: normal;
+		}
+		div.paging a font.prlist{
 			font-family: 굴림;
    			font-size: 9pt;
    			font-weight: normal;

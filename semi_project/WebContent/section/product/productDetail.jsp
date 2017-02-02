@@ -1,19 +1,97 @@
+<%@page import="semi.qna.QnaDTO"%>
+<%@page import="java.io.File"%>
+<%@ page import="java.text.DecimalFormat"%>
+<%@ page import="semi.product.ProductDTO"%>
+<%@ page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:useBean id="pdao" class="semi.product.ProductDAO" scope="session"/>
+<jsp:useBean id="qdao" class="semi.qna.QnaDAO" scope="session"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/semi_project/css/button/button.css?ver=1">
-<link rel="stylesheet" type="text/css" href="/semi_project/css/product/productDetail.css?ver=8">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/layer/layer.css?ver=1">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/product/productDetail.css?ver=10">
+<script type="text/javascript" src="/semi_project/js/ajax.js?ver=1"></script>
 <script>
 function AddComma(data_value) {
 	return Number(data_value).toLocaleString('en').split(".")[0] + "원";
 }
+function jsonParsing(responseText, ctype) {
+	//var json = JSON.parse(responseText);
+	//var qdto = json.QnaDTO;
+	//var docStr = '';
+
+	//dotStr +=  qdto[0].qna_idx;
+	if(ctype == 'QNA'){
+		document.getElementById("ajax_qna_div").innerHTML = responseText;//보여주기
+	} else {
+		window.alert('잘못된 경로');
+	}
+}
+
+function ajax_result(httpRequest, ctype) {
+	return function() {
+		if(httpRequest.readyState == 4){
+			if(httpRequest.status == 200){
+				if(!httpRequest.responseText.match(null)){
+					var responseText = httpRequest.responseText;
+					jsonParsing(responseText, ctype);
+				}
+			}
+		}
+	}
+}
+
+function action_ajax(url, param, ctype) {
+	sendRequest(url, param, ajax_result, 'POST', ctype);
+	return false;
+}
+
+function settingQna(product_idx) {
+	action_ajax('ajaxGoQnaPage.jsp','product_idx=' + product_idx + '&qnaCp=1&qnaListSize=10', 'QNA'); // 해당 페이지로 ajax통신 시작
+}
+
+function settingPage(product_idx) {
+	settingQna(product_idx);
+}
 </script>
 </head>
-<body>
+<%
+	
+	
+	//String idx_s = request.getParameter("idx_s");
+	//int idx = Integer.parseInt(idx_s);
+	//String product_code = request.getParameter("code");
+	//String lcid = request.getParameter("lcid");
+	//String scid = request.getParameter("scid");
+	
+	//String product_code = request.getParameter("code");
+	int product_idx = 23; // 차 후 전 페이지에서 리퀘스트 값을 얻어온다.
+	String product_code = "O5FBBP39"; // 차 후 전 페이지에서 리퀘스트 값을 얻어온다.
+	String lcid = "bags"; // 차 후 전 페이지에서 리퀘스트 값을 얻어온다.
+	String scid = "backpack"; // 차 후 전 페이지에서 리퀘스트 값을 얻어온다.
+	
+	String product_path = "/semi_project/img/product/" + lcid + "/" + scid;
+	String com_path = "C:/Users/whwns/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
+	//String com_path = "C:/Users/user1/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
+	ArrayList<ProductDTO> arr_pdto = null;
+	arr_pdto = pdao.productCodeList(product_code);
+	ProductDTO mainpDTO = null;
+	
+	for(int i = 0 ; i < arr_pdto.size() ; i++){
+		if(arr_pdto.get(i).getProduct_idx() == product_idx){
+			mainpDTO = arr_pdto.get(i);
+		}
+	}
+	
+	DecimalFormat dcformat = new DecimalFormat("###,###,###,###");
+	
+%>
+<body onload="settingPage(<%=product_idx%>);">
 <%@include file="/header/header.jsp"%>
 <%@include file="/aside/aside.jsp"%>
 <section>
@@ -26,7 +104,7 @@ function AddComma(data_value) {
 				<div class="info_wrap">
 					<div class="info_wrap_image">
 						<div class="big_image">
-							<img id="id_big_image" src="/semi_project/img/product/bags/backpack/O5FBBP59_WARM GREY/O5FBBP59_WARM GREY_2.jpg">
+							<img id="id_big_image" src="<%=product_path%>/<%=mainpDTO.getProduct_code()%>_<%=mainpDTO.getProduct_color()%>/<%=mainpDTO.getProduct_img()%>.jpg">
 						</div>
 						<div class="small_image_container">
 							<div class="small_image_panel">
@@ -64,13 +142,14 @@ function AddComma(data_value) {
 								<div class="small_image">
 									<div>
 										<ul id="id_small_ul">
-											<li><img onclick="changeBigImage(this);" src="/semi_project/img/product/bags/backpack/O5FBBP59_WARM GREY/O5FBBP59_WARM GREY_2.jpg"></li>
-											<li><img onclick="changeBigImage(this);" src="/semi_project/img/product/bags/backpack/O5FBBP59_WARM GREY/O5FBBP59_WARM GREY_3.jpg"></li>
-											<li><img onclick="changeBigImage(this);" src="/semi_project/img/product/bags/backpack/O5FBBP59_WARM GREY/O5FBBP59_WARM GREY_4.jpg"></li>
-											<li><img onclick="changeBigImage(this);" src="/semi_project/img/product/bags/backpack/O5FBBP59_WARM GREY/O5FBBP59_WARM GREY_5.jpg"></li>
-											<li><img onclick="changeBigImage(this);" src="/semi_project/img/product/bags/backpack/O5FBBP59_WARM GREY/O5FBBP59_WARM GREY_6.jpg"></li>
-											<li><img onclick="changeBigImage(this);" src="/semi_project/img/product/bags/backpack/O5FBBP59_WARM GREY/O5FBBP59_WARM GREY_6.jpg"></li>
-											<li><img onclick="changeBigImage(this);" src="/semi_project/img/product/bags/backpack/O5FBBP59_WARM GREY/O5FBBP59_WARM GREY_6.jpg"></li>
+											<%
+												File f = new File(com_path + "/" + mainpDTO.getProduct_code() + "_" + mainpDTO.getProduct_color());
+												for(int i = 2 ; i <= f.listFiles().length ; i++){
+											%>
+													<li><img onclick="changeBigImage(this);" src="<%=product_path%>/<%=mainpDTO.getProduct_code()%>_<%=mainpDTO.getProduct_color()%>/<%=mainpDTO.getProduct_code()%>_<%=mainpDTO.getProduct_color()%>_<%=i%>.jpg"></li>
+											<%		
+												}	
+											%>
 										</ul>
 									</div>
 								</div>
@@ -79,7 +158,7 @@ function AddComma(data_value) {
 						</div>
 					</div>
 					<div class="info_wrap_spec">
-						<h3 class="name">테일러 클러치 O6FBCL23</h3>
+						<h3 class="name"><%=mainpDTO.getProduct_name()%> <%=mainpDTO.getProduct_code()%></h3>
 						<script>
 							function totalpriceSetting() {
 								var eachtotalprices = document.getElementsByName('eachTotalPrice');
@@ -163,24 +242,27 @@ function AddComma(data_value) {
 							
 							}
 						</script>
-						<input type="hidden" id="itemName" value="테일러 미니"> <!-- 데이터베이스로 실데이터 입력 -->
-						<input type="hidden" id="itemCode" value="O5NBCB08"> <!-- 데이터베이스로 실데이터 입력 -->
-						<input type="hidden" id="itemNum" value="100"> <!-- 데이터베이스로 실데이터 입력 -->
-						<input type="hidden" id="itemPrice" value="299000"> <!-- 데이터베이스로 실데이터 입력 -->
+						<input type="hidden" id="itemName" value="<%=mainpDTO.getProduct_name()%>"> <!-- 데이터베이스로 실데이터 입력 -->
+						<input type="hidden" id="itemCode" value="<%=mainpDTO.getProduct_code()%>"> <!-- 데이터베이스로 실데이터 입력 -->
+						<input type="hidden" id="itemNum" value="<%=mainpDTO.getProduct_num()%>"> <!-- 데이터베이스로 실데이터 입력 -->
+						<input type="hidden" id="itemPrice" value="<%=mainpDTO.getProduct_price()%>"> <!-- 데이터베이스로 실데이터 입력 -->
 						<table class="info">
 							<tbody>
 								<tr>
 									<th>소비자가격</th>
-									<td>299,000원</td>
+									<td><%=dcformat.format((double) mainpDTO.getProduct_price()) %>원</td>
 								</tr>
 								<tr>
 									<th>색상</th>
 									<td><select class="color" onchange="createOptList(this);">
 											<option value="NONE" selected="selected">옵션을 선택해주세요.</option>
-											<option value="LEMON">LEMON</option> <!-- 데이터베이스로 해당 제품의 색상들 만큼 반복 수행하여 select를 설치 -->
-											<option value="PEWTER">PEWTER</option>
-											<option value="BLACK">BLACK</option>
-											<option value="DARKNAVY">DARKNAVY</option>
+											<%
+												for(int i = 0 ; i < arr_pdto.size() ; i++ ){
+											%>
+													<option value="<%=arr_pdto.get(i).getProduct_color() %>"><%=arr_pdto.get(i).getProduct_color() %></option>
+											<%
+												}
+											%>
 										</select>
 									</td>
 								</tr>
@@ -220,7 +302,7 @@ function AddComma(data_value) {
 						<li><a class="last" href="#tab03">Q&A</a></li>
 					</ul>
 					<div class="tab_detail_img">
-						<img src="/semi_project/img/product/bags/backpack/O5FBBP59_WARM GREY/O5FBBP59_WARM GREY_1.jpg">
+						<img src="<%=product_path%>/<%=mainpDTO.getProduct_code()%>_<%=mainpDTO.getProduct_color()%>/<%=mainpDTO.getProduct_code()%>_<%=mainpDTO.getProduct_color()%>_1.jpg">
 					</div>
 				</div>
 				<script>
@@ -317,50 +399,41 @@ function AddComma(data_value) {
 						<li><a href="#tab02">상품리뷰</a></li>
 						<li><a class="last on" href="#tab03">Q&A</a></li>
 					</ul>
-					<div class="tab_qna_table">
-						<table>
-							<colgroup><col style="width:100px"><col style="width:auto"><col style="width:100px"></colgroup>
-							<tbody>
-								<tr>
-									<td class="qna_date">2016.11.02</td>
-									<td class="qna_subject">
-										<a href="javascript:showContent(0,'qna_content');">배송문의합니다.</a>
-										<span>(조은솔)</span>
-										<div class="qna_content">
-											언제 출고되나요??	
-										</div>
-									</td>
-									<td class="progress point_c">답변완료</td>
-								</tr>
-								<tr>
-									<td class="qna_date">2016.10.06</td>
-									<td class="qna_subject">
-										<a href="javascript:showContent(1,'qna_content');">배송문의</a>
-										<span>(이예진)</span>
-										<div class="qna_content">
-											이번주안으로 받고 싶은데 받을수 있을까요?
-										</div>
-									</td>
-									<td class="progress point_c">답변완료</td>
-								</tr>
-								<tr>
-									<td class="qna_date">2016.06.22</td>
-									<td class="qna_subject">
-										<a href="javascript:showContent(2,'qna_content');">주문했는데 핸드폰번호를 잘못남겼어요.</a>
-										<span>(이동희)</span>
-										<div class="qna_content">
-											핸드폰번호 010-3582-1354로 수정바랍니다.회원정보는 수정했는데 주문조회로 보니 수정이 안되더라구요 ㅠㅠ 저 번호로 연락주세요.
-										</div>
-									</td>
-									<td class="progress">접수중</td>
-								</tr>
-							</tbody>
-						</table>
-						<div class="paging bottom">
-							<a class="on" href="#"><font class="choiceprlist"><b>1</b></font></a>
-							<a href="#"><font class="prlist">2</font></a>
-							<a href="#"><font class="prlist">3</font></a>
-							<input class="submit-button" type="button" value="문의작성">
+					<script>
+						function openQnaLayer() {
+							var qna_layer = document.getElementById('id_qna_layer');
+							qna_layer.style.display = 'block';
+						}
+						function closeQnaLayer() {
+							var qna_layer = document.getElementById('id_qna_layer');
+							qna_layer.style.display = '';
+						}
+					</script>
+					<div class="tab_qna_table" id="ajax_qna_div"> 
+						<!-- ajax로 Q&A를 가져오는 영역 -->
+					</div>
+					<div class="qna_layer" id="id_qna_layer">
+						<div class="qna_layer_bg" onclick="closeQnaLayer();"></div>
+						<div class="qna_layer_pop">
+							<div class="qna_layer_content">	
+								<form class="layer-form-container" name="qnaWrite_ok" action="/semi_project/section/qna/qnaWrite_ok.jsp">
+									<div class="layer-form-title"><h2>상품 Q&A</h2></div>
+									<br />
+									<!-- 차후 세션값으로 변경 -->
+									<div class="layer-form-title">아이디<input class="layer-form-field layer-form-field-id" type="text" name="member_id" value="whwns5" readonly="readonly"/>			
+									</div>
+									<br />
+									<div class="layer-form-title">제목<input class="layer-form-field layer-form-field-subject" type="text" name="qna_subject" required="required"/>	
+									</div>
+									<br />
+									<div class="layer-form-title">문의 내용<textarea class="layer-form-field-content" rows="20" cols="68" name="qna_content" required="required"></textarea>
+									</div>
+									<div class="layer-submit-container">
+										<input class="layer-submit-button" type="submit" value="작성하기">
+										<input class="layer-submit-button" type="button" value="나가기" onclick="closeQnaLayer();">
+									</div>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>

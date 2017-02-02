@@ -28,23 +28,61 @@ public class QnaDAO {
 	}
 	
 	/** 
-	 * Q&A 조회 관련 메서드
-	 * @param void
+	 * Q&A 상품별 총 갯수 조회 관련 메서드
+	 * @param product_idx
+	 * @return count
+	 * */
+	public int getQnaTotalCnt(int product_idx){
+		try{
+			conn = semi.db.semiDB.getConn();
+			
+			ps = conn.prepareStatement(Sql.QNA_PRODUCTIDX_TOTALCOUNT);
+			
+			ps.setInt(1, product_idx);
+			
+			rs = ps.executeQuery();
+			
+			rs.next(); // COUNT(*) 의 결과 값은 무조건 나오기 때문
+			
+			int count = rs.getInt(1);
+			
+			count = count == 0 ? 1 : count;
+		
+			return count;
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			return 1;
+		} finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)rs.close();
+				if(conn!=null)rs.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	
+	/** 
+	 * Q&A 조회 관련 메서드(페이징)
+	 * @param product_idx, cp, listSize
 	 * @return ArrayList<QnaDTO>
 	 * */
-	public ArrayList<QnaDTO> qnaList(){
+	public ArrayList<QnaDTO> qnaList(int product_idx, int cp, int listSize){
 		try{
 			conn = semi.db.semiDB.getConn();
 		
-			ps = conn.prepareStatement(Sql.QNA_SELECT_ALL);
-			
+			ps = conn.prepareStatement(Sql.getQNA_PRODUCTIDX_SELECT_ALL_ORDERBY(cp, listSize));
+			ps.setInt(1, product_idx);
 			rs = ps.executeQuery();
 			
 			ArrayList<QnaDTO> arr_qdto = new ArrayList<QnaDTO>();
 			
 			while(rs.next()){
 				int qna_idx = rs.getInt("qna_idx");
-				int product_idx = rs.getInt("product_idx");
+				int product_idx_temp = rs.getInt("product_idx");
 				String member_id = rs.getString("member_id");
 				String qna_subject = rs.getString("qna_subject");
 				String qna_content = rs.getString("qna_content");
@@ -53,7 +91,7 @@ public class QnaDAO {
 				int qna_lev = rs.getInt("qna_lev");
 				int qna_sunbun = rs.getInt("qna_sunbun");
 						
-				QnaDTO qdto = new QnaDTO(qna_idx, product_idx, member_id, qna_subject, qna_content, qna_regdate, qna_ref, qna_lev, qna_sunbun);
+				QnaDTO qdto = new QnaDTO(qna_idx, product_idx_temp, member_id, qna_subject, qna_content, qna_regdate, qna_ref, qna_lev, qna_sunbun);
 			
 				arr_qdto.add(qdto);
 			}
@@ -109,22 +147,24 @@ public class QnaDAO {
 	 * @param QnaDTO
 	 * @return int (실행횟수 혹은 에러)
 	 * */
-	public int productAdd(QnaDTO qdto){
+	public int qnaWrite(QnaDTO qdto){
 		try{
 			conn = semi.db.semiDB.getConn();
 			
-			ps = conn.prepareStatement(Sql.QNA_INSERT);
 			int maxRef = getMaxRef();
-			ps.setString(1, qdto.getMember_id());
-			ps.setString(2, qdto.getQna_subject());
-			ps.setString(3, qdto.getQna_content());
 			
-			ps.setInt(4, maxRef+1); // 최고값에 +1을 하여 다음 ref를 지정한다.
-			ps.setInt(5, 0);
+			ps = conn.prepareStatement(Sql.QNA_INSERT);
+			
+
+			ps.setInt(1, qdto.getProduct_idx());
+			ps.setString(2, qdto.getMember_id());
+			ps.setString(3, qdto.getQna_subject());
+			ps.setString(4, qdto.getQna_content());
+			
+			ps.setInt(5, maxRef+1); // 최고값에 +1을 하여 다음 ref를 지정한다.
 			ps.setInt(6, 0);
-			
+			ps.setInt(7, 0);
 			int count = ps.executeUpdate();
-			
 			return count;
 			
 		} catch (Exception e){
@@ -139,6 +179,7 @@ public class QnaDAO {
 			}
 		}
 	}
+	
 	
 	/** 
 	 * Q&A 순번 업데이트 관련 메서드
@@ -169,20 +210,21 @@ public class QnaDAO {
 	 * @param QnaDTO
 	 * @return int (실행횟수 혹은 에러)
 	 * */
-	public int bbsReWrite(QnaDTO qdto){
+	public int qnaReWrite(QnaDTO qdto){
 		try{
 			conn = semi.db.semiDB.getConn();
 			
 			updateSun(qdto.getQna_ref(), qdto.getQna_sunbun() + 1);
 		
 			ps = conn.prepareStatement(Sql.QNA_INSERT_REPLY);
-			ps.setString(1, qdto.getMember_id());
-			ps.setString(2, qdto.getQna_subject());
-			ps.setString(3, qdto.getQna_content());
+			ps.setInt(1, qdto.getProduct_idx());
+			ps.setString(2, qdto.getMember_id());
+			ps.setString(3, qdto.getQna_subject());
+			ps.setString(4, qdto.getQna_content());
 			
-			ps.setInt(4, qdto.getQna_ref()); // 답변글을 쓸때는								
-			ps.setInt(5, qdto.getQna_lev() + 1); // 본문글과 같은 ref로 지정
-			ps.setInt(6, qdto.getQna_sunbun() + 1); // l , s는 1씩 증가
+			ps.setInt(5, qdto.getQna_ref()); // 답변글을 쓸때는								
+			ps.setInt(6, qdto.getQna_lev() + 1); // 본문글과 같은 ref로 지정
+			ps.setInt(7, qdto.getQna_sunbun() + 1); // l , s는 1씩 증가
 			
 			int count = ps.executeUpdate();
 			

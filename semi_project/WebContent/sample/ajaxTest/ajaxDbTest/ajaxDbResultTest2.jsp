@@ -5,7 +5,7 @@
 <jsp:useBean id="qdao" class="semi.qna.QnaDAO"/>
 <%
 	ArrayList<QnaDTO> arr_qdto = null;
-	arr_qdto = qdao.qnaList();
+	arr_qdto = qdao.qnaList(23,1,10);
 	
 	//{"employee":[ {"firstName":"김","lastName":"차사"} , {"firstName":"김이","lastName":"차사"} ]}
 	String jsonStr = "";

@@ -9,7 +9,7 @@ public class Sql {
 	///////////////// 상품 테이블 관련 (product_table) /////////////////
 	/** 상품 테이블 갯수 조회 */
 	//public static final String PRODUCT_TOTALCOUNT = "SELECT COUNT(*) FROM product_table WHERE smallcategory_id = ?";
-	/** 상품 테이블 대분류 별 갯수 조회 */
+	/** 상품 테이블 대분류 별 총 갯수 조회 */
 	public static final String getPRODUCT_LARGECATEGORY_TOTALCOUNT(){
 		String sql = "SELECT COUNT(*) "
 				+ "FROM product_table "
@@ -20,7 +20,7 @@ public class Sql {
 				+ 													   "WHERE largecategory_name = ?))";
 		return sql;
 	}
-	/** 상품 테이블 대분류 별 갯수 조회 */
+	/** 상품 테이블 대분류 별 총 갯수 조회 */
 	public static final String getPRODUCT_SMALLCATEGORY_TOTALCOUNT(){
 		String sql = "SELECT COUNT(*) "
 				+ 	 "FROM product_table "
@@ -97,12 +97,27 @@ public class Sql {
 	//////////////////////////////////////////////////////////////////
 	
 	/////////////////// Q&A 테이블 관련 (qna_table) ///////////////////
+	/** Q&A 테이블 상품 별 총 갯수 조회 */
+	public static final String QNA_PRODUCTIDX_TOTALCOUNT = "SELECT COUNT(*) FROM qna_table WHERE product_idx = ?";
 	/** Q&A 테이블 전체 조회 */
 	public static final String QNA_SELECT_ALL = "SELECT * FROM qna_table";
 	/** Q&A 테이블 lef 최대값 조회 */
+	/** */
+	//public static final String QNA_PRODUCTIDX_SELECT_ALL_ORDERBY = "SELECT * FROM qna_table";
+	public static final String getQNA_PRODUCTIDX_SELECT_ALL_ORDERBY(int cp, int listSize){
+		String sql = "SELECT b.* "
+				+ 	 "FROM (SELECT rownum as rnum, a.* " 
+				+  		   "FROM (SELECT * "
+				+   	   		 "FROM qna_table "
+				+ 				 "WHERE product_idx = ? "
+				+ 				 "ORDER BY qna_ref DESC, qna_sunbun ASC) a) b "
+				+ 	 "WHERE rnum >= (" + cp + "-1)*" + listSize + "+ 1 AND rnum <= " + cp + "*" + listSize;
+		return sql;
+	}
 	public static final String QNA_SELECT_MAX_REF = "SELECT MAX(qna_ref) FROM qna_table";
 	/** Q&A 테이블 삽입 */
 	public static final String QNA_INSERT = "INSERT INTO qna_table VALUES(qna_table_idx.NEXTVAL, "
+			+ "?, " // product_id
 			+ "?, " // member_id
 			+ "?, " // qna_subject
 			+ "?, " // qna_content
@@ -114,6 +129,7 @@ public class Sql {
 	public static final String QNA_UPDATE_SUNBUN = "UPDATE qna_table SET qna_sunbun = qna_sunbun + 1 WHERE qna_ref = ? AND qna_sunbun >= ?";
 	/** Q&A 테이블 댓글 삽입 */
 	public static final String QNA_INSERT_REPLY = "INSERT INTO qna_table VALUES(qna_table_idx.NEXTVAL, "
+			+ "?, " // product_id
 			+ "?, " // member_id
 			+ "?, " // qna_subject
 			+ "?, " // qna_content

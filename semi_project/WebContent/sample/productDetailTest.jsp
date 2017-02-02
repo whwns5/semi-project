@@ -14,10 +14,58 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/semi_project/css/button/button.css?ver=1">
 <link rel="stylesheet" type="text/css" href="/semi_project/css/layer/layer.css?ver=1">
-<link rel="stylesheet" type="text/css" href="/semi_project/css/product/productDetail.css?ver=9">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/product/productDetail.css?ver=10">
+<script type="text/javascript" src="/semi_project/js/ajax.js?ver=1"></script>
 <script>
 function AddComma(data_value) {
 	return Number(data_value).toLocaleString('en').split(".")[0] + "원";
+}
+function result_process(responseText, ctype) {
+	//var json = JSON.parse(responseText);
+	//var qdto = json.QnaDTO;
+	//var docStr = '';
+
+	//dotStr +=  qdto[0].qna_idx;
+	if(ctype == 'QNA_SELECT_ALL'){
+		document.getElementById("ajax_qna_div").innerHTML = responseText;//보여주기
+	} else if(ctype == 'QNA_INSERT'){
+		if(responseText == 1){ 
+			window.alert('등록완료');
+			closeQnaLayer(); // 등록후 창 닫음
+			var product_idx = document.getElementById('product_idx').value;
+			settingQna(product_idx);
+		} else {
+			window.alert(responseText);
+		}
+	} else {
+		window.alert('잘못된 경로');
+	}
+}
+
+function ajax_result(httpRequest, ctype) {
+	return function() {
+		if(httpRequest.readyState == 4){
+			if(httpRequest.status == 200){
+				if(!httpRequest.responseText.match(null)){
+					var responseText = httpRequest.responseText;
+					result_process(responseText, ctype);
+				}
+			}
+		}
+	}
+}
+
+function action_ajax(url, param, method, ctype) {
+	sendRequest(url, param, ajax_result, method, ctype);
+	return false;
+}
+
+function settingQna(product_idx) {
+	action_ajax('/semi_project/section/product/ajaxGoQnaPage.jsp','product_idx=' + product_idx + '&qnaCp=1&qnaListSize=10', 'POST', 'QNA_SELECT_ALL'); // 해당 페이지로 ajax통신 시작
+}
+
+function settingPage(product_idx) {
+	settingQna(product_idx);
 }
 </script>
 </head>
@@ -31,14 +79,14 @@ function AddComma(data_value) {
 	//String scid = request.getParameter("scid");
 	
 	//String product_code = request.getParameter("code");
-	int product_idx = 23;
-	String product_code = "O5FBBP39";
-	String lcid = "bags";
-	String scid = "backpack";
+	int product_idx = 23; // 차 후 전 페이지에서 리퀘스트 값을 얻어온다.
+	String product_code = "O5FBBP39"; // 차 후 전 페이지에서 리퀘스트 값을 얻어온다.
+	String lcid = "bags"; // 차 후 전 페이지에서 리퀘스트 값을 얻어온다.
+	String scid = "backpack"; // 차 후 전 페이지에서 리퀘스트 값을 얻어온다.
 	
 	String product_path = "/semi_project/img/product/" + lcid + "/" + scid;
-	//String com_path = "C:/Users/whwns/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
-	String com_path = "C:/Users/user1/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
+	String com_path = "C:/Users/whwns/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
+	//String com_path = "C:/Users/user1/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
 	ArrayList<ProductDTO> arr_pdto = null;
 	arr_pdto = pdao.productCodeList(product_code);
 	ProductDTO mainpDTO = null;
@@ -48,13 +96,11 @@ function AddComma(data_value) {
 			mainpDTO = arr_pdto.get(i);
 		}
 	}
-	ArrayList<QnaDTO> arr_qdto = null;
-	arr_qdto = qdao.qnaList();
 	
 	DecimalFormat dcformat = new DecimalFormat("###,###,###,###");
 	
 %>
-<body>
+<body onload="settingPage(<%=product_idx%>);">
 <%@include file="/header/header.jsp"%>
 <%@include file="/aside/aside.jsp"%>
 <section>
@@ -362,71 +408,52 @@ function AddComma(data_value) {
 						<li><a href="#tab02">상품리뷰</a></li>
 						<li><a class="last on" href="#tab03">Q&A</a></li>
 					</ul>
-					<div class="tab_qna_table">
-						<table>
-							<colgroup><col style="width:100px"><col style="width:auto"><col style="width:100px"></colgroup>
-							<tbody>
-								<%
-									if(arr_qdto.size() == 0){
-								%>	
-										<tr>
-											<td colspan="3" class="nothing">등록된 질문이 없습니다.</td>
-										</tr>
-								<%	
-									} else {
-										for(int i = 0 ; i < arr_qdto.size() ; i++){			
-								%>
-										<tr>
-											<td class="qna_date"><%=arr_qdto.get(i).getQna_regdate()%></td>
-											<td class="qna_subject">
-												<a href="javascript:showContent(<%=i%>,'qna_content');"><%=arr_qdto.get(i).getQna_subject()%></a>
-												<span>(<%=arr_qdto.get(i).getMember_id() %>)</span>
-												<div class="qna_content">
-													<%=arr_qdto.get(i).getQna_content() %>
-												</div>
-											</td>
-											<td class="progress">접수중</td> <!--  point_c 접수완료 -->
-										</tr>				
-								<%		
-										}
-									}
-								%>
-							</tbody>
-						</table>
-						<script>
+					<script>
 						function openQnaLayer() {
 							var qna_layer = document.getElementById('id_qna_layer');
+							document.getElementById('qna_subject').value = '';
+							document.getElementById('qna_content').value = '';
+							
 							qna_layer.style.display = 'block';
 						}
 						function closeQnaLayer() {
 							var qna_layer = document.getElementById('id_qna_layer');
 							qna_layer.style.display = '';
 						}
-						</script>
-						<div class="paging bottom">
-							<a class="on" href="#"><font class="choiceprlist"><b>1</b></font></a>
-							<a href="#"><font class="prlist">2</font></a>
-							<a href="#"><font class="prlist">3</font></a>
-							<input class="submit-button" type="button" value="문의작성" onclick="openQnaLayer();">
-						</div>
+						function submitQnaLayer() {
+							var product_idx = document.getElementById('product_idx').value;
+							var member_id = document.getElementById('member_id').value;
+							var qna_subject = document.getElementById('qna_subject').value;
+							var qna_content = document.getElementById('qna_content').value;
+							
+							var param = 'product_idx=' + product_idx + '&member_id=' + member_id + '&qna_subject=' + qna_subject + '&qna_content=' + qna_content;
+							action_ajax('/semi_project/section/qna/qnaWrite_ok.jsp',param , 'GET', 'QNA_INSERT'); // 해당 페이지로 ajax통신 시작
+							//var f = document.getElementById('id_qnaWrite_ok');
+							//f.submit();
+						}
+					</script>
+					<div class="tab_qna_table" id="ajax_qna_div"> 
+						<!-- ajax로 Q&A를 가져오는 영역 -->
 					</div>
 					<div class="qna_layer" id="id_qna_layer">
 						<div class="qna_layer_bg" onclick="closeQnaLayer();"></div>
 						<div class="qna_layer_pop">
 							<div class="qna_layer_content">	
-								<form class="layer-form-container" name="qnaWrite_ok" action="/semi_project/section/qna/qnaWrite_ok.jsp">
+								<form class="layer-form-container" name="qnaWrite_ok" id="id_qnaWrite_ok" action="/semi_project/section/qna/qnaWrite_ok.jsp">
 									<div class="layer-form-title"><h2>상품 Q&A</h2></div>
 									<br />
-									<div class="layer-form-title">이름<input class="layer-form-field layer-form-field-id" type="text" name="member_id" value="whwns5" readonly="readonly"/>			
+									<div class="layer-form-title">아이디<input class="layer-form-field layer-form-field-id" type="text" name="member_id" id="member_id" value="whwns5" readonly="readonly"/>			
+																  <input type="hidden" name="product_idx" id="product_idx" value="<%=product_idx%>">
 									</div>
 									<br />
-									<div class="layer-form-title">제목<input class="layer-form-field layer-form-field-subject" type="text" name="qna_subject" required="required"/>	
+									<div class="layer-form-title">제목<input class="layer-form-field layer-form-field-subject" type="text" name="qna_subject" id="qna_subject" required="required"/>	
 									</div>
 									<br />
-									<div class="layer-form-title">문의 내용<textarea class="layer-form-field-content" rows="20" cols="68" name="qna_content" required="required"></textarea>
+									<div class="layer-form-title">문의 내용<textarea class="layer-form-field-content" rows="20" cols="68" name="qna_content" id="qna_content" required="required"></textarea>
 									</div>
 									<div class="layer-submit-container">
-										<input class="layer-submit-button" type="submit" value="작성하기">
+										<input class="layer-submit-button" type="button" value="작성하기" 
+											onclick="submitQnaLayer();">
 										<input class="layer-submit-button" type="button" value="나가기" onclick="closeQnaLayer();">
 									</div>
 								</form>
