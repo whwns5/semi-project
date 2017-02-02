@@ -16,8 +16,8 @@
 	String member_id = (String)session.getAttribute("user_id");
 	System.out.println(member_id);
 	jdao.userInfo(member_id);
-	/* MemberDTO[] dto = jdao.userInfo(member_id);
-	if(dto.length == 1) {
+	MemberDTO[] dto = jdao.userInfo(member_id);
+		if(dto.length == 1) {
 		for(int i=0;i<dto.length;i++){
 			member_name = dto[i].getMember_name();
 			member_pwd = dto[i].getMember_pwd();
@@ -25,13 +25,8 @@
 			member_addr = dto[i].getMember_addr();
 			member_tel = dto[i].getMember_tel();
 			member_email = dto[i].getMember_email();
-			
 		}
-	} */
-
-%>
-<%
-	
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -57,7 +52,9 @@ function openCheck(){
 		window.alert('이전 비밀번호가 올바르지 않습니다.');
 		return;
 	}
-
+	
+	document.name.submit();
+	
 }
 function openDel(){
 	var id = document.name.id.value;

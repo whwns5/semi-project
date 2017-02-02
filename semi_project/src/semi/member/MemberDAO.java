@@ -169,7 +169,7 @@ public class MemberDAO {
 			String name = rs.getString("member_name");
 			String pwd = rs.getString("member_pwd");
 			String sex = rs.getString("member_sex");
-			String email = "kk";
+			String email = rs.getString("member_email");
 			String tel = rs.getString("member_tel");
 			String addr = rs.getString("member_addr");
 			String coupon = rs.getString("member_coupon");
@@ -201,13 +201,24 @@ public class MemberDAO {
 	public int memberChange(MemberDTO dto){
 		try{
 			conn=semi.db.semiDB.getConn();
-			String sql="update member_table set member_pwd,member_addr,member_tel,member_email values (?,?,?,?)";
+			String sql="update member_table set "
+					+ "member_name=? "
+					+ "member_pwd=?, "
+					+ "member_sex=?, "
+					+ "member_addr=?, "
+					+ "member_tel=?, "
+					+ "member_email=?, "
+					+ "where member_id=? ";
+			
 			ps=conn.prepareStatement(sql);
 			
-			ps.setString(1, dto.getMember_pwd());
-			ps.setString(2, dto.getMember_addr());
-			ps.setString(3, dto.getMember_tel());
-			ps.setString(4, dto.getMember_email());
+			ps.setString(1, dto.getMember_name());
+			ps.setString(2, dto.getMember_pwd());
+			ps.setString(3, dto.getMember_sex());
+			ps.setString(4, dto.getMember_addr());
+			ps.setString(5, dto.getMember_tel());
+			ps.setString(6, dto.getMember_email());
+			ps.setString(7, dto.getMember_id());
 			
 			int count=ps.executeUpdate();
 			return count;
