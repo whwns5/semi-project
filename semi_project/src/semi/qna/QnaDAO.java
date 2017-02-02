@@ -44,6 +44,7 @@ public class QnaDAO {
 			
 			while(rs.next()){
 				int qna_idx = rs.getInt("qna_idx");
+				int product_idx = rs.getInt("product_idx");
 				String member_id = rs.getString("member_id");
 				String qna_subject = rs.getString("qna_subject");
 				String qna_content = rs.getString("qna_content");
@@ -52,7 +53,7 @@ public class QnaDAO {
 				int qna_lev = rs.getInt("qna_lev");
 				int qna_sunbun = rs.getInt("qna_sunbun");
 						
-				QnaDTO qdto = new QnaDTO(qna_idx, member_id, qna_subject, qna_content, qna_regdate, qna_ref, qna_lev, qna_sunbun);
+				QnaDTO qdto = new QnaDTO(qna_idx, product_idx, member_id, qna_subject, qna_content, qna_regdate, qna_ref, qna_lev, qna_sunbun);
 			
 				arr_qdto.add(qdto);
 			}

@@ -376,6 +376,7 @@ div#body_contents div.product_detail{
 		}
 		div.div_tab_detail03 div.tab_qna_table table tbody td.nothing{
 			text-align: center;
+			
 		}
 		div.div_tab_detail03 div.tab_qna_table table tbody td.qna_date{
 			font: 11px dotum;
@@ -410,9 +411,39 @@ div#body_contents div.product_detail{
 		div.div_tab_detail03 div.tab_qna_table table tbody td.point_c{
 			color: #E8380D;
 		}
-	
-	
-	
+		div.div_tab_detail03 div.qna_layer{
+			display: none;
+			position: fixed;
+			top: 0;
+    		left: 0;
+    		width: 100%;
+    		height: 100%;
+    		z-index: 100;
+    		margin: auto auto;
+		}
+		div.div_tab_detail03 div.qna_layer div.qna_layer_bg{
+			position: absolute;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
+		    background: #000;
+		    opacity: 0.5;
+		}
+		div.div_tab_detail03 div.qna_layer div.qna_layer_pop{
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+		div.div_tab_detail03 div.qna_layer div.qna_layer_pop div.qna_layer_content{
+			display: block;
+			position:relative;
+			margin: 0px auto;
+			margin-top: -340px;
+			width: 680px;
+			height: 620px;
+			top: 50%;
+		}
 	
 	
 	

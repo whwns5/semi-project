@@ -5,6 +5,8 @@ import java.sql.Date;
 public class QnaDTO {
 	/** Q&A 아이디 (PK) */
 	private int qna_idx;
+	/** Q&A 상품 아이디 */
+	private int product_idx;
 	/** 회원 아이디 (PK) */
 	private String member_id;
 	/** Q&A 제목 */
@@ -21,10 +23,11 @@ public class QnaDTO {
 		super();
 	}
 
-	public QnaDTO(int qna_idx, String member_id, String qna_subject, String qna_content, Date qna_regdate, int qna_ref,
-			int qna_lev, int qna_sunbun) {
+	public QnaDTO(int qna_idx, int product_idx, String member_id, String qna_subject, String qna_content,
+			Date qna_regdate, int qna_ref, int qna_lev, int qna_sunbun) {
 		super();
 		this.qna_idx = qna_idx;
+		this.product_idx = product_idx;
 		this.member_id = member_id;
 		this.qna_subject = qna_subject;
 		this.qna_content = qna_content;
@@ -40,6 +43,14 @@ public class QnaDTO {
 
 	public void setQna_idx(int qna_idx) {
 		this.qna_idx = qna_idx;
+	}
+
+	public int getProduct_idx() {
+		return product_idx;
+	}
+
+	public void setProduct_idx(int product_idx) {
+		this.product_idx = product_idx;
 	}
 
 	public String getMember_id() {
@@ -97,4 +108,6 @@ public class QnaDTO {
 	public void setQna_sunbun(int qna_sunbun) {
 		this.qna_sunbun = qna_sunbun;
 	}
+
+	
 }
