@@ -8,29 +8,26 @@
 <%
 	String member_name = "";
 	String member_pwd = "";
-	//Date member_birthday = "";
 	String member_sex = "";
 	String member_addr = "";
 	String member_tel = "";
 	String member_email = "";
 	
 	String member_id = (String)session.getAttribute("user_id");
-	System.out.println(member_id+"AAAAAAAAAAAA");
-//	MemberDTO[] dto = jdao.userInfo(member_id);
-	MemberDTO[] dto = jdao.userInfo(member_id);
-	System.out.println(dto.length+"XXXXXXXXXXXXXX");
+	System.out.println(member_id);
+	jdao.userInfo(member_id);
+	/* MemberDTO[] dto = jdao.userInfo(member_id);
 	if(dto.length == 1) {
 		for(int i=0;i<dto.length;i++){
 			member_name = dto[i].getMember_name();
 			member_pwd = dto[i].getMember_pwd();
-			//member_birthday = dto[i].getMember_birthday();
 			member_sex = dto[i].getMember_sex();
 			member_addr = dto[i].getMember_addr();
 			member_tel = dto[i].getMember_tel();
 			member_email = dto[i].getMember_email();
 			
 		}
-	}
+	} */
 
 %>
 <%
