@@ -41,7 +41,7 @@ function openDel(){
 			<tr>
 				<td>*아이디</td>
 				<td><input type="text" name="member_id" readonly required="required">
-				<input type="button" value="아이디 체크" onclick="openIdCheck()"></td>
+				<input type="button" value="아이디 체크" onclick="openIdCheck();"></td>
 			</tr>
 			<tr>
 				<td>*비밀번호</td>
