@@ -85,8 +85,8 @@ function settingPage(product_idx) {
 	String scid = "backpack"; // 차 후 전 페이지에서 리퀘스트 값을 얻어온다.
 	
 	String product_path = "/semi_project/img/product/" + lcid + "/" + scid;
-	String com_path = "C:/Users/whwns/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
-	//String com_path = "C:/Users/user1/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
+	//String com_path = "C:/Users/whwns/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
+	String com_path = "C:/Users/user1/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
 	ArrayList<ProductDTO> arr_pdto = null;
 	arr_pdto = pdao.productCodeList(product_code);
 	ProductDTO mainpDTO = null;
