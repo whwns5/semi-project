@@ -16,7 +16,18 @@ public class MemberDTO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	public MemberDTO(int member_idx, String member_id, String member_name, String member_pwd, String member_sex,
+			String member_email, String member_tel, String member_addr) {
+		super();
+		this.member_idx = member_idx;
+		this.member_id = member_id;
+		this.member_name = member_name;
+		this.member_pwd = member_pwd;
+		this.member_sex = member_sex;
+		this.member_email = member_email;
+		this.member_tel = member_tel;
+		this.member_addr = member_addr;
+	}
 	public MemberDTO(String member_id, String member_type, String member_name, String member_pwd, String member_sex,
 			String member_email, String member_tel, String member_addr, String member_coupon) {
 		super();

@@ -282,7 +282,138 @@ public class MemberDAO {
 			}
 		}
 	}
+	/* 회원검색 관련 메서드 */
+	public ArrayList<MemberDTO> memberFind(String fkey, String fvalue) {
+		try {
+			conn = semi.db.semiDB.getConn();
+			String sql = "select * from member_table where " + fkey + "=?";
+			
+			// 임파라미터는 value값에만 적용된다.
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, fvalue);
+			rs = ps.executeQuery();
+			ArrayList<MemberDTO> arr = new ArrayList<MemberDTO>();
+			while (rs.next()) {
+				int idx = rs.getInt("member_idx");
+				String id = rs.getString("member_id");
+				String name = rs.getString("member_name");
+				String pwd = rs.getString("member_pwd");
+				String sex=rs.getString("member_sex");
+				String email=rs.getString("member_email");
+				String tel = rs.getString("member_tel");
+				String addr = rs.getString("member_addr");
+				
+				MemberDTO dto = new MemberDTO(idx,id,name,pwd,sex,email,tel,addr);
+				arr.add(dto);
+			}
+			return arr;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+
+			}
+		}
+
+	}
+
+	
+	/**사용자 정보 획득 관련 메서드*/
+	public String getUserInfo(String userid){
+		try{
+			conn = semi.db.semiDB.getConn();
+			String sql="select member_name from member_table where member_id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, userid);
+			rs=ps.executeQuery();
+			rs.next();
+			return rs.getString(1);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}finally{
+			try{
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e2){
+				
+			}
+		}
+	}
+	/**사원삭제*/
+	public int empDel(MemberDTO dto){
+		try{
+			conn = semi.db.semiDB.getConn();
+			String sql="delete from member_table where member_idx = ?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1,dto.getMember_idx());
+			int count=ps.executeUpdate();
+			return count;
+		}catch(Exception e){
+			e.printStackTrace();
+			return -1;
+		}finally{
+			try{
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+				
+		}catch(Exception e2){
+			
+		}
+		}
+		
+	}
+	public int updateContent(MemberDTO dto){
+		try{
+			
+			//System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" + dto.getAddr());
+			conn = semi.db.semiDB.getConn();
+			String sql="update member_table set member_name=?,member_addr=?,member_tel=?,member_id=?,member_email=?,member_pwd=?,member_sex=? where member_idx =?";
+			//update jsp_member set name='jang',idx=1,addr='서울',tel='010-2929-3993',id='kkkk' where id ='hong'
+			
+			ps=conn.prepareStatement(sql);
+			ps.setString(1,dto.getMember_name());
+			
+			ps.setString(2, dto.getMember_addr());
+			
+			ps.setString(3,dto.getMember_tel());
+			
+			ps.setString(4,dto.getMember_id());
+			
+			ps.setString(5, dto.getMember_email());
+			
+			ps.setString(6, dto.getMember_pwd());
+			
+			ps.setString(7, dto.getMember_sex());
+			
+			ps.setInt(8,dto.getMember_idx());
+			
+			int count=ps.executeUpdate();
+			return count;
+		}catch(Exception e){
+			e.printStackTrace();
+			return -1;
+		}finally{
+			try{
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e2){
+		}
+	}
+}	
+
 }
+
 
 
 
