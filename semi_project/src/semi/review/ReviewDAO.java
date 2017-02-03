@@ -151,7 +151,7 @@ public class ReviewDAO {
 	 * @param ReviewDTO
 	 * @return int (실행횟수 혹은 에러)
 	 * */
-	public int qnaWrite(ReviewDTO rdto){
+	public int reviewWrite(ReviewDTO rdto){
 		try{
 			conn = semi.db.semiDB.getConn();
 			
@@ -215,7 +215,7 @@ public class ReviewDAO {
 	 * @param ReviewDTO
 	 * @return int (실행횟수 혹은 에러)
 	 * */
-	public int qnaReWrite(ReviewDTO rdto){
+	public int reviewReWrite(ReviewDTO rdto){
 		try{
 			conn = semi.db.semiDB.getConn();
 			

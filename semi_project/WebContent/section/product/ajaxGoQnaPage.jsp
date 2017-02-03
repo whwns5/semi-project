@@ -4,8 +4,6 @@
     pageEncoding="UTF-8"%>
 <jsp:useBean id="qdao" class="semi.qna.QnaDAO" scope="session"/>
 <%
-
-
 	String product_idx_s = request.getParameter("product_idx");
 	int product_idx = 23;
 	if(product_idx_s != null){

@@ -37,6 +37,8 @@ function result_process(responseText, ctype) {
 		} else {
 			window.alert(responseText);
 		}
+	} else if(ctype == 'REVIEW_SELECT_ALL'){
+		document.getElementById("ajax_review_div").innerHTML = responseText;//보여주기
 	} else {
 		window.alert('잘못된 경로');
 	}
@@ -63,9 +65,13 @@ function action_ajax(url, param, method, ctype) {
 function settingQna(product_idx) {
 	action_ajax('/semi_project/section/product/ajaxGoQnaPage.jsp','product_idx=' + product_idx + '&qnaCp=1&qnaListSize=10', 'POST', 'QNA_SELECT_ALL'); // 해당 페이지로 ajax통신 시작
 }
+function settingReview(product_idx) {
+	action_ajax('/semi_project/section/product/ajaxGoReviewPage.jsp','product_idx=' + product_idx + '&qnaCp=1&qnaListSize=10', 'POST', 'REVIEW_SELECT_ALL'); // 해당 페이지로 ajax통신 시작
+}
 
 function settingPage(product_idx) {
 	settingQna(product_idx);
+	settingReview(product_idx);
 }
 </script>
 </head>
@@ -370,68 +376,8 @@ function settingPage(product_idx) {
 							//f.submit();
 						}
 					</script>
-					<div class="tab_review_table">
-						<table>
-							<colgroup><col style="width:100px"><col style="width:auto"><col style="width:100px"></colgroup>
-							<tbody>
-								<tr>
-									<td class="review_date">2016.11.02</td>
-									<td class="review_subject">
-										<a href="javascript:showContent(0,'review_content');">이뻐요</a>
-										<span>(dkanrjte)</span>
-										<img src="/semi_project/img/product/bags/backpack/O5FBBP59_WARM GREY/O5FBBP59_WARM GREY_4.jpg">
-										<div class="review_content">
-											레몬색 사고싶었는데, 사계절 무난하게 쓰려고 실버구입했어요!<br>
-											보내주신 카드지갑고 가방이랑 같은 색이라 세트같고!! 더더 이쁘네요♡<br>
-											흐물흐물한 가죽이 아니라 모양이 흐트러지지도 않고 체인도 너무 마음에 들어요<br>
-											안쪽에 바깥쪽에 모두 수납공간이 있어서 크기는 작지만 생각보다 많이 들어가요ㅎㅎ<br>
-											친구들도 가방 이쁘다고 난리!!!<br>
-											색깔별로 구입하고 싶네요ㅋㅋ								
-										</div>
-									</td>
-									<td class="review_grade">★★★★★</td>
-								</tr>
-								<tr>
-									<td class="review_date">2016.11.02</td>
-									<td class="review_subject">
-										<a href="javascript:showContent(1,'review_content');">이뻐요</a>
-										<span>(dkanrjte)</span>
-										<img src="/semi_project/img/product/bags/backpack/O5FBBP59_WARM GREY/O5FBBP59_WARM GREY_4.jpg">
-										<div class="review_content">
-											레몬색 사고싶었는데, 사계절 무난하게 쓰려고 실버구입했어요!<br>
-											보내주신 카드지갑고 가방이랑 같은 색이라 세트같고!! 더더 이쁘네요♡<br>
-											흐물흐물한 가죽이 아니라 모양이 흐트러지지도 않고 체인도 너무 마음에 들어요<br>
-											안쪽에 바깥쪽에 모두 수납공간이 있어서 크기는 작지만 생각보다 많이 들어가요ㅎㅎ<br>
-											친구들도 가방 이쁘다고 난리!!!<br>
-											색깔별로 구입하고 싶네요ㅋㅋ								
-										</div>
-									</td>
-									<td class="review_grade">★★★★★</td>
-								</tr>
-								<tr>
-									<td class="review_date">2016.11.02</td>
-									<td class="review_subject">
-										<a href="javascript:showContent(2,'review_content');">이뻐요</a>
-										<span>(dkanrjte)</span>
-										<img src="/semi_project/img/product/bags/backpack/O5FBBP59_WARM GREY/O5FBBP59_WARM GREY_4.jpg">
-										<div class="review_content">
-											레몬색 사고싶었는데, 사계절 무난하게 쓰려고 실버구입했어요!<br>
-											보내주신 카드지갑고 가방이랑 같은 색이라 세트같고!! 더더 이쁘네요♡<br>
-											흐물흐물한 가죽이 아니라 모양이 흐트러지지도 않고 체인도 너무 마음에 들어요<br>
-											안쪽에 바깥쪽에 모두 수납공간이 있어서 크기는 작지만 생각보다 많이 들어가요ㅎㅎ<br>
-											친구들도 가방 이쁘다고 난리!!!<br>
-											색깔별로 구입하고 싶네요ㅋㅋ								
-										</div>
-									</td>
-									<td class="review_grade">★★★★★</td>
-								</tr>
-							</tbody>
-						</table>
-						<div class="paging bottom">
-							<a class="on" href="#"><font class="choiceprlist"><b>1</b></font></a>
-							<a href="#"><font class="prlist">2</font></a>
-							<input class="submit-button" type="button" value="리뷰작성" onclick="openReviewLayer();">
-						</div>
+					<div class="tab_review_table" id="ajax_review_div">
+						<!-- ajax로 리뷰를 가져오는 영역 -->
 					</div>
 					<div class="review_layer" id="id_review_layer">
 						<div class="review_layer_bg" onclick="closeReviewLayer();"></div>
