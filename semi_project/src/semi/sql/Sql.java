@@ -154,7 +154,7 @@ public class Sql {
 				+  		   "FROM (SELECT * "
 				+   	   		 "FROM review_table "
 				+ 				 "WHERE product_idx = ? "
-				+ 				 "ORDER BY product_ref DESC, product_sunbun ASC) a) b "
+				+ 				 "ORDER BY review_ref DESC, review_sunbun ASC) a) b "
 				+ 	 "WHERE rnum >= (" + cp + "-1)*" + listSize + "+ 1 AND rnum <= " + cp + "*" + listSize;
 		return sql;
 	}
