@@ -1,7 +1,7 @@
 package semi.member;
 
 public class MemberDTO {
-	
+	/**회원 순번*/private int member_idx;
 	/**회원 아이디*/private String member_id;
 	/**회원 타입*/private String member_type;
 	/**회원 이름*/private String member_name;

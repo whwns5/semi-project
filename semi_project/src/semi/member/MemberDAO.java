@@ -133,7 +133,7 @@ public class MemberDAO {
 		}
 	}
 	/**로그인 정보 저장 메서드*/
-	public String getUserInfo(String member_id){
+	public String getUserInfo1(String member_id){
 		try{
 			conn=semi.db.semiDB.getConn();
 			String sql="select member_name from member_table where member_id=?";
