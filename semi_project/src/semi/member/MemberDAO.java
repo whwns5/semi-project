@@ -1,7 +1,10 @@
 package semi.member;
 
 import java.sql.*;
+import java.sql.Date;
 import java.util.*;
+
+import semi.member.MemberDTO;
 
 public class MemberDAO {
 	
@@ -230,6 +233,50 @@ public class MemberDAO {
 			try{
 				if(ps!=null)ps.close();
 				if(conn!=null)conn.close();
+			}catch(Exception e2){
+				
+			}
+		}
+	}
+	
+	/**1명의 회원정보 불러오기*/
+	public MemberDTO memberGet(String member_ids){
+		try{
+			MemberDTO dto=null;
+			conn=semi.db.semiDB.getConn();
+			String sql="select * from member_table where member_id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, member_ids);
+			rs=ps.executeQuery();
+			if(rs.next()){
+				int member_idx=rs.getInt("member_idx");
+				String member_id=rs.getString("member_id");
+				String member_name=rs.getString("member_name");
+				String member_type=rs.getString("member_type");
+				String member_pwd=rs.getString("member_pwd");
+				Date member_birthday=rs.getDate("member_birthday");
+				String member_sex=rs.getString("member_sex");
+				String member_email=rs.getString("member_email");
+				String member_tel=rs.getString("member_tel");
+				String member_addr=rs.getString("member_addr");
+				String member_coupon=rs.getString("member_coupon");
+				dto=new MemberDTO(member_id, member_type, member_name, member_pwd, member_sex, member_email, member_tel, member_addr, member_coupon);
+			}
+			return dto;
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}finally{
+			try{
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
 			}catch(Exception e2){
 				
 			}

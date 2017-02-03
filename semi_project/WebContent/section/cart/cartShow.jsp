@@ -44,7 +44,7 @@ String cartNum=String.valueOf(cartNumi);
 session.setAttribute("cart",cartNum);
 %>
 <body>
-<%@ include file="/header.jsp"%>
+<%@ include file="/header/header.jsp"%>
 <%
 int productidx[]=new int[arr.size()];
 ProductDTO pd=null;
@@ -105,6 +105,6 @@ for(int i=0; i<productidx.length; i++){
 </tr>
 </table>
 
-<%@ include file="/footer.jsp"%>
+<%@ include file="/footer/footer.jsp"%>
 </body>
 </html>
