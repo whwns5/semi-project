@@ -12,10 +12,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/semi_project/css/button/button.css?ver=1">
-<link rel="stylesheet" type="text/css" href="/semi_project/css/layer/layer.css?ver=1">
-<link rel="stylesheet" type="text/css" href="/semi_project/css/product/productDetail.css?ver=10">
-<script type="text/javascript" src="/semi_project/js/ajax.js?ver=1"></script>
+<link rel="stylesheet" type="text/css" href="/semi_project/css/button/button.css?ver=2">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/layer/layer.css?ver=2">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/product/productDetail.css?ver=12">
+<script type="text/javascript" src="/semi_project/js/ajax.js?ver=3"></script>
 <script>
 function AddComma(data_value) {
 	return Number(data_value).toLocaleString('en').split(".")[0] + "원";
@@ -236,7 +236,9 @@ function settingPage(product_idx) {
 								htmlText += 		'<span class="price" id="' + li_id + '_showPrice">' + AddComma(itemPrice) + '</span>';
 								htmlText += 	'</div>';
 								htmlText += 	'<div class="item_editer_area">';
-								htmlText += 		'<input type="text" id="' + li_id + '_num" value="1" size="2" readonly>'; // 선택 수량
+								htmlText += 		'<input type="text" id="' + li_id + '_num" value="1" name="product_num" size="2" readonly>'; // 선택 수량
+								htmlText += 		'<input type="hidden" name="product_code" value="' + itemCode + '">'; // 상품코드
+								htmlText += 		'<input type="hidden" name="product_color" value="' + itemColor + '">'; // 상품컬러
 								htmlText += 		'<input type="hidden" id="' + li_id + '_price" value="' + itemPrice + '">'; // 개당 가격
 								htmlText += 		'<input type="hidden" id="' + li_id + '_totalprice" name="eachTotalPrice" value="' + itemPrice + '">'; // 각각의 합 가격
 								htmlText += 		'<span onclick="plusNum(\'' + li_id + '\');"><img src="/semi_project/img/icon/c_plus_btn.jpg"></span>';
@@ -344,6 +346,30 @@ function settingPage(product_idx) {
 						<li><a class="on" href="#tab02">상품리뷰</a></li>
 						<li><a class="last" href="#tab03">Q&A</a></li>
 					</ul>
+					<script>
+						function openReviewLayer() {
+							var review_layer = document.getElementById('id_review_layer');
+							document.getElementById('review_subject').value = '';
+							document.getElementById('review_content').value = '';
+							
+							review_layer.style.display = 'block';
+						}
+						function closeReviewLayer() {
+							var review_layer = document.getElementById('id_review_layer');
+							review_layer.style.display = '';
+						}
+						function submitReviewLayer() {
+							var product_idx = document.getElementById('product_idx').value;
+							var member_id = document.getElementById('member_id').value;
+							var review_subject = document.getElementById('review_subject').value;
+							var review_content = document.getElementById('review_content').value;
+							
+							var param = 'product_idx=' + product_idx + '&member_id=' + member_id + '&review_subject=' + review_subject + '&review_content=' + review_content;
+							action_ajax('/semi_project/section/review/reviewWrite_ok.jsp',param , 'GET', 'REVIEW_INSERT'); // 해당 페이지로 ajax통신 시작
+							//var f = document.getElementById('id_qnaWrite_ok');
+							//f.submit();
+						}
+					</script>
 					<div class="tab_review_table">
 						<table>
 							<colgroup><col style="width:100px"><col style="width:auto"><col style="width:100px"></colgroup>
@@ -363,7 +389,7 @@ function settingPage(product_idx) {
 											색깔별로 구입하고 싶네요ㅋㅋ								
 										</div>
 									</td>
-									<td class="rewview_grade">★★★★★</td>
+									<td class="review_grade">★★★★★</td>
 								</tr>
 								<tr>
 									<td class="review_date">2016.11.02</td>
@@ -380,7 +406,7 @@ function settingPage(product_idx) {
 											색깔별로 구입하고 싶네요ㅋㅋ								
 										</div>
 									</td>
-									<td class="rewview_grade">★★★★★</td>
+									<td class="review_grade">★★★★★</td>
 								</tr>
 								<tr>
 									<td class="review_date">2016.11.02</td>
@@ -397,14 +423,44 @@ function settingPage(product_idx) {
 											색깔별로 구입하고 싶네요ㅋㅋ								
 										</div>
 									</td>
-									<td class="rewview_grade">★★★★★</td>
+									<td class="review_grade">★★★★★</td>
 								</tr>
 							</tbody>
 						</table>
 						<div class="paging bottom">
 							<a class="on" href="#"><font class="choiceprlist"><b>1</b></font></a>
 							<a href="#"><font class="prlist">2</font></a>
-							<input class="submit-button" type="button" value="리뷰작성">
+							<input class="submit-button" type="button" value="리뷰작성" onclick="openReviewLayer();">
+						</div>
+					</div>
+					<div class="review_layer" id="id_review_layer">
+						<div class="review_layer_bg" onclick="closeReviewLayer();"></div>
+						<div class="review_layer_pop">
+							<div class="review_layer_content">	
+								<form class="layer-form-container" name="reviewWrite_ok" id="id_reviewWrite_ok" action="/semi_project/section/review/reviewWrite_ok.jsp">
+									<div class="layer-form-title"><h2>상품 리뷰</h2></div>
+									<br />
+									<div class="layer-form-title">아이디<input class="layer-form-field layer-form-field-id" type="text" name="member_id" id="member_id" value="whwns5" readonly="readonly"/>			
+																  <input type="hidden" name="product_idx" id="product_idx" value="<%=product_idx%>">
+									</div>
+									<br />
+									<div class="layer-form-title">제목<input class="layer-form-field layer-form-field-subject" type="text" name="review_subject" id="review_subject" required="required"/>	
+									</div>
+									<br />
+									<div class="layer-form-title">리뷰 내용<textarea class="layer-form-field-content" rows="20" cols="68" name="review_content" id="review_content" required="required"></textarea>
+									</div>
+									<div class="layer-form-title">이미지<input class="image_input" type="file" name="rfile" size="40">
+																		<p class="image_info">
+																			<span>파일명:</span>한글,영문,숫자 l <span>파일용량:</span> 800K이하 l <span>첨부가능 파일형식:</span>GIF,JPG(JPEG)
+																		</p>	
+									</div>
+									<div class="layer-submit-container">
+										<input class="layer-submit-button" type="button" value="작성하기" 
+											onclick="submitReviewLayer();">
+										<input class="layer-submit-button" type="button" value="나가기" onclick="closeReviewLayer();">
+									</div>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -101,8 +101,8 @@ public class Sql {
 	public static final String QNA_PRODUCTIDX_TOTALCOUNT = "SELECT COUNT(*) FROM qna_table WHERE product_idx = ?";
 	/** Q&A 테이블 전체 조회 */
 	public static final String QNA_SELECT_ALL = "SELECT * FROM qna_table";
-	/** Q&A 테이블 lef 최대값 조회 */
-	/** */
+	
+	/** Q&A 테이블 상품 별 페이징 조회 */
 	//public static final String QNA_PRODUCTIDX_SELECT_ALL_ORDERBY = "SELECT * FROM qna_table";
 	public static final String getQNA_PRODUCTIDX_SELECT_ALL_ORDERBY(int cp, int listSize){
 		String sql = "SELECT b.* "
@@ -114,10 +114,11 @@ public class Sql {
 				+ 	 "WHERE rnum >= (" + cp + "-1)*" + listSize + "+ 1 AND rnum <= " + cp + "*" + listSize;
 		return sql;
 	}
+	/** Q&A 테이블 lef 최대값 조회 */
 	public static final String QNA_SELECT_MAX_REF = "SELECT MAX(qna_ref) FROM qna_table";
 	/** Q&A 테이블 삽입 */
 	public static final String QNA_INSERT = "INSERT INTO qna_table VALUES(qna_table_idx.NEXTVAL, "
-			+ "?, " // product_id
+			+ "?, " // product_idx
 			+ "?, " // member_id
 			+ "?, " // qna_subject
 			+ "?, " // qna_content
@@ -129,7 +130,7 @@ public class Sql {
 	public static final String QNA_UPDATE_SUNBUN = "UPDATE qna_table SET qna_sunbun = qna_sunbun + 1 WHERE qna_ref = ? AND qna_sunbun >= ?";
 	/** Q&A 테이블 댓글 삽입 */
 	public static final String QNA_INSERT_REPLY = "INSERT INTO qna_table VALUES(qna_table_idx.NEXTVAL, "
-			+ "?, " // product_id
+			+ "?, " // product_idx
 			+ "?, " // member_id
 			+ "?, " // qna_subject
 			+ "?, " // qna_content
@@ -138,6 +139,53 @@ public class Sql {
 			+ "?, " // qna_lev
 			+ "?)"; // qna_sunbun 
 			
+	
+	//////////////////////////////////////////////////////////////////
+	
+	/////////////////// Q&A 테이블 관련 (qna_table) ///////////////////
+	/** 리뷰 테이블 상품 별 총 갯수 조회 */
+	public static final String REVIEW_PRODUCTIDX_TOTALCOUNT = "SELECT COUNT(*) FROM review_table WHERE product_idx = ?";
+	/** 리뷰 테이블 전체 조회 */
+	public static final String REVIEW_SELECT_ALL = "SELECT * FROM review_table";
+	/** 리뷰 테이블 상품 별 페이징 조회 */
+	public static final String getREVIEW_PRODUCTIDX_SELECT_ALL_ORDERBY(int cp, int listSize){
+		String sql = "SELECT b.* "
+				+ 	 "FROM (SELECT rownum as rnum, a.* " 
+				+  		   "FROM (SELECT * "
+				+   	   		 "FROM review_table "
+				+ 				 "WHERE product_idx = ? "
+				+ 				 "ORDER BY product_ref DESC, product_sunbun ASC) a) b "
+				+ 	 "WHERE rnum >= (" + cp + "-1)*" + listSize + "+ 1 AND rnum <= " + cp + "*" + listSize;
+		return sql;
+	}
+	/** 리뷰 테이블 lef 최대값 조회 */
+	public static final String REVIEW_SELECT_MAX_REF = "SELECT MAX(review_ref) FROM review_table";
+	/** 리뷰 테이블 삽입 */
+	public static final String REVIEW_INSERT = "INSERT INTO review_table VALUES(review_table_idx.NEXTVAL, "
+			+ "?, " // product_idx
+			+ "?, " // member_id
+			+ "?, " // review_subject
+			+ "?, " // review_content
+			+ "SYSDATE, " // review_regdate
+			+ "?, " // review_grade
+			+ "?, " // review_img
+			+ "?, " // review_ref
+			+ "?, " // review_lev
+			+ "?)"; // review_sunbun 
+	/** 리뷰 테이블 순번 업데이트 */
+	public static final String REVIEW_UPDATE_SUNBUN = "UPDATE review_table SET review_sunbun = review_sunbun + 1 WHERE review_ref = ? AND review_sunbun >= ?";
+	/** 리뷰 테이블 댓글 삽입 */
+	public static final String REVIEW_INSERT_REPLY = "INSERT INTO review_table VALUES(review_table_idx.NEXTVAL, "
+			+ "?, " // product_idx
+			+ "?, " // member_id
+			+ "?, " // review_subject
+			+ "?, " // review_content
+			+ "SYSDATE, " // review_regdate
+			+ "?, " // review_grade
+			+ "?, " // review_img
+			+ "?, " // review_ref
+			+ "?, " // review_lev
+			+ "?)"; // review_sunbun 
 	
 	//////////////////////////////////////////////////////////////////
 	

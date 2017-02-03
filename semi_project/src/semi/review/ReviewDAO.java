@@ -1,4 +1,4 @@
-package semi.qna;
+package semi.review;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -6,37 +6,36 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import semi.product.ProductDTO;
+import semi.qna.QnaDTO;
 import semi.sql.Sql;
 
 /** 
- * Q&A 관련 DAO
+ * 리뷰 관련 DAO
  * 
  * @author 조준현
- * @since 2017.01.31
+ * @since 2017.02.03
  * */
-public class QnaDAO {
-	
+public class ReviewDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	private ResultSet rs;
 	
 	private final int ERROR = -1;
 	
-	public QnaDAO(){
+	public ReviewDAO(){
 		
 	}
 	
 	/** 
-	 * Q&A 상품별 총 갯수 조회 관련 메서드
+	 * 리뷰 상품별 총 갯수 조회 관련 메서드
 	 * @param product_idx
 	 * @return count
 	 * */
-	public int getQnaTotalCnt(int product_idx){
+	public int getReviewTotalCnt(int product_idx){
 		try{
 			conn = semi.db.semiDB.getConn();
 			
-			ps = conn.prepareStatement(Sql.QNA_PRODUCTIDX_TOTALCOUNT);
+			ps = conn.prepareStatement(Sql.REVIEW_PRODUCTIDX_TOTALCOUNT);
 			
 			ps.setInt(1, product_idx);
 			
@@ -66,37 +65,41 @@ public class QnaDAO {
 	}
 	
 	/** 
-	 * Q&A 조회 관련 메서드(페이징)
+	 * 리뷰 조회 관련 메서드(페이징)
 	 * @param product_idx, cp, listSize
-	 * @return ArrayList<QnaDTO>
+	 * @return ArrayList<ReviewDTO>
 	 * */
-	public ArrayList<QnaDTO> qnaList(int product_idx, int cp, int listSize){
+	public ArrayList<ReviewDTO> reviewList(int product_idx, int cp, int listSize){
 		try{
 			conn = semi.db.semiDB.getConn();
 		
-			ps = conn.prepareStatement(Sql.getQNA_PRODUCTIDX_SELECT_ALL_ORDERBY(cp, listSize));
+			ps = conn.prepareStatement(Sql.getREVIEW_PRODUCTIDX_SELECT_ALL_ORDERBY(cp, listSize));
 			ps.setInt(1, product_idx);
 			rs = ps.executeQuery();
 			
-			ArrayList<QnaDTO> arr_qdto = new ArrayList<QnaDTO>();
+			ArrayList<ReviewDTO> arr_rdto = new ArrayList<ReviewDTO>();
 			
 			while(rs.next()){
-				int qna_idx = rs.getInt("qna_idx");
+				int review_idx = rs.getInt("review_idx");
 				int product_idx_temp = rs.getInt("product_idx");
 				String member_id = rs.getString("member_id");
-				String qna_subject = rs.getString("qna_subject");
-				String qna_content = rs.getString("qna_content");
-				Date qna_regdate = rs.getDate("qna_regdate");
-				int qna_ref = rs.getInt("qna_ref");
-				int qna_lev = rs.getInt("qna_lev");
-				int qna_sunbun = rs.getInt("qna_sunbun");
+				String review_subject = rs.getString("review_subject");
+				String review_content = rs.getString("review_content");
+				Date review_regdate = rs.getDate("review_regdate");
+				int review_grade = rs.getInt("review_grade");
+				String review_img = rs.getString("review_img");
+				int review_ref = rs.getInt("review_ref");
+				int review_lev = rs.getInt("review_lev");
+				int review_sunbun = rs.getInt("review_sunbun");
 						
-				QnaDTO qdto = new QnaDTO(qna_idx, product_idx_temp, member_id, qna_subject, qna_content, qna_regdate, qna_ref, qna_lev, qna_sunbun);
+				ReviewDTO rdto = new ReviewDTO(review_idx, product_idx_temp, member_id,
+						review_subject, review_content, review_regdate, review_grade,
+						review_img, review_ref, review_lev, review_sunbun);
 			
-				arr_qdto.add(qdto);
+				arr_rdto.add(rdto);
 			}
 			
-			return arr_qdto;
+			return arr_rdto;
 
 		} catch(Exception e){
 			e.printStackTrace();
@@ -111,15 +114,16 @@ public class QnaDAO {
 			}
 		}
 	}
+	
 	/** 
-	 * Q&A ref 최고값 조회 관련 메서드
+	 * 리뷰 ref 최고값 조회 관련 메서드
 	 * @param void
 	 * @return int
 	 * */
 	public int getMaxRef(){
 		try{
 			
-			ps = conn.prepareStatement(Sql.QNA_SELECT_MAX_REF);
+			ps = conn.prepareStatement(Sql.REVIEW_SELECT_MAX_REF);
 			rs = ps.executeQuery();
 			
 			int max = 0; // 게시글이 아무것도 없을 시 max그룹함수는 null이 넘어 오므로 0으로 초기화
@@ -143,27 +147,29 @@ public class QnaDAO {
 	}
 	
 	/** 
-	 * Q&A 입력 관련 메서드
-	 * @param QnaDTO
+	 * 리뷰 테이블 입력 관련 메서드
+	 * @param ReviewDTO
 	 * @return int (실행횟수 혹은 에러)
 	 * */
-	public int qnaWrite(QnaDTO qdto){
+	public int qnaWrite(ReviewDTO rdto){
 		try{
 			conn = semi.db.semiDB.getConn();
 			
 			int maxRef = getMaxRef();
 			
-			ps = conn.prepareStatement(Sql.QNA_INSERT);
+			ps = conn.prepareStatement(Sql.REVIEW_INSERT);
 			
 
-			ps.setInt(1, qdto.getProduct_idx());
-			ps.setString(2, qdto.getMember_id());
-			ps.setString(3, qdto.getQna_subject());
-			ps.setString(4, qdto.getQna_content());
+			ps.setInt(1, rdto.getProduct_idx());
+			ps.setString(2, rdto.getMember_id());
+			ps.setString(3, rdto.getReview_subject());
+			ps.setString(4, rdto.getReview_content());
+			ps.setInt(5, rdto.getReview_grade());
+			ps.setString(6, rdto.getReview_img());
 			
-			ps.setInt(5, maxRef+1); // 최고값에 +1을 하여 다음 ref를 지정한다.
-			ps.setInt(6, 0);
-			ps.setInt(7, 0);
+			ps.setInt(7, maxRef+1); // 최고값에 +1을 하여 다음 ref를 지정한다.
+			ps.setInt(8, 0);
+			ps.setInt(9, 0);
 			int count = ps.executeUpdate();
 			return count;
 			
@@ -180,16 +186,15 @@ public class QnaDAO {
 		}
 	}
 	
-	
 	/** 
-	 * Q&A 순번 업데이트 관련 메서드
+	 * 리뷰 테이블 순번 업데이트 관련 메서드
 	 * @param ref, sun
 	 * @return void
 	 * */
 	public void updateSun(int ref, int sun){
 		try{
 			
-			ps = conn.prepareStatement(Sql.QNA_UPDATE_SUNBUN);
+			ps = conn.prepareStatement(Sql.REVIEW_UPDATE_SUNBUN);
 			ps.setInt(1, ref);
 			ps.setInt(2, sun);
 			ps.executeUpdate();
@@ -206,26 +211,28 @@ public class QnaDAO {
 	}
 	
 	/** 
-	 * Q&A 댓글 입력 관련 메서드
-	 * @param QnaDTO
+	 * 리뷰 댓글 입력 관련 메서드
+	 * @param ReviewDTO
 	 * @return int (실행횟수 혹은 에러)
 	 * */
-	public int qnaReWrite(QnaDTO qdto){
+	public int qnaReWrite(ReviewDTO rdto){
 		try{
 			conn = semi.db.semiDB.getConn();
 			
-			updateSun(qdto.getQna_ref(), qdto.getQna_sunbun() + 1);
+			updateSun(rdto.getReview_ref(), rdto.getReview_sunbun() + 1);
 		
-			ps = conn.prepareStatement(Sql.QNA_INSERT_REPLY);
-			ps.setInt(1, qdto.getProduct_idx());
-			ps.setString(2, qdto.getMember_id());
-			ps.setString(3, qdto.getQna_subject());
-			ps.setString(4, qdto.getQna_content());
+			ps = conn.prepareStatement(Sql.REVIEW_INSERT_REPLY);
+			ps.setInt(1, rdto.getProduct_idx());
+			ps.setString(2, rdto.getMember_id());
+			ps.setString(3, rdto.getReview_subject());
+			ps.setString(4, rdto.getReview_content());
+			ps.setInt(5, rdto.getReview_grade());
+			ps.setString(6, rdto.getReview_img());
 			
-			ps.setInt(5, qdto.getQna_ref()); // 답변글을 쓸때는								
-			ps.setInt(6, qdto.getQna_lev() + 1); // 본문글과 같은 ref로 지정
-			ps.setInt(7, qdto.getQna_sunbun() + 1); // l , s는 1씩 증가
-			
+			ps.setInt(7, rdto.getReview_ref()); // 답변글을 쓸때는	
+			ps.setInt(8, rdto.getReview_lev() + 1); // 본문글과 같은 ref로 지정
+			ps.setInt(9, rdto.getReview_sunbun() + 1); // l , s는 1씩 증가
+
 			int count = ps.executeUpdate();
 			
 			return count;
@@ -242,4 +249,5 @@ public class QnaDAO {
 			}
 		}
 	}
+	
 }

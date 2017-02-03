@@ -92,7 +92,7 @@ CREATE SEQUENCE qna_table_idx MINVALUE 0 START WITH 1;
 CREATE TABLE review_table(
 	review_idx NUMBER PRIMARY KEY,
 	product_idx NUMBER,
-	member_name VARCHAR(20),
+	member_id VARCHAR2(20),
 	review_subject VARCHAR2(100),
 	review_content VARCHAR2(1000),
 	review_regdate DATE,
@@ -113,7 +113,7 @@ CREATE TABLE reply_table(
 	reply_subject VARCHAR2(100),
 	reply_content VARCHAR2(1000)
   );
-/* 리플 테이블 */
+/* 리플 테이블 시퀀스 */
 CREATE SEQUENCE reply_table_idx MINVALUE 0 START WITH 1;
 
 /* 쿠폰 테이블 */

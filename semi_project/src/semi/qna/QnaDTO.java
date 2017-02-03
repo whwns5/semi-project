@@ -3,11 +3,11 @@ package semi.qna;
 import java.sql.Date;
 
 public class QnaDTO {
-	/** Q&A 아이디 (PK) */
+	/** Q&A idx (PK) */
 	private int qna_idx;
-	/** Q&A 상품 아이디 */
+	/** 상품 아이디 */
 	private int product_idx;
-	/** 회원 아이디 (PK) */
+	/** 회원 아이디 */
 	private String member_id;
 	/** Q&A 제목 */
 	private String qna_subject;
