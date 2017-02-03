@@ -79,7 +79,7 @@
 	<%
 		if(qnaUserGroup != 0){ // 현재 그룹이 첫 페이지 그룹이 아닌 경우
 	%>
-		<a href="javascript:action_ajax('ajaxGoQnaPage.jsp','product_idx=<%=product_idx %>&qnaCp=<%=(qnaUserGroup-1)*qnaPageSize + qnaPageSize%>&qnaListSize=<%=qnaListSize%>', 'POST', 'QNA_SELECT_ALL');">이전</a>
+		<a href="javascript:action_ajax('/semi_project/section/product/ajaxGoQnaPage.jsp','product_idx=<%=product_idx %>&qnaCp=<%=(qnaUserGroup-1)*qnaPageSize + qnaPageSize%>&qnaListSize=<%=qnaListSize%>', 'POST', 'QNA_SELECT_ALL');">이전</a>
 	<%
 		} else {
 	%>
@@ -89,7 +89,7 @@
 						
 		for(int i = (qnaUserGroup * qnaPageSize) + 1 ; i <= (qnaUserGroup * qnaPageSize) + qnaPageSize ; i++){
 	%>
-		<a class="num <%= i==qnaCp ? "on" : "" %>" href="javascript:action_ajax('ajaxGoQnaPage.jsp','product_idx=<%=product_idx %>&qnaCp=<%=i%>&qnaListSize=<%=qnaListSize%>', 'POST', 'QNA_SELECT_ALL');">
+		<a class="num <%= i==qnaCp ? "on" : "" %>" href="javascript:action_ajax('/semi_project/section/product/ajaxGoQnaPage.jsp','product_idx=<%=product_idx %>&qnaCp=<%=i%>&qnaListSize=<%=qnaListSize%>', 'POST', 'QNA_SELECT_ALL');">
 			<font class="<%= i==qnaCp ? "choiceprlist" : "prlist" %>"><%= i==qnaCp? "<b>"+i+"</b>" : i %></font>
 		</a>
 	<%
@@ -98,7 +98,7 @@
 						
 		if(qnaUserGroup != (qnaTotalPage / qnaPageSize) - (qnaTotalPage % qnaPageSize == 0 ? 1 : 0)){ // 현재 그룹이 마지막 페이지가 해당하는 그룹에 해당되지 않는 경우
 	%>
-		<a href="javascript:action_ajax('ajaxGoQnaPage.jsp','product_idx=<%=product_idx %>&qnaCp=<%=((qnaUserGroup+1)*qnaPageSize) + 1%>&qnaListSize=<%=qnaListSize%>', 'POST', 'QNA_SELECT_ALL');">다음</a>
+		<a href="javascript:action_ajax('/semi_project/section/product/ajaxGoQnaPage.jsp','product_idx=<%=product_idx %>&qnaCp=<%=((qnaUserGroup+1)*qnaPageSize) + 1%>&qnaListSize=<%=qnaListSize%>', 'POST', 'QNA_SELECT_ALL');">다음</a>
 	<%
 		} else {
 	%>

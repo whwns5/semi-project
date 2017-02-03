@@ -250,6 +250,11 @@ function settingPage(product_idx) {
 								totalpriceSetting();
 							
 							}
+							function goCart() {
+								var f = document.cart_fm;
+								f.setAttribute('action', '/semi_project/sample/cartTest.jsp');
+								f.submit();
+							}
 						</script>
 						<input type="hidden" id="itemName" value="<%=mainpDTO.getProduct_name()%>"> <!-- 데이터베이스로 실데이터 입력 -->
 						<input type="hidden" id="itemCode" value="<%=mainpDTO.getProduct_code()%>"> <!-- 데이터베이스로 실데이터 입력 -->
@@ -277,9 +282,11 @@ function settingPage(product_idx) {
 								</tr>
 								<tr>
 									<td colspan="2">
+										<form name="cart_fm">
 										<ul class="opt_list" id="id_ul_selectItemList">
 											
 										</ul>
+										</form>
 									</td>
 								</tr>
 							</tbody>
@@ -296,7 +303,7 @@ function settingPage(product_idx) {
 						<div class="btn_div">
 							<ul class="btn_ul">
 								<li><input class="submit-button" type="button" value="바로구매"></li>
-								<li><input class="submit-button" type="button" value="장바구니"></li>
+								<li><input class="submit-button" type="button" value="장바구니" onclick="goCart();"></li>
 							</ul>
 						</div>
 					</div>
