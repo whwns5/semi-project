@@ -290,7 +290,7 @@ div#body_contents div.product_detail{
 			font: 11px dotum;
    			color: #919191;
 		}
-		div.div_tab_detail02 div.tab_review_table table td.review_subject img{
+		div.div_tab_detail02 div.tab_review_table table td.review_subject img.review_img{
 			width: 100px;
 			border: none;
 		    padding: 0px;

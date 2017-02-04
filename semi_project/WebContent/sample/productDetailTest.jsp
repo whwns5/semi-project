@@ -63,6 +63,7 @@ function action_ajax(url, param, method, ctype) {
 }
 
 function settingQna(product_idx) {
+	
 	action_ajax('/semi_project/section/product/ajaxGoQnaPage.jsp','product_idx=' + product_idx + '&qnaCp=1&qnaListSize=10', 'POST', 'QNA_SELECT_ALL'); // 해당 페이지로 ajax통신 시작
 }
 function settingReview(product_idx) {
@@ -91,8 +92,8 @@ function settingPage(product_idx) {
 	String scid = "backpack"; // 차 후 전 페이지에서 리퀘스트 값을 얻어온다.
 	
 	String product_path = "/semi_project/img/product/" + lcid + "/" + scid;
-	//String com_path = "C:/Users/whwns/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
-	String com_path = "C:/Users/user1/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
+	String com_path = "C:/Users/whwns/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
+	//String com_path = "C:/Users/user1/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
 	ArrayList<ProductDTO> arr_pdto = null;
 	arr_pdto = pdao.productCodeList(product_code);
 	ProductDTO mainpDTO = null;
@@ -395,7 +396,7 @@ function settingPage(product_idx) {
 									<br />
 									<div class="layer-form-title">리뷰 내용<textarea class="layer-form-field-content" rows="20" cols="68" name="review_content" id="review_content" required="required"></textarea>
 									</div>
-									<div class="layer-form-title">이미지<input class="image_input" type="file" name="rfile" size="40">
+									<div class="layer-form-title">이미지<input class="image_input" type="file" name="	" id="" size="40">
 																		<p class="image_info">
 																			<span>파일명:</span>한글,영문,숫자 l <span>파일용량:</span> 800K이하 l <span>첨부가능 파일형식:</span>GIF,JPG(JPEG)
 																		</p>	
