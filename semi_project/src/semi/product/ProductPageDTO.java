@@ -11,7 +11,7 @@ public class ProductPageDTO {
 
 	public ProductPageDTO() {
 		super();
-		this.listSize = 10;
+		this.listSize = 8;
 		this.sortName = "new";
 		this.sortColumn = "product_regdate";
 		this.sortOrderByType = "DESC";

@@ -72,6 +72,9 @@
 	%>		
 					<div class="review_content">
 						<%=arr_rdto.get(i).getReview_content()%>
+						<div class="review_reply_div">
+							<input class="layer-submit-review-reply" type="button" value="댓글달기" onclick="openReviewReplyLayer(<%=arr_rdto.get(i).getReview_ref()%>,<%=arr_rdto.get(i).getReview_lev()%>,<%=arr_rdto.get(i).getReview_sunbun()%>);">
+						</div>
 					</div>
 				</td>
 				<td class="review_grade">

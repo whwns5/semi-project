@@ -85,10 +85,10 @@
 								}
 							</script>
 							<select onchange="changeListSize(this.value);">
-								<option value="10" <%=listSize == 10 ? "selected":"" %>>10개</option>
-								<option value="20" <%=listSize == 20 ? "selected":"" %>>20개</option>
-								<option value="30" <%=listSize == 30 ? "selected":"" %>>30개</option>
-								<option value="40" <%=listSize == 40 ? "selected":"" %>>40개</option>
+								<option value="8" <%=listSize == 10 ? "selected":"" %>>8개</option>
+								<option value="12" <%=listSize == 20 ? "selected":"" %>>12개</option>
+								<option value="16" <%=listSize == 30 ? "selected":"" %>>16개</option>
+								<option value="20" <%=listSize == 40 ? "selected":"" %>>20개</option>
 							</select>
 						</li>
 					</ul>
@@ -151,7 +151,7 @@
 							</div>
 							<div class="div_menu" id="div_menu_<%=i%>" onmouseover="openDivMenu(this);" onmouseout="closeDivMenu(this);">
 								<p class="p_menuicon">
-									<a href="/semi_project/section/product/productDetail.jsp?idx=<%=arr_pdto.get(i).getProduct_idx() %>&code=<%=arr_pdto.get(i).getProduct_code()%>&lcid=<%=lcid_s %>&scid=<%= arr_pdto.get(i).getSmallcategory_name()%>" class="a_detail"></a>
+									<a href="/semi_project/section/product/productDetail.jsp?product_idx=<%=arr_pdto.get(i).getProduct_idx() %>&code=<%=arr_pdto.get(i).getProduct_code()%>&lcid=<%=lcid_s %>&scid=<%= arr_pdto.get(i).getSmallcategory_name()%>" class="a_detail"></a>
 									<a href="#" class="a_cart"></a>
 								</p>
 							</div>
