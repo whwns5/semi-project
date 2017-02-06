@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+h1{
+font-family: 'Vidaloka', serif;
+text-align:center;
+font-weight:normal;
+color:#e8380d;
+}
+.maintitle{
+display:block;
+font-size:72px;
+line-height:72px;
+letter-spacing:-4px;
+text-shadow:1px 1px 3px #fff,3px 3px 6px #888;
+}
+.description{
+display:block;
+font-size:18px;
+line-height:10px;
+letter-spacing:1px;
+text-shadow:1px 1px 5px #fff,5px 5px 10px #888; 
+}

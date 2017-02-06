@@ -78,11 +78,14 @@ public class Sql {
 	public static final String getPRODUCT_SEARCH_SELLECT_ALL(String searchStr, int cp, int listSize, String column, String orderByType){
 		String sql = "SELECT b.* "
 				+	 "FROM (SELECT rownum as rnum, a.* " 
-				+  		   "FROM (SELECT * "
-				+   			 "FROM product_table "
-				+ 				 "WHERE product_code LIKE '%" + searchStr + "%' OR product_name LIKE '%" + searchStr + "%' "
+				+  		   "FROM (SELECT pt.*, slt.smallcategory_name, slt.largecategory_name "
+				+   			 "FROM product_table pt, (SELECT st.smallcategory_id, st.smallcategory_name, lt.largecategory_name "
+				+ 										 "FROM smallcategory_table st, largecategory_table lt "
+				+ 										 "WHERE st.largecategory_id = lt.largecategory_id) slt "
+				+ 				 "WHERE pt.smallcategory_id = slt.smallcategory_id "
+				+ 				 "AND ( pt.product_code LIKE '%" + searchStr + "%' OR pt.product_name LIKE '%" + searchStr + "%' ) "
 				+ 				 "ORDER BY " + column + " " + orderByType + ") a) b "
-				+ 		   "WHERE rnum >= (" + cp + "-1)*" + listSize + "+ 1 AND rnum <= " + cp + "*" + listSize;
+				+   "WHERE rnum >= (" + cp + "-1)*" + listSize + "+ 1 AND rnum <= " + cp + "*" + listSize;
 	return sql;
 	}
 	/** 상품 테이블 삽입 */

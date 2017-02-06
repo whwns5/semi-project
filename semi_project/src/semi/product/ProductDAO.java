@@ -328,6 +328,8 @@ public class ProductDAO {
 			while(rs.next()){
 				int product_idx = rs.getInt("product_idx");
 				int smallcategory_id = rs.getInt("smallcategory_id");
+				String largecategory_name = rs.getString("largecategory_name");
+				String smallcategory_name = rs.getString("smallcategory_name");
 				String product_name = rs.getString("product_name");
 				String product_code_temp = rs.getString("product_code");
 				String product_color = rs.getString("product_color");
@@ -339,9 +341,10 @@ public class ProductDAO {
 				int product_imgcount = rs.getInt("product_imgcount");
 				Date product_regdate = rs.getDate("product_regdate");
 				
-				ProductDTO pdto = new ProductDTO(product_idx, smallcategory_id, product_name, 
-						product_code_temp, product_color, product_size, product_num, product_price, 
-						product_content, product_img, product_imgcount, product_regdate);
+				ProductDTO pdto = new ProductDTO(product_idx, smallcategory_id, largecategory_name, 
+						smallcategory_name, product_name, product_code_temp, product_color, 
+						product_size, product_num, product_price, product_content, 
+						product_img, product_imgcount, product_regdate);
 			
 				arr_pdto.add(pdto);
 			}

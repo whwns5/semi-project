@@ -49,6 +49,7 @@
 	
 	if(searchStr != null){
 		arr_pdto = pdao.productSearchList(searchStr, cp, listSize, ppdto.getSortColumn(), ppdto.getSortOrderByType());
+		
 	} else {
 		if( scid_s == null ){ // 대분류로만 필터링 일경우
 			arr_pdto = pdao.productCategoryList(lcid_s, "lcid", cp, listSize, ppdto.getSortColumn(), ppdto.getSortOrderByType());
@@ -80,23 +81,29 @@
 							function changeSort(sortName) {						
 								location.href = '/semi_project/section/product/productByItemList.jsp?cp=1&lcid=<%=lcid_s%><%=scid_s == null ? "" : "&scid=" + scid_s%>&sortName=' + sortName;
 							}
+							function changeSort2(sortName) {						
+								location.href = '/semi_project/section/product/productByItemList.jsp?cp=1&searchStr=<%=searchStr%>&sortName=' + sortName;
+							}
 						</script>
 						<ul class="type">
-						<li><a href="javascript:changeSort('new');" <%=sortName.equals("new") ? "class='on'":"" %>>신규등록순</a></li>
+						<li><a href="<%=searchStr == null ? "javascript:changeSort('new');" : "javascript:changeSort2('new');" %>" <%=sortName.equals("new") ? "class='on'":"" %>>신규등록순</a></li>
 						<!--  <li><a href="javascript:ChangeSort('best');" >인기판매순</a></li> -->
-						<li><a href="javascript:changeSort('highprice');" <%=sortName.equals("highprice") ? "class='on'":"" %>>높은가격순</a></li>
-						<li><a href="javascript:changeSort('lowprice');" <%=sortName.equals("lowprice") ? "class='on'":"" %>>낮은가격순</a></li>
+						<li><a href="<%=searchStr == null ? "javascript:changeSort('highprice');" : "javascript:changeSort2('highprice');" %>" <%=sortName.equals("highprice") ? "class='on'":"" %>>높은가격순</a></li>
+						<li><a href="<%=searchStr == null ? "javascript:changeSort('lowprice');" : "javascript:changeSort2('lowprice');" %>" <%=sortName.equals("lowprice") ? "class='on'":"" %>>낮은가격순</a></li>
 						<li>
 							<script>
 								function changeListSize(listSize) {
 									location.href = '/semi_project/section/product/productByItemList.jsp?cp=1&lcid=<%=lcid_s%><%=scid_s == null ? "" : "&scid=" + scid_s%>&listSize=' + listSize;
 								}
+								function changeListSize2(listSize) {
+									location.href = '/semi_project/section/product/productByItemList.jsp?cp=1&searchStr=<%=searchStr%>&listSize=' + listSize;
+								}
 							</script>
-							<select onchange="changeListSize(this.value);">
-								<option value="8" <%=listSize == 10 ? "selected":"" %>>8개</option>
-								<option value="12" <%=listSize == 20 ? "selected":"" %>>12개</option>
-								<option value="16" <%=listSize == 30 ? "selected":"" %>>16개</option>
-								<option value="20" <%=listSize == 40 ? "selected":"" %>>20개</option>
+							<select onchange="<%=searchStr == null ? "changeListSize(this.value)" : "changeListSize2(this.value)" %>">
+								<option value="8" <%=listSize == 8 ? "selected":"" %>>8개</option>
+								<option value="12" <%=listSize == 12 ? "selected":"" %>>12개</option>
+								<option value="16" <%=listSize == 16 ? "selected":"" %>>16개</option>
+								<option value="20" <%=listSize == 20 ? "selected":"" %>>20개</option>
 							</select>
 						</li>
 					</ul>
@@ -151,7 +158,18 @@
 							<div class="div_product">
 								<a href="#">
 									<p class="p_title">
-									<img src="/semi_project/img/product/<%=lcid_s%>/<%=arr_pdto.get(i).getSmallcategory_name()%>/<%=arr_pdto.get(i).getProduct_code()%>_<%=arr_pdto.get(i).getProduct_color()%>/<%=arr_pdto.get(i).getProduct_img() %>.jpg">
+<%
+									if( searchStr != null ){
+%>
+										<img src="/semi_project/img/product/<%=arr_pdto.get(i).getLargecategory_name()%>/<%=arr_pdto.get(i).getSmallcategory_name()%>/<%=arr_pdto.get(i).getProduct_code()%>_<%=arr_pdto.get(i).getProduct_color()%>/<%=arr_pdto.get(i).getProduct_img() %>.jpg">
+<%										
+									} else {
+%>
+										<img src="/semi_project/img/product/<%=lcid_s%>/<%=arr_pdto.get(i).getSmallcategory_name()%>/<%=arr_pdto.get(i).getProduct_code()%>_<%=arr_pdto.get(i).getProduct_color()%>/<%=arr_pdto.get(i).getProduct_img() %>.jpg">
+<%										
+									}
+%>
+									
 									<span><%=arr_pdto.get(i).getProduct_name()%>&nbsp;<%=arr_pdto.get(i).getProduct_code() %></span>
 									</p>
 									<span class="span_price"><%=dcformat.format((double) arr_pdto.get(i).getProduct_price()) %></span>
@@ -159,7 +177,7 @@
 							</div>
 							<div class="div_menu" id="div_menu_<%=i%>" onmouseover="openDivMenu(this);" onmouseout="closeDivMenu(this);">
 								<p class="p_menuicon">
-									<a href="/semi_project/section/product/productDetail.jsp?product_idx=<%=arr_pdto.get(i).getProduct_idx() %>&product_code=<%=arr_pdto.get(i).getProduct_code()%>&lcid=<%=lcid_s %>&scid=<%= arr_pdto.get(i).getSmallcategory_name()%>" class="a_detail"></a>
+									<a href="/semi_project/section/product/productDetail.jsp?product_idx=<%=arr_pdto.get(i).getProduct_idx() %>&product_code=<%=arr_pdto.get(i).getProduct_code()%>&lcid=<%=searchStr == null ? lcid_s : arr_pdto.get(i).getLargecategory_name()%>&scid=<%= arr_pdto.get(i).getSmallcategory_name()%>" class="a_detail"></a>
 									<a href="#" class="a_cart"></a>
 								</p>
 							</div>

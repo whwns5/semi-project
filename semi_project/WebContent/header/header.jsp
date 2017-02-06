@@ -2,8 +2,9 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link rel="stylesheet" type="text/css" href="/semi_project/css/header/header.css?ver=8">
-<link rel="stylesheet" type="text/css" href="/semi_project/css/header/dropdownmenu.css?ver=4">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/header/header.css?ver=9">
+<link href='http://fonts.googleapis.com/css?family=Vidaloka' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="/semi_project/css/header/logo.css?ver=8">
 <jsp:useBean id="cdao1" class="semi.cart.CartDAO"/>
 <script type="text/javascript" src="/semi_project/js/bookmark.js?ver=4"></script>
 <script>
@@ -91,7 +92,7 @@ document.onclick = mclose;
 				</div>
 			</div>
 			<div class="div_logo">
-				<h1>khSHOPseoul</h1>
+				<h1><span class="maintitle">KH-SHOP</span><span class="description">Fun shopping for tomorrow</span></h1>
 				<script>
 				function goSearch() {
 					var searchStr = document.getElementById('id_search_input').value;
