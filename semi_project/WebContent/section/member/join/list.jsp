@@ -17,7 +17,7 @@
 	System.out.println(member_id);
 	jdao.userInfo(member_id);
 	MemberDTO[] dto = jdao.userInfo(member_id);
-		if(dto.length == 1) {
+	if(dto.length == 1) {
 		for(int i=0;i<dto.length;i++){
 			member_name = dto[i].getMember_name();
 			member_pwd = dto[i].getMember_pwd();
@@ -25,8 +25,14 @@
 			member_addr = dto[i].getMember_addr();
 			member_tel = dto[i].getMember_tel();
 			member_email = dto[i].getMember_email();
+			
 		}
 	}
+	
+
+%>
+<%
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -34,7 +40,7 @@
 <meta charset=UTF-8>
 <title>Insert title here</title>
 <script>
-function openCheck(){
+function memberUpdate(){
 	var member_pwd_bf = document.name.member_pwd_bf.value;
 	var member_pwdInput = document.name.member_pwd_bf1.value;
 	var member_pwdInput1 = document.name.member_pwd.value;
@@ -42,19 +48,23 @@ function openCheck(){
 	
 	
 	if(member_pwdInput == member_pwd_bf){
-		if(member_pwdInput1 == member_pwdInput2){
-			alert("입력하신 정보가 수정되었습니다.");
-		}else{
-			window.alert('새로운 비밀번호가 일치하지 않습니다.');
-			return;
+		if(member_pwdInput1 != '' || member_pwdInput2 != ''){
+			if(member_pwdInput1 == member_pwdInput2){
+				
+			}else{
+				window.alert('새로운 비밀번호가 일치하지 않습니다.');
+				return;
+			}
 		}
 	}else{
 		window.alert('이전 비밀번호가 올바르지 않습니다.');
 		return;
 	}
 	
+	if(document.name.member_pwd.value == "") {
+		document.name.member_pwd.value = document.name.member_pwd_bf.value;
+	}
 	document.name.submit();
-	
 }
 function openDel(){
 	var id = document.name.id.value;
@@ -71,7 +81,7 @@ function openDel(){
 <section>
 <article>
 	<h3>회원정보 변경</h3>
-	<form name="name" action="/semi_project/section/member/join/change_ok.jsp">
+	<form name="name" action="/semi_project/section/member/join/change.jsp" method="post">
 	<input type="hidden" name="member_pwd_bf" value="<%=member_pwd%>">
 		<table>
 			<tr>
@@ -118,7 +128,7 @@ function openDel(){
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="button" value="정보수정" onclick="openCheck();"></td>
+				<td colspan="2"><input type="button" value="정보수정" onclick="memberUpdate();"></td>
 			</tr>
 			<tr>
 			<td>

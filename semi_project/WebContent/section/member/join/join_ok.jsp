@@ -15,5 +15,5 @@
 
 <script>
 window.alert('<%=msg%>');
-location.href='/semi_project/section/member/join/join.jsp';
+location.href='/semi_project/section/home.jsp';
 </script>
