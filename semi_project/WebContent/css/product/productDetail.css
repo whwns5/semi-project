@@ -272,6 +272,9 @@ div#body_contents div.product_detail{
 			padding: 10px 0px;
     		border-bottom: 1px solid #dbdbdb;
 		}
+		div.div_tab_detail02 div.tab_review_table table td.nothing{
+			text-align: center;
+		}
 		div.div_tab_detail02 div.tab_review_table table td.review_date{
 			font: 11px dotum;
 		    color: #919191;
@@ -290,7 +293,7 @@ div#body_contents div.product_detail{
 			font: 11px dotum;
    			color: #919191;
 		}
-		div.div_tab_detail02 div.tab_review_table table td.review_subject img{
+		div.div_tab_detail02 div.tab_review_table table td.review_subject img.review_img{
 			width: 100px;
 			border: none;
 		    padding: 0px;
@@ -300,6 +303,7 @@ div#body_contents div.product_detail{
 		    vertical-align: top;
 		}
 		div.div_tab_detail02 div.tab_review_table table td.review_subject div.review_content{
+			position: relative;
 			padding: 10px 0px;
    		 	font: 12px dotum;
     		color: #585858;
@@ -310,6 +314,11 @@ div#body_contents div.product_detail{
    		 	font: 12px dotum;
     		color: #585858;
     		display: none;
+		}
+		div.div_tab_detail02 div.tab_review_table table td.review_subject div.review_content div.review_reply_div{
+			position: absolute;
+			right: 10px;
+			bottom: 0px;
 		}
 		div.div_tab_detail02 div.tab_review_table table td.review_grade{
 			color: #d6262e;

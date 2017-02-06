@@ -1,3 +1,4 @@
+<%@page import="semi.path.Path"%>
 <%@page import="semi.qna.QnaDTO"%>
 <%@page import="java.io.File"%>
 <%@ page import="java.text.DecimalFormat"%>
@@ -12,10 +13,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/semi_project/css/button/button.css?ver=2">
-<link rel="stylesheet" type="text/css" href="/semi_project/css/layer/layer.css?ver=2">
-<link rel="stylesheet" type="text/css" href="/semi_project/css/product/productDetail.css?ver=12">
-<script type="text/javascript" src="/semi_project/js/ajax.js?ver=3"></script>
+<link rel="stylesheet" type="text/css" href="/semi_project/css/button/button.css?ver=6">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/layer/layer.css?ver=8">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/product/productDetail.css?ver=6">
+<script type="text/javascript" src="/semi_project/js/ajax.js?ver=4"></script>
+<script type="text/javascript" src="/semi_project/js/ajax_upload.js?ver=2"></script>
 <script>
 function AddComma(data_value) {
 	return Number(data_value).toLocaleString('en').split(".")[0] + "원";
@@ -39,6 +41,24 @@ function result_process(responseText, ctype) {
 		}
 	} else if(ctype == 'REVIEW_SELECT_ALL'){
 		document.getElementById("ajax_review_div").innerHTML = responseText;//보여주기
+	} else if(ctype == 'REVIEW_INSERT'){
+		if(responseText == 1){ 
+			window.alert('등록완료');
+			closeReviewLayer(); // 등록후 창 닫음
+			var product_idx = document.getElementById('product_idx').value;
+			settingReview(product_idx);
+		} else {
+			window.alert(responseText);
+		}
+	} else if(ctype == 'REVIEW_REPLY_INSERT'){
+		if(responseText == 1){ 
+			window.alert('등록완료');
+			closeReviewReplyLayer(); // 등록후 창 닫음
+			var product_idx = document.getElementById('product_idx').value;
+			settingReview(product_idx);
+		} else {
+			window.alert(responseText);
+		}
 	} else {
 		window.alert('잘못된 경로');
 	}
@@ -59,6 +79,10 @@ function ajax_result(httpRequest, ctype) {
 
 function action_ajax(url, param, method, ctype) {
 	sendRequest(url, param, ajax_result, method, ctype);
+	return false;
+}
+function action_ajax_upload(url, fmid, method, ctype) {
+	sendRequest_uplaod(url, fmid, ajax_result, method, ctype);
 	return false;
 }
 
@@ -91,8 +115,8 @@ function settingPage(product_idx) {
 	String scid = "backpack"; // 차 후 전 페이지에서 리퀘스트 값을 얻어온다.
 	
 	String product_path = "/semi_project/img/product/" + lcid + "/" + scid;
-	//String com_path = "C:/Users/whwns/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
-	String com_path = "C:/Users/user1/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
+	String com_path = Path.COM_PROJECT_PATH + "/WebContent/img/product/" + lcid + "/" + scid;
+	//String com_path = "C:/Users/user1/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
 	ArrayList<ProductDTO> arr_pdto = null;
 	arr_pdto = pdao.productCodeList(product_code);
 	ProductDTO mainpDTO = null;
@@ -355,25 +379,19 @@ function settingPage(product_idx) {
 					<script>
 						function openReviewLayer() {
 							var review_layer = document.getElementById('id_review_layer');
-							document.getElementById('review_subject').value = '';
-							document.getElementById('review_content').value = '';
-							
+
+							document.getElementById('fileSelected_info').innerHTML = '<span>파일명:</span>한글,영문,숫자 l <span>파일용량:</span> 10MB이하 l <span>첨부가능 파일형식:</span>GIF,JPG(JPEG)';				
 							review_layer.style.display = 'block';
 						}
 						function closeReviewLayer() {
 							var review_layer = document.getElementById('id_review_layer');
+							document.getElementById('review_subject').value = '';
+							document.getElementById('review_content').value = '';
+							document.getElementById('review_img_file').value = '';
 							review_layer.style.display = '';
 						}
 						function submitReviewLayer() {
-							var product_idx = document.getElementById('product_idx').value;
-							var member_id = document.getElementById('member_id').value;
-							var review_subject = document.getElementById('review_subject').value;
-							var review_content = document.getElementById('review_content').value;
-							
-							var param = 'product_idx=' + product_idx + '&member_id=' + member_id + '&review_subject=' + review_subject + '&review_content=' + review_content;
-							action_ajax('/semi_project/section/review/reviewWrite_ok.jsp',param , 'GET', 'REVIEW_INSERT'); // 해당 페이지로 ajax통신 시작
-							//var f = document.getElementById('id_qnaWrite_ok');
-							//f.submit();
+							action_ajax_upload('/semi_project/section/review/reviewWrite_ok.jsp', 'id_reviewWrite_ok', 'POST', 'REVIEW_INSERT');	
 						}
 					</script>
 					<div class="tab_review_table" id="ajax_review_div">
@@ -385,8 +403,15 @@ function settingPage(product_idx) {
 							<div class="review_layer_content">	
 								<form class="layer-form-container" name="reviewWrite_ok" id="id_reviewWrite_ok" action="/semi_project/section/review/reviewWrite_ok.jsp">
 									<div class="layer-form-title"><h2>상품 리뷰</h2></div>
-									<br />
-									<div class="layer-form-title">아이디<input class="layer-form-field layer-form-field-id" type="text" name="member_id" id="member_id" value="whwns5" readonly="readonly"/>			
+									<br />																					<!--  차후 session 값으로 교체 -->
+									<div class="layer-form-title">아이디<input class="layer-form-field layer-form-field-id" type="text" name="member_id" id="member_id" value="whwns5" readonly="readonly"/>
+																	평점<select class="layer-form-field layer-form-field-grade" id="review_grade" name="review_grade">
+																		<option value="5">♥♥♥♥♥</option>
+																		<option value="4">♥♥♥♥</option>
+																		<option value="3">♥♥♥</option>
+																		<option value="2">♥♥</option>
+																		<option value="1">♥</option>
+																	</select>	
 																  <input type="hidden" name="product_idx" id="product_idx" value="<%=product_idx%>">
 									</div>
 									<br />
@@ -395,16 +420,79 @@ function settingPage(product_idx) {
 									<br />
 									<div class="layer-form-title">리뷰 내용<textarea class="layer-form-field-content" rows="20" cols="68" name="review_content" id="review_content" required="required"></textarea>
 									</div>
-									<div class="layer-form-title">이미지<input class="image_input" type="file" name="rfile" size="40">
-																		<p class="image_info">
-																			<span>파일명:</span>한글,영문,숫자 l <span>파일용량:</span> 800K이하 l <span>첨부가능 파일형식:</span>GIF,JPG(JPEG)
+									<div class="layer-form-title">이미지<input class="image_input" type="file" name="review_img_file" id="review_img_file" size="40" onchange="fileSelected();"> 
+																		<p class="image_info" id="fileSelected_info">
+																			
 																		</p>	
 									</div>
 									<div class="layer-submit-container">
 										<input class="layer-submit-button" type="button" value="작성하기" 
 											onclick="submitReviewLayer();">
 										<input class="layer-submit-button" type="button" value="나가기" onclick="closeReviewLayer();">
+									</div>					
+								</form>
+							</div>
+						</div>
+					</div>
+					<script>
+						function openReviewReplyLayer(ref, lef, sunbun) {
+							var review_reply_layer = document.getElementById('id_review_reply_layer');
+							document.getElementById('review_reply_ref').value = ref;
+							document.getElementById('review_reply_lev').value = lef;
+							document.getElementById('review_reply_sunbun').value = sunbun;
+									
+							review_reply_layer.style.display = 'block';
+						}
+						function closeReviewReplyLayer() {
+							var review_reply_layer = document.getElementById('id_review_reply_layer');
+							document.getElementById('review_reply_subject').value = '';
+							document.getElementById('review_reply_content').value = '';
+							
+							document.getElementById('review_reply_ref').value = '';
+							document.getElementById('review_reply_lev').value = '';
+							document.getElementById('review_reply_sunbun').value = '';
+							review_reply_layer.style.display = '';
+						}
+						function submitReviewReplyLayer() {
+							var product_idx = document.getElementById('review_reply_product_idx').value;
+							var member_id = document.getElementById('review_reply_member_id').value;
+							var review_subject = document.getElementById('review_reply_subject').value;
+							var review_content = document.getElementById('review_reply_content').value;
+							
+							var review_ref = document.getElementById('review_reply_ref').value;
+							var review_lev = document.getElementById('review_reply_lev').value;
+							var review_sunbun = document.getElementById('review_reply_sunbun').value;
+							
+							var param = 'product_idx=' + product_idx + '&member_id=' + member_id + 
+							'&review_subject=' + review_subject + '&review_content=' + review_content + 
+							'&review_ref=' + review_ref + '&review_lev=' + review_lev + '&review_sunbun=' + review_sunbun;
+							action_ajax('/semi_project/section/review/reviewReplyWrite_ok.jsp',param , 'GET', 'REVIEW_REPLY_INSERT'); // 해당 페이지로 ajax통신 시작
+						}
+					</script>
+					<div class="review_layer" id="id_review_reply_layer">
+						<div class="review_layer_bg" onclick="closeReviewReplyLayer();"></div>
+						<div class="review_layer_pop">
+							<div class="review_layer_content">	
+								<form class="layer-form-container" name="reviewWrite_ok" id="id_reviewReplyWrite_ok" action="/semi_project/section/review/reviewReplyWrite_ok.jsp">
+									<div class="layer-form-title"><h2>댓글 달기</h2></div>
+									<br />																															<!--  차후 session 값으로 교체 -->
+									<div class="layer-form-title">아이디<input class="layer-form-field layer-form-field-id" type="text" name="review_reply_member_id" id="review_reply_member_id" value="whwns5" readonly="readonly"/>								
+																  <input type="hidden" name="review_reply_product_idx" id="review_reply_product_idx" value="<%=product_idx%>">
+																  <input type="hidden" name="review_reply_ref" id="review_reply_ref">
+																  <input type="hidden" name="review_reply_lev" id="review_reply_lev">
+																  <input type="hidden" name="review_reply_sunbun" id="review_reply_sunbun">
 									</div>
+									<br />
+									<div class="layer-form-title">제목<input class="layer-form-field layer-form-field-subject" type="text" name="review_reply_subject" id="review_reply_subject" required="required"/>	
+									</div>
+									<br />
+									<div class="layer-form-title">댓글 내용<textarea class="layer-form-field-content" rows="20" cols="68" name="review_reply_content" id="review_reply_content" required="required"></textarea>
+									</div>
+									<div class="layer-submit-container">
+										<input class="layer-submit-button" type="button" value="작성하기" 
+											onclick="submitReviewReplyLayer();">
+										<input class="layer-submit-button" type="button" value="나가기" onclick="closeReviewReplyLayer();">
+									</div>					
 								</form>
 							</div>
 						</div>
@@ -420,18 +508,18 @@ function settingPage(product_idx) {
 					<script>
 						function openQnaLayer() {
 							var qna_layer = document.getElementById('id_qna_layer');
-							document.getElementById('qna_subject').value = '';
-							document.getElementById('qna_content').value = '';
 							
 							qna_layer.style.display = 'block';
 						}
 						function closeQnaLayer() {
 							var qna_layer = document.getElementById('id_qna_layer');
+							document.getElementById('qna_subject').value = '';
+							document.getElementById('qna_content').value = '';
 							qna_layer.style.display = '';
 						}
 						function submitQnaLayer() {
-							var product_idx = document.getElementById('product_idx').value;
-							var member_id = document.getElementById('member_id').value;
+							var product_idx = document.getElementById('qna_product_idx').value;
+							var member_id = document.getElementById('qna_member_id').value;
 							var qna_subject = document.getElementById('qna_subject').value;
 							var qna_content = document.getElementById('qna_content').value;
 							
@@ -450,9 +538,9 @@ function settingPage(product_idx) {
 							<div class="qna_layer_content">	
 								<form class="layer-form-container" name="qnaWrite_ok" id="id_qnaWrite_ok" action="/semi_project/section/qna/qnaWrite_ok.jsp">
 									<div class="layer-form-title"><h2>상품 Q&A</h2></div>
-									<br />
-									<div class="layer-form-title">아이디<input class="layer-form-field layer-form-field-id" type="text" name="member_id" id="member_id" value="whwns5" readonly="readonly"/>			
-																  <input type="hidden" name="product_idx" id="product_idx" value="<%=product_idx%>">
+									<br />																								<!--  차후 session 값으로 교체 -->
+									<div class="layer-form-title">아이디<input class="layer-form-field layer-form-field-id" type="text" name="qna_member_id" id="qna_member_id" value="whwns5" readonly="readonly"/>			
+																  <input type="hidden" name="qna_product_idx" id="qna_product_idx" value="<%=product_idx%>">
 									</div>
 									<br />
 									<div class="layer-form-title">제목<input class="layer-form-field layer-form-field-subject" type="text" name="qna_subject" id="qna_subject" required="required"/>	
@@ -465,6 +553,7 @@ function settingPage(product_idx) {
 											onclick="submitQnaLayer();">
 										<input class="layer-submit-button" type="button" value="나가기" onclick="closeQnaLayer();">
 									</div>
+									
 								</form>
 							</div>
 						</div>

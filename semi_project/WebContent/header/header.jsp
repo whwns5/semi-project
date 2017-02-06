@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="/semi_project/css/header/header.css?ver=8">
 <link rel="stylesheet" type="text/css" href="/semi_project/css/header/dropdownmenu.css?ver=4">
+<script type="text/javascript" src="/semi_project/js/bookmark.js?ver=4"></script>
 <script>
 var timeout	= 500;
 var closetimer	= 0;
@@ -52,7 +53,7 @@ document.onclick = mclose;
 		<div class="gnb_container">
 			<div class="div_util">
 				<div class="container_util">
-					<a href="#" class="btn_favorite">즐겨찾기추가</a>
+					<a href="javascript:bookmarksite('KH쇼핑몰','http://localhost:9090/semi_project');" class="btn_favorite">즐겨찾기추가</a>
 					<ul class="nav_util">
 						<li>	<%
 						String user_name = (String)session.getAttribute("user_name");

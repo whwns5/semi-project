@@ -66,20 +66,25 @@
 						
 					} else {
 	%>
-						<img src="/semi_project/img/review/<%=arr_rdto.get(i).getReview_img()%>">		
+						<img class="review_img" src="/semi_project/img/review/<%=arr_rdto.get(i).getReview_img()%>">		
 	<%
 					}
 	%>		
 					<div class="review_content">
 						<%=arr_rdto.get(i).getReview_content()%>
+						<div class="review_reply_div">
+							<input class="layer-submit-review-reply" type="button" value="댓글달기" onclick="openReviewReplyLayer(<%=arr_rdto.get(i).getReview_ref()%>,<%=arr_rdto.get(i).getReview_lev()%>,<%=arr_rdto.get(i).getReview_sunbun()%>);">
+						</div>
 					</div>
 				</td>
 				<td class="review_grade">
 	<%
-					for(int j = 0 ; j < arr_rdto.get(i).getReview_grade(); j++){
-	%>
-						★
+					if(arr_rdto.get(i).getReview_lev() == 0){
+						for(int j = 0 ; j < arr_rdto.get(i).getReview_grade(); j++){
+	%>		
+							♥
 	<% 					
+						}
 					}
 	%>
 				</td> 
@@ -91,7 +96,35 @@
 	</tbody>
 </table>
 <div class="paging bottom">
-	<a class="on" href="#"><font class="choiceprlist"><b>1</b></font></a>
-	<a href="#"><font class="prlist">2</font></a>
+	<%
+		if(reviewUserGroup != 0){ // 현재 그룹이 첫 페이지 그룹이 아닌 경우
+	%>
+		<a href="javascript:action_ajax('/semi_project/section/product/ajaxGoReviewPage.jsp','product_idx=<%=product_idx %>&reviewCp=<%=(reviewUserGroup-1)*reviewPageSize + reviewPageSize%>&reviewListSize=<%=reviewListSize%>', 'POST', 'REVIEW_SELECT_ALL');">이전</a>
+	<%
+		} else {
+	%>
+		
+	<%
+		}
+						
+		for(int i = (reviewUserGroup * reviewPageSize) + 1 ; i <= (reviewUserGroup * reviewPageSize) + reviewPageSize ; i++){
+	%>
+		<a class="num <%= i==reviewCp ? "on" : "" %>" href="javascript:action_ajax('/semi_project/section/product/ajaxGoReviewPage.jsp','product_idx=<%=product_idx %>&reviewCp=<%=i%>&reviewListSize=<%=reviewListSize%>', 'POST', 'REVIEW_SELECT_ALL');">
+			<font class="<%= i==reviewCp ? "choiceprlist" : "prlist" %>"><%= i==reviewCp? "<b>"+i+"</b>" : i %></font>
+		</a>
+	<%
+			if(i == reviewTotalPage)break;
+		}
+						
+		if(reviewUserGroup != (reviewTotalPage / reviewPageSize) - (reviewTotalPage % reviewPageSize == 0 ? 1 : 0)){ // 현재 그룹이 마지막 페이지가 해당하는 그룹에 해당되지 않는 경우
+	%>
+		<a href="javascript:action_ajax('/semi_project/section/product/ajaxGoReviewPage.jsp','product_idx=<%=product_idx %>&reviewCp=<%=((reviewUserGroup+1)*reviewPageSize) + 1%>&qreviewListSize=<%=reviewListSize%>', 'POST', 'REVIEW_SELECT_ALL');">다음</a>
+	<%
+		} else {
+	%>
+		
+	<%
+		}
+	%>
 	<input class="submit-button" type="button" value="리뷰작성" onclick="openReviewLayer();">
 </div>

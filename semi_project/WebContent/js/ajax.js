@@ -35,3 +35,18 @@ function sendRequest(url, params, callback, method, ctype) {
 	httpRequest.onreadystatechange = callback(httpRequest, ctype); // 콜백 함수 등록
 	httpRequest.send(httpMethod == 'POST' ? httpParams : null); // POST 방식일 경우 파라미터값을 인자로, GET방식일 경우 NULL로
 }
+
+function sendRequest_uplaod(url, fmid, callback, method, ctype) { // 파일 업로드 관련 아작스
+	var httpRequest = getXMLHttpRequest(); // XMLHttpRequest 객체 얻기
+	var httpMethod = method ? method : 'POST'; // 넘어온 method 가 없으면 기본값으로 GET
+	if (httpMethod != 'GET' && httpMethod != 'POST') { // 이외의 문자열도 GET
+		httpMethod = 'POST';
+	}
+	var fd = new FormData(document.getElementById(fmid));
+	var httpUrl = url;
+	
+	httpRequest.open(httpMethod, httpUrl, true); // 연결 (POST)
+	
+	httpRequest.onreadystatechange = callback(httpRequest, ctype); // 콜백 함수 등록
+	httpRequest.send(fd); // FormData를 인자로 Multipart 형식으로 보낸다.
+}

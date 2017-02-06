@@ -1,10 +1,13 @@
 package semi.review;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import semi.qna.QnaDTO;
 import semi.sql.Sql;
@@ -23,7 +26,7 @@ public class ReviewDAO {
 	private final int ERROR = -1;
 	
 	public ReviewDAO(){
-		
+
 	}
 	
 	/** 
@@ -33,6 +36,7 @@ public class ReviewDAO {
 	 * */
 	public int getReviewTotalCnt(int product_idx){
 		try{
+
 			conn = semi.db.semiDB.getConn();
 			
 			ps = conn.prepareStatement(Sql.REVIEW_PRODUCTIDX_TOTALCOUNT);
@@ -157,19 +161,25 @@ public class ReviewDAO {
 			
 			int maxRef = getMaxRef();
 			
-			ps = conn.prepareStatement(Sql.REVIEW_INSERT);
 			
+			if(rdto.getReview_img() != null){
+				String originalFileName = rdto.getReview_img();
+				String fileType = originalFileName.substring(originalFileName.indexOf('.'), originalFileName.length());
+			
+				ps = conn.prepareStatement(Sql.getREVIEW_INSERT_IMAGE(rdto.getMember_id(), rdto.getProduct_idx(), fileType));
+			} else {
+				ps = conn.prepareStatement(Sql.REVIEW_INSERT);
+			}
 
 			ps.setInt(1, rdto.getProduct_idx());
 			ps.setString(2, rdto.getMember_id());
 			ps.setString(3, rdto.getReview_subject());
 			ps.setString(4, rdto.getReview_content());
 			ps.setInt(5, rdto.getReview_grade());
-			ps.setString(6, rdto.getReview_img());
 			
-			ps.setInt(7, maxRef+1); // 최고값에 +1을 하여 다음 ref를 지정한다.
+			ps.setInt(6, maxRef+1); // 최고값에 +1을 하여 다음 ref를 지정한다.
+			ps.setInt(7, 0);
 			ps.setInt(8, 0);
-			ps.setInt(9, 0);
 			int count = ps.executeUpdate();
 			return count;
 			
@@ -226,12 +236,10 @@ public class ReviewDAO {
 			ps.setString(2, rdto.getMember_id());
 			ps.setString(3, rdto.getReview_subject());
 			ps.setString(4, rdto.getReview_content());
-			ps.setInt(5, rdto.getReview_grade());
-			ps.setString(6, rdto.getReview_img());
 			
-			ps.setInt(7, rdto.getReview_ref()); // 답변글을 쓸때는	
-			ps.setInt(8, rdto.getReview_lev() + 1); // 본문글과 같은 ref로 지정
-			ps.setInt(9, rdto.getReview_sunbun() + 1); // l , s는 1씩 증가
+			ps.setInt(5, rdto.getReview_ref()); // 답변글을 쓸때는	
+			ps.setInt(6, rdto.getReview_lev() + 1); // 본문글과 같은 ref로 지정
+			ps.setInt(7, rdto.getReview_sunbun() + 1); // l , s는 1씩 증가
 
 			int count = ps.executeUpdate();
 			
@@ -250,4 +258,42 @@ public class ReviewDAO {
 		}
 	}
 	
+	/** 
+	 * 리뷰 이미지명 도출 관련 메서드
+	 * @param product_idx, member_idx
+	 * @return review_img
+	 * */
+	public String reviewSearchImg(int product_idx, String member_idx){
+		try{
+
+			conn = semi.db.semiDB.getConn();
+			
+			ps = conn.prepareStatement(Sql.REVIEW_SELECT_IMG);
+			
+			ps.setInt(1, product_idx);
+			ps.setString(2, member_idx);
+			
+			rs = ps.executeQuery();
+			
+			String review_img = ""; 
+			while(rs.next()){
+				review_img = rs.getString("review_img");
+			}
+			
+			return review_img;
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			return "";
+		} finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)rs.close();
+				if(conn!=null)rs.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
 }

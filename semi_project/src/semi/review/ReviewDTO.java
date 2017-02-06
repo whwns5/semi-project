@@ -131,4 +131,14 @@ public class ReviewDTO {
 	public void setReview_sunbun(int review_sunbun) {
 		this.review_sunbun = review_sunbun;
 	}
+
+	@Override
+	public String toString() {
+		return "ReviewDTO [review_idx=" + review_idx + ", product_idx=" + product_idx + ", member_id=" + member_id
+				+ ", review_subject=" + review_subject + ", review_content=" + review_content + ", review_regdate="
+				+ review_regdate + ", review_grade=" + review_grade + ", review_img=" + review_img + ", review_ref="
+				+ review_ref + ", review_lev=" + review_lev + ", review_sunbun=" + review_sunbun + "]";
+	}
+	
+	
 }

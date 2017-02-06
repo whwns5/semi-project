@@ -160,6 +160,8 @@ public class Sql {
 	}
 	/** 리뷰 테이블 lef 최대값 조회 */
 	public static final String REVIEW_SELECT_MAX_REF = "SELECT MAX(review_ref) FROM review_table";
+	/** 리뷰 테이블 이미지명 조회 */
+	public static final String REVIEW_SELECT_IMG = "SELECT review_img FROM review_table WHERE product_idx = ? AND member_id = ? AND review_lev = 0 ORDER BY review_ref ASC";
 	/** 리뷰 테이블 삽입 */
 	public static final String REVIEW_INSERT = "INSERT INTO review_table VALUES(review_table_idx.NEXTVAL, "
 			+ "?, " // product_idx
@@ -168,10 +170,26 @@ public class Sql {
 			+ "?, " // review_content
 			+ "SYSDATE, " // review_regdate
 			+ "?, " // review_grade
-			+ "?, " // review_img
+			+ "NULL, " // review_img
 			+ "?, " // review_ref
 			+ "?, " // review_lev
 			+ "?)"; // review_sunbun 
+	/** 리뷰 테이블 이미지 삽입 */
+	public static final String getREVIEW_INSERT_IMAGE(String member_id, int product_idx, String fileType){
+		String sql ="INSERT INTO review_table VALUES(review_table_idx.NEXTVAL, "
+				+ "?, " // product_idx
+				+ "?, " // member_id
+				+ "?, " // review_subject
+				+ "?, " // review_content
+				+ "SYSDATE, " // review_regdate
+				+ "?, " // review_grade
+				+ "'" + member_id + "_" + product_idx + "_' || TO_CHAR(review_table_idx.CURRVAL) || '" + fileType + "', " // review_img
+				+ "?, " // review_ref
+				+ "?, " // review_lev
+				+ "?)"; // review_sunbun 
+		return sql;
+	}
+			
 	/** 리뷰 테이블 순번 업데이트 */
 	public static final String REVIEW_UPDATE_SUNBUN = "UPDATE review_table SET review_sunbun = review_sunbun + 1 WHERE review_ref = ? AND review_sunbun >= ?";
 	/** 리뷰 테이블 댓글 삽입 */
@@ -181,11 +199,12 @@ public class Sql {
 			+ "?, " // review_subject
 			+ "?, " // review_content
 			+ "SYSDATE, " // review_regdate
-			+ "?, " // review_grade
-			+ "?, " // review_img
+			+ "0, " // review_grade
+			+ "NULL, " // review_img
 			+ "?, " // review_ref
 			+ "?, " // review_lev
 			+ "?)"; // review_sunbun 
+	
 	
 	//////////////////////////////////////////////////////////////////
 	

@@ -1,3 +1,4 @@
+<%@page import="semi.path.Path"%>
 <%@page import="semi.qna.QnaDTO"%>
 <%@page import="java.io.File"%>
 <%@ page import="java.text.DecimalFormat"%>
@@ -12,22 +13,43 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/semi_project/css/button/button.css?ver=1">
-<link rel="stylesheet" type="text/css" href="/semi_project/css/layer/layer.css?ver=1">
-<link rel="stylesheet" type="text/css" href="/semi_project/css/product/productDetail.css?ver=10">
-<script type="text/javascript" src="/semi_project/js/ajax.js?ver=1"></script>
+<link rel="stylesheet" type="text/css" href="/semi_project/css/button/button.css?ver=5">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/layer/layer.css?ver=6">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/product/productDetail.css?ver=5">
+<script type="text/javascript" src="/semi_project/js/ajax.js?ver=4"></script>
+<script type="text/javascript" src="/semi_project/js/ajax_upload.js?ver=2"></script>
 <script>
 function AddComma(data_value) {
 	return Number(data_value).toLocaleString('en').split(".")[0] + "원";
 }
-function jsonParsing(responseText, ctype) {
+function result_process(responseText, ctype) {
 	//var json = JSON.parse(responseText);
 	//var qdto = json.QnaDTO;
 	//var docStr = '';
 
 	//dotStr +=  qdto[0].qna_idx;
-	if(ctype == 'QNA'){
+	if(ctype == 'QNA_SELECT_ALL'){
 		document.getElementById("ajax_qna_div").innerHTML = responseText;//보여주기
+	} else if(ctype == 'QNA_INSERT'){
+		if(responseText == 1){ 
+			window.alert('등록완료');
+			closeQnaLayer(); // 등록후 창 닫음
+			var product_idx = document.getElementById('product_idx').value;
+			settingQna(product_idx);
+		} else {
+			window.alert(responseText);
+		}
+	} else if(ctype == 'REVIEW_SELECT_ALL'){
+		document.getElementById("ajax_review_div").innerHTML = responseText;//보여주기
+	} else if(ctype == 'REVIEW_INSERT'){
+		if(responseText == 1){ 
+			window.alert('등록완료');
+			closeReviewLayer(); // 등록후 창 닫음
+			var product_idx = document.getElementById('product_idx').value;
+			settingReview(product_idx);
+		} else {
+			window.alert(responseText);
+		}
 	} else {
 		window.alert('잘못된 경로');
 	}
@@ -39,45 +61,46 @@ function ajax_result(httpRequest, ctype) {
 			if(httpRequest.status == 200){
 				if(!httpRequest.responseText.match(null)){
 					var responseText = httpRequest.responseText;
-					jsonParsing(responseText, ctype);
+					result_process(responseText, ctype);
 				}
 			}
 		}
 	}
 }
 
-function action_ajax(url, param, ctype) {
-	sendRequest(url, param, ajax_result, 'POST', ctype);
+function action_ajax(url, param, method, ctype) {
+	sendRequest(url, param, ajax_result, method, ctype);
+	return false;
+}
+function action_ajax_upload(url, fmid, method, ctype) {
+	sendRequest_uplaod(url, fmid, ajax_result, method, ctype);
 	return false;
 }
 
 function settingQna(product_idx) {
-	action_ajax('ajaxGoQnaPage.jsp','product_idx=' + product_idx + '&qnaCp=1&qnaListSize=10', 'QNA'); // 해당 페이지로 ajax통신 시작
+	action_ajax('/semi_project/section/product/ajaxGoQnaPage.jsp','product_idx=' + product_idx + '&qnaCp=1&qnaListSize=10', 'POST', 'QNA_SELECT_ALL'); // 해당 페이지로 ajax통신 시작
+}
+function settingReview(product_idx) {
+	action_ajax('/semi_project/section/product/ajaxGoReviewPage.jsp','product_idx=' + product_idx + '&qnaCp=1&qnaListSize=10', 'POST', 'REVIEW_SELECT_ALL'); // 해당 페이지로 ajax통신 시작
 }
 
 function settingPage(product_idx) {
 	settingQna(product_idx);
+	settingReview(product_idx);
 }
 </script>
 </head>
 <%
 	
 	
-	//String idx_s = request.getParameter("idx_s");
-	//int idx = Integer.parseInt(idx_s);
-	//String product_code = request.getParameter("code");
-	//String lcid = request.getParameter("lcid");
-	//String scid = request.getParameter("scid");
-	
-	//String product_code = request.getParameter("code");
-	int product_idx = 23; // 차 후 전 페이지에서 리퀘스트 값을 얻어온다.
-	String product_code = "O5FBBP39"; // 차 후 전 페이지에서 리퀘스트 값을 얻어온다.
-	String lcid = "bags"; // 차 후 전 페이지에서 리퀘스트 값을 얻어온다.
-	String scid = "backpack"; // 차 후 전 페이지에서 리퀘스트 값을 얻어온다.
+	String product_idx_s = request.getParameter("product_idx");
+	int product_idx = Integer.parseInt(product_idx_s);
+	String product_code = request.getParameter("code");
+	String lcid = request.getParameter("lcid");
+	String scid = request.getParameter("scid");
 	
 	String product_path = "/semi_project/img/product/" + lcid + "/" + scid;
-	String com_path = "C:/Users/whwns/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
-	//String com_path = "C:/Users/user1/git/semi-project/semi_project/WebContent/img/product/" + lcid + "/" + scid;
+	String com_path = Path.COM_PROJECT_PATH + "/WebContent/img/product/" + lcid + "/" + scid;
 	ArrayList<ProductDTO> arr_pdto = null;
 	arr_pdto = pdao.productCodeList(product_code);
 	ProductDTO mainpDTO = null;
@@ -227,7 +250,9 @@ function settingPage(product_idx) {
 								htmlText += 		'<span class="price" id="' + li_id + '_showPrice">' + AddComma(itemPrice) + '</span>';
 								htmlText += 	'</div>';
 								htmlText += 	'<div class="item_editer_area">';
-								htmlText += 		'<input type="text" id="' + li_id + '_num" value="1" size="2" readonly>'; // 선택 수량
+								htmlText += 		'<input type="text" id="' + li_id + '_num" value="1" name="product_num" size="2" readonly>'; // 선택 수량
+								htmlText += 		'<input type="hidden" name="product_code" value="' + itemCode + '">'; // 상품코드
+								htmlText += 		'<input type="hidden" name="product_color" value="' + itemColor + '">'; // 상품컬러
 								htmlText += 		'<input type="hidden" id="' + li_id + '_price" value="' + itemPrice + '">'; // 개당 가격
 								htmlText += 		'<input type="hidden" id="' + li_id + '_totalprice" name="eachTotalPrice" value="' + itemPrice + '">'; // 각각의 합 가격
 								htmlText += 		'<span onclick="plusNum(\'' + li_id + '\');"><img src="/semi_project/img/icon/c_plus_btn.jpg"></span>';
@@ -240,6 +265,11 @@ function settingPage(product_idx) {
 								
 								totalpriceSetting();
 							
+							}
+							function goCart() {
+								var f = document.cart_fm;
+								f.setAttribute('action', '/semi_project/sample/cartTest.jsp');
+								f.submit();
 							}
 						</script>
 						<input type="hidden" id="itemName" value="<%=mainpDTO.getProduct_name()%>"> <!-- 데이터베이스로 실데이터 입력 -->
@@ -268,9 +298,11 @@ function settingPage(product_idx) {
 								</tr>
 								<tr>
 									<td colspan="2">
+										<form name="cart_fm">
 										<ul class="opt_list" id="id_ul_selectItemList">
 											
 										</ul>
+										</form>
 									</td>
 								</tr>
 							</tbody>
@@ -287,7 +319,7 @@ function settingPage(product_idx) {
 						<div class="btn_div">
 							<ul class="btn_ul">
 								<li><input class="submit-button" type="button" value="바로구매"></li>
-								<li><input class="submit-button" type="button" value="장바구니"></li>
+								<li><input class="submit-button" type="button" value="장바구니" onclick="goCart();"></li>
 							</ul>
 						</div>
 					</div>
@@ -328,67 +360,62 @@ function settingPage(product_idx) {
 						<li><a class="on" href="#tab02">상품리뷰</a></li>
 						<li><a class="last" href="#tab03">Q&A</a></li>
 					</ul>
-					<div class="tab_review_table">
-						<table>
-							<colgroup><col style="width:100px"><col style="width:auto"><col style="width:100px"></colgroup>
-							<tbody>
-								<tr>
-									<td class="review_date">2016.11.02</td>
-									<td class="review_subject">
-										<a href="javascript:showContent(0,'review_content');">이뻐요</a>
-										<span>(dkanrjte)</span>
-										<img src="/semi_project/img/product/bags/backpack/O5FBBP59_WARM GREY/O5FBBP59_WARM GREY_4.jpg">
-										<div class="review_content">
-											레몬색 사고싶었는데, 사계절 무난하게 쓰려고 실버구입했어요!<br>
-											보내주신 카드지갑고 가방이랑 같은 색이라 세트같고!! 더더 이쁘네요♡<br>
-											흐물흐물한 가죽이 아니라 모양이 흐트러지지도 않고 체인도 너무 마음에 들어요<br>
-											안쪽에 바깥쪽에 모두 수납공간이 있어서 크기는 작지만 생각보다 많이 들어가요ㅎㅎ<br>
-											친구들도 가방 이쁘다고 난리!!!<br>
-											색깔별로 구입하고 싶네요ㅋㅋ								
-										</div>
-									</td>
-									<td class="rewview_grade">★★★★★</td>
-								</tr>
-								<tr>
-									<td class="review_date">2016.11.02</td>
-									<td class="review_subject">
-										<a href="javascript:showContent(1,'review_content');">이뻐요</a>
-										<span>(dkanrjte)</span>
-										<img src="/semi_project/img/product/bags/backpack/O5FBBP59_WARM GREY/O5FBBP59_WARM GREY_4.jpg">
-										<div class="review_content">
-											레몬색 사고싶었는데, 사계절 무난하게 쓰려고 실버구입했어요!<br>
-											보내주신 카드지갑고 가방이랑 같은 색이라 세트같고!! 더더 이쁘네요♡<br>
-											흐물흐물한 가죽이 아니라 모양이 흐트러지지도 않고 체인도 너무 마음에 들어요<br>
-											안쪽에 바깥쪽에 모두 수납공간이 있어서 크기는 작지만 생각보다 많이 들어가요ㅎㅎ<br>
-											친구들도 가방 이쁘다고 난리!!!<br>
-											색깔별로 구입하고 싶네요ㅋㅋ								
-										</div>
-									</td>
-									<td class="rewview_grade">★★★★★</td>
-								</tr>
-								<tr>
-									<td class="review_date">2016.11.02</td>
-									<td class="review_subject">
-										<a href="javascript:showContent(2,'review_content');">이뻐요</a>
-										<span>(dkanrjte)</span>
-										<img src="/semi_project/img/product/bags/backpack/O5FBBP59_WARM GREY/O5FBBP59_WARM GREY_4.jpg">
-										<div class="review_content">
-											레몬색 사고싶었는데, 사계절 무난하게 쓰려고 실버구입했어요!<br>
-											보내주신 카드지갑고 가방이랑 같은 색이라 세트같고!! 더더 이쁘네요♡<br>
-											흐물흐물한 가죽이 아니라 모양이 흐트러지지도 않고 체인도 너무 마음에 들어요<br>
-											안쪽에 바깥쪽에 모두 수납공간이 있어서 크기는 작지만 생각보다 많이 들어가요ㅎㅎ<br>
-											친구들도 가방 이쁘다고 난리!!!<br>
-											색깔별로 구입하고 싶네요ㅋㅋ								
-										</div>
-									</td>
-									<td class="rewview_grade">★★★★★</td>
-								</tr>
-							</tbody>
-						</table>
-						<div class="paging bottom">
-							<a class="on" href="#"><font class="choiceprlist"><b>1</b></font></a>
-							<a href="#"><font class="prlist">2</font></a>
-							<input class="submit-button" type="button" value="리뷰작성">
+					<script>
+						function openReviewLayer() {
+							var review_layer = document.getElementById('id_review_layer');
+							document.getElementById('review_subject').value = '';
+							document.getElementById('review_content').value = '';
+							document.getElementById('review_img_file').value = '';
+							document.getElementById('fileSelected_info').innerHTML = '<span>파일명:</span>한글,영문,숫자 l <span>파일용량:</span> 10MB이하 l <span>첨부가능 파일형식:</span>GIF,JPG(JPEG)';
+							
+							review_layer.style.display = 'block';
+						}
+						function closeReviewLayer() {
+							var review_layer = document.getElementById('id_review_layer');
+							review_layer.style.display = '';
+						}
+						function submitReviewLayer() {
+							action_ajax_upload('/semi_project/section/review/reviewWrite_ok.jsp', 'id_reviewWrite_ok', 'POST', 'REVIEW_INSERT');	
+						}
+					</script>
+					<div class="tab_review_table" id="ajax_review_div">
+						<!-- ajax로 리뷰를 가져오는 영역 -->
+					</div>
+					<div class="review_layer" id="id_review_layer">
+						<div class="review_layer_bg" onclick="closeReviewLayer();"></div>
+						<div class="review_layer_pop">
+							<div class="review_layer_content">	
+								<form class="layer-form-container" name="reviewWrite_ok" id="id_reviewWrite_ok" action="/semi_project/section/review/reviewWrite_ok.jsp">
+									<div class="layer-form-title"><h2>상품 리뷰</h2></div>
+									<br />
+									<div class="layer-form-title">아이디<input class="layer-form-field layer-form-field-id" type="text" name="member_id" id="member_id" value="whwns5" readonly="readonly"/>
+																	평점<select class="layer-form-field layer-form-field-grade" id="review_grade" name="review_grade">
+																		<option value="5">♥♥♥♥♥</option>
+																		<option value="4">♥♥♥♥</option>
+																		<option value="3">♥♥♥</option>
+																		<option value="2">♥♥</option>
+																		<option value="1">♥</option>
+																	</select>	
+																  <input type="hidden" name="product_idx" id="product_idx" value="<%=product_idx%>">
+									</div>
+									<br />
+									<div class="layer-form-title">제목<input class="layer-form-field layer-form-field-subject" type="text" name="review_subject" id="review_subject" required="required"/>	
+									</div>
+									<br />
+									<div class="layer-form-title">리뷰 내용<textarea class="layer-form-field-content" rows="20" cols="68" name="review_content" id="review_content" required="required"></textarea>
+									</div>
+									<div class="layer-form-title">이미지<input class="image_input" type="file" name="review_img_file" id="review_img_file" size="40" onchange="fileSelected();"> 
+																		<p class="image_info" id="fileSelected_info">
+																			
+																		</p>	
+									</div>
+									<div class="layer-submit-container">
+										<input class="layer-submit-button" type="button" value="작성하기" 
+											onclick="submitReviewLayer();">
+										<input class="layer-submit-button" type="button" value="나가기" onclick="closeReviewLayer();">
+									</div>					
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -402,11 +429,25 @@ function settingPage(product_idx) {
 					<script>
 						function openQnaLayer() {
 							var qna_layer = document.getElementById('id_qna_layer');
+							document.getElementById('qna_subject').value = '';
+							document.getElementById('qna_content').value = '';
+							
 							qna_layer.style.display = 'block';
 						}
 						function closeQnaLayer() {
 							var qna_layer = document.getElementById('id_qna_layer');
 							qna_layer.style.display = '';
+						}
+						function submitQnaLayer() {
+							var product_idx = document.getElementById('product_idx').value;
+							var member_id = document.getElementById('member_id').value;
+							var qna_subject = document.getElementById('qna_subject').value;
+							var qna_content = document.getElementById('qna_content').value;
+							
+							var param = 'product_idx=' + product_idx + '&member_id=' + member_id + '&qna_subject=' + qna_subject + '&qna_content=' + qna_content;
+							action_ajax('/semi_project/section/qna/qnaWrite_ok.jsp',param , 'GET', 'QNA_INSERT'); // 해당 페이지로 ajax통신 시작
+							//var f = document.getElementById('id_qnaWrite_ok');
+							//f.submit();
 						}
 					</script>
 					<div class="tab_qna_table" id="ajax_qna_div"> 
@@ -416,22 +457,24 @@ function settingPage(product_idx) {
 						<div class="qna_layer_bg" onclick="closeQnaLayer();"></div>
 						<div class="qna_layer_pop">
 							<div class="qna_layer_content">	
-								<form class="layer-form-container" name="qnaWrite_ok" action="/semi_project/section/qna/qnaWrite_ok.jsp">
+								<form class="layer-form-container" name="qnaWrite_ok" id="id_qnaWrite_ok" action="/semi_project/section/qna/qnaWrite_ok.jsp">
 									<div class="layer-form-title"><h2>상품 Q&A</h2></div>
 									<br />
-									<!-- 차후 세션값으로 변경 -->
-									<div class="layer-form-title">아이디<input class="layer-form-field layer-form-field-id" type="text" name="member_id" value="whwns5" readonly="readonly"/>			
+									<div class="layer-form-title">아이디<input class="layer-form-field layer-form-field-id" type="text" name="member_id" id="member_id" value="whwns5" readonly="readonly"/>			
+																  <input type="hidden" name="product_idx" id="product_idx" value="<%=product_idx%>">
 									</div>
 									<br />
-									<div class="layer-form-title">제목<input class="layer-form-field layer-form-field-subject" type="text" name="qna_subject" required="required"/>	
+									<div class="layer-form-title">제목<input class="layer-form-field layer-form-field-subject" type="text" name="qna_subject" id="qna_subject" required="required"/>	
 									</div>
 									<br />
-									<div class="layer-form-title">문의 내용<textarea class="layer-form-field-content" rows="20" cols="68" name="qna_content" required="required"></textarea>
+									<div class="layer-form-title">문의 내용<textarea class="layer-form-field-content" rows="20" cols="68" name="qna_content" id="qna_content" required="required"></textarea>
 									</div>
 									<div class="layer-submit-container">
-										<input class="layer-submit-button" type="submit" value="작성하기">
+										<input class="layer-submit-button" type="button" value="작성하기" 
+											onclick="submitQnaLayer();">
 										<input class="layer-submit-button" type="button" value="나가기" onclick="closeQnaLayer();">
 									</div>
+									
 								</form>
 							</div>
 						</div>
