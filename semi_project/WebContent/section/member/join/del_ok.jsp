@@ -21,7 +21,7 @@ if(result==0){
 }else{
 	%>
 	<script>
-		window.alert('회원탈퇴에 성공하셨습니다. 감사합니다.');
+		window.alert('회원정보가 삭제되었습니다. 이용해주셔서 감사합니다.');
 	</script>
 	<%
 }

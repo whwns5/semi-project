@@ -105,10 +105,6 @@ function openDel(){
 				<td><input type="password" name="member_pwdCheck" required="required">입력하신 비밀번호를 한번 더 입력해주세요.</td>
 			</tr>
 			<tr>
-				<td>생년월일</td>
-				<td><input type="text" name="member_birthday"></td>
-			</tr>
-			<tr>
 				<td>성별</td>
 				<td><input type="text" name="member_sex" value="<%=member_sex %>" readonly></td>
 			</tr>

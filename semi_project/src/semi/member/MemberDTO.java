@@ -146,4 +146,10 @@ public class MemberDTO {
 		this.member_coupon = member_coupon;
 	}
 }
+
+
+
+
+
+
 	

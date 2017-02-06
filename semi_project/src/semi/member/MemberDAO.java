@@ -25,8 +25,8 @@ public class MemberDAO {
 		try{
 			System.out.println("2");
 			conn=semi.db.semiDB.getConn();
-			String sql="insert into member_table(member_id,member_name,member_pwd,member_sex,member_email,member_tel,member_addr) "
-					+ "values(?,?,?,?,?,?,?)";
+			String sql="insert into member_table(member_idx,member_id,member_name,member_pwd,member_sex,member_email,member_tel,member_addr) "
+					+"values(member_table_idx.nextval,?,?,?,?,?,?,?)";
 			ps = conn.prepareStatement(sql);
 			
 			ps.setString(1, dto.getMember_id());
@@ -38,7 +38,7 @@ public class MemberDAO {
 			ps.setString(7, dto.getMember_addr());
 			
 			int count = ps.executeUpdate();
-			return count;
+			return 1;
 			
 		}catch(Exception e){
 			e.printStackTrace();
@@ -205,13 +205,13 @@ public class MemberDAO {
 		try{
 			conn=semi.db.semiDB.getConn();
 			String sql="update member_table set "
-					+ "member_name=? "
+					+ "member_name=?, "
 					+ "member_pwd=?, "
 					+ "member_sex=?, "
 					+ "member_addr=?, "
 					+ "member_tel=?, "
-					+ "member_email=?, "
-					+ "where member_id=? ";
+					+ "member_email=? "
+					+ "where member_id=?";
 			
 			ps=conn.prepareStatement(sql);
 			
