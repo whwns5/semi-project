@@ -81,7 +81,7 @@
 					for (int i = 0; i < arr.size(); i++) {
 			%>
 			<tr>
-				
+				member_idx
 				<td><%=arr.get(i).getMember_idx()%>	
 					<input type="hidden" value="<%=arr.get(i).getMember_idx()%>" name="member_idx">
 					<input type="hidden" value="<%=arr.get(i).getMember_id()%>" name="member_id">
