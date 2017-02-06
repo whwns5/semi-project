@@ -11,6 +11,7 @@
 <%
 	int totalSize = 1024 * 1024 * 10; // 10MB
 	String savepath = Path.COM_PROJECT_PATH + "/WebContent/img/temp";
+	File f = new File(savepath);
 	
 	ReviewDTO rdto = null;
 	int result = 0;
@@ -28,10 +29,10 @@
 		rdto.setReview_grade(Integer.parseInt(mr.getParameter("review_grade")));
 		
 		rdto.setReview_img(mr.getFilesystemName("review_img_file"));
-
+	
 		result = rdao.reviewWrite(rdto);
 	
-		if(result > 0){ // DB 입력 성공시..
+		if(result > 0 && rdto.getReview_img() != null){ // DB 입력 성공시..
 			FileCopy fc = new FileCopy();
 			String path = Path.COM_PROJECT_PATH + "/WebContent/img/temp";
 			String beforName = mr.getFilesystemName("review_img_file");
