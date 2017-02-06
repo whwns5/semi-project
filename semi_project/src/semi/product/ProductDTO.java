@@ -8,6 +8,8 @@ public class ProductDTO {
 	/** 카테고리 아이디 (FK) */
 	private int smallcategory_id;
 	/** 카테고리 아이디 */
+	private String largecategory_name;
+	/** 카테고리 아이디 */
 	private String smallcategory_name;
 	/** 상품 명 */
 	private String product_name;
