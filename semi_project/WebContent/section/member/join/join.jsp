@@ -40,7 +40,7 @@ h1 {
 	padding: 20px 0;
 }
 h3{
-
+	
 }
 h5{
 	text-align: right;
