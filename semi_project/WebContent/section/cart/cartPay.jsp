@@ -38,7 +38,7 @@ if(member_id==null||member_id.equals("")){
 	%>
 	<script>
 	window.alert('login is needed');
-	location.href="/myweb/index.jsp";
+	location.href="cartShow.jsp";
 	</script>
 	<%
 	return;

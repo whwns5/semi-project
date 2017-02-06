@@ -354,4 +354,38 @@ public class CartDAO {
 			}
 		}
 	}
-}
+	
+	public int cartInsert(String member_id, int product_idx, int product_num, int product_price){
+		try {
+			conn=semi.db.semiDB.getConn();
+			String sql="insert into cart_table values(cart_table_cart_idx.nextval,?,?,?,?,?)";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, member_id);
+			ps.setInt(2, product_idx);
+			ps.setInt(3, product_num);
+			ps.setInt(4, 0);
+			ps.setInt(5, product_price);
+			int count= ps.executeUpdate();
+			return count;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return error;
+		}finally{
+			try{
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			}catch(Exception e2){
+				
+			}
+		}
+	}
+
+	}
+

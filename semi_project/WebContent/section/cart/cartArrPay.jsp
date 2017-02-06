@@ -8,12 +8,25 @@
     <jsp:useBean id="pdto" class="semi.product.ProductDTO" scope="session"/>
     <jsp:setProperty property="*" name="pdto"/>
     <jsp:useBean id="pdao" class="semi.product.ProductDAO" scope="session"/>
+    <jsp:useBean id="mdto" class="semi.member.MemberDTO" scope="session"/>
+    <jsp:setProperty property="*" name="mdto"/>
     <jsp:useBean id="mdao" class="semi.member.MemberDAO" scope="session"/>
     <jsp:useBean id="cdao" class="semi.cart.CartDAO" scope="session"/>
 <%
+request.setCharacterEncoding("utf-8");
 //db 업데이트
+System.out.println("------------------------------------cartArrPay.jsp--------------------------------");
 String member_id=(String)session.getAttribute("user_id");
+System.out.println("member_id="+member_id);
 ArrayList<CartDTO> arr=cdao.cartList(member_id);
+if(arr==null || arr.size()==0){
+	%>
+	<script>
+	window.alert('잘못된 접근경로 입니다.');
+	location.href="cartShow.jsp";
+	</script>
+	<%
+}
 
 String product_idxs[]=new String[arr.size()];
 int product_idx[]=new int[arr.size()];
@@ -47,8 +60,7 @@ for(int i=0; i<arr.size(); i++){
 }
 %>
 <%
-request.setCharacterEncoding("utf-8");
-MemberDTO mdto=mdao.memberGet(member_id);
+MemberDTO md=mdao.memberGet(member_id);
 DecimalFormat df=new DecimalFormat("#,##0");
 CartDTO cd=cdao.show(member_id);
 String product_num[]=request.getParameterValues("product_num");
@@ -188,11 +200,11 @@ if(arr==null || arr.size()==0){
 <caption>02. 배송 및 결재정보</caption>
 <tr>
 <th>주문자 명</th>
-<td><input type="text" name="member_name" value="<%=mdto.getMember_name()%>" size="50" required="required"></td>
+<td><input type="text" name="member_name" value="<%=md.getMember_name()%>" size="50" required="required"></td>
 </tr>
 <tr>
 <th>휴대폰 번호</th>
-<td><input type="text" name="member_tel" value="<%=mdto.getMember_tel()%>" size="50"></td>
+<td><input type="text" name="member_tel" value="<%=md.getMember_tel()%>" size="50"></td>
 </tr>
 <tr>
 <th>전화 번호</th>
@@ -204,7 +216,7 @@ if(arr==null || arr.size()==0){
 </tr>
 <tr>
 <th>배송주소</th>
-<td><input type="text" name="payment_addr" value="<%=mdto.getMember_addr()%>" required="required" size="50"></td>
+<td><input type="text" name="payment_addr" value="<%=md.getMember_addr()%>" required="required" size="50"></td>
 </tr>
 </table>
 </article>

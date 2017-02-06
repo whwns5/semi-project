@@ -517,7 +517,7 @@ public class ProductDAO {
 			}
 		}
 	}
-	/**1개의 상품 정보 불러오기*/
+	/**1개의 상품 정보 불러오기 by 조승동*/
 	public ProductDTO productOne(int product_idx) {
 		try {
 			conn = semi.db.semiDB.getConn();
@@ -566,5 +566,57 @@ public class ProductDAO {
 			}
 		}
 	}
-	
+	/**product_idx 불러오기 by 조승동*/
+	public ProductDTO getIdx(String product_codes, String product_colors){
+		try {
+			conn = semi.db.semiDB.getConn();
+			String sql = "select * from product_table where product_code=? and product_color=?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, product_codes);
+			ps.setString(2, product_colors);
+			rs = ps.executeQuery();
+			ProductDTO dto = null;
+			if (rs.next()) {
+				int product_idx=rs.getInt("product_idx");
+				
+				int smallcategory_id = rs.getInt("smallcategory_id");
+				/** 상품 명 */
+				String product_name = rs.getString("product_name");
+				/** 상품 코드 */
+				String product_code = rs.getString("product_code");
+				/** 상품 색상 */
+				String product_color = rs.getString("product_color");
+				/** 상품 사이즈 */
+				String product_size = rs.getString("product_size");
+				/** 상품 재고 수량 */
+				int product_num = rs.getInt("product_num");
+				/** 상품 가격 */
+				int product_price = rs.getInt("product_price");
+				/** 상품 설명 내용 */
+				String product_content = rs.getString("product_content");
+				/** 상품 이미지 명 */
+				String product_img = rs.getString("product_img");
+				/** 상품 이미지 갯수 */
+				int product_imgcount = rs.getInt("product_imgcount");
+				/** 상품 등록일 */
+				Date product_regdate = rs.getDate("product_regdate");
+				
+				dto=new ProductDTO(product_idx, smallcategory_id, product_name, product_code, product_color, product_size, product_num, product_price, product_content, product_img, product_imgcount, product_regdate);
+			}
+			
+			return dto;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			try {
+				if (ps != null)
+					ps.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+			}
+		}
+	}
 }
+

@@ -9,5 +9,5 @@ String msg=result>0?"success":"fail";
 %>
 <script>
 window.alert('<%=msg%>');
-location.href="/myweb/cart/cartShow.jsp";
+location.href="cartShow.jsp";
 </script>
