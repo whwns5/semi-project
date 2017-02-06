@@ -17,6 +17,7 @@
     padding: 0px;
     width: 615%;
     position: relative;
+    transition: all 0.7s;
     
 }
 .container_body div.eventGrid ul li{

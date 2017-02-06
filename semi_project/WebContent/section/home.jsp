@@ -45,9 +45,39 @@ function openPopup(){
 <section>
 <div class="body_contents">
 	<div class="linemap"></div>
+	<script>
+		var cursor = 0;
+		
+		function moveBannerCursor(id_ul, direction) {
+			var id_ul = document.getElementById(id_ul);
+			var elcount = id_ul.childElementCount;
+			
+			if(direction == 'left'){
+				if( cursor < 0 ){
+					cursor = cursor + 375;
+				} else {
+					return;
+				}
+				
+			} else if(direction == 'right') {
+				if( cursor > -(375*(elcount-3))){
+					cursor = cursor - 375;
+				} else {
+					return;
+				}
+			}
+
+			id_ul.style.transform = 'translate(' + cursor + 'px, 0px)';
+		}
+		
+		function changeBigImage(id_img) {
+			var currentImg = id_img.getAttribute('src');
+			document.getElementById('id_big_image').setAttribute('src', currentImg);	
+		}
+	</script>
 	<div class="container_body">
 		<div class="eventGrid">
-			<ul>
+			<ul id="banner_ul">
 				<li><a><img src="/semi_project/img/home/banner/banner_1.jpg"></a></li>
 				<li><a><img src="/semi_project/img/home/banner/banner_2.jpg"></a></li>
 				<li><a><img src="/semi_project/img/home/banner/banner_3.jpg"></a></li>
@@ -58,19 +88,20 @@ function openPopup(){
 				<li><a><img src="/semi_project/img/home/banner/banner_8.jpg"></a></li>
 				<li><a><img src="/semi_project/img/home/banner/banner_9.jpg"></a></li>
 				<li><a><img src="/semi_project/img/home/banner/banner_10.jpg"></a></li>
-				<li><a><img src="/semi_project/img/home/banner/banner_11jpg"></a></li>
+				<li><a><img src="/semi_project/img/home/banner/banner_11.jpg"></a></li>
 			</ul>
 		</div>
 		<div class="evnetGird_controller">
 			<div class="evnetGird_controller_dir">
-				<a class="bt_prev" href="#"></a>
-				<a class="bt_next" href="#"></a>
+				<a class="bt_prev" href="javascript:moveBannerCursor('banner_ul', 'left');"></a>
+				<a class="bt_next" href="javascript:moveBannerCursor('banner_ul', 'right');"></a>
 			</div>
 		</div>
 		<!-- <ul class="main_middle_banner">
 			<li><img src="/semi_project/img/header/nav_depth_menu_totebag.jpg"></li>
 		</ul> -->
 		<script>
+		
 		function overtile_content(id_num) {
 			var bg = document.getElementById('tile_content_bg_'+id_num);
 			bg.style.opacity = '0.5';
