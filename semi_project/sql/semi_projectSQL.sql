@@ -42,6 +42,7 @@ CREATE TABLE product_table(
 	product_price NUMBER,
 	product_content VARCHAR2(3000),
 	product_img VARCHAR2(1000),
+	product_imgcount NUMBER,
 	product_regdate DATE
   );
 /* 상품 아이디 시퀀스 */

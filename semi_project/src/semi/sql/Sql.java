@@ -77,6 +77,7 @@ public class Sql {
 			+ "?, " // product_price
 			+ "?, " // product_content
 			+ "?, " // product_img
+			+ "?, " // product_imgcount
 			+ "SYSDATE)"; // product_regdate
 	
 	/** 상품 테이블 수정 */
@@ -89,6 +90,7 @@ public class Sql {
 			+ "product_price = ? "
 			+ "product_content = ? "
 			+ "product_img = ? "
+			+ "product_imgcount = ? "
 			+ "WHERE product_idx = ?";
 
 	/** 상품 테이블 삭제 */

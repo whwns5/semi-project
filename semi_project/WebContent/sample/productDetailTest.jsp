@@ -181,9 +181,8 @@ function settingPage(product_idx) {
 								<div class="small_image">
 									<div>
 										<ul id="id_small_ul">
-											<%
-												File f = new File(com_path + "/" + mainpDTO.getProduct_code() + "_" + mainpDTO.getProduct_color());
-												for(int i = 2 ; i <= f.listFiles().length ; i++){
+											<%									
+												for(int i = 2 ; i <= mainpDTO.getProduct_imgcount() ; i++){
 											%>
 													<li><img onclick="changeBigImage(this);" src="<%=product_path%>/<%=mainpDTO.getProduct_code()%>_<%=mainpDTO.getProduct_color()%>/<%=mainpDTO.getProduct_code()%>_<%=mainpDTO.getProduct_color()%>_<%=i%>.jpg"></li>
 											<%		

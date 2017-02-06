@@ -92,11 +92,12 @@ public class ProductDAO {
 				int product_price = rs.getInt("product_price");
 				String product_content = rs.getString("product_content");
 				String product_img = rs.getString("product_img");
+				int product_imgcount = rs.getInt("product_imgcount");
 				Date product_regdate = rs.getDate("product_regdate");
 				
 				ProductDTO pdto = new ProductDTO(product_idx, smallcategory_id, product_name, 
 						product_code, product_color, product_size, product_num, product_price, 
-						product_content, product_img, product_regdate);
+						product_content, product_img, product_imgcount, product_regdate);
 			
 				arr_pdto.add(pdto);
 			}
@@ -190,9 +191,12 @@ public class ProductDAO {
 				int product_price = rs.getInt("product_price");
 				String product_content = rs.getString("product_content");
 				String product_img = rs.getString("product_img");
+				int product_imgcount = rs.getInt("product_imgcount");
 				Date product_regdate = rs.getDate("product_regdate");
 
-				ProductDTO pdto = new ProductDTO(product_idx, smallcategory_id, smallcategory_name, product_name, product_code, product_color, product_size, product_num, product_price, product_content, product_img, product_regdate);
+				ProductDTO pdto = new ProductDTO(product_idx, smallcategory_id, smallcategory_name, 
+						product_name, product_code, product_color, product_size, product_num, 
+						product_price, product_content, product_img, product_imgcount, product_regdate);
 				
 				arr_pdto.add(pdto);
 
@@ -242,11 +246,12 @@ public class ProductDAO {
 				int product_price = rs.getInt("product_price");
 				String product_content = rs.getString("product_content");
 				String product_img = rs.getString("product_img");
+				int product_imgcount = rs.getInt("product_imgcount");
 				Date product_regdate = rs.getDate("product_regdate");
 				
 				ProductDTO pdto = new ProductDTO(product_idx, smallcategory_id, product_name, 
 						product_code_temp, product_color, product_size, product_num, product_price, 
-						product_content, product_img, product_regdate);
+						product_content, product_img, product_imgcount, product_regdate);
 			
 				arr_pdto.add(pdto);
 			}
@@ -338,6 +343,7 @@ public class ProductDAO {
 			ps.setInt(7, pdto.getProduct_price());
 			ps.setString(8, pdto.getProduct_content());
 			ps.setString(9, pdto.getProduct_img());
+			ps.setInt(10, pdto.getProduct_imgcount());
 			
 			int count = ps.executeUpdate();
 			
@@ -374,7 +380,8 @@ public class ProductDAO {
 			ps.setInt(6, pdto.getProduct_price());
 			ps.setString(7, pdto.getProduct_content());
 			ps.setString(8, pdto.getProduct_img());
-			ps.setInt(9, pdto.getProduct_idx());
+			ps.setInt(9, pdto.getProduct_imgcount());
+			ps.setInt(10, pdto.getProduct_idx());
 			
 			
 			int count = ps.executeUpdate();
@@ -447,9 +454,12 @@ public class ProductDAO {
 				String product_content = rs.getString("product_content");
 				/** 상품 이미지 명 */
 				String product_img = rs.getString("product_img");
+				/** 상품 이미지 갯수 */
+				int product_imgcount = rs.getInt("product_imgcount");
 				/** 상품 등록일 */
 				Date product_regdate = rs.getDate("product_regdate");
-				dto=new ProductDTO(product_idx, smallcategory_id, product_name, product_code, product_color, product_size, product_num, product_price, product_content, product_img, product_regdate);
+				
+				dto=new ProductDTO(product_idx, smallcategory_id, product_name, product_code, product_color, product_size, product_num, product_price, product_content, product_img, product_imgcount, product_regdate);
 			}
 			
 			return dto;

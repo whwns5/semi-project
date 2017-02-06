@@ -25,6 +25,8 @@ public class ProductDTO {
 	private String product_content;
 	/** 상품 이미지 명 */
 	private String product_img;
+	/** 상품 이미지 갯수 */
+	private int product_imgcount;
 	/** 상품 등록일 */
 	private Date product_regdate;
 
@@ -34,7 +36,7 @@ public class ProductDTO {
 
 	public ProductDTO(int product_idx, int smallcategory_id, String product_name, String product_code,
 			String product_color, String product_size, int product_num, int product_price, String product_content,
-			String product_img, Date product_regdate) {
+			String product_img, int product_imgcount, Date product_regdate) {
 		super();
 		this.product_idx = product_idx;
 		this.smallcategory_id = smallcategory_id;
@@ -46,12 +48,13 @@ public class ProductDTO {
 		this.product_price = product_price;
 		this.product_content = product_content;
 		this.product_img = product_img;
+		this.product_imgcount = product_imgcount;
 		this.product_regdate = product_regdate;
 	}
 
 	public ProductDTO(int product_idx, int smallcategory_id, String smallcategory_name, String product_name,
 			String product_code, String product_color, String product_size, int product_num, int product_price,
-			String product_content, String product_img, Date product_regdate) {
+			String product_content, String product_img, int product_imgcount, Date product_regdate) {
 		super();
 		this.product_idx = product_idx;
 		this.smallcategory_id = smallcategory_id;
@@ -64,6 +67,7 @@ public class ProductDTO {
 		this.product_price = product_price;
 		this.product_content = product_content;
 		this.product_img = product_img;
+		this.product_imgcount = product_imgcount;
 		this.product_regdate = product_regdate;
 	}
 	
@@ -163,14 +167,24 @@ public class ProductDTO {
 		this.product_regdate = product_regdate;
 	}
 
+	
+	public int getProduct_imgcount() {
+		return product_imgcount;
+	}
+
+	public void setProduct_imgcount(int product_imgcount) {
+		this.product_imgcount = product_imgcount;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductDTO [product_idx=" + product_idx + ", smallcategory_id=" + smallcategory_id
 				+ ", smallcategory_name=" + smallcategory_name + ", product_name=" + product_name + ", product_code="
 				+ product_code + ", product_color=" + product_color + ", product_size=" + product_size
 				+ ", product_num=" + product_num + ", product_price=" + product_price + ", product_content="
-				+ product_content + ", product_img=" + product_img + ", product_regdate=" + product_regdate + "]";
+				+ product_content + ", product_img=" + product_img + ", product_imgcount=" + product_imgcount
+				+ ", product_regdate=" + product_regdate + "]";
 	}
 
-	
+
 }
