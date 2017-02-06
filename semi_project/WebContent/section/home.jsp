@@ -122,7 +122,7 @@ function openPopup(){
 					<div class="tile_bg">
 						<img src="/semi_project/img/home/home_backpack.jpg">
 					</div>
-					<div class="tile_content" onmouseover="overtile_content(1);" onmouseout="outtile_content(1);" onclick="window.alert('1');">
+					<div class="tile_content" onmouseover="overtile_content(1);" onmouseout="outtile_content(1);" onclick="location.href='/semi_project/section/product/productByItemList.jsp?lcid=bags&scid=backpack';">
 						<div class="tile_content_bg" id="tile_content_bg_1"></div>
 						<div class="tile_content_title">
 							<div class="tile_content_title_row">
@@ -145,7 +145,7 @@ function openPopup(){
 					<div class="tile_bg">
 						<img src="/semi_project/img/home/home_crossbag.jpg">
 					</div>
-					<div class="tile_content" onmouseover="overtile_content(2);" onmouseout="outtile_content(2);" onclick="window.alert('1');">
+					<div class="tile_content" onmouseover="overtile_content(2);" onmouseout="outtile_content(2);" onclick="location.href='/semi_project/section/product/productByItemList.jsp?lcid=bags&scid=crossbag';">
 						<div class="tile_content_bg" id="tile_content_bg_2"></div>
 						<div class="tile_content_title">
 							<div class="tile_content_title_row">
@@ -161,7 +161,7 @@ function openPopup(){
 					<div class="tile_bg">
 						<img src="/semi_project/img/home/home_shoulderbag.jpg">
 					</div>
-					<div class="tile_content" onmouseover="overtile_content(3);" onmouseout="outtile_content(3);" onclick="window.alert('1');">
+					<div class="tile_content" onmouseover="overtile_content(3);" onmouseout="outtile_content(3);" onclick="location.href='/semi_project/section/product/productByItemList.jsp?lcid=bags&scid=shoulderbag';">
 						<div class="tile_content_bg" id="tile_content_bg_3"></div>
 						<div class="tile_content_title">
 							<div class="tile_content_title_row">
@@ -177,7 +177,7 @@ function openPopup(){
 					<div class="tile_bg">
 						<img src="/semi_project/img/home/home_longwallet.jpg">
 					</div>
-					<div class="tile_content" onmouseover="overtile_content(4);" onmouseout="outtile_content(4);" onclick="window.alert('1');">
+					<div class="tile_content" onmouseover="overtile_content(4);" onmouseout="outtile_content(4);" onclick="location.href='/semi_project/section/product/productByItemList.jsp?lcid=wallets&scid=longwallet';">
 						<div class="tile_content_bg" id="tile_content_bg_4"></div>
 						<div class="tile_content_title">
 							<div class="tile_content_title_row">
@@ -198,7 +198,7 @@ function openPopup(){
 					<div class="tile_bg">
 						<img src="/semi_project/img/home/home_keyring.jpg">
 					</div>
-					<div class="tile_content" onmouseover="overtile_content(6);" onmouseout="outtile_content(6);" onclick="window.alert('1');">
+					<div class="tile_content" onmouseover="overtile_content(6);" onmouseout="outtile_content(6);" onclick="location.href='/semi_project/section/product/productByItemList.jsp?lcid=accessory&scid=keyring';">
 						<div class="tile_content_bg" id="tile_content_bg_6"></div>
 						<div class="tile_content_title">
 							<div class="tile_content_title_row">

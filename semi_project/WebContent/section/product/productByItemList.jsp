@@ -1,3 +1,4 @@
+<%@page import="java.awt.Window"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="semi.product.ProductDTO"%>
 <%@page import="java.util.ArrayList"%>
@@ -18,15 +19,20 @@
 	String sortName = ppdto.getSortName();
 	int listSize = ppdto.getListSize(); // 보여줄 리스트 수
 	int pageSize = 5; // 보여줄 페이지 수
-
+	String searchStr = request.getParameter("searchStr");
 	String lcid_s = request.getParameter("lcid");
 	String scid_s = request.getParameter("scid");
-	if( scid_s == null ){ // 대분류로만 필터링 일경우
-		totalCnt = pdao.getTotalCnt(lcid_s, "lcid");
+	if(searchStr != null){
+		totalCnt = pdao.getSearchTotalCnt(searchStr);
+		
 	} else {
-		totalCnt = pdao.getTotalCnt(scid_s, "scid");
+		if( scid_s == null ){ // 대분류로만 필터링 일경우
+			totalCnt = pdao.getTotalCnt(lcid_s, "lcid");
+		} else {
+			totalCnt = pdao.getTotalCnt(scid_s, "scid");
+		}
 	}
-	
+
 	String cp_s = request.getParameter("cp");
 	if(cp_s == null || cp_s.equals("")){
 		cp_s = "1";	
@@ -38,15 +44,17 @@
 	
 	int userGroup = cp / pageSize; // 해당 페이지의 페이지 그룹
 	if(cp % pageSize == 0)userGroup--;  
-	
-	
+
 	ArrayList<ProductDTO> arr_pdto = null;
-
-
-	if( scid_s == null ){ // 대분류로만 필터링 일경우
-		arr_pdto = pdao.productCategoryList(lcid_s, "lcid", cp, listSize, ppdto.getSortColumn(), ppdto.getSortOrderByType());
+	
+	if(searchStr != null){
+		arr_pdto = pdao.productSearchList(searchStr, cp, listSize, ppdto.getSortColumn(), ppdto.getSortOrderByType());
 	} else {
-		arr_pdto = pdao.productCategoryList(scid_s, "scid", cp, listSize, ppdto.getSortColumn(), ppdto.getSortOrderByType());
+		if( scid_s == null ){ // 대분류로만 필터링 일경우
+			arr_pdto = pdao.productCategoryList(lcid_s, "lcid", cp, listSize, ppdto.getSortColumn(), ppdto.getSortOrderByType());
+		} else {
+			arr_pdto = pdao.productCategoryList(scid_s, "scid", cp, listSize, ppdto.getSortColumn(), ppdto.getSortOrderByType());
+		}
 	}
 	
 	DecimalFormat dcformat = new DecimalFormat("###,###,###,###");
@@ -178,7 +186,7 @@
 						
 					for(int i = (userGroup * pageSize) + 1 ; i <= (userGroup * pageSize) + pageSize ; i++){
 %>
-						<a class="num <%= i==cp ? "on" : "" %>" href="/semi_project/section/product/productByItemList.jsp?cp=<%=i%>&lcid=<%=lcid_s%><%=scid_s == null ? "" : "&scid=" + scid_s %>"><%=i%></a>
+						<a class="num <%= i==cp ? "on" : "" %>" href="/semi_project/section/product/productByItemList.jsp?cp=<%=i%>&lcid=<%=lcid_s%><%=scid_s == null ? "" : "&scid=" + scid_s %><%=searchStr == null ? "" : "&searchStr=" + searchStr %>"><%=i%></a>
 <%
 						if(i == totalPage)break;
 					}

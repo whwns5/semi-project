@@ -29,6 +29,14 @@ public class Sql {
 				+ 							   "WHERE smallcategory_name = ?)";
 		return sql;
 	}
+	/** 상품 테이블 검색 조회 총 갯수 조회 */
+	public static final String getPRODUCT_SEARCH_TOTALCOUNT(String searchStr){
+		String sql = "SELECT COUNT(*) "
+				+ 	 "FROM product_table "
+				+ 	 "WHERE product_code LIKE '%" + searchStr + "%' OR product_name LIKE '%" + searchStr + "%' ";
+		return sql;
+	}
+	
 	/** 상품 테이블 전체 조회 */
 	public static final String PRODUCT_SELECT_ALL = "SELECT * FROM product_table";
 	/** 상품 카테고리 아이디 조회 */
@@ -66,6 +74,17 @@ public class Sql {
 	}
 	/** 상품 테이블 코드 별 조회 */
 	public static final String PRODUCT_CODE_SELECT_ALL = "SELECT * FROM product_table WHERE product_code = ?";
+	/** 상품 테이블 검색 조회 */
+	public static final String getPRODUCT_SEARCH_SELLECT_ALL(String searchStr, int cp, int listSize, String column, String orderByType){
+		String sql = "SELECT b.* "
+				+	 "FROM (SELECT rownum as rnum, a.* " 
+				+  		   "FROM (SELECT * "
+				+   			 "FROM product_table "
+				+ 				 "WHERE product_code LIKE '%" + searchStr + "%' OR product_name LIKE '%" + searchStr + "%' "
+				+ 				 "ORDER BY " + column + " " + orderByType + ") a) b "
+				+ 		   "WHERE rnum >= (" + cp + "-1)*" + listSize + "+ 1 AND rnum <= " + cp + "*" + listSize;
+	return sql;
+	}
 	/** 상품 테이블 삽입 */
 	public static final String PRODUCT_INSERT = "INSERT INTO product_table VALUES(product_table_idx.NEXTVAL, " // product_idx
 			+ "?, " // smallcategory_id
