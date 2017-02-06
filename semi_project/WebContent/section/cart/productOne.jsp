@@ -58,7 +58,6 @@ function cart(){
 <th>상품코드</th>
 <th>상품색상</th>
 <th>상품사이즈</th>
-<th>상품수량</th>
 <th>상품가격</th>
 <th>상품이미지</th>
 </tr>
@@ -71,7 +70,6 @@ function cart(){
 <td><%=dto.getProduct_code() %></td>
 <td><%=dto.getProduct_color() %></td>
 <td><%=dto.getProduct_size() %></td>
-<td><%=dto.getProduct_num() %></td>
 <td><%=dto.getProduct_price() %></td>
 <td><%=dto.getProduct_img() %></td>
 </tr>

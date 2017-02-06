@@ -2,19 +2,15 @@
 <%@ page import = "java.util.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="semi.cart.*" %>
-    <%@ page import="semi.product.*" %>
+    <%@ page import="seung.cart.*" %>
+    <%@ page import="seung.product.*" %>
     <% request.setCharacterEncoding("utf-8"); %>
-    <jsp:useBean id="cdao" class="semi.cart.CartDAO" scope="session"/>
-    <jsp:useBean id="pdao" class="semi.product.ProductDAO" scope="session"/>
+    <jsp:useBean id="cdao" class="seung.cart.CartDAO" scope="session"/>
+    <jsp:useBean id="pdao" class="seung.product.ProductDAO" scope="session"/>
 <!-- ------------------------------------------------장바구니 데이터 세팅 --------------------------------------------------------->
 <%
 String member_id=(String)session.getAttribute("user_id");
 DecimalFormat df=new DecimalFormat("#,##0");
-//결제창에서 가져올때 get param values
-String product_num[]=request.getParameterValues("product_num");
-String product_code[]=request.getParameterValues("product_code");
-String product_color[]=request.getParameterValues("product_color");
 
 /**장바구니 개수 구현: 개수 구하고 header.jsp에 붙힘 */
 ArrayList<CartDTO> arr=cdao.cartList(member_id);
@@ -58,7 +54,7 @@ function cartDelAll(){
 </script>
 <!-- ----------------------------------------------END(장바구니 전체 삭제 확인 창) --------------------------------------------------->
 <body>
-<%@ include file="/header/header.jsp"%>
+<%@ include file="/header.jsp"%>
 <section>
 <article>
 <!-- ------------------------------------------------장바구니 테이블 --------------------------------------------------------->
@@ -89,6 +85,7 @@ if(arr==null || arr.size()==0){
 		productidx[i]=arr.get(i).getProduct_idx();
 		pd=pdao.productOne(productidx[i]);
 		fcount++;
+		System.out.println("!!!"+pd.getProduct_price());
 	%>
 	<tr>
 	<td><%=pd.getProduct_idx()%></td>
@@ -193,8 +190,8 @@ if(arr==null || arr.size()==0){
 	</script>
 	</td>
 	<td>
-		<form name="priceForm<%=fcount%>">
-	<input type="hidden" name="price<%=fcount%>" value="<%=pd.getProduct_price()%>">
+	<form name="priceForm<%=fcount%>">
+	<input type="text" name="price<%=fcount%>" value="<%=pd.getProduct_price()%>">
 	</form>
 	<div id="priceShow<%=fcount%>">
 	<%=df.format(arr.get(i).getProduct_price())%>
@@ -246,10 +243,10 @@ int rcount=0;
 for(int i=0; i<arr.size(); i++){
 	rcount++;
 	%>
-	<input type="hidden" name="cart_product_price<%=rcount%>" value="<%=arr.get(i).getProduct_price()%>">
-	<input type="hidden" name="cart_payment_num<%=rcount%>" value="<%=arr.get(i).getCart_num()%>">
-	<input type="hidden" name="cart_cart_idx<%=rcount%>" value="<%=arr.get(i).getCart_idx()%>">
-	<input type="hidden" name="cart_product_idx<%=rcount%>" value="<%=arr.get(i).getProduct_idx()%>"><br>
+	<input type="text" name="cart_product_price<%=rcount%>" value="<%=arr.get(i).getProduct_price()%>">
+	<input type="text" name="cart_payment_num<%=rcount%>" value="<%=arr.get(i).getCart_num()%>">
+	<input type="text" name="cart_cart_idx<%=rcount%>" value="<%=arr.get(i).getCart_idx()%>">
+	<input type="text" name="cart_product_idx<%=rcount%>" value="<%=arr.get(i).getProduct_idx()%>"><br>
 	<%
 }
 %>
@@ -304,7 +301,7 @@ function arrTrans(){
 		document.payCheck.elements.namedItem(pIdx).value=pidx[i];
 	}
 	
-	document.payCheck.action="/myweb/cart/cartArrPay.jsp"
+	document.payCheck.action="/myweb/cart/cartArrToDB.jsp"
 	document.payCheck.submit();
 }
 </script>
@@ -314,16 +311,16 @@ int pcount=0;
 for(int i=0; i<arr.size(); i++){
 	pcount++;
 	%>
-	<input type="hidden" name="product_price<%=pcount%>" value="<%=arr.get(i).getProduct_price()%>">
-	<input type="hidden" name="payment_num<%=pcount%>" value="<%=arr.get(i).getCart_num()%>">
-	<input type="hidden" name="cart_idx<%=pcount%>" value="<%=arr.get(i).getCart_idx() %>">
-	<input type="hidden" name="product_idx<%=pcount%>" value="<%=arr.get(i).getProduct_idx()%>"><br>
+	<input type="text" name="product_price<%=pcount%>" value="<%=arr.get(i).getProduct_price()%>">
+	<input type="text" name="payment_num<%=pcount%>" value="<%=arr.get(i).getCart_num()%>">
+	<input type="text" name="cart_idx<%=pcount%>" value="<%=arr.get(i).getCart_idx() %>">
+	<input type="text" name="product_idx<%=pcount%>" value="<%=arr.get(i).getProduct_idx()%>"><br>
 	<%
 }
 %>
 <input type="hidden" name="member_id" value="<%=member_id%>">
 </form>
 <!--  ----------------------------------------------//END(값 넘기기)  ---------------------------------------------- -->
-<%@ include file="/footer/footer.jsp"%>
+<%@ include file="/footer.jsp"%>
 </body>
 </html>

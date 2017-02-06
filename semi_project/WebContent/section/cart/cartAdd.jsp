@@ -11,7 +11,7 @@ if(sid==null || sid.equals("")){
 	%>
 	<script>
 	window.alert('login is needed');
-	location.href="/myweb/index.jsp"
+	location.href="/myweb/cart/product.jsp"
 	</script>
 	<%
 	return;
@@ -23,7 +23,6 @@ ProductDTO pd=pdao.productOne(product_idx);
 int product_price=pd.getProduct_price();
 
 cdao.insert(sid, product_idx, product_price);
-
 
 %>
 <script>

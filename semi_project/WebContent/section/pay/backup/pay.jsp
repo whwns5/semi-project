@@ -1,14 +1,14 @@
 <%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="semi.member.*" %>
-    <%@ page import="semi.product.*" %>
-    <jsp:useBean id="pdto" class="semi.product.ProductDTO" scope="session"/>
+    <%@ page import="seung.member.*" %>
+    <%@ page import="seung.product.*" %>
+    <jsp:useBean id="pdto" class="seung.product.ProductDTO" scope="session"/>
     <jsp:setProperty property="*" name="pdto"/>
-    <jsp:useBean id="pdao" class="semi.product.ProductDAO" scope="session"/>
-    <jsp:useBean id="mdao" class="semi.member.MemberDAO" scope="session"/>
-    <jsp:useBean id="mt" class="semi.member.MemberDTO" scope="session"/>
-    <jsp:useBean id="cdao" class="semi.cart.CartDAO" scope="session"/>
+    <jsp:useBean id="pdao" class="seung.product.ProductDAO" scope="session"/>
+    <jsp:useBean id="mdao" class="seung.member.MemberDAO" scope="session"/>
+    <jsp:useBean id="mt" class="seung.member.MemberDTO" scope="session"/>
+    <jsp:useBean id="cdao" class="seung.cart.CartDAO" scope="session"/>
 <%
 request.setCharacterEncoding("utf-8");
 String member_id=(String)session.getAttribute("user_id");
@@ -20,7 +20,6 @@ window.alert('로그인 후 이용바랍니다.');
 location.href="/myweb/index.jsp";
 </script>
 <%
-return;
 	/*
 	mdto=mdao.memberGet("default");
 	member_id=mdto.getMember_id();
@@ -93,7 +92,7 @@ width:500px;
 }
 </style>
 <body>
-<%@ include file="/header/header.jsp"%>
+<%@ include file="/header.jsp"%>
 <h3>주문/결제</h3>
 <section>
 <form name="pay" action="pay_check.jsp" method="post">
@@ -209,6 +208,6 @@ if(pdto.getProduct_name()==null || pdto.getProduct_name().equals("")){
 </div>
  -->
 </section>
-<%@ include file="/footer/footer.jsp"%>
+<%@ include file="/footer.jsp"%>
 </body>
 </html>

@@ -1,39 +1,25 @@
 <%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="semi.member.*" %>
-    <%@ page import="semi.product.*" %>
-    <%@ page import="semi.cart.*" %>
-    <jsp:useBean id="pdto" class="semi.product.ProductDTO" scope="session"/>
+    <%@ page import="seung.member.*" %>
+    <%@ page import="seung.product.*" %>
+    <jsp:useBean id="pdto" class="seung.product.ProductDTO" scope="session"/>
     <jsp:setProperty property="*" name="pdto"/>
-    <jsp:useBean id="pdao" class="semi.product.ProductDAO" scope="session"/>
-    <jsp:useBean id="mdao" class="semi.member.MemberDAO" scope="session"/>
-    <jsp:useBean id="cdao" class="semi.cart.CartDAO" scope="session"/>
+    <jsp:useBean id="pdao" class="seung.product.ProductDAO" scope="session"/>
+    <jsp:useBean id="mdao" class="seung.member.MemberDAO" scope="session"/>
+    <jsp:useBean id="cdao" class="seung.cart.CartDAO" scope="session"/>
 <%
 request.setCharacterEncoding("utf-8");
 String member_id=(String)session.getAttribute("user_id");
-
-String count=request.getParameter("count");
-
-String str_onePrice="onePrice"+count;
-String str_oneNum="oneNum"+count;
-String str_oneCart="oneCart"+count;
-
-
-String cart_idxs=(String)request.getParameter(str_oneCart);
-String payment_nums=(String)request.getParameter(str_oneNum);
-String product_prices=(String)request.getParameter(str_onePrice);
-
+String cart_idxs=(String)request.getParameter("cart_idx");
 int cart_idx=Integer.parseInt(cart_idxs);
-int payment_num=Integer.parseInt(payment_nums);
-int product_price=Integer.parseInt(product_prices);
-
-CartDTO cd=cdao.showOneForPay(member_id, cart_idx);
 int product_idx=cdao.productLoad(cart_idx);
 MemberDTO mdto=mdao.memberGet(member_id);
+CartDTO cd=cdao.show(member_id);
 DecimalFormat df=new DecimalFormat("#,##0");
-
-
+String payment_nums=(String)request.getParameter("payment_num");
+int payment_num=Integer.parseInt(payment_nums);
+System.out.println("String idxs="+cart_idxs);
 if(member_id==null||member_id.equals("")){
 	%>
 	<script>
@@ -43,6 +29,17 @@ if(member_id==null||member_id.equals("")){
 	<%
 	return;
 }
+
+if(cart_idxs==null || cart_idxs.equals("")){
+	%>
+	<script>
+	window.alert('잘못된 접근경로 입니다.');
+	location.href="/myweb/index.jsp";
+	</script>
+	<%
+	return;
+}
+
 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -85,7 +82,7 @@ text-align:left;
 
 %>
 <body>
-<%@ include file="/header/header.jsp"%>
+<%@ include file="/header.jsp"%>
 <%
 
 %>
@@ -120,7 +117,7 @@ if(dto==null || dto.equals("")){
 <td>
 <%=payment_num %>
 </td>
-<td><%=df.format(product_price) %></td>
+<td><%=df.format(cd.getProduct_price()) %></td>
 </tr>
 <%
 }
@@ -177,16 +174,16 @@ if(dto==null || dto.equals("")){
 </tr>
 <tr>
 <th>총금액</th>
-<td><%=df.format(product_price) %></td>
+<td><%=df.format(cd.getProduct_price()) %></td>
 </tr>
 <tr align="right">
 <td colspan="3"> <input type="submit" value="결제하기" ></td>
 </tr>
 </table>
 <input type="hidden" name="member_id" value="<%=mdto.getMember_id()%>">
-<input type="hidden" name="product_idx" value="<%=product_idx%>">
-<input type="hidden" name="product_price" value="<%=product_price%>">
-<input type="hidden" name="payment_num" value="<%=payment_num%>">
+<input type="hidden" name="product_idx" value="<%=dto.getProduct_idx()%>">
+<input type="hidden" name="payment_totalprice" value="<%=dto.getProduct_price()%>">
+<input type="hidden" name="payment_num" value="<%=dto.getProduct_num()%>">
 <input type="hidden" name="product_name" value="<%=dto.getProduct_name()%>">
 <input type="hidden" name="product_color" value="<%=dto.getProduct_color()%>">
 <input type="hidden" name="product_code" value="<%=dto.getProduct_code()%>">
@@ -194,6 +191,6 @@ if(dto==null || dto.equals("")){
 </article>
 </form>
 </section>
-<%@ include file="/footer/footer.jsp"%>
+<%@ include file="/footer.jsp"%>
 </body>
 </html>

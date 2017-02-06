@@ -1,38 +1,65 @@
 <%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="semi.member.*" %>
-    <%@ page import="semi.product.*" %>
-    <%@ page import="semi.cart.*" %>
-    <jsp:useBean id="pdto" class="semi.product.ProductDTO" scope="session"/>
+    <%@ page import="seung.member.*" %>
+    <%@ page import="seung.product.*" %>
+    <jsp:useBean id="pdto" class="seung.product.ProductDTO" scope="session"/>
     <jsp:setProperty property="*" name="pdto"/>
-    <jsp:useBean id="pdao" class="semi.product.ProductDAO" scope="session"/>
-    <jsp:useBean id="mdao" class="semi.member.MemberDAO" scope="session"/>
-    <jsp:useBean id="cdao" class="semi.cart.CartDAO" scope="session"/>
+    <jsp:useBean id="pdao" class="seung.product.ProductDAO" scope="session"/>
+    <jsp:useBean id="mdao" class="seung.member.MemberDAO" scope="session"/>
+    <jsp:useBean id="cdao" class="seung.cart.CartDAO" scope="session"/>
 <%
 request.setCharacterEncoding("utf-8");
 String member_id=(String)session.getAttribute("user_id");
-
-String count=request.getParameter("count");
-
-String str_onePrice="onePrice"+count;
-String str_oneNum="oneNum"+count;
-String str_oneCart="oneCart"+count;
-
-
-String cart_idxs=(String)request.getParameter(str_oneCart);
-String payment_nums=(String)request.getParameter(str_oneNum);
-String product_prices=(String)request.getParameter(str_onePrice);
-
-int cart_idx=Integer.parseInt(cart_idxs);
-int payment_num=Integer.parseInt(payment_nums);
-int product_price=Integer.parseInt(product_prices);
-
-CartDTO cd=cdao.showOneForPay(member_id, cart_idx);
-int product_idx=cdao.productLoad(cart_idx);
 MemberDTO mdto=mdao.memberGet(member_id);
 DecimalFormat df=new DecimalFormat("#,##0");
+ArrayList<CartDTO> arr=cdao.cartList(member_id);
+CartDTO cd=cdao.show(member_id);
 
+String product_idx[]=request.getParameterValues("product_idx");
+String product_price[]=request.getParameterValues("product_price");
+String cart_num[]=request.getParameterValues("cart_num");
+String cart_idx[]=request.getParameterValues("cart_idx");
+String product_num[]=request.getParameterValues("product_num");
+String product_code[]=request.getParameterValues("product_code");
+String product_color[]=request.getParameterValues("product_color");
+
+for(int i=0; i<arr.size(); i++){
+	System.out.println(product_idx[i]+"/"+product_price[i]+"/"+cart_idx[i]+"/"+cart_num[i]);
+	if(product_num!=null){
+		System.out.println("product_num="+product_num[i]);
+	}
+	if(product_code!=null){
+		System.out.println("product_code="+product_code[i]);
+	}
+	if(product_color!=null){
+		System.out.println("product_color="+product_color[i]);
+	}
+}
+
+int productidx[]=new int[arr.size()];
+ProductDTO dto=null;
+/***********************************배열값 불러오기********************************************8*/
+int productprice[]=new int[arr.size()];
+String pstr[]=new String[arr.size()];
+int paymentnum[]=new int[arr.size()];
+String nstr[]=new String[arr.size()];
+for(int i=0; i<arr.size(); i++){
+	pstr[i]="product_price"+(i+1);
+	productprice[i]=Integer.parseInt(request.getParameter(pstr[i]));
+	nstr[i]="payment_num"+(i+1);
+	paymentnum[i]=Integer.parseInt(request.getParameter(nstr[i]));
+}
+
+if(productprice==null && paymentnum==null){
+%>
+<script>
+window.alert('price와 num값 null 값임');
+</script>
+<%
+}
+	
+/**********************************************************************************************8*/
 
 if(member_id==null||member_id.equals("")){
 	%>
@@ -44,6 +71,9 @@ if(member_id==null||member_id.equals("")){
 	return;
 }
 
+for(int i=0; i<arr.size(); i++){
+	productidx[i]=arr.get(i).getProduct_idx();
+}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -85,13 +115,10 @@ text-align:left;
 
 %>
 <body>
-<%@ include file="/header/header.jsp"%>
-<%
-
-%>
+<%@ include file="/header.jsp"%>
 <h3>주문/결제</h3>
 <section>
-<form name="pay" action="cartPay_check.jsp" method="post">
+<form name="pay" action="cartArrPay_check.jsp" method="post">
 <article>
 <table class="table-proinfo">
 <caption>01. 주문상품</caption>
@@ -105,24 +132,27 @@ text-align:left;
 </thead>
 <tbody>
 <%
-ProductDTO dto=pdao.productOne(product_idx);
-if(dto==null || dto.equals("")){
+if(arr==null || arr.size()==0){
 	%>
 	<tr>
 	<td colspan="4" align="center">선택한 상품이 없습니다.</td>
 	</tr>
 	<%
 }else{
+	for(int i=0; i<arr.size(); i++){
+		dto=pdao.productOne(productidx[i]);
+
 %>
 <tr>
-<td><%=dto.getProduct_img() %></td>
+<td><%=dto.getProduct_img()%></td>
 <td><%=dto.getProduct_name() %> / <%=dto.getProduct_color() %> /<%=dto.getProduct_code() %></td>
 <td>
-<%=payment_num %>
+<%=paymentnum[i]%>
 </td>
-<td><%=df.format(product_price) %></td>
+<td><%=df.format(productprice[i]) %></td>
 </tr>
 <%
+	}
 }
 %>
 </tbody>
@@ -134,7 +164,7 @@ if(dto==null || dto.equals("")){
 <caption>02. 배송 및 결재정보</caption>
 <tr>
 <th>주문자 명</th>
-<td><input type="text" name="member_name" value="<%=mdto.getMember_name() %>" size="50" required="required"></td>
+<td><input type="text" name="member_name" value="<%=mdto.getMember_name()%>" size="50" required="required"></td>
 </tr>
 <tr>
 <th>휴대폰 번호</th>
@@ -177,23 +207,19 @@ if(dto==null || dto.equals("")){
 </tr>
 <tr>
 <th>총금액</th>
-<td><%=df.format(product_price) %></td>
+<%
+int cartSum=cdao.cartSum(member_id);
+%>
+<td><%=df.format(cartSum) %></td>
 </tr>
 <tr align="right">
 <td colspan="3"> <input type="submit" value="결제하기" ></td>
 </tr>
 </table>
-<input type="hidden" name="member_id" value="<%=mdto.getMember_id()%>">
-<input type="hidden" name="product_idx" value="<%=product_idx%>">
-<input type="hidden" name="product_price" value="<%=product_price%>">
-<input type="hidden" name="payment_num" value="<%=payment_num%>">
-<input type="hidden" name="product_name" value="<%=dto.getProduct_name()%>">
-<input type="hidden" name="product_color" value="<%=dto.getProduct_color()%>">
-<input type="hidden" name="product_code" value="<%=dto.getProduct_code()%>">
-<input type="hidden" name="cart_idx" value="<%=cart_idx%>">
 </article>
+<input type="hidden" name="arr" value="<%=arr%>">
 </form>
 </section>
-<%@ include file="/footer/footer.jsp"%>
+<%@ include file="/footer.jsp"%>
 </body>
 </html>

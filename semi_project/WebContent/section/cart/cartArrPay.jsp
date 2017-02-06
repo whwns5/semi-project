@@ -11,19 +11,83 @@
     <jsp:useBean id="mdao" class="semi.member.MemberDAO" scope="session"/>
     <jsp:useBean id="cdao" class="semi.cart.CartDAO" scope="session"/>
 <%
-request.setCharacterEncoding("utf-8");
-String member_id=request.getParameter("member_id");
-if(member_id==null||member_id.equals("")){
-	%>
-	<script>
-	window.alert('login is needed');
-	location.href="/myweb/index.jsp";
-	</script>
-	<%
-	return;
+//db 업데이트
+String member_id=(String)session.getAttribute("user_id");
+ArrayList<CartDTO> arr=cdao.cartList(member_id);
+
+String product_idxs[]=new String[arr.size()];
+int product_idx[]=new int[arr.size()];
+
+String product_prices[]=new String[arr.size()];
+int product_price[]=new int[arr.size()];
+
+String cart_nums[]=new String[arr.size()];
+int cart_num[]=new int[arr.size()];
+
+String cart_idxs[]=new String[arr.size()];
+int cart_idx[]=new int[arr.size()];
+
+for(int i=0; i<arr.size(); i++){
+	
+	product_idxs[i]=request.getParameter("product_idx"+(i+1));
+	product_idx[i]=Integer.parseInt(product_idxs[i]);
+
+	product_prices[i]=request.getParameter("product_price"+(i+1));
+	product_price[i]=Integer.parseInt(product_prices[i]);
+	
+	cart_nums[i]=request.getParameter("payment_num"+(i+1));
+	cart_num[i]=Integer.parseInt(cart_nums[i]);
+	
+	cart_idxs[i]=request.getParameter("cart_idx"+(i+1));
+	cart_idx[i]=Integer.parseInt(cart_idxs[i]);
+	
+	cdao.UpdateCart(member_id, cart_idx[i], product_price[i], cart_num[i]);
+
+	System.out.println("cartArrToDB="+product_idx[i]+"/"+product_price[i]+"/"+cart_idx[i]+"/"+cart_num[i]);
 }
+%>
+<%
+request.setCharacterEncoding("utf-8");
 MemberDTO mdto=mdao.memberGet(member_id);
 DecimalFormat df=new DecimalFormat("#,##0");
+CartDTO cd=cdao.show(member_id);
+String product_num[]=request.getParameterValues("product_num");
+String product_code[]=request.getParameterValues("product_code");
+String product_color[]=request.getParameterValues("product_color");
+/*
+String product_idxs[]=request.getParameterValues("product_idx");
+String product_prices[]=request.getParameterValues("product_price");
+String cart_nums[]=request.getParameterValues("cart_num");
+String cart_idxs[]=request.getParameterValues("cart_idx");
+*/
+
+/*
+int product_idx[]=new int[arr.size()];
+int product_price[]=new int[arr.size()];
+int cart_num[]=new int[arr.size()];
+int cart_idx[]=new int[arr.size()];
+*/
+
+
+	/*
+for(int i=0; i<arr.size(); i++){
+	product_idx[i]=Integer.parseInt(product_idxs[i]);
+	product_price[i]=Integer.parseInt(product_prices[i]);
+	cart_num[i]=Integer.parseInt(cart_nums[i]);
+	cart_idx[i]=Integer.parseInt(cart_idxs[i]);
+	System.out.println("cartArrPay"+product_idx[i]+"/"+product_price[i]+"/"+cart_idx[i]+"/"+cart_num[i]);
+	if(product_num!=null){
+		System.out.println("product_num="+product_num[i]);
+	}
+	if(product_code!=null){
+		System.out.println("product_code="+product_code[i]);
+	}
+	if(product_color!=null){
+		System.out.println("product_color="+product_color[i]);
+	}
+}
+	*/
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -74,6 +138,7 @@ text-align:left;
 <caption>01. 주문상품</caption>
 <thead>
 <tr>
+<th>상품번호</th>
 <th>상품사진</th>
 <th>상품정보</th>
 <th>수량</th>
@@ -82,14 +147,6 @@ text-align:left;
 </thead>
 <tbody>
 <%
-CartDTO cd=cdao.show(member_id);
-ArrayList<CartDTO> arr=cdao.cartList(member_id);
-int productidx[]=new int[arr.size()];
-ProductDTO dto=null;
-for(int i=0; i<arr.size(); i++){
-	productidx[i]=arr.get(i).getProduct_idx();
-}
-
 if(arr==null || arr.size()==0){
 	%>
 	<tr>
@@ -98,30 +155,25 @@ if(arr==null || arr.size()==0){
 	<%
 }else{
 	for(int i=0; i<arr.size(); i++){
-		dto=pdao.productOne(productidx[i]);
-
+	//각 table 행에 맞는 cart와 product 불러오기
+	CartDTO cdto=cdao.showOneForPay(member_id, cart_idx[i]);
+	ProductDTO pd=pdao.productOne(product_idx[i]);
 %>
 <tr>
-<td><%=dto.getProduct_img()%></td>
-<td><%=dto.getProduct_name() %> / <%=dto.getProduct_color() %> /<%=dto.getProduct_code() %></td>
 <td>
-<%=arr.get(i).getCart_num() %>
-<!-- 
-<select name="payment_num">
-<option value=1>1</option>
-<option value=2>2</option>
-<option value=3>3</option>
-<option value=4>4</option>
-<option value=5>5</option>
-<option value=6>6</option>
-<option value=7>7</option>
-<option value=8>8</option>
-<option value=9>9</option>
-<option value=10>10</option>
-</select>
- -->
+<%=pd.getProduct_idx() %>
+<% System.out.println("cartArrPay.jsp="+pd.getProduct_idx()); %>
+<input type="hidden" name="product_idx" value="<%=pd.getProduct_idx()%>">
 </td>
-<td><%=df.format(arr.get(i).getProduct_price()) %></td>
+<td><%=pd.getProduct_img()%></td>
+<td><%=pd.getProduct_name() %> / <%=pd.getProduct_color() %> /<%=pd.getProduct_code() %></td>
+<td>
+<%=cdto.getCart_num()%>
+</td>
+<td>
+<%=df.format(cdto.getProduct_price()) %>
+
+</td>
 </tr>
 <%
 	}
@@ -154,7 +206,6 @@ if(arr==null || arr.size()==0){
 <th>배송주소</th>
 <td><input type="text" name="payment_addr" value="<%=mdto.getMember_addr()%>" required="required" size="50"></td>
 </tr>
-
 </table>
 </article>
 <hr>
@@ -182,6 +233,8 @@ if(arr==null || arr.size()==0){
 <th>총금액</th>
 <%
 int cartSum=cdao.cartSum(member_id);
+int cartNumSum=cdao.cartNumSum(member_id);
+System.out.println(cartNumSum);
 %>
 <td><%=df.format(cartSum) %></td>
 </tr>
@@ -190,7 +243,8 @@ int cartSum=cdao.cartSum(member_id);
 </tr>
 </table>
 </article>
-<input type="hidden" name="arr" value="<%=arr%>">
+<input type="hidden" name="product_price" value="<%=cartSum%>">
+<input type="hidden" name="payment_num" value="<%=cartNumSum%>">
 </form>
 </section>
 <%@ include file="/footer/footer.jsp"%>

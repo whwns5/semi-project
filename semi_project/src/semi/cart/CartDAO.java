@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import semi.product.*;
+import semi.cart.CartDTO;
 
 public class CartDAO {
 
@@ -82,6 +83,34 @@ public class CartDAO {
 				}
 			}
 		}
+	
+	public int cartDelAll(String member_id){
+		try {
+			conn=semi.db.semiDB.getConn();
+			String sql="delete from cart_table where member_id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, member_id);
+			int count=ps.executeUpdate();
+			return count;
+		} catch (Exception e) {
+				e.printStackTrace();
+				return error;
+			}finally{
+				try{
+					if (rs != null) {
+						rs.close();
+					}
+					if (ps != null) {
+						ps.close();
+					}
+					if (conn != null) {
+						conn.close();
+					}
+				}catch(Exception e2){
+					
+				}
+			}
+	}
 
 	
 	public int cartSum(String member_id){
@@ -224,5 +253,105 @@ public class CartDAO {
 			}
 		}
 	}
+	
+	public int UpdateCart(String member_id, int cart_idx, int product_price, int cart_num){
+		try {
+			conn=semi.db.semiDB.getConn();
+			String sql="update cart_table set product_price=?, cart_num=? where cart_idx=? and member_id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, product_price);
+			ps.setInt(2, cart_num);
+			ps.setInt(3, cart_idx);
+			ps.setString(4, member_id);
+			int count=ps.executeUpdate();
+			return count;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return error;
+		}finally{
+			try{
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			}catch(Exception e2){
+				
+			}
+		}
+	}
 
+	public CartDTO showOneForPay(String member_ids, int cart_idxs){
+		try {
+			conn=semi.db.semiDB.getConn();
+			String sql="select * from cart_table where member_id=? and cart_idx=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, member_ids);
+			ps.setInt(2, cart_idxs);
+			rs=ps.executeQuery();
+			CartDTO dto=null;
+			if(rs.next()){
+				int cart_idx=rs.getInt("cart_idx");
+				String member_id=rs.getString("member_id");
+				int product_idx=rs.getInt("product_idx");
+				int cart_num=rs.getInt("cart_num");
+				int cart_validity=rs.getInt("cart_validity");
+				int product_price=rs.getInt("product_price");
+				dto=new CartDTO(cart_idx, member_id, product_idx, cart_num, cart_validity, product_price);
+			}
+			return dto;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally{
+			try{
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			}catch(Exception e2){
+				
+			}
+		}
+	}
+	public int cartNumSum(String member_id){
+		try {
+		conn=semi.db.semiDB.getConn();
+		String sql="select sum(cart_num) from cart_table where member_id=?";
+		ps=conn.prepareStatement(sql);
+		ps.setString(1, member_id);
+		rs=ps.executeQuery();
+		int sum=0;
+		if(rs.next()){
+			sum=rs.getInt("sum(cart_num)");
+		}
+		return sum;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return error;
+		}finally{
+			try{
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			}catch(Exception e2){
+				
+			}
+		}
+	}
 }
