@@ -23,7 +23,7 @@ public class MemberDAO {
 	/**회원 가입 관련 메서드*/
 	public int memberJoin(MemberDTO dto){
 		try{
-			System.out.println("2");
+			
 			conn=semi.db.semiDB.getConn();
 			String sql="insert into member_table(member_idx,member_id,member_name,member_pwd,member_sex,member_email,member_tel,member_addr) "
 					+"values(member_table_idx.nextval,?,?,?,?,?,?,?)";

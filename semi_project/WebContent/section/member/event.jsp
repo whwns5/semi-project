@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-
+<!DOCTYPE>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -10,13 +9,10 @@
 <body>
 <%@include file="/header/header.jsp" %>
 <section>
-	<article>
-	<form name="form" action="/semi_project/section/member/login/login_ok.jsp" method="post">
-		ID<input type="text" name="member_id">
-		PWD<input type="password" name="member_pwd">
-		<input type="submit" value="login">
-	</form>
-	</article>
+<article id="eventimg">
+	<img src="E:/semi_project/image/event.jpg">
+	<img src="/section/member/event.jpg">
+</article>
 </section>
 <%@include file="/footer/footer.jsp" %>
 </body>

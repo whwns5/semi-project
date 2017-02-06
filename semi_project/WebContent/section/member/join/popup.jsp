@@ -21,7 +21,10 @@ function setCookie(cname, value, expire) {
 </script>
 </head>
 <body>
-팝업창입니다
+<section>
+<img src="section/member/img/event1.jpg">
+<a href="/semi_project/section/member/event.jsp">팝업창입니다</a>
 <input type="button" onclick = "popupClose()" value="오늘하루 행복하길">
+</section>
 </body>
 </html>

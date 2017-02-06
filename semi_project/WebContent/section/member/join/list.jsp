@@ -78,6 +78,7 @@ function openDel(){
 </script>
 </head>
 <body>
+<%@include file="/header/header.jsp" %>
 <section>
 <article>
 	<h3>회원정보 변경</h3>
@@ -130,12 +131,13 @@ function openDel(){
 			<td>
 				ID<input type="text" name="id">PWD<input type="password" name="pwd">
 				</td>
-				<td><input type="button" value="회원탈퇴" onclick="openDel()"></td>
+				<td><input type="button" value="회원탈퇴" onclick="openDel();"></td>
 			</tr>
 		</table>
 	</form>
 </article>
 </section>
+<%@include file="/footer/footer.jsp" %>
 </body>
 </html>
 
