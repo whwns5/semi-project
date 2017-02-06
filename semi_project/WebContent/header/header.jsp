@@ -92,9 +92,20 @@ document.onclick = mclose;
 			</div>
 			<div class="div_logo">
 				<h1>khSHOPseoul</h1>
+				<script>
+				function goSearch() {
+					var searchStr = document.getElementById('id_search_input').value;
+					if(searchStr == ''){
+						window.alert('검색 값을 입력하세요.');
+						return;
+					}
+					location.href = '/semi_project/section/product/productByItemList.jsp?searchStr='+searchStr;
+					
+				}
+				</script>
 				<div class="div_search">
-					<input type="text" name="search" id="search">
-					<a href="#" class="a_search" title="검색"></a>
+					<input type="text" name="search" id="id_search_input">
+					<a href="javascript:goSearch();" class="a_search" title="검색"></a>
 				</div>
 			</div>
 			<script>
@@ -243,7 +254,9 @@ document.onclick = mclose;
 						</div>
 						<div class="content_nav_depth_menu">
 							<ul class="nav_depth_menu_ul">
-								<li><a href="/semi_project/section/product/productByItemList.jsp?lcid=accessory&scid=keyring" onmouseover="changeDiv('back_nav_depth_menu_accessory_img','nav_depth_menu_backpack')" onmouseout="resetDiv('back_nav_depth_menu_accessory_img')">KEY RING</a></li>
+								<li><a href="/semi_project/section/product/productByItemList.jsp?lcid=accessory&scid=keyring" 
+								onmouseover="changeDiv('back_nav_depth_menu_accessory_img','nav_depth_menu_backpack')" 
+								onmouseout="resetDiv('back_nav_depth_menu_accessory_img')">KEY RING</a></li>
 							</ul>
 						</div>
 					</div>
