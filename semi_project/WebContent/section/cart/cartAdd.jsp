@@ -6,8 +6,9 @@
 <jsp:useBean id="pdao" class="semi.product.ProductDAO" scope="session"/>
 <jsp:useBean id="cdao" class="semi.cart.CartDAO" scope="session"/>
 <%
-String sid=(String)session.getAttribute("user_id");
-if(sid==null || sid.equals("")){
+String member_id=(String)session.getAttribute("user_id");
+/*
+if(member_id==null || member_id.equals("")){
 	%>
 	<script>
 	window.alert('login is needed');
@@ -16,13 +17,17 @@ if(sid==null || sid.equals("")){
 	<%
 	return;
 }
+*/
+
+
 
 String idxs=request.getParameter("product_idx");
 int product_idx=Integer.parseInt(idxs);
+
 ProductDTO pd=pdao.productOne(product_idx);
 int product_price=pd.getProduct_price();
 
-cdao.insert(sid, product_idx, product_price);
+cdao.insert(member_id, product_idx, product_price);
 
 %>
 <script>
