@@ -25,7 +25,7 @@ border:1px black solid;
     	%>
     	<script>
     	window.alert('선택한 상품이 없습니다.');
-    	location.href="pay.jsp";
+    	location.href="cartShow.jsp";
     	</script>
     	<%
     	return;

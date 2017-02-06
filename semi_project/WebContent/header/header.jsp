@@ -1,7 +1,10 @@
+<%@page import="semi.cart.CartDTO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="/semi_project/css/header/header.css?ver=8">
 <link rel="stylesheet" type="text/css" href="/semi_project/css/header/dropdownmenu.css?ver=4">
+<jsp:useBean id="cdao1" class="semi.cart.CartDAO"/>
 <script type="text/javascript" src="/semi_project/js/bookmark.js?ver=4"></script>
 <script>
 var timeout	= 500;
@@ -57,6 +60,16 @@ document.onclick = mclose;
 					<ul class="nav_util">
 						<li>	<%
 						String user_name = (String)session.getAttribute("user_name");
+						//장바구니 개수 가져오기
+						String member_id1 =(String)session.getAttribute("user_id");
+						String cartNums=(String)session.getAttribute("cart");
+						int cartN=0;
+						if(cartNums==null || cartNums.equals("")){
+							cartN=0;
+						}else{
+						cartN=Integer.parseInt(cartNums);
+						}
+						
 						if ( user_name == null )
 						{
 						%>
@@ -68,7 +81,7 @@ document.onclick = mclose;
 						<%
 						}
 						%>
-						| <a href="/semi_project/section/member/join/join.jsp">JOIN US</a> | <a href="#">CART</a> | <a href="/semi_project/section/member/join/list.jsp">MYPAGE</a></li>
+						| <a href="/semi_project/section/member/join/join.jsp">JOIN US</a> | <a href="/semi_project/section/cart/cartShow.jsp">CART(<%=cartN%>)</a> | <a href="/semi_project/section/member/join/list.jsp">MYPAGE</a></li>
 						<li><a href="/semi_project/section/member/join/join.jsp">JOIN US</a></li>
 						<li><a href="#">CART</a></li>
 						<li><a href="#">MYPAGE</a></li>

@@ -12,13 +12,14 @@
 String member_id=(String)session.getAttribute("user_id");
 DecimalFormat df=new DecimalFormat("#,##0");
 //결제창에서 가져올때 get param values
+String product_idx[]=request.getParameterValues("product_idx");
+String product_price[]=request.getParameterValues("product_price");
 String product_num[]=request.getParameterValues("product_num");
 String product_code[]=request.getParameterValues("product_code");
 String product_color[]=request.getParameterValues("product_color");
 
 /**장바구니 개수 구현: 개수 구하고 header.jsp에 붙힘 */
 ArrayList<CartDTO> arr=cdao.cartList(member_id);
-int sum=cdao.cartSum(member_id);
 int cartNumi=arr.size();
 String cartNum=String.valueOf(cartNumi);
 session.setAttribute("cart", cartNum);
@@ -27,6 +28,9 @@ session.setAttribute("cart", cartNum);
 int productidx[]=new int[arr.size()];
 ProductDTO pd=null;
 int cartNumber=1;
+
+/**가격 총합*/
+int sum=cdao.cartSum(member_id);
 %>    
 <!-- ----------------------------------------------END(장바구니 데이터 세팅) --------------------------------------------------->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -50,7 +54,7 @@ border:1px solid black;
 <!-- ----------------------------------------------장바구니 전체 삭제 확인 창 --------------------------------------------------->
 <script>
 function cartDelAll(){
-	if(confirm('장바구니 삭제 하시겠습니까?')){
+	if(confirm('장바구니 모두 삭제 하시겠습니까?')){
 		location.href="cartDelAll.jsp";
 	}
 	return;
@@ -304,7 +308,7 @@ function arrTrans(){
 		document.payCheck.elements.namedItem(pIdx).value=pidx[i];
 	}
 	
-	document.payCheck.action="/myweb/cart/cartArrPay.jsp"
+	document.payCheck.action="cartArrPay.jsp"
 	document.payCheck.submit();
 }
 </script>
