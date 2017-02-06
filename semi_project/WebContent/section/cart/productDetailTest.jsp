@@ -283,7 +283,7 @@ function settingPage(product_idx) {
 							}
 							function goCart() {
 								var f = document.cart_fm;
-								f.setAttribute('action', '/semi_project/cart/cartAdd.jsp');
+								f.setAttribute('action', '/semi_project/section/cart/cartAdd.jsp');
 								f.submit();
 							}
 						</script>
