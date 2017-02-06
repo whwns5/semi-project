@@ -151,7 +151,7 @@
 							</div>
 							<div class="div_menu" id="div_menu_<%=i%>" onmouseover="openDivMenu(this);" onmouseout="closeDivMenu(this);">
 								<p class="p_menuicon">
-									<a href="/semi_project/section/product/productDetail.jsp?product_idx=<%=arr_pdto.get(i).getProduct_idx() %>&code=<%=arr_pdto.get(i).getProduct_code()%>&lcid=<%=lcid_s %>&scid=<%= arr_pdto.get(i).getSmallcategory_name()%>" class="a_detail"></a>
+									<a href="/semi_project/section/product/productDetail.jsp?product_idx=<%=arr_pdto.get(i).getProduct_idx() %>&product_code=<%=arr_pdto.get(i).getProduct_code()%>&lcid=<%=lcid_s %>&scid=<%= arr_pdto.get(i).getSmallcategory_name()%>" class="a_detail"></a>
 									<a href="#" class="a_cart"></a>
 								</p>
 							</div>
