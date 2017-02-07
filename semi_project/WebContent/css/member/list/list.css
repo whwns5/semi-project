@@ -1,0 +1,85 @@
+@CHARSET "UTF-8";
+<style type="text/css">
+
+.m_title    { BACKGROUND-COLOR: #F7F7F7; PADDING-LEFT: 15px; PADDING-top: 5px; PADDING-BOTTOM: 5px;  width:160; }
+.m_padding  { PADDING-LEFT: 15px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; }
+.m_padding2 { PADDING-LEFT: 0px; PADDING-top: 5px; PADDING-BOTTOM: 0px; }
+.m_padding3 { PADDING-LEFT: 0px; PADDING-top: 5px; PADDING-BOTTOM: 5px; }
+
+
+div.list_container{
+	width: 1100px;
+	margin: 0px auto;
+}
+div.list_container h3{
+	text-align: center;
+}
+div.list_container table{
+    font-size: 15px;
+    font-weight: normal;
+    margin:0px;
+    padding:0px;
+}
+table.t1{
+	width:950px;
+	border:1px;
+}
+table.t2{
+	width:900px;
+	border:0px;
+	cellspacing:0px;
+	cellpadding:0px;
+}
+table.t3{
+	border:0px;
+	width:900px;
+	cellspacing:0px;
+	cellpadding:0px;
+}
+table.t4{
+	width:850px;
+	border:1px;
+	cellspacing:0px;
+	cellpadding:0px;
+}
+table.t5{
+	width:900px;
+	cellspacing:0px;
+	cellpadding:0px;
+}
+table.t6{
+	width:900px;
+	cellspacing:0px;
+	cellpadding:0px;
+}
+table.t7{
+	width:900px;
+	cellspacing:0px;
+	cellpadding:0px;
+}
+.t7 td{
+	 height:5px;
+}
+table.t8{
+	width:900px;
+	cellspacing:0px;
+	cellpadding:0px;
+}
+.ta{
+	height:140;
+	valign:top;
+}
+table.t9{
+	width:900px;
+	cellspacing:0px;
+	cellpadding:0px;
+}
+table.t10{
+	width:900px;
+	cellspacing:0px;
+	cellpadding:0px;
+}
+table.t10{
+	width:950px;
+}
+</style>
