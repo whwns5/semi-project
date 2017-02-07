@@ -1,0 +1,44 @@
+@CHARSET "UTF-8";
+section{
+	margin: 0;
+	padding: 0;	
+}
+div.pop_container{
+	display: block;
+	width: 350px;
+	margin: 0;
+	padding: 0;
+}
+div.pop_container div.pop_img{
+	display: block;
+	width:100%;
+}
+div.pop_container div.pop_img img{
+	width: 350px;
+	heigh: 350px;
+}
+div.pop_container div.pop_bt{
+	display: block;
+	text-align: right;
+}
+div.pop_container div.pop_bt{
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+div.pop_container div.pop_bt span{
+	color: #585858;
+    text-indent: 15px;
+    height: 28px;
+    font-family: ngb;
+    font-size: 12px;
+    line-height: 17px;
+}
+div.pop_container div.pop_bt a{
+	width: 15px;
+	height: 15px;
+	margin-top: 3px;
+}
+div.pop_container div.pop_bt a img{
+	width: 15px;
+	height: 15px;
+}

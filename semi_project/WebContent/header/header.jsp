@@ -92,7 +92,7 @@ document.onclick = mclose;
 				</div>
 			</div>
 			<div class="div_logo">
-				<h1><span class="maintitle">KH-SHOP</span><span class="description">Fun shopping for tomorrow</span></h1>
+				<h1 class="logo_h1"><span class="maintitle">KH-SHOP</span><span class="description">Fun shopping for tomorrow</span></h1>
 				<script>
 				function goSearch() {
 					var searchStr = document.getElementById('id_search_input').value;
