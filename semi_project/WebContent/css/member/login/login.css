@@ -67,19 +67,6 @@ div.login_container div.login_container_content div.div_login_box{
     		margin-left: 40px;
     		float: left;
 	}
-		div.member_login_div_bt_area a{
-			display: block;
-			width: 150px;
-			height: 20px;
-			border: 2px solid #e8380d;
-			padding: 14px 15px;
-			text-align: center;
-			transition: all 0.3s;
-		}
-		div.member_login_div_bt_area a:HOVER{
-			background-color: #e8380d;
-			color: #ffffff;
-		}
 		div.member_login_div_bt_area a img{
 			width: 88px;
 			height: 88px;

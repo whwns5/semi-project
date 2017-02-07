@@ -7,7 +7,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/semi_project/css/default.css?ver=3">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/commonButton.css?ver=3">
 <link rel="stylesheet" type="text/css" href="/semi_project/css/member/login/login.css?ver=4">
+
 </head>
 <%
 String ckid = null;
@@ -57,7 +59,7 @@ if(cks!=null){
 							</table>	
 						</div>
 						<div class="member_login_div_bt_area">
-							<a href="javascript:goLogin();">LOGIN</a>
+							<a class="common-bt" href="javascript:goLogin();">LOGIN</a>
 						</div>
 					</form>
 				</div>

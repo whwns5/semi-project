@@ -285,7 +285,7 @@ div#body_contents div.product_detail{
 			font: bold 12px dotum;
     		color: #585858;
 		}
-		div.div_tab_detail02 div.tab_review_table table td.review_subject a{
+		div.div_tab_detail02 div.tab_review_table table td.review_subject a.review_subject_a{
 			color: #585858;
     		text-decoration: none;
 		}
@@ -333,7 +333,7 @@ div#body_contents div.product_detail{
 			padding-bottom: 70px;
     		width: 880px;
 		}
-		div.paging a{
+		div.paging a.num{
 			display: inline-block;
 		    font: bold 12px dotum;
 		    color: #919191;
@@ -344,6 +344,13 @@ div#body_contents div.product_detail{
 		    vertical-align: middle;
 		    border: 1px solid #fff;
 		}
+		/* div.paging a.bt_write{
+			float: right;
+			width: 65px;
+   			padding-bottom: 8px;
+    		padding-top: 8px;
+			font-size: 14px;
+		} */
 		div.paging a.on{
 			border: 1px solid #dcdcdc;
     		background-color: #f0f0f0;

@@ -65,7 +65,17 @@
 						<%=arr_qdto.get(i).getQna_content() %>
 					</div>
 				</td>
-				<td class="progress">접수중</td> <!--  point_c 접수완료 -->
+	<%
+				if(arr_qdto.get(i).getQna_state() == 0){ // 접수중
+	%>
+					<td class="progress">접수중</td>
+	<%	
+				} else if (arr_qdto.get(i).getQna_state() == 1) {
+	%>
+					<td class="point_c">답변완료</td>
+	<%
+				}
+	%>
 			</tr>				
 	<%		
 			}
@@ -103,8 +113,8 @@
 		
 	<%
 		}
-	%>		
-	<input class="submit-button" type="button" value="문의작성" onclick="openQnaLayer();">
+	%>
+	<a class="common-bt bt_write" href="javascript:openQnaLayer();">문의 작성</a>
 </div>
 
 	

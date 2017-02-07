@@ -172,7 +172,7 @@
 									
 									<span><%=arr_pdto.get(i).getProduct_name()%>&nbsp;<%=arr_pdto.get(i).getProduct_code() %></span>
 									</p>
-									<span class="span_price"><%=dcformat.format((double) arr_pdto.get(i).getProduct_price()) %></span>
+									<span class="span_price"><%=dcformat.format((double) arr_pdto.get(i).getProduct_price()) %>원</span>
 								</a>
 							</div>
 							<div class="div_menu" id="div_menu_<%=i%>" onmouseover="openDivMenu(this);" onmouseout="closeDivMenu(this);">

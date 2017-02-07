@@ -59,7 +59,7 @@
 	<%
 					}
 	%>
-					<a href="javascript:showContent(<%=i%>,'review_content');"><%=arr_rdto.get(i).getReview_subject()%></a>
+					<a class="review_subject_a" href="javascript:showContent(<%=i%>,'review_content');"><%=arr_rdto.get(i).getReview_subject()%></a>
 					<span>(<%=arr_rdto.get(i).getMember_id()%>)</span>
 	<%
 					if( arr_rdto.get(i).getReview_img() == null || arr_rdto.get(i).getReview_img().equals("") ){
@@ -73,7 +73,7 @@
 					<div class="review_content">
 						<%=arr_rdto.get(i).getReview_content()%>
 						<div class="review_reply_div">
-							<input class="layer-submit-review-reply" type="button" value="댓글달기" onclick="openReviewReplyLayer(<%=arr_rdto.get(i).getReview_ref()%>,<%=arr_rdto.get(i).getReview_lev()%>,<%=arr_rdto.get(i).getReview_sunbun()%>);">
+							<a class="common-bt bt_writereply" href="javascript:openReviewReplyLayer(<%=arr_rdto.get(i).getReview_ref()%>,<%=arr_rdto.get(i).getReview_lev()%>,<%=arr_rdto.get(i).getReview_sunbun()%>);">REPLY</a>
 						</div>
 					</div>
 				</td>
@@ -126,5 +126,5 @@
 	<%
 		}
 	%>
-	<input class="submit-button" type="button" value="리뷰작성" onclick="openReviewLayer();">
+	<a class="common-bt bt_write" href="javascript:openReviewLayer();">리뷰 작성</a>
 </div>

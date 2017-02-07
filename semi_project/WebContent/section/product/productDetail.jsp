@@ -13,9 +13,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/semi_project/css/button/button.css?ver=6">
-<link rel="stylesheet" type="text/css" href="/semi_project/css/layer/layer.css?ver=8">
-<link rel="stylesheet" type="text/css" href="/semi_project/css/product/productDetail.css?ver=6">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/default.css?ver=8">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/commonButton.css?ver=8">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/button/button.css?ver=8">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/layer/layer.css?ver=9">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/product/productDetail.css?ver=9">
 <script type="text/javascript" src="/semi_project/js/ajax.js?ver=4"></script>
 <script type="text/javascript" src="/semi_project/js/ajax_upload.js?ver=2"></script>
 <script>
@@ -329,8 +331,8 @@ function settingPage(product_idx) {
 						</table>
 						<div class="btn_div">
 							<ul class="btn_ul">
-								<li><input class="submit-button" type="button" value="바로구매"></li>
-								<li><input class="submit-button" type="button" value="장바구니" onclick="goCart();"></li>
+								<li><a class="common-bt" href="javascript:goLogin();">BUY</a></li>
+								<li><a class="common-bt" href="javascript:goCart();">CART</a></li>
 							</ul>
 						</div>
 					</div>
@@ -427,9 +429,9 @@ function settingPage(product_idx) {
 																		</p>	
 									</div>
 									<div class="layer-submit-container">
-										<input class="layer-submit-button" type="button" value="작성하기" 
-											onclick="submitReviewLayer();">
-										<input class="layer-submit-button" type="button" value="나가기" onclick="closeReviewLayer();">
+										<a class="common-bt bt_write" style="margin-left:15px;" href="javascript:closeReviewLayer();">CLOSE</a>
+										<a class="common-bt bt_write" href="javascript:submitReviewLayer();">WRITE</a>
+										<input class="layer-submit-button" style="visibility: hidden;" type="button" value="나가기" onclick="closeReviewLayer();">
 									</div>					
 								</form>
 							</div>
@@ -490,9 +492,9 @@ function settingPage(product_idx) {
 									<div class="layer-form-title">댓글 내용<textarea class="layer-form-field-content" rows="20" cols="68" name="review_reply_content" id="review_reply_content" required="required"></textarea>
 									</div>
 									<div class="layer-submit-container">
-										<input class="layer-submit-button" type="button" value="작성하기" 
-											onclick="submitReviewReplyLayer();">
-										<input class="layer-submit-button" type="button" value="나가기" onclick="closeReviewReplyLayer();">
+										<a class="common-bt bt_write" style="margin-left:15px;" href="javascript:closeReviewReplyLayer();">CLOSE</a>
+										<a class="common-bt bt_write" href="javascript:submitReviewReplyLayer();">WRITE</a>
+										<input class="layer-submit-button" style="visibility: hidden;" type="button" value="나가기" onclick="closeReviewReplyLayer();">
 									</div>					
 								</form>
 							</div>
@@ -556,9 +558,9 @@ function settingPage(product_idx) {
 									<div class="layer-form-title">문의 내용<textarea class="layer-form-field-content" rows="20" cols="68" name="qna_content" id="qna_content" required="required"></textarea>
 									</div>
 									<div class="layer-submit-container">
-										<input class="layer-submit-button" type="button" value="작성하기" 
-											onclick="submitQnaLayer();">
-										<input class="layer-submit-button" type="button" value="나가기" onclick="closeQnaLayer();">
+										<a class="common-bt bt_write" style="margin-left:15px;" href="javascript:closeQnaLayer();">CLOSE</a>
+										<a class="common-bt bt_write" href="javascript:submitQnaLayer();">WRITE</a>
+										<input class="layer-submit-button" style="visibility: hidden;" type="button" value="나가기" onclick="closeQnaLayer();">
 									</div>
 									
 								</form>
