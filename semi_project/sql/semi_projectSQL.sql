@@ -134,3 +134,14 @@ CREATE TABLE coupon_table(
 /* 쿠폰 테이블 시퀀스 */
 CREATE SEQUENCE coupon_table_idx MINVALUE 0 START WITH 1;
 
+CREATE TABLE refund_table(
+	refund_idx NUMBER PRIMARY KEY,
+	member_id VARCHAR2(20),
+	product_idx NUMBER,
+	payment_idx NUMBER,
+	refund_subject VARCHAR2(100),
+	refund_content VARCHAR2(1000),
+	refund_date DATE
+);
+/* 취소 환불 테이블 */
+CREATE SEQUENCE refund_table_idx MINVALUE 0 START WITH 1
