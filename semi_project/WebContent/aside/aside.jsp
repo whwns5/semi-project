@@ -1,8 +1,13 @@
+<%@page import="semi.session.sessionProductDTO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="/semi_project/css/aside/aside.css?ver=1">
 <%
 	if(session_member_id != null){ // 로그인 상태
+		
+		ArrayList<sessionProductDTO> session_arry_spdto_aside = (ArrayList<sessionProductDTO>) session.getAttribute("session_arry_spdto");
+
 %>
 		<aside>
 			<script>
@@ -26,9 +31,18 @@
 		       		<img class="nav_menu_icon" src="/semi_project/img/icon/icon_today.png">
 		       		<p>투데이상품</p>
 		       		<div class="today_div" id="today_link_img">
-		       			<a class="today_a" href="#"><img title="테일러 미니 O5NBCB08" src="/semi_project/img/product/bags/backpack/O5FBBP04_BEIGE/O5FBBP04_BEIGE_2.jpg"></a>	
-		       			<a class="today_a" href="#"><img title="테일러 미니 O5NBCB08" src="/semi_project/img/product/bags/backpack/O5FBBP04_BEIGE/O5FBBP04_BEIGE_2.jpg"></a>	
-		       			<a class="today_a" href="#"><img title="테일러 미니 O5NBCB08" src="/semi_project/img/product/bags/backpack/O5FBBP04_BEIGE/O5FBBP04_BEIGE_2.jpg"></a>	
+<%
+						if(session_arry_spdto_aside != null){
+							for(int i = session_arry_spdto_aside.size()-1 ; i >= 0 ; i--){
+%>
+								<a class="today_a" href="/semi_project/section/product/productDetail.jsp?product_idx=<%=session_arry_spdto_aside.get(i).getProduct_idx()%>&product_code=<%=session_arry_spdto_aside.get(i).getProduct_code()%>&lcid=<%=session_arry_spdto_aside.get(i).getLcid()%>&scid=<%=session_arry_spdto_aside.get(i).getScid()%>&today=true">
+									<img title="<%=session_arry_spdto_aside.get(i).getProduct_name()%>_<%=session_arry_spdto_aside.get(i).getProduct_code()%>" 
+									src="/semi_project/img/product/<%=session_arry_spdto_aside.get(i).getLcid()%>/<%=session_arry_spdto_aside.get(i).getScid()%>/<%=session_arry_spdto_aside.get(i).getProduct_code()%>_<%=session_arry_spdto_aside.get(i).getProduct_color() %>/<%=session_arry_spdto_aside.get(i).getProduct_code()%>_<%=session_arry_spdto_aside.get(i).getProduct_color()%>_2.jpg">
+								</a>
+<%							
+							}
+						}
+%>
 		       		</div>  		
 		       	</div>	       	
 		       </li>

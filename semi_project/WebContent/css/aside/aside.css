@@ -81,7 +81,7 @@ ul#navigation li.navigation_li:LAST-CHILD div.li_div p{
 ul#navigation li.navigation_li:LAST-CHILD div.li_div div.today_div{
 	opacity: 0;
 	padding-top: 15px;
-	transition: all 2s;
+	transition: all 2.5s;
 }
 ul#navigation li.navigation_li:LAST-CHILD div.li_div div.today_div a.today_a{
 	display: block;

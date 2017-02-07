@@ -35,6 +35,8 @@ public class ProductDTO {
 	public ProductDTO() {
 		super();
 	}
+	
+	
 
 	public ProductDTO(int product_idx, int smallcategory_id, String product_name, String product_code,
 			String product_color, String product_size, int product_num, int product_price, String product_content,
