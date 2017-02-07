@@ -88,31 +88,39 @@ div.mypage_container div.mypage_info table.myinfo2 td.last {
 	
 	
 /** 메뉴 영역 */
-div.mypage_container div.mypage_menu{
-	
+div.mypage_container div.mypage_content_wrap{
+	width: 1100px;
+	margin: 0px auto;
 }
-div.mypage_container dl{
-	position: absolute;
-    top: 269px;
-    left: 0;
-    width: 198px;
-    border: 1px solid #333;
+div.mypage_container div.mypage_content_wrap div.mypage_menu{
+	display: block;
+	height: 800px;
+	width: 200px;
+	float: left;
 }
-div.mypage_container dl dt{
+div.mypage_container div.mypage_content_wrap div.mypage_menu dl{
+	border: 1px solid #333;
+}
+div.mypage_container div.mypage_content_wrap div.mypage_menu dl dt{
 	padding: 45px 0 38px 0;
     border-bottom: 1px solid #818181;
     font-weight: bold;
     text-align: center;
     background: #f5f5f5;
 }
-div.mypage_container dl dd{
+div.mypage_container div.mypage_content_wrap div.mypage_menu dl dd{
 	padding: 18px 0 15px 40px;
     text-align: left;
     border-bottom: 1px solid #d6d6d6;
 }
-	
-	
-	
+div.mypage_container div.mypage_content_wrap div.mypage_content{
+	display: block;
+	width: 900px;
+	height: 800px;
+	float: left;
+	background-color: gray;
+}
+
 	
 	
 	

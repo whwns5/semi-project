@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/semi_project/css/default.css?ver=3">
-<link rel="stylesheet" type="text/css" href="/semi_project/css/member/mypage/mypage.css?ver=3">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/member/mypage/mypage.css?ver=4">
 
 </head>
 <body>
@@ -60,16 +60,21 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="mypage_menu">
-			<dl>
-				<dt><a href="#">MY PAGE</a></dt>
-				<dd><a href="/mypage/order_list.php">회원 정보 수정</a></dd>
-				<dd><a href="/mypage/wish_list.php">주문 내역</a></dd>
-				<dd><a href="/board/?db=counsel">문의 내역</a></dd>
-				<dd><a href="/mypage/withdraw_step1.php">회원 탈퇴</a></dd>
-			</dl>
+		<div class="mypage_content_wrap">
+			<div class="mypage_menu">
+				<dl>
+					<dt><a href="#">MY PAGE</a></dt>
+					<dd><a href="/mypage/order_list.php">회원 정보 수정</a></dd>
+					<dd><a href="/mypage/wish_list.php">주문 내역</a></dd>
+					<dd><a href="/board/?db=counsel">문의 내역</a></dd>
+					<dd><a href="/mypage/withdraw_step1.php">회원 탈퇴</a></dd>
+				</dl>
+			</div>
+			<div class="mypage_content">
+			</div>
 		</div>
 	</div>
+	<div></div>
 	</section>
 	<%@include file="/footer/footer.jsp" %>
 </body>
