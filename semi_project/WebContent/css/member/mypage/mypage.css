@@ -4,6 +4,10 @@ section{
 	margin: 0px;
 	padding: 0px;
 }
+dl, dd, dt{
+	margin: 0px;
+	padding: 0px;
+}
 div.mypage_container{
 	width: 1100px;
 	margin: 0px auto;
@@ -99,7 +103,9 @@ div.mypage_container div.mypage_content_wrap div.mypage_menu{
 	float: left;
 }
 div.mypage_container div.mypage_content_wrap div.mypage_menu dl{
-	border: 1px solid #333;
+	width: 198px;
+    border: 1px solid #333;
+    
 }
 div.mypage_container div.mypage_content_wrap div.mypage_menu dl dt{
 	padding: 45px 0 38px 0;

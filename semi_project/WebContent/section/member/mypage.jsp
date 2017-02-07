@@ -71,6 +71,7 @@
 				</dl>
 			</div>
 			<div class="mypage_content">
+				<%@include file="/footer/footer.jsp" %>
 			</div>
 		</div>
 	</div>
