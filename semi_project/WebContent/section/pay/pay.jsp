@@ -11,7 +11,7 @@
     <jsp:useBean id="cdao" class="semi.cart.CartDAO" scope="session"/>
 <%
 request.setCharacterEncoding("utf-8");
-String member_id=(String)session.getAttribute("user_id");
+String member_id=(String)session.getAttribute("session_member_id");
 System.out.println("pay.jsp BEFORE id="+member_id);
 if(member_id==null|| member_id.equals("")){
 %>

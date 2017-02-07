@@ -9,7 +9,7 @@
     <jsp:useBean id="pdao" class="semi.product.ProductDAO" scope="session"/>
 <!-- ------------------------------------------------장바구니 데이터 세팅 --------------------------------------------------------->
 <%
-String member_id=(String)session.getAttribute("user_id");
+String member_id=(String)session.getAttribute("session_member_id");
 DecimalFormat df=new DecimalFormat("#,##0");
 //결제창에서 가져올때 get param values
 String product_idx[]=request.getParameterValues("product_idx");
