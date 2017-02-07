@@ -52,6 +52,17 @@ function mcancelclosetime()
 document.onclick = mclose; 
 
 </script>
+<%
+	String session_member_id = (String)session.getAttribute("session_member_id"); // 로그인 정보를 받아온다.
+	String session_member_name = (String)session.getAttribute("session_member_name");
+	/* String cartNums=(String)session.getAttribute("cart");
+	int cartN=0;
+	if(cartNums==null || cartNums.equals("")){
+		cartN=0;
+	}else{
+	cartN=Integer.parseInt(cartNums);
+	} */
+%>
 <header>
 	<div id="gnb">
 		<div class="gnb_container">
@@ -59,35 +70,24 @@ document.onclick = mclose;
 				<div class="container_util">
 					<a href="javascript:bookmarksite('KH쇼핑몰','http://localhost:9090/semi_project');" class="btn_favorite">즐겨찾기추가</a>
 					<ul class="nav_util">
-						<li>	<%
-						String user_name = (String)session.getAttribute("user_name");
-						//장바구니 개수 가져오기
-						String member_id1 =(String)session.getAttribute("user_id");
-						String cartNums=(String)session.getAttribute("cart");
-						int cartN=0;
-						if(cartNums==null || cartNums.equals("")){
-							cartN=0;
-						}else{
-						cartN=Integer.parseInt(cartNums);
+					<%	
+						if(session_member_id == null){ // 비로그인 상태
+					%>
+							<li><a href="/semi_project/section/member/login/login.jsp">LOGIN</a></li>
+							<li><a href="/semi_project/section/member/join/join.jsp">JOIN US</a></li>	
+							
+					<%									
+						} else { // 로그인 상태
+					%>
+							<li><a href="#"><%=session_member_name %>님 환영합니다.</a></li>
+							<li><a href="/semi_project/section/member/logout/logout_ok.jsp">LOGOUT</a></li>
+							<!-- <li><a href="#">CART</a></li>				
+							<li><a href="#">ORDER</a></li>
+							<li><a href="#">EVENT</a></li>
+							<li><a href="#">MYPAGE</a></li> -->
+					<%
 						}
-						
-						if ( user_name == null )
-						{
-						%>
-						<a href="/semi_project/section/member/login/login.jsp">LOGIN</a> 
-						<%
-						}else{
-						%>
-						<%=user_name %>님 환영합니다. | <a href="/semi_project/section/member/logout/logout_ok.jsp">LOGOUT</a>
-						<%
-						}
-						%>
-						| <a href="/semi_project/section/member/join/join.jsp">JOIN US</a> | <a href="/semi_project/section/cart/cartShow.jsp">CART(<%=cartN%>)</a> | <a href="/semi_project/section/member/join/list.jsp">MYPAGE</a></li>
-						<li><a href="/semi_project/section/member/join/join.jsp">JOIN US</a></li>
-						<li><a href="#">CART</a></li>
-						<li><a href="#">MYPAGE</a></li>
-						<li><a href="#">ORDER</a></li>
-						<li><a href="#">EVENT</a></li>
+					%>
 					</ul>
 				</div>
 			</div>

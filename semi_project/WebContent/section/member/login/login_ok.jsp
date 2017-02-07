@@ -22,12 +22,13 @@
 	}else if(result==3){
 		MemberDTO vmdto[] = null;
 		vmdto = jdao.userInfo(member_id);
-		System.out.println(vmdto[0].toString());
-		session.setAttribute("session_member_id", member_id);
-		session.setAttribute("session_user_name", user_name);
-		Cookie ck = new Cookie("user_id", member_id);
+		session.setAttribute("session_member_id", vmdto[0].getMember_id());
+		session.setAttribute("session_member_name", vmdto[0].getMember_name());
+		session.setAttribute("session_member_type", vmdto[0].getMember_type());
+		
+		/* Cookie ck = new Cookie("user_id", member_id);
 		ck.setMaxAge(60*60*24*30);
-		response.addCookie(ck);
+		response.addCookie(ck); */
 		msg="로그인에 성공하셨습니다.";
 		url="/semi_project/section/home.jsp";
 	}
