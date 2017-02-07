@@ -55,29 +55,3 @@ String msg=result>0?"장바구니 담기 성공":"장바구니 담기 실패";
 window.alert('<%=msg%>');
 location.href="cartShow.jsp";
 </script>
-<!-- 
-<html>
-<head>
-<body>
-<hr>
-<form name="fm" action="cartShow.jsp">
-<input type="text" value="<%=member_id%>">
-<%
-/*
-for(int i=0; i<product_idx.length; i++){
-	%>
-	<input type="text" name="product_idx" value="<%=product_idx[i]%>">
-	<input type="text" name="product_price" value="<%=product_price[i]%>">
-	<input type="text" name="product_num" value="<%=product_num[i]%>">
-	<input type="text" name="product_code" value="<%=product_code[i]%>">
-	<input type="text" name="product_color" value="<%=product_color[i]%>">
-	<%
-}
-*/
-%>
-<input type="submit" value="submit">
-</form>
-</body>
-</head>
-</html>
- -->
