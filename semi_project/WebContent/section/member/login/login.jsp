@@ -10,12 +10,12 @@
 <link rel="stylesheet" type="text/css" href="/semi_project/css/member/login/login.css?ver=4">
 </head>
 <%
-String saveid="";
+String ckid = null;
 Cookie cks[]=request.getCookies();
 if(cks!=null){
 	for(int i=0;i<cks.length;i++){
-		if(cks[i].getName().equals("saveid")){
-			saveid=cks[i].getValue();
+		if(cks[i].getName().equals("ckid")){
+			ckid=cks[i].getValue();
 		}
 	}
 }
@@ -44,12 +44,14 @@ if(cks!=null){
 									</tr>
 									<tr>
 										<td><span>ID</span></td>
-										<td><input class="login_input" type="text" name="member_id"></td>
+										<td><input class="login_input" type="text" name="member_id" value="<%=ckid == null ? "" : ckid %>"></td>
 									</tr>
 									<tr>
 										<td><span>PWD</span></td>
 										<td><input class="login_input" type="password" name="member_pwd"></td>
-										<input type="checkbox" name="saveid" value="on" <%=saveid.equals("")?"":"checked" %> >아이디 기억하기
+									</tr>
+									<tr>
+										<td colspan="2"><input type="checkbox" name="ckid" value="on" <%=ckid == null ? "" : "checked"  %>>아이디 기억</td>
 									</tr>
 								</tbody>
 							</table>	

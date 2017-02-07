@@ -11,26 +11,10 @@
 	String msg="";
 	String url="";
 	String member_id=request.getParameter("member_id");
-	String member_pwd=request.getParameter("member_name");
-	String saveid=request.getParameter("saveid");
-	
-	int result=jdao.loginCheck(member_id,member_pwd);
+	String member_pwd=request.getParameter("member_pwd");
+	String ckid = request.getParameter("ckid");
 
-	if(result==jdao.LOGIN_OK){
-		String member_name = jdao.getUserInfo1(member_id);
-		session.setAttribute("session_member_id", member_id);
-		session.setAttribute("session_member_name", member_name);
-		System.out.println("member_id");
-		
-		if(saveid!=null &&saveid.equals("on")){
-			Cookie ck=new Cookie("session_member_id",member_id);
-			ck.setMaxAge(60*60*24*30);
-			response.addCookie(ck);
-		}else{
-			Cookie ck=new Cookie("session_member_id",member_id);
-			ck.setMaxAge(0);
-			response.addCookie(ck);
-		}
+	int result=jdao.loginCheck(member_id,member_pwd);
 	
 	if(result==1){
 		msg="로그인에 실패하였습니다. 아이디를 찾을수 없습니다.";
@@ -45,6 +29,11 @@
 		session.setAttribute("session_member_name", vmdto[0].getMember_name());
 		session.setAttribute("session_member_type", vmdto[0].getMember_type());
 		
+		if(ckid != null){ // 아이디 기억 체크시..
+			Cookie ck = new Cookie("ckid", vmdto[0].getMember_id());
+			ck.setMaxAge(60*60*24*30); // 한달간
+			response.addCookie(ck);
+		}
 		/* Cookie ck = new Cookie("user_id", member_id);
 		ck.setMaxAge(60*60*24*30);
 		response.addCookie(ck); */
@@ -54,5 +43,5 @@
 %>
 <script>
 	window.alert('<%=msg%>');
-	location.href='<%=url%>';
+	location.href = '<%=url%>';
 </script>

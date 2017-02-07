@@ -156,7 +156,7 @@ public class MemberDAO {
 	/**회원 정보 보기 관련 메서드*/
 	public MemberDTO[] userInfo(String member_id)
 	{
-		System.out.println(member_id);
+		
 		try 
 		{
 			conn=semi.db.semiDB.getConn();
