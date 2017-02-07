@@ -1,0 +1,121 @@
+@CHARSET "UTF-8";
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+section{
+	margin: 0px;
+	padding: 0px;
+}
+div.mypage_container{
+	width: 1100px;
+	margin: 0px auto;
+	margin-top: 40px;
+}
+div.mypage_container h2.mypage_title{
+	font-family: 'Lato', sans-serif;
+	border-bottom: 1px solid #4B4B4B;
+	padding-bottom: 10px;
+}
+div.mypage_container div.mypage_info{
+	height: 134px;
+    margin: 0 0 33px 0;
+    border: 2px solid #000;
+    font-size: 12px;
+}
+div.mypage_container div.mypage_info table{
+	float: left;
+    text-align: center;
+}
+div.mypage_container div.mypage_info table td{
+	padding: 35px 0;
+    border-right: 1px solid #cecece;
+    border-bottom: 1px solid #cecece;
+    color: #989898;
+}
+
+div.mypage_container div.mypage_info table td.name {
+    padding: 0;
+    font-size: 11px;
+    line-height: 150%;
+    letter-spacing: -1px;
+}
+div.mypage_container div.mypage_info table td span {
+    color: #000;
+    font-weight: bold;
+    font-size: 14px;
+}
+div.mypage_container div.mypage_info table td span.lavel {
+    font-size: 12px;
+}
+div.mypage_container div.mypage_info table td span.milage, 
+div.mypage_container div.mypage_info table td span.coupon {
+    text-decoration: underline;
+}
+
+div.mypage_container div.mypage_info table th{
+	padding: 14px 0 13px 0;
+    border-right: 1px solid #cecece;
+    border-bottom: 1px solid #cecece;
+    color: #000;
+    font-weight: bold;
+    background: #f8f8f8;
+}
+div.mypage_container div.mypage_info table.myinfo1{
+	width: 705px;
+}
+div.mypage_container div.mypage_info table.myinfo1 td {
+    border-bottom: 0;
+}
+div.mypage_container div.mypage_info table.myinfo2{
+	width: 389px;
+}
+div.mypage_container div.mypage_info table.myinfo2 th {
+    padding: 14px 0 13px 0;
+}
+div.mypage_container div.mypage_info table.myinfo2 td {
+	padding: 14px 0 13px 15px;
+    border-right: 0;
+    text-align: left;
+    color: #000;
+    font-size: 11px;
+}
+div.mypage_container div.mypage_info table.myinfo2 th.last {
+	padding-bottom: 16px;
+    border-bottom: 0;
+}
+div.mypage_container div.mypage_info table.myinfo2 td.last {
+	padding-bottom: 16px;
+    border-bottom: 0;
+}
+	
+	
+/** 메뉴 영역 */
+div.mypage_container div.mypage_menu{
+	
+}
+div.mypage_container dl{
+	position: absolute;
+    top: 269px;
+    left: 0;
+    width: 198px;
+    border: 1px solid #333;
+}
+div.mypage_container dl dt{
+	padding: 45px 0 38px 0;
+    border-bottom: 1px solid #818181;
+    font-weight: bold;
+    text-align: center;
+    background: #f5f5f5;
+}
+div.mypage_container dl dd{
+	padding: 18px 0 15px 40px;
+    text-align: left;
+    border-bottom: 1px solid #d6d6d6;
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
