@@ -16,7 +16,7 @@
 request.setCharacterEncoding("utf-8");
 //db 업데이트
 System.out.println("------------------------------------cartArrPay.jsp--------------------------------");
-String member_id=(String)session.getAttribute("user_id");
+String member_id=(String)session.getAttribute("session_member_id");
 System.out.println("member_id="+member_id);
 ArrayList<CartDTO> arr=cdao.cartList(member_id);
 if(arr==null || arr.size()==0){

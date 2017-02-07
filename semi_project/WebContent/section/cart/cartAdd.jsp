@@ -6,13 +6,13 @@
 <jsp:useBean id="pdao" class="semi.product.ProductDAO" scope="session"/>
 <jsp:useBean id="cdao" class="semi.cart.CartDAO" scope="session"/>
 <%
-String member_id=(String)session.getAttribute("user_id");
+String member_id=(String)session.getAttribute("session_member_id");
 System.out.println("id first: "+member_id);
 String id=null;
 if(member_id==null || member_id.equals("")){
 	id="zz";
-	session.setAttribute("user_id", id);
-	member_id=(String)session.getAttribute("user_id");
+	session.setAttribute("session_member_id", id);
+	member_id=(String)session.getAttribute("session_member_id");
 	%>
 	<!--  
 	<script>

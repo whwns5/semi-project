@@ -22,7 +22,7 @@ border:1px solid black;
 <%
 String member_name=request.getParameter("member_name");
 //payment DB에 집어넣을값들
-String member_id=(String)session.getAttribute("user_id");
+String member_id=(String)session.getAttribute("session_member_id");
 ArrayList<CartDTO> arr=cdao.cartList(member_id);
 
 String product_idxs[]=request.getParameterValues("product_idx");
