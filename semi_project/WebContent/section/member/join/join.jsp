@@ -34,7 +34,7 @@ function openCheck(){
 <section>
 <article>
 	<form name="joinfm" action="/semi_project/section/member/join/join_ok.jsp" method="post">
-	<table border="1" cellspacing="0" width="980" bordercolor="#FFFFFF" align="center">
+	<table border="1" cellspacing="0" width="980" bordercolordark="#FFFFFF" align="center">
 		<tbody>
 			<tr>
 				<td height="145" valign="top">
@@ -52,42 +52,42 @@ function openCheck(){
 							<table cellpadding="0" cellspacing="1" width="100%">
 								<tbody>
 								<tr bgcolor="#FFFFFF">
-									<td width="160" class="m_padding">*아이디</td>
+									<td width="160" class="m_title">*아이디</td>
 									<td class="m_padding"><input type="text" name="member_id" readonly required="required" size="20">
 									<input type="button" value="아이디 중복 체크" onclick="openIdCheck();"></td>
 								</tr>
 								<tr bgcolor="#FFFFFF">
-									<td width="160" class="m_padding">*비밀번호</td>
+									<td width="160" class="m_title">*비밀번호</td>
 									<td class="m_padding"><input type="password" name="member_pwd" required="required" size="20" maxlength="20">&nbsp;&nbsp;비밀번호는 최대 16자리로 입력해주세요.
 									</td>
 								</tr>
 								<tr bgcolor="#FFFFFF">
-								 	<td width="160" class="m_padding">*비밀번호 확인</td>
+								 	<td width="160" class="m_title">*비밀번호 확인</td>
 									<td class="m_padding"><input type="password" name="member_pwdCheck" required="required" size="20" maxlength="20">&nbsp;&nbsp;입력하신 비밀번호를 한번 더 입력해주세요.
 									</td>
 								</tr>
 								<tr bgcolor="#FFFFFF">
-									<td width="160" class="m_padding">*이름</td>
+									<td width="160" class="m_title">*이름</td>
 									<td class="m_padding"><input type="text" name="member_name" required="required" onfocus="openCheck();">
 									</td>
 								</tr>
 								<tr bgcolor="#FFFFFF">
-									<td width="160" class="m_padding">성별</td>
+									<td width="160" class="m_title">성별</td>
 									<td class="m_padding"><input type="radio" name="member_sex" value="남자">남자
 									<input type="radio" name="member_sex" value="여자">여자</td>
 								</tr>
 								<tr bgcolor="#FFFFFF">
-									<td width="160" class="m_padding">*주소</td>
+									<td width="160" class="m_title">*주소</td>
 									<td class="m_padding"><input type="text" name="member_addr" required="required">
 									</td>
 								</tr>
 								<tr bgcolor="#FFFFFF">
-									<td width="160" class="m_padding">*휴대폰번호</td>
+									<td width="160" class="m_title">*휴대폰번호</td>
 									<td class="m_padding"><input type="text" name="member_tel" required="required">
 									</td>
 								</tr>
 								<tr bgcolor="#FFFFFF">
-									<td width="160" class="m_padding">이메일</td>
+									<td width="160" class="m_title">이메일</td>
 									<td class="m_padding"><input type="text" name="member_email" required="required">
 									</td>
 								</tr>
@@ -100,7 +100,7 @@ function openCheck(){
 				<table width="970" border="0" cellspacing="0" cellpadding="0" align="center">
 					<tbody>
 						<tr>
-							<td height="30"></td>
+							<td height="15"></td>
 						</tr>
 					</tbody>
 				</table>
@@ -110,13 +110,18 @@ function openCheck(){
 				<table width="970" border="0" cellspacing="0" cellpadding="0" align="center">
 					<tbody>
 						<tr>
-							<td height="30"></td>
+							<td height="15"></td>
 						</tr>
 					</tbody>
 				</table>
 				</td>
 			</tr>
 		</tbody>
+	</table>
+	<table width="980" border="0" cellspacing="0" cellpadding="0" align="center">
+		<tr>
+			<td height="15"></td>
+		</tr>
 	</table>
 	</form>
 </article>

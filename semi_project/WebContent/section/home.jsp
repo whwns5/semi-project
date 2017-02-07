@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/semi_project/css/default.css?ver=3">
 <link rel="stylesheet" type="text/css" href="/semi_project/css/home.css?ver=2">
 <script>
 function checkPopup() {
