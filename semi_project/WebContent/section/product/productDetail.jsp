@@ -1,3 +1,4 @@
+<%@page import="semi.session.sessionProductDTO"%>
 <%@page import="semi.path.Path"%>
 <%@page import="semi.qna.QnaDTO"%>
 <%@page import="java.io.File"%>
@@ -111,6 +112,8 @@ function settingPage(product_idx) {
 	String lcid = request.getParameter("lcid");
 	String scid = request.getParameter("scid");
 
+	//session.setAttribute("session_member_id", vmdto[0].getMember_id());
+	//product_idx=23&product_code=O5FBBP39&lcid=bags&scid=backpack
 	
 	String product_path = "/semi_project/img/product/" + lcid + "/" + scid;
 	String com_path = Path.COM_PROJECT_PATH + "/WebContent/img/product/" + lcid + "/" + scid;
@@ -124,7 +127,28 @@ function settingPage(product_idx) {
 			mainpDTO = arr_pdto.get(i);
 		}
 	}
-	
+	if(request.getParameter("today") == null){ // 투데이 상품을 타고온 경우 추가히지 않는다.
+		ArrayList<sessionProductDTO> session_arry_spdto = (ArrayList<sessionProductDTO>) session.getAttribute("session_arry_spdto");
+		if(session_arry_spdto == null){ // 세션 값이 전혀 없다면.
+			session_arry_spdto = new ArrayList<sessionProductDTO>(); // 새로운 객체를 만들어준다.
+			session_arry_spdto.add(new sessionProductDTO(mainpDTO.getProduct_idx(), mainpDTO.getProduct_name(), mainpDTO.getProduct_code(), mainpDTO.getProduct_color(), lcid, scid)); // 현재 페이지의 상품 정보를 담는다.
+			session.setAttribute("session_arry_spdto", session_arry_spdto);
+		} else { 
+			switch(session_arry_spdto.size()){ // 세션 객체의 길이로 분기
+			case 1: case 2: // 길이가 1, 2 일때
+				session_arry_spdto.add(new sessionProductDTO(mainpDTO.getProduct_idx(), mainpDTO.getProduct_name(), mainpDTO.getProduct_code(), mainpDTO.getProduct_color(), lcid, scid));
+				session.setAttribute("session_arry_spdto", session_arry_spdto);
+				break;
+			case 3: // 길이가 3 일때
+				session_arry_spdto.remove(0); // 가장 나중에 들어온 값을 삭제.
+				session_arry_spdto.add(new sessionProductDTO(mainpDTO.getProduct_idx(), mainpDTO.getProduct_name(), mainpDTO.getProduct_code(), mainpDTO.getProduct_color(), lcid, scid));
+				session.setAttribute("session_arry_spdto", session_arry_spdto);
+				break;
+			default:
+				break;
+			}
+		}
+	}
 	DecimalFormat dcformat = new DecimalFormat("###,###,###,###");
 	
 %>

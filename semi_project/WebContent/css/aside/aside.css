@@ -8,10 +8,10 @@ ul#navigation {
     list-style: none;
     z-index:9999;
 }
-ul#navigation li {
+ul#navigation li.navigation_li {
     width: 130px;
 }
-ul#navigation li div{
+ul#navigation li.navigation_li div.li_div{
     display: block;
   	margin-left: 94px;
     width: 130px;
@@ -32,17 +32,17 @@ ul#navigation li div{
     filter:progid:DXImageTransform.Microsoft.Alpha(opacity=60);
     transition:all 1s;
 }
-ul#navigation li div:hover{
+ul#navigation li.navigation_li div.li_div:hover{
 	opacity: 1;
 	margin-left: 0px;
 }
-ul#navigation li div a{
+ul#navigation li.navigation_li div.li_div a.nav_menu_a{
 	display: block;
 	width: 100%;
 	height: 100%;
 	text-decoration: none;
 }
-ul#navigation li div a img{
+ul#navigation li.navigation_li div.li_div a.nav_menu_a img.nav_menu_icon{
 	display: block;
 	float: left;
 	width: 26px;
@@ -52,7 +52,7 @@ ul#navigation li div a img{
 	margin-top : 15px;
 	margin-bottom : 15px;
 }
-ul#navigation li div a p{
+ul#navigation li.navigation_li div.li_div a.nav_menu_a p{
 	margin: 0px;
 	padding-top: 19px;
 	margin-left: 50px;
@@ -60,10 +60,10 @@ ul#navigation li div a p{
 	color:#fff;
 }
 
-ul#navigation li:LAST-CHILD div{
+ul#navigation li.navigation_li:LAST-CHILD div.li_div{
 	height: 500px;
 }
-ul#navigation li:LAST-CHILD div img{
+ul#navigation li.navigation_li:LAST-CHILD div.li_div img.nav_menu_icon{
 	display: blockl;
 	float: left;
 	margin-left : 5px;
@@ -71,10 +71,40 @@ ul#navigation li:LAST-CHILD div img{
 	margin-top : 15px;
 	margin-bottom : 15px;
 }
-ul#navigation li:LAST-CHILD div p{
+ul#navigation li.navigation_li:LAST-CHILD div.li_div p{
 	margin: 0px;
 	padding-top: 19px;
 	margin-left: 50px;
 	font:12px dotum; 
 	color:#fff;
 }
+ul#navigation li.navigation_li:LAST-CHILD div.li_div div.today_div{
+	opacity: 0;
+	padding-top: 15px;
+	transition: all 2.5s;
+}
+ul#navigation li.navigation_li:LAST-CHILD div.li_div div.today_div a.today_a{
+	display: block;
+	width: 100px;
+	height: 100px;
+	margin: 20px auto;
+}
+ul#navigation li.navigation_li:LAST-CHILD div.li_div div.today_div a.today_a img{
+	width: 100px;
+	height: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
