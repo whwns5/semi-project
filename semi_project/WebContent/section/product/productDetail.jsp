@@ -111,6 +111,7 @@ function settingPage(product_idx) {
 	String lcid = request.getParameter("lcid");
 	String scid = request.getParameter("scid");
 
+	//product_idx=23&product_code=O5FBBP39&lcid=bags&scid=backpack
 	
 	String product_path = "/semi_project/img/product/" + lcid + "/" + scid;
 	String com_path = Path.COM_PROJECT_PATH + "/WebContent/img/product/" + lcid + "/" + scid;
