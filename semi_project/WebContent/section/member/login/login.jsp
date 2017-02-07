@@ -9,6 +9,17 @@
 <link rel="stylesheet" type="text/css" href="/semi_project/css/default.css?ver=3">
 <link rel="stylesheet" type="text/css" href="/semi_project/css/member/login/login.css?ver=4">
 </head>
+<%
+String saveid="";
+Cookie cks[]=request.getCookies();
+if(cks!=null){
+	for(int i=0;i<cks.length;i++){
+		if(cks[i].getName().equals("saveid")){
+			saveid=cks[i].getValue();
+		}
+	}
+}
+%>
 <body>
 <%@include file="/header/header.jsp" %>
 <section class="login_section">
@@ -38,6 +49,7 @@
 									<tr>
 										<td><span>PWD</span></td>
 										<td><input class="login_input" type="password" name="member_pwd"></td>
+										<input type="checkbox" name="saveid" value="on" <%=saveid.equals("")?"":"checked" %> >아이디 기억하기
 									</tr>
 								</tbody>
 							</table>	
@@ -65,3 +77,10 @@
 <%@include file="/footer/footer.jsp" %>
 </body>
 </html>
+
+
+
+
+
+
+

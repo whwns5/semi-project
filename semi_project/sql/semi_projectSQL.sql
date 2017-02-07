@@ -62,7 +62,7 @@ CREATE TABLE cart_table(
 CREATE SEQUENCE cart_table_idx MINVALUE 0 START WITH 1;
   
 /* 결제 테이블 */
-CREATE TABLE payment_table(
+CREATE TABLE payment_table test(
   	payment_idx NUMBER PRIMARY KEY,
 	member_id VARCHAR2(20),
 	product_idx NUMBER,
@@ -70,6 +70,10 @@ CREATE TABLE payment_table(
 	payment_num NUMBER,
 	payment_addr VARCHAR2(100),
 	payment_tel VARCHAR2(20)
+	product_name VARCHAR2(1000),
+	product_code VARCHAR2(1000),
+	product_color VARCHAR2(200),
+	payment_date DATE
   );
 /* 결제 테이블 시퀀스 */
 CREATE SEQUENCE payment_table_idx MINVALUE 0 START WITH 1;
