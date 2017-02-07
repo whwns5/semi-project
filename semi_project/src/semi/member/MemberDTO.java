@@ -145,6 +145,17 @@ public class MemberDTO {
 	public void setMember_coupon(String member_coupon) {
 		this.member_coupon = member_coupon;
 	}
+
+
+	@Override
+	public String toString() {
+		return "MemberDTO [member_idx=" + member_idx + ", member_id=" + member_id + ", member_type=" + member_type
+				+ ", member_name=" + member_name + ", member_pwd=" + member_pwd + ", member_sex=" + member_sex
+				+ ", member_email=" + member_email + ", member_tel=" + member_tel + ", member_addr=" + member_addr
+				+ ", member_coupon=" + member_coupon + "]";
+	}
+	
+	
 }
 
 

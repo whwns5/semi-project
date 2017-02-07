@@ -1,0 +1,1 @@
+INSERT INTO member_table VALUES(member_table_idx.NEXTVAL, 'whwns5', '고객', '조준현', '1234', TO_DATE('1990/02/27','YYYY/MM/DD'), '남', 'whwns5@naver.com', '010-4140-6421', '경기도 하남시 하남대로 836번길 xx-x xxx호', NULL, TO_DATE('2017/01/01','YYYY/MM/DD'))

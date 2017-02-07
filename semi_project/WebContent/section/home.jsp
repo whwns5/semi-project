@@ -21,21 +21,22 @@ function getCookie(name) {
 	   var cookieName = name + "=";
 	   var x = 0;
 	   while ( x <= document.cookie.length ) { 
-	      var y = (x+cookieName.length); 
-	      if ( document.cookie.substring( x, y ) == cookieName) { 
+	      var y = ( x + cookieName.length); 
+	      if ( document.cookie.substring( x, y ) == cookieName) {   
 	         if ((lastChrCookie=document.cookie.indexOf(";", y)) == -1) 
 	            lastChrCookie = document.cookie.length;
 	         return decodeURI(document.cookie.substring(y, lastChrCookie));
 	      }
 	      x = document.cookie.indexOf(" ", x ) + 1; 
-	      if ( x == 0 )
-	         break; 
-	      } 
+	      if ( x == 0 ){
+	      	break;
+	      }
+	   } 
 	   return "";
 	}
 
 function openPopup(){ 
-	window.open('/semi_project/section/member/join/popup.jsp','window','width=500,height=300');
+	window.open('/semi_project/section//popup.jsp','window','width=350,height=375,left=600,top=400');
 }
 </script>
 </head>
