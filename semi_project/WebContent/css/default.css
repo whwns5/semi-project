@@ -3,5 +3,11 @@ body{
 	margin:0px 0px 0px 0px; 
 	padding:0px 0px 0px 0px; 
 	overflow:auto; 
+	color: #4B4B4B;
 }
-
+a{
+	text-decoration: none;
+}
+ul{
+	list-style: none;
+}
