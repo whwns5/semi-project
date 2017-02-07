@@ -163,10 +163,28 @@ document.onclick = mclose;
 				
 				// close layer when click-out
 				document.onclick = mclose; 
-				
 			</script>
 			<div class="div_nav">
 				<div class="container_nav"> 
+					<script>
+					function goMyPage() {
+						var session_member_id = <%=session_member_id == null ? null : "'" + session_member_id + "'"%>;
+						if(session_member_id == null){
+							window.alert('로그인 후 사용 가능합니다.');
+							return;
+						}
+						location.href = '/semi_project/section/member/mypage.jsp';
+					}
+					
+					function goMyCart() {
+						var session_member_id = <%=session_member_id == null ? null : "'" + session_member_id + "'"%>;
+						if(session_member_id == null){
+							window.alert('로그인 후 사용 가능합니다.');
+							return;
+						}
+						location.href = '/semi_project/section/member/cart.jsp';
+					}
+					</script>
 					<nav>
 						<ul class="nav_menu" id="sddm">
 							<li><a class="a_largecategory" href="/semi_project/section/home.jsp">HOME</a></li>
@@ -180,8 +198,9 @@ document.onclick = mclose;
 							<li><a class="a_largecategory" href="/semi_project/section/product/productByItemList.jsp?lcid=accessory"
 								   onmouseover="mopen('container_nav_depth_accessory');"
 								   onmouseout="mclosetime();">ACCESSORY</a></li>
-							<li><a class="a_largecategory" href="#">MYPAGE</a></li>
-							<li><a class="a_largecategory" href="#">CART</a></li>
+							
+							<li><a class="a_largecategory" href="javascript:goMyPage();">MYPAGE</a></li>
+							<li><a class="a_largecategory" href="javascript:goMyCart();">CART</a></li>
 						</ul>
 					</nav>
 				</div>

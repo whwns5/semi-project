@@ -19,6 +19,7 @@
 <script type="text/javascript" src="/semi_project/js/ajax.js?ver=4"></script>
 <script type="text/javascript" src="/semi_project/js/ajax_upload.js?ver=2"></script>
 <script>
+
 function AddComma(data_value) {
 	return Number(data_value).toLocaleString('en').split(".")[0] + "원";
 }
@@ -372,6 +373,12 @@ function settingPage(product_idx) {
 					</ul>
 					<script>
 						function openReviewLayer() {
+							var session_member_id = <%=session_member_id == null ? null : "'" + session_member_id + "'"%>;
+							if(session_member_id == null){
+								window.alert('로그인 후 사용 가능합니다.');
+								return;
+							}
+							
 							var review_layer = document.getElementById('id_review_layer');
 
 							document.getElementById('fileSelected_info').innerHTML = '<span>파일명:</span>한글,영문,숫자 l <span>파일용량:</span> 10MB이하 l <span>첨부가능 파일형식:</span>GIF,JPG(JPEG)';				
@@ -501,6 +508,12 @@ function settingPage(product_idx) {
 					</ul>
 					<script>
 						function openQnaLayer() {
+							var session_member_id = <%=session_member_id == null ? null : "'" + session_member_id + "'"%>;
+							if(session_member_id == null){
+								window.alert('로그인 후 사용 가능합니다.');
+								return;
+							}
+							
 							var qna_layer = document.getElementById('id_qna_layer');
 							
 							qna_layer.style.display = 'block';

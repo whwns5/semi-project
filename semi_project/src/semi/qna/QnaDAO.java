@@ -86,13 +86,15 @@ public class QnaDAO {
 				String member_id = rs.getString("member_id");
 				String qna_subject = rs.getString("qna_subject");
 				String qna_content = rs.getString("qna_content");
+				int qna_state = rs.getInt("qna_state");
 				Date qna_regdate = rs.getDate("qna_regdate");
 				int qna_ref = rs.getInt("qna_ref");
 				int qna_lev = rs.getInt("qna_lev");
 				int qna_sunbun = rs.getInt("qna_sunbun");
 						
-				QnaDTO qdto = new QnaDTO(qna_idx, product_idx_temp, member_id, qna_subject, qna_content, qna_regdate, qna_ref, qna_lev, qna_sunbun);
-			
+				QnaDTO qdto = new QnaDTO(qna_idx, product_idx_temp, member_id, qna_subject, 
+						qna_content, qna_state, qna_regdate, qna_ref, qna_lev, qna_sunbun);
+				
 				arr_qdto.add(qdto);
 			}
 			
@@ -206,7 +208,33 @@ public class QnaDAO {
 	}
 	
 	/** 
-	 * Q&A 댓글 입력 관련 메서드
+	 * Q&A 답변 입력시 질문글 상태 변환 관련 메서드
+	 * @param qna_idx
+	 * @return int (실행횟수 혹은 에러)
+	 * */
+	public int qnaQuestionStateUpdate(int qna_idx){
+		try{
+			ps = conn.prepareStatement(Sql.QNA_UPDATE_QUESTION_STATE);
+			ps.setInt(1, qna_idx);
+	
+			int count = ps.executeUpdate();
+			
+			return count;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			try{
+				if(ps!=null)ps.close();
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	/** 
+	 * Q&A 답변 입력 관련 메서드
 	 * @param QnaDTO
 	 * @return int (실행횟수 혹은 에러)
 	 * */
@@ -214,6 +242,7 @@ public class QnaDAO {
 		try{
 			conn = semi.db.semiDB.getConn();
 			
+			qnaQuestionStateUpdate(qdto.getQna_idx());
 			updateSun(qdto.getQna_ref(), qdto.getQna_sunbun() + 1);
 		
 			ps = conn.prepareStatement(Sql.QNA_INSERT_REPLY);

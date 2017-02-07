@@ -85,6 +85,7 @@ CREATE TABLE qna_table(
 	member_id VARCHAR2(20),
 	qna_subject VARCHAR2(100),
 	qna_content VARCHAR2(1000),
+	qna_state NUMBER,
 	qna_regdate DATE,
 	qna_ref NUMBER,
 	qna_lev NUMBER,

@@ -146,18 +146,22 @@ public class Sql {
 			+ "?, " // member_id
 			+ "?, " // qna_subject
 			+ "?, " // qna_content
+			+ "0, " // qna_state
 			+ "SYSDATE, " // qna_regdate
 			+ "?, " // qna_ref
 			+ "?, " // qna_lev
 			+ "?)"; // qna_sunbun 
 	/** Q&A 테이블 순번 업데이트 */
 	public static final String QNA_UPDATE_SUNBUN = "UPDATE qna_table SET qna_sunbun = qna_sunbun + 1 WHERE qna_ref = ? AND qna_sunbun >= ?";
+	/** Q&A 질문글 상태 변환 */
+	public static final String QNA_UPDATE_QUESTION_STATE = "UPDATE qna_table SET qna_state = 1 WHERE qna_idx = ?";
 	/** Q&A 테이블 댓글 삽입 */
 	public static final String QNA_INSERT_REPLY = "INSERT INTO qna_table VALUES(qna_table_idx.NEXTVAL, "
 			+ "?, " // product_idx
 			+ "?, " // member_id
 			+ "?, " // qna_subject
 			+ "?, " // qna_content
+			+ "2, " // qna_state
 			+ "SYSDATE, "
 			+ "?, " // qna_ref
 			+ "?, " // qna_lev

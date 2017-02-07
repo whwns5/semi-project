@@ -13,6 +13,8 @@ public class QnaDTO {
 	private String qna_subject;
 	/** Q&A 내용 */
 	private String qna_content;
+	/** Q&A 상태 */
+	private int qna_state;
 	/** Q&A 작성일 */
 	private Date qna_regdate;
 	private int qna_ref;
@@ -31,6 +33,23 @@ public class QnaDTO {
 		this.member_id = member_id;
 		this.qna_subject = qna_subject;
 		this.qna_content = qna_content;
+		this.qna_regdate = qna_regdate;
+		this.qna_ref = qna_ref;
+		this.qna_lev = qna_lev;
+		this.qna_sunbun = qna_sunbun;
+	}
+	
+	
+	/** 전체 데이터 */
+	public QnaDTO(int qna_idx, int product_idx, String member_id, String qna_subject, String qna_content, int qna_state,
+			Date qna_regdate, int qna_ref, int qna_lev, int qna_sunbun) {
+		super();
+		this.qna_idx = qna_idx;
+		this.product_idx = product_idx;
+		this.member_id = member_id;
+		this.qna_subject = qna_subject;
+		this.qna_content = qna_content;
+		this.qna_state = qna_state;
 		this.qna_regdate = qna_regdate;
 		this.qna_ref = qna_ref;
 		this.qna_lev = qna_lev;
@@ -107,6 +126,22 @@ public class QnaDTO {
 
 	public void setQna_sunbun(int qna_sunbun) {
 		this.qna_sunbun = qna_sunbun;
+	}
+
+	public int getQna_state() {
+		return qna_state;
+	}
+
+	public void setQna_state(int qna_state) {
+		this.qna_state = qna_state;
+	}
+
+	@Override
+	public String toString() {
+		return "QnaDTO [qna_idx=" + qna_idx + ", product_idx=" + product_idx + ", member_id=" + member_id
+				+ ", qna_subject=" + qna_subject + ", qna_content=" + qna_content + ", qna_state=" + qna_state
+				+ ", qna_regdate=" + qna_regdate + ", qna_ref=" + qna_ref + ", qna_lev=" + qna_lev + ", qna_sunbun="
+				+ qna_sunbun + "]";
 	}
 
 	
