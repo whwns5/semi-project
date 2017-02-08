@@ -182,7 +182,7 @@ document.onclick = mclose;
 							window.alert('로그인 후 사용 가능합니다.');
 							return;
 						}
-						location.href = '/semi_project/section/member/cart.jsp';
+						location.href = '/semi_project/section/cart/cartShow.jsp';
 					}
 					</script>
 					<nav>
