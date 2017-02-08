@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.util.*;
 
 import semi.member.MemberDTO;
+import semi.product.ProductDTO;
+import semi.sql.Sql;
 
 public class MemberDAO {
 	
@@ -257,10 +259,12 @@ public class MemberDAO {
 			ps.setString(1, member_ids);
 			rs=ps.executeQuery();
 			if(rs.next()){
+				int member_idx=rs.getInt("member_idx");
 				String member_id=rs.getString("member_id");
 				String member_name=rs.getString("member_name");
 				String member_type=rs.getString("member_type");
 				String member_pwd=rs.getString("member_pwd");
+				Date member_birthday=rs.getDate("member_birthday");
 				String member_sex=rs.getString("member_sex");
 				String member_email=rs.getString("member_email");
 				String member_tel=rs.getString("member_tel");
@@ -417,7 +421,54 @@ public class MemberDAO {
 		}
 	}
 }	
+	/**회원리스트 관련메서드*/
+	public ArrayList<MemberDTO> MemberList(){
+		try{
+			conn = semi.db.semiDB.getConn();
+			
+			String sql="select * from member_table";
+			
 
+			ps = conn.prepareStatement(sql);
+			System.out.println("&&&&&&&&&&&&&&"+sql);
+			rs = ps.executeQuery();
+			
+			ArrayList<MemberDTO> arr_mdto = new ArrayList<MemberDTO>();
+			
+			while(rs.next()){
+				int member_idx = rs.getInt("member_idx");
+				String member_id = rs.getString("member_id");
+				String member_name = rs.getString("member_name");
+				String member_pwd = rs.getString("member_pwd");
+				String member_sex = rs.getString("member_sex");
+				String member_email = rs.getString("member_email");
+				String member_tel = rs.getString("member_tel");
+				String member_addr = rs.getString("member_addr");
+				
+				
+				
+				MemberDTO mdto = new MemberDTO(member_idx, member_id, member_name,
+						member_pwd, member_sex, member_email, member_tel, member_addr);
+						
+			
+				arr_mdto.add(mdto);
+			}
+		
+			return arr_mdto;
+
+		} catch(Exception e){
+			e.printStackTrace();
+			return null;
+		} finally {
+			try{
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
 }
 
 

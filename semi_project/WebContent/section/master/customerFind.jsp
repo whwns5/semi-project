@@ -4,6 +4,7 @@
 	pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
 <jsp:useBean id="mdto" class="semi.member.MemberDTO"/>
+<jsp:setProperty property="*" name="bdto"/>
 <jsp:useBean id="mdao" class="semi.member.MemberDAO"/>
 <%
 	String fkey = request.getParameter("fkey");
@@ -22,18 +23,18 @@
 
  function submitUpdate(fm_id) { 
 	 var fm = document.getElementById(fm_id);
-	 fm.setAttribute('action', '/semi_project/section/master/empUpdate.jsp');
+	 fm.setAttribute('action', 'empUpdate.jsp');
 	 fm.submit(); 
 }
 function submitDelete(fm_id){
 	var fm = document.getElementById(fm_id);
-	fm.setAttribute('action', '/semi_project/section/master/empDelete_ok.jsp');
+	fm.setAttribute('action', 'empDelete_ok.jsp');
 	fm.submit();
 }
 function goProductFind() {
 	var fkey = document.getElementById('fkey').value;
 	var fvalue = document.getElementById('fvalue').value;
-	location.href = '/semi_project/section/member/adminPage.jsp?menu=member_list&fkey=' + fkey + '&fvalue=' + fvalue;
+	location.href = '/semi_project/section/member/adminPage.jsp?menu=member&fkey=' + fkey + '&fvalue=' + fvalue;
 }
 
 </script>

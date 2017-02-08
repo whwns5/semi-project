@@ -13,7 +13,7 @@
 <%
 	String menu = request.getParameter("menu");
 	if(menu == null){
-		menu = "product_list";
+		menu = "member_list";
 	}
 %>
 <body>
@@ -27,7 +27,7 @@
 					<div class="mypage_menu">
 						<dl>
 							<dt><a href="#">ADMIN PAGE</a></dt>
-							<dd><a href="/semi_project/section/member/adminPage.jsp?menu=member">회원 관리</a></dd>
+							<dd><a href="/semi_project/section/member/adminPage.jsp?menu=member_list">회원 관리</a></dd>
 							<dd><a href="/semi_project/section/member/adminPage.jsp?menu=product_list">상품 관리</a></dd>
 							<dd><a href="/semi_project/section/member/adminPage.jsp?menu=qna_list">문의 답변</a></dd>
 						</dl>
@@ -42,9 +42,12 @@
 						%>
 								<%@include file="/section/qna/qnaList.jsp" %>
 						<% 		
+							} else if (menu.equals("member_list")) {
+						%>
+								<%@include file="/section/master/memberFind.jsp" %>
+						<%
 							}
 						%>
-						
 						
 						<!-- <div class="content_wrap">
 							<h3 class="mypage_tit">주문/배송조회</h3>
