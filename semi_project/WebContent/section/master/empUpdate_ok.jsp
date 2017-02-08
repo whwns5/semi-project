@@ -13,7 +13,7 @@
 	%>
 	<script>
 	window.alert('<%=msg%>');
-	location.href='memberFind.jsp';
+	location.href='customerFind.jsp';
 	</script>
 	<%
 	

@@ -8,7 +8,9 @@
 
 <%
 	request.setCharacterEncoding("utf-8");
-	ArrayList<MemberDTO> arr = mdao.memberFind("member_id", bdto.getMember_id());
+    String member_id=request.getParameter("member_id");
+
+	ArrayList<MemberDTO> arr = mdao.memberFind("member_id",member_id);
 	System.out.println(arr);
 
 
@@ -29,13 +31,12 @@
 <fieldset style="width:700px;">
 회원번호:<input type="text" name="member_idx" value="<%=arr.get(0).getMember_idx()%>" readonly><br>
 id:<input type="text" name="member_id" value="<%=arr.get(0).getMember_id()%>" readonly><br>
-이름:<input type="text" placeholder="이름" name="member_name"><br>
-pwd:<input type="password" placeholder="pwd" name="member_pwd"><br>
-성별:<input type="radio" name="member_sex" value="남" checked="checked">남
- <input type="radio" name="member_sex" value="여">여<br>
-email:<input type="text" placeholder="email" name="member_email"><br>
-전화번호:<input type="text" placeholder="전화번호" name="member_tel"><br>
-주소:<input type="text" placeholder="주소"name="member_addr"><br>
+이름:<input type="text"  name="member_name" value="<%=arr.get(0).getMember_name()%>"><br>
+pwd:<input type="password"  name="member_pwd" value="<%=arr.get(0).getMember_pwd()%>"><br>
+성별:<input type="text" name="member_sex" value="<%=arr.get(0).getMember_sex()%>">
+email:<input type="text"  name="member_email" value="<%=arr.get(0).getMember_email()%>"><br>
+전화번호:<input type="text" name="member_tel" value="<%=arr.get(0).getMember_tel()%>"><br>
+주소:<input type="text" name="member_addr" value="<%=arr.get(0).getMember_addr()%>"><br>
 <input type="submit" value="수정하기">
 <input type="reset" value="다시작성">
 </fieldset>
