@@ -430,6 +430,8 @@ div#body_contents div.product_detail{
     		vertical-align: top;
 		}
 		div.div_tab_detail03 div.tab_qna_table table tbody td.point_c{
+		    text-align: center;
+    		vertical-align: top;
 			color: #E8380D;
 		}
 		

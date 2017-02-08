@@ -74,6 +74,10 @@
 	%>
 					<td class="point_c">답변완료</td>
 	<%
+				} else if (arr_qdto.get(i).getQna_state() == 2) {
+	%>
+					<td class="point_c"></td>
+	<%
 				}
 	%>
 			</tr>				

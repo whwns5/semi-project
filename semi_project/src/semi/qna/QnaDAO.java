@@ -66,6 +66,44 @@ public class QnaDAO {
 	}
 	
 	/** 
+	 * Q&A 문의 내역 조회 관련 메서드
+	 * @param product_idx
+	 * @return count
+	 * */
+	public int getQnaUserTotalCnt(String member_id){
+		try{
+			conn = semi.db.semiDB.getConn();
+			
+			ps = conn.prepareStatement(Sql.QNA_MEMBERID_TOTALCOUNT);
+			
+			ps.setString(1, member_id);
+			
+			rs = ps.executeQuery();
+			
+			rs.next(); // COUNT(*) 의 결과 값은 무조건 나오기 때문
+			
+			int count = rs.getInt(1);
+			
+			count = count == 0 ? 1 : count;
+		
+			return count;
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			return 1;
+		} finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)rs.close();
+				if(conn!=null)rs.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	
+	/** 
 	 * Q&A 관리자 갯수 조회 관련 메서드
 	 * @param product_idx
 	 * @return count
@@ -198,6 +236,54 @@ public class QnaDAO {
 		}
 	}
 	
+	/** 
+	 * Q&A 문의 내역 조회 관련 메서드(페이징)
+	 * @param member_id, cp, listSize
+	 * @return ArrayList<QnaDTO>
+	 * */
+	public ArrayList<QnaDTO> qnaUserList(String member_id, int cp, int listSize){
+		try{
+			conn = semi.db.semiDB.getConn();
+		
+			ps = conn.prepareStatement(Sql.getQNA_MEMBERID_SELECT_ALL_ORDERBY(cp, listSize));
+			ps.setString(1, member_id);
+			rs = ps.executeQuery();
+			
+			ArrayList<QnaDTO> arr_qdto = new ArrayList<QnaDTO>();
+			
+			while(rs.next()){
+				int qna_idx = rs.getInt("qna_idx");
+				int product_idx = rs.getInt("product_idx");
+				String member_id_temp = rs.getString("member_id");
+				String qna_subject = rs.getString("qna_subject");
+				String qna_content = rs.getString("qna_content");
+				int qna_state = rs.getInt("qna_state");
+				Date qna_regdate = rs.getDate("qna_regdate");
+				int qna_ref = rs.getInt("qna_ref");
+				int qna_lev = rs.getInt("qna_lev");
+				int qna_sunbun = rs.getInt("qna_sunbun");
+						
+				QnaDTO qdto = new QnaDTO(qna_idx, product_idx, member_id_temp, qna_subject, 
+						qna_content, qna_state, qna_regdate, qna_ref, qna_lev, qna_sunbun);
+				
+				arr_qdto.add(qdto);
+			}
+			
+			return arr_qdto;
+
+		} catch(Exception e){
+			e.printStackTrace();
+			return null;
+		} finally {
+			try{
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	
 	/** 

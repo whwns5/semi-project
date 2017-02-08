@@ -40,7 +40,7 @@
 						<%		
 							} else if (menu.equals("qna_list")){
 						%>
-								<%@include file="/section/qna/qnaList.jsp" %>
+								<%@include file="/section/qna/qnaAdminList.jsp" %>
 						<% 		
 							} else if (menu.equals("member_list")) {
 						%>
