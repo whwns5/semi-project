@@ -1,3 +1,4 @@
+<%@page import="semi.qna.QnaDTO"%>
 <%@page import="semi.product.ProductDTO"%>
 <%@page import="semi.adminproduct.adminproductDTO"%>
 <%@page import="java.util.ArrayList"%>
@@ -5,7 +6,7 @@
 	pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
 <jsp:useBean id="qdto" class="semi.qna.QnaDTO" scope="session"/>
-<jsp:useBean id="pdao" class="semi.qna.QnaDAO" scope="session"/>
+<jsp:useBean id="qdao" class="semi.qna.QnaDAO" scope="session"/>
 <%
 	String fkey = request.getParameter("fkey");
 	String fvalue = request.getParameter("fvalue");
@@ -20,56 +21,34 @@
 	}
 	int cp = Integer.parseInt(cp_s); // 현재 위치
 	
-	ArrayList<ProductDTO> arry_pdto = null;
-	if(fvalue != null){ // 조건 검색 출력
-		totalCnt = pdao.getFindTotalCnt(fkey, fvalue);
-		arry_pdto = pdao.productFind(fkey, fvalue);
-		
-	} else { // 초기 전체 출력 
-		totalCnt = pdao.getTotalCnt();
-		arry_pdto = pdao.productList(cp, listSize);
-	}
+	ArrayList<QnaDTO> arry_qdto = null;
+	totalCnt = qdao.getQnaAdminTotalCnt();
+	arry_qdto = qdao.qnaAdminList(cp, listSize);
+	
 	int totalPage = totalCnt/listSize + 1; // 총 페이지 수
 	if(totalCnt % listSize == 0)totalPage--;
 	
 	int userGroup = cp / pageSize; // 해당 페이지의 페이지 그룹
 	if(cp % pageSize == 0)userGroup--;  
 %>
-<script>
-function check(value,member_id) {
-	 var tmp = value;
-	aa.value = 	tmp;
-	var bb =document.getElementsByTagName("tbody");
-
-}
- function submitUpdate(fm_id) { // 수정
-	 var fm = document.getElementById(fm_id);
-	 fm.setAttribute('action', '/semi_project/section/item/productUpdate.jsp');
-	 fm.submit(); 
-}
-function submitDelete(fm_id){
-	var fm = document.getElementById(fm_id);
-	fm.setAttribute('action', '/semi_project/section/item/productDelete_ok.jsp');
-	fm.submit();
-}
-function goProductFind() {
-	var fkey = document.getElementById('fkey').value;
-	var fvalue = document.getElementById('fvalue').value;
-	location.href = '/semi_project/section/member/adminPage.jsp?menu=product_list&fkey=' + fkey + '&fvalue=' + fvalue;
-}
-</script>
 <div class="content_wrap">
-	<h3 class="mypage_tit">상품 관리</h3>
-	<fieldset>
-		<select id="fkey">
-			<option value="product_idx">상품번호</option>
-			<option value="product_code">상품코드</option>
-			<option value="product_name">상품이름</option>
-		</select> 
-		<input type="text" id="fvalue">
-		<input type="button" value="검색" onclick="goProductFind();">
-	</fieldset>
-				
+	<h3 class="mypage_tit">문의 관리</h3>
+	<script>
+		function showContent(cnt, content) {
+			var contents = document.getElementsByClassName(content);
+			for (var i = 0; i < contents.length; i++) {
+				if (i == cnt) {
+					if (contents[cnt].style.display == '') {
+						contents[cnt].style.display = 'block';
+					} else if (contents[cnt].style.display == 'block') {
+						contents[cnt].style.display = '';
+					}
+				} else {
+					contents[i].style.display = '';
+				}
+			}
+		}
+	</script>
 	<table cellspacing="0" cellpadding="0" summary=""
 		class="table_style">
 		<colgroup>
@@ -83,33 +62,41 @@ function goProductFind() {
 		<thead>
 			<tr>
 				<th class="first">번호</th>
-				<th>상품등록일</th>
-				<th>상품명&nbsp;상품코드&nbsp;상품색상</th>
-				<th>상품가격</th>
-				<th>상품수량</th>
-				<th>수정&nbsp;삭제</th>
+				<th>작성일</th>
+				<th>제목&nbsp;내용</th>
+				<th>아이디</th>
+				<th>상품번호</th>
+				<th>답변&nbsp;삭제</th>
 			</tr>
 		</thead>
 		<tbody>
 <%
-		if(arry_pdto.size() != 0){ // 데이터가 있을경우 
+		if(arry_qdto.size() != 0){ // 데이터가 있을경우 
 %>
 <%
-			for(int i = 0 ; i < arry_pdto.size(); i++){
+			for(int i = 0 ; i < arry_qdto.size(); i++){
 %>
 				<tr>
-					<td>
+					<td class="td_top">
 						<form id="fm_<%=i%>" method="post">
-						<%=arry_pdto.get(i).getProduct_idx()%>
-						<input type="hidden" value="<%=arry_pdto.get(i).getProduct_idx()%>" name="product_idx">
+						<%=arry_qdto.get(i).getQna_idx()%>
+						<input type="hidden" value="<%=arry_qdto.get(i).getQna_idx()%>" name="qna_idx">
 						</form>
 					</td>
-					<td><%=arry_pdto.get(i).getProduct_regdate()%></td>
-					<td><%=arry_pdto.get(i).getProduct_name()%>_<%=arry_pdto.get(i).getProduct_code()%>_<%=arry_pdto.get(i).getProduct_color()%></td>
-					<td><%=arry_pdto.get(i).getProduct_price()%></td>
-					<td><%=arry_pdto.get(i).getProduct_num()%></td>
-					<td><div class="admin_bt_area">
-						<a class="common-bt bt_writereply" href="javascript:submitUpdate('fm_<%=i%>');">UPDATE</a>
+					<td class="td_top"><%=arry_qdto.get(i).getQna_regdate()%></td>
+					<td class="td_subject">
+						<a class="subject_a" href="javascript:showContent(<%=i%>,'qna_content');"><%=arry_qdto.get(i).getQna_subject()%></a> 
+						<div class="qna_content">
+							<%=arry_qdto.get(i).getQna_content()%>	
+							<div class="rqna_reply_div">
+								<a class="common-bt bt_writereply_small" href="#">REPLY</a>
+							</div>	
+						</div>
+					</td>
+					<td class="td_top"><%=arry_qdto.get(i).getMember_id()%></td>
+					<td class="td_top"><%=arry_qdto.get(i).getProduct_idx()%></td>
+					<td class="td_top"><div class="admin_bt_area">
+						<%-- <a class="common-bt bt_writereply" href="javascript:submitUpdate('fm_<%=i%>');">ANSWER</a> --%>
 						<a class="common-bt bt_writereply" href="javascript:submitDelete('fm_<%=i%>');">DELETE</a>
 						</div>
 					</td>	
@@ -130,7 +117,7 @@ function goProductFind() {
 <%
 		if(userGroup != 0){ // 현재 그룹이 첫 페이지 그룹이 아닌 경우
 %>
-			<a href="/semi_project/section/member/adminPage.jsp?menu=product_list&cp=<%= (userGroup-1)*pageSize + pageSize %>">이전</a>
+			<a href="/semi_project/section/member/adminPage.jsp?menu=qna_list&cp=<%= (userGroup-1)*pageSize + pageSize %>">이전</a>
 <%
 		} else {
 %>
@@ -140,14 +127,14 @@ function goProductFind() {
 			
 		for(int i = (userGroup * pageSize) + 1 ; i <= (userGroup * pageSize) + pageSize ; i++){
 %>
-			<a class="num <%= i==cp ? "on" : "" %>" href="/semi_project/section/member/adminPage.jsp?menu=product_list&cp=<%=i%>"><%=i%></a>
+			<a class="num <%= i==cp ? "on" : "" %>" href="/semi_project/section/member/adminPage.jsp?menu=qna_list&cp=<%=i%>"><%=i%></a>
 <%
 			if(i == totalPage)break;
 		}
 			
 		if(userGroup != (totalPage / pageSize) - (totalPage % pageSize == 0 ? 1 : 0)){ // 현재 그룹이 마지막 페이지가 해당하는 그룹에 해당되지 않는 경우
 %>
-			<a href="/semi_project/section/member/adminPage.jsp?menu=product_list&cp=<%= ((userGroup+1)*pageSize) + 1 %>">다음</a>
+			<a href="/semi_project/section/member/adminPage.jsp?menu=qna_list&cp=<%= ((userGroup+1)*pageSize) + 1 %>">다음</a>
 <%
 		} else {
 %>

@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/semi_project/css/default.css?ver=3">
-<link rel="stylesheet" type="text/css" href="/semi_project/css/commonButton.css?ver=9">
-<link rel="stylesheet" type="text/css" href="/semi_project/css/member/mypage/mypage.css?ver=10">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/commonButton.css?ver=10">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/member/mypage/mypage.css?ver=12">
 </head>
 <%
 	String menu = request.getParameter("menu");
