@@ -14,7 +14,6 @@
 	
 	String tmp = request.getParameter("product_idx");
 	//ArrayList<MemberDTO> arr = mdao.memberFind(fkey, fvalue);
-
 %>
 
 <!DOCTYPE html>
@@ -25,11 +24,9 @@
 </head>
 <script type="text/javascript">
 function check(value,member_id) {
-	
 	 var tmp = value;
 	aa.value = 	tmp;
 	var bb =document.getElementsByTagName("tbody");
-	
 
 }
  function submitUpdate(fm_id) { // 수정

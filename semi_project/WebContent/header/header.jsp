@@ -54,7 +54,7 @@ document.onclick = mclose;
 <%
 	String session_member_id = (String)session.getAttribute("session_member_id"); // 로그인 정보를 받아온다.
 	String session_member_name = (String)session.getAttribute("session_member_name");
-	
+	String session_member_type = (String)session.getAttribute("session_member_type");
 	/* String cartNums=(String)session.getAttribute("cart");
 	int cartN=0;
 	if(cartNums==null || cartNums.equals("")){
@@ -80,6 +80,13 @@ document.onclick = mclose;
 						} else { // 로그인 상태
 					%>
 							<li><a href="#"><%=session_member_name %>님 환영합니다.</a></li>
+					<%
+							if(session_member_type.equals("관리자")){
+					%>
+								<li><a href="/semi_project/section/member/adminPage.jsp">관리자모드</a></li>
+					<%	
+							}
+					%>
 							<li><a href="/semi_project/section/member/logout/logout_ok.jsp">LOGOUT</a></li>
 							<!-- <li><a href="#">CART</a></li>				
 							<li><a href="#">ORDER</a></li>
