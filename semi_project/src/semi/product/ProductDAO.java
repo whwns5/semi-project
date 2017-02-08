@@ -798,5 +798,96 @@ public class ProductDAO {
 			}
 		}
 	}
+	
+
+	/**smallcategory name 불러오기 by 조승동*/
+	public String SmallcategoryName(int smallcategory_id){
+		try {
+			conn = semi.db.semiDB.getConn();
+			String sql = "select smallcategory_name from smallcategory_table where smallcategory_id=?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, smallcategory_id);
+			rs = ps.executeQuery();
+			String smallcategory_name="";
+			if (rs.next()) {
+				smallcategory_name=rs.getString("smallcategory_name");
+			}
+			
+			return smallcategory_name;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			try {
+				if (ps != null)
+					ps.close();
+				if (rs != null)
+					rs.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+			}
+		}
+	}
+	/**largecategory_id 불러오기 by 조승동*/
+	public int  LargecategoryId(int smallcategory_id, String smallcategory_name){
+		try {
+			conn = semi.db.semiDB.getConn();
+			String sql = "select largecategory_id from smallcategory_table where smallcategory_id=? and smallcategory_name=?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, smallcategory_id);
+			ps.setString(2, smallcategory_name);
+			rs = ps.executeQuery();
+			int largecategory_id=0;
+			if (rs.next()) {
+				largecategory_id=rs.getInt("largecategory_id");
+			}
+			return largecategory_id;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ERROR;
+		} finally {
+			try {
+				if (ps != null)
+					ps.close();
+				if (rs != null)
+					rs.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+			}
+		}
+	}
+	
+	/**largecategory_name 불러오기 by 조승동*/
+	public String LargecategoryName(int largecategory_id){
+		try {
+			conn = semi.db.semiDB.getConn();
+			String sql = "select largecategory_name from largecategory_table where largecategory_id=?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, largecategory_id);
+			rs = ps.executeQuery();
+			String largecategory_name=null;
+			if (rs.next()) {
+				largecategory_name=rs.getString("largecategory_name");
+			}
+			return largecategory_name;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			try {
+				if (ps != null)
+					ps.close();
+				if (rs != null)
+					rs.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+			}
+		}
+	}
+	
+	
 }
 

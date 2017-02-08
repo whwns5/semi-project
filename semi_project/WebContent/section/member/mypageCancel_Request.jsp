@@ -7,6 +7,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="/myweb/css/member/mypage/mypageCancel_Request.css">
 <meta charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -27,13 +28,8 @@ payment_idx=Integer.parseInt(payment_idxs);
 }
 PayDTO paydto=paydao.payInfoOne(payment_idx);
 %>
-<style>
-table, table tr, table td, table th{
-border:1px solid black;
-}
-</style>
 <body>
-<table>
+<table class="th_top ">
 <tr>
 <th>상품정보</th>
 <th>총가격</th>
@@ -49,11 +45,13 @@ border:1px solid black;
 <td><%=paydto.getPayment_date() %></td>
 </tr>
 </table>
-<table>
+<p heigth="10px">
+</p>
+<table class="th_top">
 <form name="form" action="mypageCancel_check.jsp">
 <tr>
 <th>취소사유</th>
-<td>
+<th class="sub">
 <select name="refund_subject">
 <option value="실수로 구입함">
 실수로 구입함
@@ -77,7 +75,7 @@ border:1px solid black;
 기타
 </option>
 </select>
-</td>
+</th>
 </tr>
 <tr>
 <th colspan="2">상세사유</th>
@@ -89,14 +87,23 @@ border:1px solid black;
 </tr>
 <tr>
 <td colspan="2">
-<input type="submit" value="submit">
-<input type="reset" value="reset">
+<a href="javascript:submit()" onmouseover="window.status='제출';return true;" target="_self" class="btn_A" style="width: 80px">제출하기</a>
+<a href="javascript:cancel()" onmouseover="window.status='취소';return true;" target="_self" class="btn_B" style="width: 80px">취소하기</a>
 </td>
 </tr>
 <input type="hidden" name="payment_idx" value="<%=paydto.getPayment_idx()%>">
 <input type="hidden" name="product_idx" value="<%=paydto.getProduct_idx()%>">
 <input type="hidden" name="member_id" value="<%=paydto.getMember_id()%>">
 </form>
+<script>
+function submit(){
+	document.form.action="mypageCancel_check.jsp";
+	document.form.submit();
+}
+function cancel(){
+	window.self.close();
+}
+</script>
 </table>
 </body>
 </html>

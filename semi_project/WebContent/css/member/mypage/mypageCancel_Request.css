@@ -1,0 +1,31 @@
+@CHARSET "utf-8";
+
+table.th_top {width:100%; border-spacing:0}
+table.th_top caption.pop {font-size:22px; font-family:ngb; color:#000; margin-bottom:20px; text-align:left; position:relative}
+table.th_top caption.pop a.close {position:absolute; top:0px; right:0px; background:url(../img/button/popup_x.gif) no-repeat; width:19px; height:19px; text-indent:-9999px}
+table.th_top th {border-top:1px solid #76787E; border-bottom:1px solid #ddd; font-size:12px; color:#666; padding:10px 0px; font-weight:lighter; text-align:center; background-color:#fafafa}
+table.th_top th.sub {border-top:1px solid #76787E; border-left:1px solid #ddd; border-bottom:1px solid #ddd; font-size:12px; color:#666; padding:10px 0px; font-weight:lighter; text-align:left; background-color:#fafafa}
+table.th_top th.bg_none {background-color:#FFF}
+table.th_top td {text-align:center; color:#666; padding:8px 0px; font-size:12px; border-bottom:1px solid #ddd}
+table.th_top td.review img {max-width:80px; max-height:80px}
+table.th_top td div.opt {font-size:11px; color:#9c9c9c; margin-top:3px}
+table.th_top td.payment_price {font-weight:bold; color:#9e9588; font-size:12px}
+table.th_top td.payment_price div.dc_price {margin-top:10px; display:inline-block;width:83px; height:51px; background:url(../img/common/dc_price_bg.gif) 0 0 no-repeat; position:relative}
+table.th_top td.payment_price div.dc_price span {display:inline-block; position:absolute; font-family:dotum; font-size:12px; color:#9e9588; top:32px; left:24px; font-weight:lighter}
+table.th_top td.review_img img {max-width:80px}
+
+a.btn_A {display:inline-block; color:#fff; background-color:#ee4035; height:39px; width:119px; border-bottom:1px solid #d66000; border-right:1px solid #d66000; text-align:center; font:bold 14px/40px dotum; vertical-align:top}
+a.btn_A.small { height:24px; width:89px; line-height:25px}
+a.btn_A.login { height:70px; width:99px; line-height:70px}
+a.btn_A.wide {width:138px}
+a.btn_A:hover {background-color:#E8380D}
+
+a.btn_A {display:inline-block; color:#fff; background-color:#ee4035; height:39px; width:119px; border-bottom:1px solid #d66000; border-right:1px solid #d66000; text-align:center; font:bold 14px/40px dotum; vertical-align:top}
+a.btn_A:hover {background-color:#E8380D}
+
+a.btn_B {display:inline-block; color:#666; background-color:#fff; height:38px; width:118px; border-bottom:1px solid #b4b4b4; border-right:1px solid #b4b4b4; border-top:1px solid #ddd; border-left:1px solid #ddd; text-align:center; font:bold 14px/40px dotum; vertical-align:top}
+a.btn_B:hover {background-color:#b4b4b4; border-bottom:1px solid #ddd; border-top:1px solid #ddd}
+
+A:link    {text-decoration:none}
+A:visited {color:#585858;;text-decoration:none}
+A:hover  {color:#585858;text-decoration:none}

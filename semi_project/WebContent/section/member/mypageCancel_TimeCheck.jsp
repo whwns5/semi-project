@@ -20,7 +20,7 @@ if(result>29){
 }else{
 	%>
 	<script>
-	window.open('mypageCancel_Request.jsp?payment_idx=<%=payment_idx%>','cancel','width=540, height=600, top=100, left=100');	
+	window.open('mypageCancel_Request.jsp?payment_idx=<%=payment_idx%>','cancel','width=540, height=650, top=100, left=100');	
 	location.href="mypage.jsp";
 	</script>
 	<%

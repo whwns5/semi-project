@@ -1,7 +1,7 @@
-<%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ page import="semi.member.*" %>
+	pageEncoding="UTF-8"%>
+	<%@page import="java.text.DecimalFormat"%>
+	  <%@ page import="semi.member.*" %>
     <%@ page import="semi.product.*" %>
     <%@ page import="semi.cart.*" %>
     <jsp:useBean id="pdto" class="semi.product.ProductDTO" scope="session"/>
@@ -44,68 +44,54 @@ if(member_id==null||member_id.equals("")){
 	return;
 }
 
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../css/mainLayout.css">
 </head>
 <style>
-.table-proinfo{
-border:1px solid black;
-width:500px;
-}
 
-.table{
-border:1px solid black;
-width:500px;
-}
-
-.table-pay{
-border:1px solid black;
-width:500px;
-}
-
-table th{
-width:100px;
-border:1px solid black;
-}
-
-table tr, table td{
-border:1px solid black;
-}
-
-caption{
-text-align:left;
-}
 </style>
-<%
-
-%>
+<link rel="stylesheet" type="text/css" href="/semi_project/css/cart/cartShowLayout.css">
 <body>
 <%@ include file="/header/header.jsp"%>
-<%
+	<div class="main_wrap">
+		<div class="cart_wrap">
+				<h3 class="title mt_20">
+					주문/결제
+				</h3>
+				<form name="pay" action="cartArrPay_check.jsp" method="post">
+			<div class="cart_order_wrap">
 
-%>
-<h3>주문/결제</h3>
-<section>
-<form name="pay" action="cartPay_check.jsp" method="post">
-<article>
-<table class="table-proinfo">
-<caption>01. 주문상품</caption>
-<thead>
-<tr>
-<th>상품사진</th>
-<th>상품정보</th>
-<th>수량</th>
-<th>결재예정가</th>
-</tr>
-</thead>
-<tbody>
-<%
+				<!-- 주문 상품 -->
+				<table class="list_table"
+					summary="담은 상품의 정보, 판매가, 수량, 할인금액, 결제 예정가, 적립금을 확인할 수 있습니다.">
+					<caption>01. 주문 상품</caption>
+					<colgroup>
+						<col style="width: auto">
+						<col style="width: 95px">
+						<col style="width: 85px">
+						<col style="width: 95px">
+						<col style="width: 85px">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">상품정보</th>
+							<th scope="col">판매가</th>
+							<th scope="col">수량</th>
+							<th scope="col">결제 예정가</th>
+						</tr>
+					</thead>
+					<tbody>
+					<%
 ProductDTO dto=pdao.productOne(product_idx);
+int cartSum=dto.getProduct_price()*payment_num;
+int lgnum=0;
+String lgname="";
+String smname="";
 if(dto==null || dto.equals("")){
 	%>
 	<tr>
@@ -113,77 +99,187 @@ if(dto==null || dto.equals("")){
 	</tr>
 	<%
 }else{
+
+	smname=pdao.SmallcategoryName(dto.getSmallcategory_id());
+	lgnum=pdao.LargecategoryId(dto.getSmallcategory_id(), smname);
+	lgname=pdao.LargecategoryName(lgnum);
 %>
-<tr>
-<td><%=dto.getProduct_img() %></td>
-<td><%=dto.getProduct_name() %> / <%=dto.getProduct_color() %> /<%=dto.getProduct_code() %></td>
-<td>
-<%=payment_num %>
-</td>
-<td><%=df.format(product_price) %></td>
-</tr>
-<%
+						<tr>
+							<td class="info"><a
+								href="#">
+									<img src="/semi_project/img/product/<%=lgname%>/<%=smname%>/<%=dto.getProduct_code()%>_<%=dto.getProduct_color()%>/<%=dto.getProduct_img()%>.jpg"
+									width="126" height="126">
+							</a> <span class="name"> <a
+									href="#">
+									<%=dto.getProduct_name() %>&nbsp;<%=dto.getProduct_code() %></a> <br> <span class="option">옵션 : <%=dto.getProduct_color() %>
+									</span><span class="option">(<%=payment_num %>개&nbsp;0원)</span>
+							</span></td>
+							<td><strong><%=df.format(dto.getProduct_price()) %></strong></td>
+							<td><%=payment_num %></td>
+							<td><%=df.format(product_price) %></td>
+						</tr>
+						<%
 }
 %>
-</tbody>
-</table>
-</article>
-<hr>
-<article>
-<table class="table-pay">
-<caption>02. 배송 및 결재정보</caption>
-<tr>
-<th>주문자 명</th>
-<td><input type="text" name="member_name" value="<%=mdto.getMember_name() %>" size="50" required="required"></td>
-</tr>
-<tr>
-<th>휴대폰 번호</th>
-<td><input type="text" name="member_tel" value="<%=mdto.getMember_tel()%>" size="50"></td>
-</tr>
-<tr>
-<th>전화 번호</th>
-<td><input type="text" name="payment_tel" required="required" size="50"></td>
-</tr>
-<tr>
-<th>이메일</th>
-<td><input type="text" name="member_email" value="" size="50"></td>
-</tr>
-<tr>
-<th>배송주소</th>
-<td><input type="text" name="payment_addr" value="<%=mdto.getMember_addr()%>" required="required" size="50"></td>
-</tr>
-</table>
-</article>
-<hr>
-<article>
-<table class="table">
-<caption>03. 쿠폰적용</caption>
-<tr>
-<td align="center">(준비중)</td>
-</tr>
-</table>
-</article>
-<hr>
-<article>
-<table class="table">
-<caption>04. 결재하기</caption>
-<tr>
-<th>총 상품가격</th>
-<td></td>
-</tr>
-<tr>
-<th>쿠폰</th>
-<td></td>
-</tr>
-<tr>
-<th>총금액</th>
-<td><%=df.format(product_price) %></td>
-</tr>
-<tr align="right">
-<td colspan="3"> <input type="submit" value="결제하기" ></td>
-</tr>
-</table>
-<input type="hidden" name="member_id" value="<%=mdto.getMember_id()%>">
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="7" bgcolor="#fafafa">
+								<div class="result_box">
+									<span class="total"> <span class="txt">총 판매가</span> <strong
+										class="number"><%=df.format(cartSum) %>원</strong>
+									</span>
+									<img class="icon" src="/semi_project/img/btn/cart_list_icon_plus.gif"
+										alt="+"> <span class="total"> <span class="txt">총
+											배송비</span> <strong class="number" id="delivery_price2">0 원</strong>
+									</span> <img class="icon" src="/semi_project/img/btn/cart_list_icon_equals.gif"
+										alt="="> <span class="total_payment"> <span
+										class="txt">총 결제 금액</span> <strong class="number"
+										id="price_sum2"><%=df.format(cartSum) %><span>원</span></strong>
+									</span>
+								</div>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+				<!-- // 주문 상품 -->
+
+				<div class="button_area">
+					<a href="../front/basket.php" target="_self"><img
+						src="/semi_project/img/btn/cart_order_move_btn.gif" alt="장바구니로 이동"></a>
+				</div>
+				<div class="order_area">
+					<!-- 고객정보 -->
+					<div class="orderer_area">
+						<table class="info_table"
+							summary="주문자명, 주소, 휴대폰 번호, 이메일을 작성할 수 있습니다.">
+							<caption>01. 고객정보</caption>
+							<colgroup>
+								<col style="width: 121px">
+								<col style="width: auto">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th scope="row">주문자명 분</th>
+									<td class="name"><input type="text" name="member_name_temp"
+										value="<%=mdto.getMember_name() %>" readonly="" style="font-weight: bold" required=""
+										msgr="주문하시는분의 이름을 적어주세요"></td>
+								</tr>
+								<tr>
+									<th scope="row">휴대폰번호</th>
+									<td class="phone"><input type="text" name="member_tel_temp"
+										value="<%=mdto.getMember_tel()%>" size="20" maxlength="20" required=""
+										onkeyup="strnumkeyup(this)" msgr="휴대폰 번호를 입력하세요."></td>
+								</tr>
+								<tr>
+									<th scope="row">이메일</th>
+									<td class="email"><input type="hidden" name="member_email"
+										class="CLS_email_addr" value="<%=mdto.getMember_email() %>" required="">
+										<input type="text" class="CLS_email_head" value=""
+										required="" title="이메일 아이디를 입력하세요.">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- // 고객정보 -->
+
+					<!-- 배송지정보 -->
+					<div class="address_area">
+						<table class="info_table"
+							summary="수령자명, 주소, 전화번호, 휴대폰번호, 이메일, 배송 메시지를 작성할 수 있습니다.">
+							<colgroup>
+								<col style="width: 121px">
+								<col style="width: auto">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th scope="row">수령자명</th>
+									<td class="name"><input type="text" name="member_name"
+										required="" msgr="주문하시는 분 이름을 입력하세요."> 
+								</tr>
+								<tr>
+									<th scope="row">주소</th>
+									<td class="address">
+										 <input class="margin_input" name="raddr1" id="payment_addr"
+										type="text" required="" value="<%=mdto.getMember_addr()%>" msgr="상세주소를 입력하세요.">
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">전화번호</th>
+									<td class="phone"><input type="text" name="payment_tel"
+										maxlength="20" onkeyup="strnumkeyup(this)" required=""
+										msgr="전화번호 앞 자리를 입력하세요."></td>
+								</tr>
+								<tr>
+									<th scope="row">휴대폰번호</th>
+									<td class="phone"><input type="text" name="member_tel"
+										maxlength="20" onkeyup="strnumkeyup(this)" required=""
+										msgr="휴대폰 번호 앞 자리를 입력하세요." value="<%=mdto.getMember_tel()%>"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- 결제하기 -->
+					<div class="payment_area">
+						<h3>03. 결제하기</h3>
+						<div class="content">
+							<input type="hidden" name="total_sum" value="692600">
+							<ul>
+								<li><span class="txt"><strong>총 상품가격</strong></span> <span
+									class="price"> <strong id="paper_goodsprice"><%=df.format(cartSum) %>원</strong>
+								</span></li>
+								<li><span class="txt">쿠폰</span> <span
+									class="price CLS_saleCoupon">0원</span></li>
+								<li><span class="txt">마일리지</span> <span
+									class="price CLS_saleMil">0원</span></li>
+								<li><span class="txt">즉시적립</span> <span
+									class="price CLS_beforehand_reserve">0원</span></li>
+								<li><span class="txt">배송비</span> <span
+									class="price order_price_style02"> <font
+										id="delivery_price">0</font>원
+								</span></li>
+							</ul>
+							<p class="sum">
+								<span class="txt">최종 결제금액</span> <span class="price"> <strong
+									id="price_sum"><%=df.format(cartSum) %></strong>원
+								</span>
+							</p>
+						</div>
+						<div class="button_box">
+							<div id="paybuttonlayer" name="paybuttonlayer"
+								style="display: block;">
+								<script>
+								function submit(){
+									document.pay.action="cartpay_complete.jsp"
+									document.pay.submit();
+								}
+								function cancel(){
+									window.alert('취소하였습니다.');
+									location.href="cartShow.jsp";
+								}
+								</script>
+								<a href="javascript:submit()"
+									onmouseover="window.status='결제';return true;" target="_self"
+									class="btn_A" style="width: 130px">결제하기</a> <a
+									href="javascript:cancel()"
+									onmouseover="window.status='취소';return true;" target="_self"
+									class="btn_B" style="width: 130px">취소하기</a>
+							</div>
+							<div id="payinglayer" name="payinglayer" style="display: none;">
+								<table border="0" cellpadding="0" cellspacing="0" width="100%">
+									<tbody>
+										<tr>
+											<td align="center"><img
+												src="../images/common/paying_wait.gif" border="0"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!-- // 결제하기 -->
+					<input type="hidden" name="member_id" value="<%=mdto.getMember_id()%>">
 <input type="hidden" name="product_idx" value="<%=product_idx%>">
 <input type="hidden" name="product_price" value="<%=product_price%>">
 <input type="hidden" name="payment_num" value="<%=payment_num%>">
@@ -191,9 +287,12 @@ if(dto==null || dto.equals("")){
 <input type="hidden" name="product_color" value="<%=dto.getProduct_color()%>">
 <input type="hidden" name="product_code" value="<%=dto.getProduct_code()%>">
 <input type="hidden" name="cart_idx" value="<%=cart_idx%>">
-</article>
+<input type="hidden" name="payment_totalprice" value="<%=cartSum%>">
 </form>
-</section>
-<%@ include file="/footer/footer.jsp"%>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%@ include file="/footer/footer.jsp"%>
 </body>
 </html>

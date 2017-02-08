@@ -1,12 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@ page import = "java.util.*" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ page import="semi.cart.*" %>
+	<%@ page import="semi.cart.*" %>
     <%@ page import="semi.product.*" %>
-    <% request.setCharacterEncoding("utf-8"); %>
     <jsp:useBean id="cdao" class="semi.cart.CartDAO" scope="session"/>
     <jsp:useBean id="pdao" class="semi.product.ProductDAO" scope="session"/>
+<%
+	request.setCharacterEncoding("utf-8");
+%>
 <!-- ------------------------------------------------장바구니 데이터 세팅 --------------------------------------------------------->
 <%
 String member_id=(String)session.getAttribute("session_member_id");
@@ -43,19 +45,14 @@ int cartNumber=1;
 <head>
 <meta charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../../css/mainLayout.css">
 </head>
 <style>
-table.list_table{
-width:100%;
 
-}
-table tr, th, td{
-text-align:center;
-border:1px solid black;
-}
 </style>
-<!-- ----------------------------------------------장바구니 전체 삭제 확인 창 --------------------------------------------------->
+<!-- 
+<link rel="stylesheet" type="text/css" href="/myweb/css/mainLayout.css"> 
+-->
+<link rel="stylesheet" type="text/css" href="/semi_project/css/cart/cartShowLayout.css">
 <script>
 function cartDelAll(){
 	if(confirm('장바구니 삭제 하시겠습니까?')){
@@ -64,52 +61,91 @@ function cartDelAll(){
 	return;
 }
 </script>
-<!-- ----------------------------------------------END(장바구니 전체 삭제 확인 창) --------------------------------------------------->
 <body>
 <%@ include file="/header/header.jsp"%>
-<section>
-<article>
-<!-- ------------------------------------------------장바구니 테이블 --------------------------------------------------------->
-<table>
-<thead>
-<tr>
-<th>상품번호</th>
-<th>상품사진</th>
-<th>상품정보</th>
-<th>판매가</th>
-<th>수량</th>
-<th>결제예정가</th>
-<th>선택</th>
-</tr>
-</thead>
-
-<tbody>
-<%
+	<div class="main_wrap">
+		<div class="cart_wrap">
+			<h3 class="title mt_20">
+					장바구니
+				</h3>
+		
+			<!-- 담은 상품 -->
+			<table class="list_table"
+				summary="담은 상품의 정보, 판매가, 수량, 할인금액, 결제 예정가, 적립금을 확인할 수 있습니다.">
+				<caption>담은 상품<span class="CLS_basketTotalCount">(<%=arr.size() %>개)</span></caption>
+				<colgroup>
+					<col style="width: 65px">
+					<col style="width: auto">
+					<col style="width: 95px">
+					<col style="width: 85px">
+					<col style="width: 85px">
+					<col style="width: 75px">
+				</colgroup>
+				<thead>
+					<tr>
+						<th scope="col"><input type="checkbox" title="담은 상품 전체선택"
+							class="allCheck" checked=""></th>
+						<th scope="col">상품정보</th>
+						<th scope="col">판매가</th>
+						<th scope="col">수량</th>
+						<th scope="col">결제 예정가</th>
+						<th scope="col">선택</th>
+					</tr>
+				</thead>
+				<tbody>
+				<%
 if(arr==null || arr.size()==0){
 	%>
 	<tr>
-	<td colspan="7" align="center">장바구니가 없습니다.</td>
+	<td colspan="6" align="center">장바구니가 없습니다.</td>
 	</tr>
 	<%
 }else{
 	int fcount=0; 
+	int lgnum=0;
+	String lgname="";
+	String smname="";
 	for(int i=0; i<arr.size(); i++){
 		productidx[i]=arr.get(i).getProduct_idx();
 		pd=pdao.productOne(productidx[i]);
 		fcount++;
+		smname=pdao.SmallcategoryName(pd.getSmallcategory_id());
+		lgnum=pdao.LargecategoryId(pd.getSmallcategory_id(), smname);
+		lgname=pdao.LargecategoryName(lgnum);
+		///myweb/img/product/bags/backpack/O6FBBP38_BLACK_2_BLACK/O6FBBP38_BLACK_2_BLACK_1.jsp
 	%>
-	<tr>
-	<td><%=pd.getProduct_idx()%></td>
-	<td><img width="" src="/myweb/img/product/<%=pd.getProduct_img() %>.jpg"></td>
-	<td><%=pd.getProduct_name() %> / <%=pd.getProduct_color() %> /<%=pd.getProduct_code() %></td>
-	<td><%=df.format(pd.getProduct_price()) %></td>
-	<td>
-	<form name="form<%=fcount %>">
-	<input type="text" name="payment_num<%=fcount %>" value="<%=arr.get(i).getCart_num()%>" size="1" readonly>
-	<a href="#" onclick="javascript:plus<%=fcount%>(1)">up</a><br>
-	<a href="#" onclick="javascript:minus<%=fcount%>(-1)">down</a>
-	</form>
-	<script>
+					<tr>
+						<td>
+							<form name="form_0" method="post" action="../front/basket.php">
+								<input name="checkProduct" class="checkProduct" value="286831"
+									type="checkbox" checked="">
+							</form>
+						</td>
+						<td class="info" width="500">
+						<a href="#">
+								<img src="/semi_project/img/product/<%=lgname%>/<%=smname%>/<%=pd.getProduct_code()%>_<%=pd.getProduct_color()%>/<%=pd.getProduct_img()%>.jpg" width="126">
+						</a> 
+						<span class="name"> 
+						<a href="#">
+									<%=pd.getProduct_name()%>&nbsp;<%=pd.getProduct_code()%>
+									</a> <br>
+									 <span class="option">옵션 : <%=pd.getProduct_color() %></span>
+						</span>
+						</td>
+						<td><strong><%=df.format(pd.getProduct_price())%>원</strong></td>
+						<td>
+							<form name="form<%=fcount%>">
+								<div class="qty">
+									<input type="text" name="payment_num<%=fcount %>" value="<%=arr.get(i).getCart_num()%>" size="1" readonly>
+									 <a href="#" onclick="javascript:plus<%=fcount%>(1)">
+									 <img src="/semi_project/img/btn/cart_qty_up.gif" alt="수량 1개 더하기"style="cursor: pointer">
+									 </a> 
+									<a href="#" onclick="javascript:minus<%=fcount%>(-1)">
+									 <img src="/semi_project/img/btn/cart_qty_down.gif" alt="수량 1개 빼기" style="cursor: pointer">
+									 </a>
+								</div>
+							</form>
+							<script>
 	function plus<%=fcount%>(num){
 		var x = document.form<%=fcount%>.payment_num<%=fcount%>.value;
 		var y = Number(x)+num;
@@ -132,7 +168,7 @@ if(arr==null || arr.size()==0){
 		}else{
 			document.form<%=fcount%>.payment_num<%=fcount%>.value=y;
 			priceChangeMinus<%=fcount%>(y);
-			document.cartOne<%=fcount%>.oneNum<%=fcount%>.value;
+			document.cartOne<%=fcount%>.oneNum<%=fcount%>.value=y;
 		}
 	}
 	
@@ -152,6 +188,7 @@ if(arr==null || arr.size()==0){
 		//총합 올리기-현재 총액 불러오기
 		var PriceSetting = Number(x);
 		var priceSumCom=document.getElementById("sum").innerHTML;
+		var priceSumCom=document.getElementById("sumTotal").innerHTML;
 		//현재 총액 콤마지우기
 		var str1=String(priceSumCom);
 		var priceSumStr = str1.replace(/[^\d]+/g, '');
@@ -162,6 +199,7 @@ if(arr==null || arr.size()==0){
 		var sumStr=String(priceSum);
 		var priceTotal = sumStr.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 		document.getElementById("sum").innerHTML=priceTotal;
+		document.getElementById("sumTotal").innerHTML=priceTotal;
 		//수량 result에 세팅하기
 		var payNum=document.form<%=fcount%>.payment_num<%=fcount%>.value;
 		document.result.cart_payment_num<%=fcount%>.value=payNum;
@@ -184,6 +222,7 @@ if(arr==null || arr.size()==0){
 		//총합 올리기-현재 총액 불러오기
 		var PriceSetting = Number(x);
 		var priceSumCom=document.getElementById("sum").innerHTML;
+		var priceSumCom=document.getElementById("sumTotal").innerHTML;
 		//현재 총액 콤마지우기
 		var str1=String(priceSumCom);
 		var priceSumStr = str1.replace(/[^\d]+/g, '');
@@ -194,23 +233,22 @@ if(arr==null || arr.size()==0){
 		var sumStr=String(priceSum);
 		var priceTotal = sumStr.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 		document.getElementById("sum").innerHTML=priceTotal;
+		document.getElementById("sumTotal").innerHTML=priceTotal;
 		//수량 result에 세팅하기
 		var payNum=document.form<%=fcount%>.payment_num<%=fcount%>.value;
 		document.result.cart_payment_num<%=fcount%>.value=payNum;
 	}
 	</script>
-	</td>
-	<td>
-		<form name="priceForm<%=fcount%>">
+						</td>
+						<td>
+							<form name="priceForm<%=fcount%>">
 	<input type="hidden" name="price<%=fcount%>" value="<%=pd.getProduct_price()%>">
 	</form>
-	<div id="priceShow<%=fcount%>">
-	<%=df.format(arr.get(i).getProduct_price())%>
-	</div>
-	</td>
-	<td>
-	<!-- --------------------------------------------------- 한개 장바구니 주문 ------------------------------------------------------ -->
-	<script>
+						<strong id="priceShow<%=fcount%>">
+						<%=df.format(arr.get(i).getProduct_price()) %>원
+						</strong></td>
+						<td class="button" width="70">
+							<script>
 	function goCartPay<%=fcount%>(){
 		var productPrice=document.cartOne<%=fcount%>.onePrice<%=fcount%>.value;
 		var paymentNum=document.cartOne<%=fcount%>.oneNum<%=fcount%>.value;
@@ -232,47 +270,46 @@ if(arr==null || arr.size()==0){
 	<input type="hidden" name="oneCart<%=fcount%>" value="<%=arr.get(i).getCart_idx()%>">
 	<input type="hidden" name="count" value="<%=fcount%>"><br>
 	</form>
-	<input type="button" name="del_<%=fcount%>" value="삭제" onclick="location='cartDel.jsp?cart_idx=<%=arr.get(i).getCart_idx()%>'">
-	<input type="button" name="order_<%=fcount%>" value="주문" onclick="javascript:goCartPay<%=fcount%>()">
-	<!-- --------------------------------------------------- END(한개 장바구니 주문) ------------------------------------------------------ -->
-	</td>
-	</tr>
-	<%
+						<a href="javascript:goCartPay<%=fcount%>()" class="CLS_DirectBuyBtn" target="_self">
+						<img src="/semi_project/img/btn/cart_buy_btn.gif" alt="바로구매">
+						</a> 
+						<a href="cartDel.jsp?cart_idx=<%=arr.get(i).getCart_idx()%>">
+						<img src="/semi_project/img/btn/cart_remove_btn.gif" alt="삭제">
+						</a>
+						</td>
+					</tr>
+					<%
 	}
 }
 %>
-</tbody>
-<tr>
-<td colspan="7">
-<script>
-
-</script>
-총합계금액: <span id="sum"><%=df.format(sum)%>원</span>
-<input type="button" value="CalArr" onclick="javascript:arrTrans()">
-<input type="button" value="Del All" onclick="javascript:cartDelAll()">
-</td>
-</tr>
-</table>
-</article>
-<form name="result">
-<%
-int rcount=0;
-for(int i=0; i<arr.size(); i++){
-	rcount++;
-	%>
-	<input type="hidden" name="cart_product_price<%=rcount%>" value="<%=arr.get(i).getProduct_price()%>">
-	<input type="hidden" name="cart_payment_num<%=rcount%>" value="<%=arr.get(i).getCart_num()%>">
-	<input type="hidden" name="cart_cart_idx<%=rcount%>" value="<%=arr.get(i).getCart_idx()%>">
-	<input type="hidden" name="cart_product_idx<%=rcount%>" value="<%=arr.get(i).getProduct_idx()%>"><br>
-	<%
-}
-%>
-</form>
-<!--  ----------------------------------------------//END(장바구니 테이블)  ---------------------------------------------- -->
-<!-- ----------------------------------------------------------cartArrPay.jsp 값 넘기기 --------------------------------------------------------->
-<hr>
-<script>
-
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="9" bgcolor="#fafafa">
+							<div class="result_box">
+								<span class="total"> <span class="txt">총 판매가</span> 
+								<strong 	class="number"><span id="sum"><%=df.format(sum) %>원</span></strong>
+								</span>
+								<img class="icon" src="/semi_project/img/btn/cart_list_icon_plus.gif"  alt="+"> 
+								<span class="total"> <span class="txt">총 배송비	</span> 
+								<strong class="number">0 원</strong>
+								</span> 
+								<img class="icon" src="/semi_project/img/btn/cart_list_icon_equals.gif" alt="="> 
+								<span class="total_payment"> 
+								<span class="txt">총 결제 금액</span> 
+								<strong class="number"><span id="sumTotal" style="	margin-top: 5px;color: #E8380D;font-weight:bold;;font: 22px/1 "Tahoma""><%=df.format(sum) %></span><span>원</span></strong>
+								</span>
+							</div>
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+			<div class="button_area">
+				<div class="button_right">
+					<a href="../front/login.php?buy=1&amp;chUrl=..%2Ffront%2Forder.php"></a>
+					<a href="javascript:cartDelAll()" class="selectProduct btn_B wide">전체삭제</a>
+					<a href="javascript:arrTrans()" class="allBuyProduct btn_A wide">전체상품 주문</a>
+				<script>
 function arrTrans(){
 	//장바구니 수
 	var length=document.result.elements.length;
@@ -322,7 +359,28 @@ function arrTrans(){
 	document.payCheck.submit();
 }
 </script>
-<form name="payCheck">
+				</div>
+
+</form>
+			</div>
+		</div>
+	</div>
+	<hr>
+					<form name="result">
+<%
+int rcount=0;
+for(int i=0; i<arr.size(); i++){
+	rcount++;
+	%>
+	<input type="hidden" name="cart_product_price<%=rcount%>" value="<%=arr.get(i).getProduct_price()%>">
+	<input type="hidden" name="cart_payment_num<%=rcount%>" value="<%=arr.get(i).getCart_num()%>">
+	<input type="hidden" name="cart_cart_idx<%=rcount%>" value="<%=arr.get(i).getCart_idx()%>">
+	<input type="hidden" name="cart_product_idx<%=rcount%>" value="<%=arr.get(i).getProduct_idx()%>"><br>
+	<%
+}
+%>
+</form>
+	<form name="payCheck">
 <%
 int pcount=0;
 for(int i=0; i<arr.size(); i++){
@@ -341,7 +399,6 @@ for(int i=0; i<arr.size(); i++){
 %>
 <input type="hidden" name="member_id" value="<%=member_id%>">
 </form>
-<!--  ----------------------------------------------//END(값 넘기기)  ---------------------------------------------- -->
-<%@ include file="/footer/footer.jsp"%>
+	<%@ include file="/footer/footer.jsp"%>
 </body>
 </html>
