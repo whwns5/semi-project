@@ -6,6 +6,8 @@ import java.sql.Date;
 import java.util.*;
 
 import semi.member.MemberDTO;
+import semi.product.ProductDTO;
+import semi.sql.Sql;
 public class adminproductDAO {
 
     Connection conn;
@@ -66,6 +68,59 @@ public class adminproductDAO {
 
 	}
 
+	/** 
+	 * 상품 조회 관련 메서드
+	 * @param void
+	 * @return ArrayList<adminproductDTO>
+	 * */
+	public ArrayList<adminproductDTO> productList(){
+		try{
+			conn = semi.db.semiDB.getConn();
+		
+			ps = conn.prepareStatement(Sql.PRODUCT_SELECT_ALL);
+			
+			rs = ps.executeQuery();
+			
+			ArrayList<adminproductDTO> arr_pdto = new ArrayList<adminproductDTO>();
+			
+			while(rs.next()){
+				int product_idx = rs.getInt("product_idx");
+				int smallcategory_id = rs.getInt("smallcategory_id");
+				String product_name = rs.getString("product_name");
+				String product_code = rs.getString("product_code");
+				String product_color = rs.getString("product_color");
+				String product_size = rs.getString("product_size");
+				int product_num = rs.getInt("product_num");
+				int product_price = rs.getInt("product_price");
+				String product_content = rs.getString("product_content");
+				String product_img = rs.getString("product_img");
+				int product_imgcount = rs.getInt("product_imgcount");
+				Date product_regdate = rs.getDate("product_regdate");
+				
+				
+				adminproductDTO pdto = new adminproductDTO(product_idx, smallcategory_id, product_name, 
+						product_code, product_color, product_size, product_num, product_price, 
+						product_content, product_img, product_imgcount, product_regdate);
+			
+				arr_pdto.add(pdto);
+			}
+			
+			return arr_pdto;
+
+		} catch(Exception e){
+			e.printStackTrace();
+			return null;
+		} finally {
+			try{
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	
 	/**상품 정보 획득 관련 메서드*/
 	public String getproductInfo(String username){

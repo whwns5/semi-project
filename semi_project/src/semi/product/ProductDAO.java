@@ -131,6 +131,7 @@ public class ProductDAO {
 				int product_imgcount = rs.getInt("product_imgcount");
 				Date product_regdate = rs.getDate("product_regdate");
 				
+				
 				ProductDTO pdto = new ProductDTO(product_idx, smallcategory_id, product_name, 
 						product_code, product_color, product_size, product_num, product_price, 
 						product_content, product_img, product_imgcount, product_regdate);
