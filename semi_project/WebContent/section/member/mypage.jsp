@@ -126,7 +126,7 @@
 										<th class="first">번호</th>
 										<th>주문번호</th>
 										<th>상품명</th>
-										<th>상태</th>
+										<th>상 태</th>
 										<th>결제금액</th>
 										<th>주문일자</th>
 										<th>주문취소</th>
