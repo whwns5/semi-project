@@ -20,5 +20,5 @@ DROP SEQUENCE review_table_idx;
 DROP SEQUENCE reply_table_idx;
 DROP SEQUENCE coupon_table_idx;
 DROP SEQUENCE member_table_idx;
-DROP SEQUENCE reufnd_table_idx;
+DROP SEQUENCE refund_table_idx;
 
