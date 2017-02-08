@@ -78,8 +78,10 @@ if(refarr==null || refarr.size()==0){
 %>
 </tbody>
 </table>
+<input type="button" value="마이페이지" onclick="location='../member/mypage.jsp'">
 </article>
 </section>
+
 <%@ include file="/footer/footer.jsp"%>
 
 </body>
