@@ -1,5 +1,24 @@
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="semi.pay.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <jsp:useBean id="paydao" class="semi.pay.PayDAO"/>
+    <%
+    request.setCharacterEncoding("utf-8");
+    
+    //주문정보 불러오기
+    String member_id=(String)session.getAttribute("session_member_id");
+    if(member_id==null || member_id.equals("")){
+    	%>
+    	<script>
+    	window.alert('로그인 후 이용 바랍니다.');
+    	location.href="../index.jsp";
+    	</script>
+    	<%
+    }
+    ArrayList<PayDTO> payarr=paydao.payInfo(member_id);
+    DecimalFormat df=new DecimalFormat("#,##0");
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,7 +85,7 @@
 						<dl>
 							<dt><a href="#">MY PAGE</a></dt>
 							<dd><a href="/mypage/order_list.php">회원 정보 수정</a></dd>
-							<dd><a href="../mypage/mypageOrder.jsp">주문 내역</a></dd>
+							<dd><a href="../member/mypage.jsp">주문 내역</a></dd>
 							<dd><a href="/board/?db=counsel">문의 내역</a></dd>
 							<dd><a href="/mypage/withdraw_step1.php">회원 탈퇴</a></dd>
 						</dl>
@@ -92,9 +111,50 @@
 										<th>상태</th>
 										<th>결제금액</th>
 										<th>주문일자</th>
+										<th>주문취소</th>
 									</tr>
 								</thead>
 								<tbody>
+								<%
+								if(payarr==null || payarr.size()==0){
+									%>
+									<tr>
+									<td colspan="6">주문하신 내역이 없습니다.</td>
+									</tr>
+									<%
+								}else{
+									int count=0;
+								for(int i=0; i<payarr.size(); i++){
+									count++;
+									%>
+									<form name="payidx<%=count%>">
+									<input type="hidden" name="payment_idx" value="<%=payarr.get(i).getPayment_idx()%>">
+									<input type="hidden" name="payment_date" value="<%=payarr.get(i).getPayment_date()%>">
+									</form>
+									
+								<tr align="center">
+								<td><%=i+1%></td>
+								<td><%=payarr.get(i).getPayment_idx() %></td>
+								<td><%=payarr.get(i).getProduct_name()%><%=payarr.get(i).getProduct_code()%>&nbsp;<%=payarr.get(i).getProduct_color()%></td>
+								<td>배송중</td>
+								<td><%=df.format(payarr.get(i).getPayment_totalprice())%>원</td>
+								<td><%=payarr.get(i).getPayment_date() %></td>
+								<td>
+								<script type="text/javascript">
+									function cancelCheck<%=count%>(){
+									var payment_idx = document.payidx<%=count%>.payment_idx.value;
+									var payment_date = document.payidx<%=count%>.payment_date.value;
+									document.payidx<%=count%>.action="../mypage/mypageCancel_check.jsp";
+									document.payidx<%=count%>.submit();
+									}
+								</script>
+								<input type="button" value="주문취소" onclick="javascript:cancelCheck<%=count%>()">
+								</td>
+								</tr>
+									<%
+								}
+								}
+								%>
 								</tbody>
 							</table>
 						</div>
