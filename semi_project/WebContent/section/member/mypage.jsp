@@ -66,7 +66,7 @@
 						<dl>
 							<dt><a href="#">MY PAGE</a></dt>
 							<dd><a href="/mypage/order_list.php">회원 정보 수정</a></dd>
-							<dd><a href="/mypage/wish_list.php">주문 내역</a></dd>
+							<dd><a href="../mypage/mypageOrder.jsp">주문 내역</a></dd>
 							<dd><a href="/board/?db=counsel">문의 내역</a></dd>
 							<dd><a href="/mypage/withdraw_step1.php">회원 탈퇴</a></dd>
 						</dl>
