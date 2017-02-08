@@ -4,7 +4,6 @@
 <link rel="stylesheet" type="text/css" href="/semi_project/css/header/header.css?ver=9">
 <link href='http://fonts.googleapis.com/css?family=Vidaloka' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="/semi_project/css/header/logo.css?ver=8">
-<jsp:useBean id="cdao1" class="semi.cart.CartDAO"/>
 <script type="text/javascript" src="/semi_project/js/bookmark.js?ver=4"></script>
 <script>
 var timeout	= 500;

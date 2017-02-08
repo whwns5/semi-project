@@ -49,6 +49,9 @@ function openDel(){
 }
 </script>
 </head>
+<style>
+
+</style>
 <%request.setCharacterEncoding("utf-8"); %>
 <%
 	String member_name = "";
@@ -99,7 +102,7 @@ function openDel(){
 							</tr>
 						</tbody>
 					</table>
-					<table class="t3" align="center">
+					<table class="t3">
 						<tbody>
 							<tr>
 								<td>
