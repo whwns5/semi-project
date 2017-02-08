@@ -4,10 +4,10 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="/semi_project/css/aside/aside.css?ver=1">
 <%
-	if(session_member_id != null){ // 로그인 상태
-		
+	String session_member_id_aside = (String)session.getAttribute("session_member_id");
+	String session_member_type_aside = (String)session.getAttribute("session_member_name");
+	if(session_member_id != null && session_member_type_aside.equals("고객")){ // 로그인 상태
 		ArrayList<sessionProductDTO> session_arry_spdto_aside = (ArrayList<sessionProductDTO>) session.getAttribute("session_arry_spdto");
-
 %>
 		<aside>
 			<script>

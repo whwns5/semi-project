@@ -21,11 +21,12 @@ public class adminproductDAO {
 	public ArrayList<adminproductDTO> productFind(String fkey, String fvalue) {
 		try {
 			conn = semi.db.semiDB.getConn();
-			String sql = "select * from product_table where " + fkey + "=?";
-			
+			String sql = "select * from product_table where " + fkey + " = ?";
 			
 			ps = conn.prepareStatement(sql);
+			
 			ps.setString(1, fvalue);
+			
 			rs = ps.executeQuery();
 			ArrayList<adminproductDTO> arr = new ArrayList<adminproductDTO>();
 			while (rs.next()) {
@@ -117,10 +118,19 @@ public class adminproductDAO {
 	public int updateContent(adminproductDTO dto){
 		try{
 			
-			//System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" + dto.getAddr());
 			conn = semi.db.semiDB.getConn();
-			String sql="update product_table set getSmallcategory_id=?,getProduct_name=?,getProduct_code=?,getProduct_color=?,getProduct_size=?,getProduct_num=?,getProduct_price=?,getProduct_content=?,getProduct_img=?,getProduct_imgcount where member_idx =?";
-			//update jsp_member set name='jang',idx=1,addr='서울',tel='010-2929-3993',id='kkkk' where id ='hong'
+			
+			String sql = "update product_table set "
+					+ "smallcategory_id = ?, "
+					+ "product_name = ?, "
+					+ "product_code = ?, "
+					+ "product_color = ?, "
+					+ "product_size = ?, "
+					+ "product_num = ?, "
+					+ "product_price = ?, "
+					+ "product_content = ?, "
+					+ "product_img = ?, "
+					+ "product_imgcount = ? where product_idx = ?";
 			
 			ps=conn.prepareStatement(sql);
 			
@@ -134,9 +144,11 @@ public class adminproductDAO {
 			ps.setString(8, dto.getProduct_content());
 			ps.setString(9,dto.getProduct_img());
 			ps.setInt(10,dto.getProduct_imgcount());
+			
 			ps.setInt(11,dto.getProduct_idx());
 			
 			int count=ps.executeUpdate();
+			
 			return count;
 		}catch(Exception e){
 			e.printStackTrace();
