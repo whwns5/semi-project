@@ -54,6 +54,7 @@ document.onclick = mclose;
 <%
 	String session_member_id = (String)session.getAttribute("session_member_id"); // 로그인 정보를 받아온다.
 	String session_member_name = (String)session.getAttribute("session_member_name");
+	
 	/* String cartNums=(String)session.getAttribute("cart");
 	int cartN=0;
 	if(cartNums==null || cartNums.equals("")){
