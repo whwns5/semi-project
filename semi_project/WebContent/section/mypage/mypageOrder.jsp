@@ -1,3 +1,4 @@
+<%@page import="semi.product.ProductDTO"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DecimalFormat"%>
@@ -6,6 +7,7 @@
     pageEncoding="UTF-8"%>
   <% request.setCharacterEncoding("utf-8"); %>
     <jsp:useBean id="paydao" class="semi.pay.PayDAO" scope="session"/>
+    <jsp:useBean id="pdao" class="semi.product.ProductDAO" scope="session"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,7 +29,7 @@ if(member_id==null || member_id.equals("")){
 }
 
 ArrayList<PayDTO> arr=paydao.payInfo(member_id);
-
+ProductDTO pdto=null;
 %>
 <style>
 table, table tr, table td, table th{
@@ -41,6 +43,7 @@ border:1px solid black;
 <table>
 <thead>
 <tr>
+<th>상품이미지</th>
 <th>상품정보</th>
 <th>주문금액</th>
 <th>주문수량</th>
@@ -60,8 +63,12 @@ if(arr==null || arr.size()==0){
 int count=0;
 for(int i=0; i<arr.size(); i++){
 	count++;
+	pdto=pdao.productOne(arr.get(i).getProduct_idx());
 %>
 <tr>
+<td>
+<img alt="" src="../img/<%=pdto.getProduct_img()%>.jsp">
+</td>
 <td>
 <form name="payidx<%=count%>">
 <input type="hidden" name="payment_idx" value="<%=arr.get(i).getPayment_idx()%>">
