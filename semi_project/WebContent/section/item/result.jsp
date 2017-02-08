@@ -10,6 +10,7 @@
 	request.setCharacterEncoding("utf-8");
 	String fkey = request.getParameter("fkey");
 	String fvalue = request.getParameter("fvalue");
+	
 	ArrayList<adminproductDTO> arr=pdao.productFind(fkey,fvalue);
 	
 	String tmp = request.getParameter("product_idx");

@@ -23,12 +23,12 @@
 
  function submitUpdate(fm_id) { 
 	 var fm = document.getElementById(fm_id);
-	 fm.setAttribute('action', 'empUpdate.jsp');
+	 fm.setAttribute('action', '/semi_project/section/master/empUpdate.jsp');
 	 fm.submit(); 
 }
 function submitDelete(fm_id){
 	var fm = document.getElementById(fm_id);
-	fm.setAttribute('action', 'empDelete_ok.jsp');
+	fm.setAttribute('action', '/semi_project/section/master/empDelete_ok.jsp');
 	fm.submit();
 }
 function goProductFind() {
