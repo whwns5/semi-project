@@ -26,9 +26,9 @@
 					<div class="mypage_menu">
 						<dl>
 							<dt><a href="#">ADMIN PAGE</a></dt>
-							<dd><a href="/mypage/order_list.php">회원 관리</a></dd>
-							<dd><a href="/mypage/wish_list.php">상품 관리</a></dd>
-							<dd><a href="/board/?db=counsel">문의 답변</a></dd>
+							<dd><a href="/semi_project/section/member/adminPage.jsp?menu=member">회원 관리</a></dd>
+							<dd><a href="/semi_project/section/member/adminPage.jsp?menu=product">상품 관리</a></dd>
+							<dd><a href="/semi_project/section/member/adminPage.jsp?menu=qna">문의 답변</a></dd>
 						</dl>
 					</div>
 					<div class="mypage_content"> <!-- 내용이 교체되는 부분 -->

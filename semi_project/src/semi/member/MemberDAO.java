@@ -25,8 +25,16 @@ public class MemberDAO {
 		try{
 			
 			conn=semi.db.semiDB.getConn();
-			String sql="insert into member_table(member_idx,member_id,member_name,member_pwd,member_sex,member_email,member_tel,member_addr) "
-					+"values(member_table_idx.nextval,?,?,?,?,?,?,?)";
+			String sql="insert into member_table values(member_table_idx.NEXTVAL, "
+					+ "?, " // member_id
+					+ "'고객', " // member_type
+					+ "?, " // member_name
+					+ "?, " // member_pwd
+					+ "?, " // member_sex
+					+ "?, " // member_email
+					+ "?, " // member_tel
+					+ "?, " // member_addr
+					+ "NULL)"; // member_coupon
 			ps = conn.prepareStatement(sql);
 			
 			ps.setString(1, dto.getMember_id());
