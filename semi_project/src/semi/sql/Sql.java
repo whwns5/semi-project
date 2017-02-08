@@ -8,7 +8,13 @@ public class Sql {
 	
 	///////////////// 상품 테이블 관련 (product_table) /////////////////
 	/** 상품 테이블 갯수 조회 */
-	//public static final String PRODUCT_TOTALCOUNT = "SELECT COUNT(*) FROM product_table WHERE smallcategory_id = ?";
+	public static final String PRODUCT_TOTALCOUNT = "SELECT COUNT(*) FROM product_table";
+	/** 관리자 검색 총 갯수 */
+	public static final String getPRODUCT_FINDTOTALCOUNT(String fkey){
+		String sql = "SELECT COUNT(*) FROM product_table "
+				+ "WHERE " + fkey + " = ?";
+		return sql;
+	}
 	/** 상품 테이블 대분류 별 총 갯수 조회 */
 	public static final String getPRODUCT_LARGECATEGORY_TOTALCOUNT(){
 		String sql = "SELECT COUNT(*) "
@@ -39,6 +45,13 @@ public class Sql {
 	
 	/** 상품 테이블 전체 조회 */
 	public static final String PRODUCT_SELECT_ALL = "SELECT * FROM product_table";
+	/** 상품 테이블 전체 조회 */
+	public static final String getPRODUCT_SELECT_ALL(int cp, int listSize){
+		String sql = "SELECT b.* FROM (SELECT rownum as rnum, a.* "
+				+ 	 "FROM product_table a) b "
+				+    "WHERE rnum >= (" + cp + "-1)*" + listSize + "+ 1 AND rnum <= " + cp + "*" + listSize;
+		return sql;
+	}
 	/** 상품 카테고리 아이디 조회 */
 	//public static final String LARGECATEGORY_SELECT_WHERE = "SELECT largecategory_id FROM largecategory_table WHERE largecategory_name = ?";
 	/** 상품 세부 카테고리 아이디 조회 */
@@ -74,6 +87,12 @@ public class Sql {
 	}
 	/** 상품 테이블 코드 별 조회 */
 	public static final String PRODUCT_CODE_SELECT_ALL = "SELECT * FROM product_table WHERE product_code = ?";
+	 /** 상품 관리자 검색 조회 */
+	public static final String getPRODUCT_SEARCH_FIND(String fkey){
+		String sql = "SELECT * FROM product_table WHERE " + fkey + " = ?";
+		return sql;
+	}
+	
 	/** 상품 테이블 검색 조회 */
 	public static final String getPRODUCT_SEARCH_SELLECT_ALL(String searchStr, int cp, int listSize, String column, String orderByType){
 		String sql = "SELECT b.* "

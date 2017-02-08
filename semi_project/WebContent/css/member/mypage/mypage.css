@@ -157,6 +157,63 @@ div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap
     font-size: 12px;
     font-weight: normal;
 }
+div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap table.table_style tbody td{
+	padding: 12px 0;
+    text-align: center;
+    border-top: 2px solid #000;
+    border-bottom: 1px solid #000;
+    color: #4c4c4c;
+    font-size: 12px;
+    font-weight: normal;
+}
+div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap table.table_style tbody td div.admin_bt_area{	
+	margin: 0px auto;
+}
+div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap table.table_style tbody td div.admin_bt_area a{
+	display: inline-block;		
+	width: 50px;
+	
+}
+div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap table.table_style tbody td div.admin_bt_area a:FIRST-CHILD{
+	margin-bottom: 10px;	
+}
+	
+/** 페이지 부분 */
+div.item_page{
+	padding-top: 20px;
+    border-top: 1px solid #c0bebe;
+    margin-bottom: 80px;
+    
+    text-align: center;
+    position: relative;
+    vertical-align: middle;
+    margin-top: 20px;
+}
+div.item_page a{
+	display: inline-block;
+    font: bold 12px dotum;
+    color: #919191;
+    margin: 0px 4px;
+    height: 29px;
+    width: 29px;
+    line-height: 29px;
+    vertical-align: middle;
+    border: 1px solid #fff;
+    text-decoration: none;
+}
+div.item_page a.num:HOVER{
+	border: 1px solid #dcdcdc;
+    background-color: #f0f0f0;
+}
+div.item_page a.on{
+	border: 1px solid #dcdcdc;
+    background-color: #f0f0f0;
+}
+
+	
+	
+	
+	
 	
 	
 	

@@ -8,7 +8,7 @@
 </head>
 <body>
 <%@include file="/header/header.jsp" %>
-
+<p style="text-align:center;"><img src="../img/event.jpg" width="1100"></p>
 <%@include file="/footer/footer.jsp" %>
 </body>
 </html>
