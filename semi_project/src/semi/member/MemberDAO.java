@@ -257,12 +257,10 @@ public class MemberDAO {
 			ps.setString(1, member_ids);
 			rs=ps.executeQuery();
 			if(rs.next()){
-				int member_idx=rs.getInt("member_idx");
 				String member_id=rs.getString("member_id");
 				String member_name=rs.getString("member_name");
 				String member_type=rs.getString("member_type");
 				String member_pwd=rs.getString("member_pwd");
-				Date member_birthday=rs.getDate("member_birthday");
 				String member_sex=rs.getString("member_sex");
 				String member_email=rs.getString("member_email");
 				String member_tel=rs.getString("member_tel");
