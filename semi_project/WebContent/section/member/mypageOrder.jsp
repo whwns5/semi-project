@@ -89,7 +89,7 @@ String member_id = (String) session.getAttribute("session_member_id");
 											<input type="button" value="주문취소" onclick="javascript:cancelCheck<%=count%>()">
 											 <%
  												} else if (payarr.get(i).getPayment_stat() == 2) {
- 												%> 주문취소중 <%
+ 												%> 주문취소중<%
 											 	}
  											%>
 										</td>
