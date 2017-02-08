@@ -10,16 +10,18 @@ String member_id=(String)session.getAttribute("session_member_id");
 System.out.println("id first: "+member_id);
 String id=null;
 if(member_id==null || member_id.equals("")){
+	/*
 	id="zz";
 	session.setAttribute("session_member_id", id);
 	member_id=(String)session.getAttribute("session_member_id");
+	*/
 	%>
 	<!--  
+	-->
 	<script>
 	window.alert('login is needed');
 	location.href="/myweb/cart/product.jsp"
 	</script>
-	-->
 	<%
 }
 System.out.println("id last: "+member_id);

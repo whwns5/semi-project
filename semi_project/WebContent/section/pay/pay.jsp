@@ -110,7 +110,6 @@ width:500px;
 </thead>
 <tbody>
 <%
-pdto.setProduct_num(1);
 if(pdto.getProduct_name()==null || pdto.getProduct_name().equals("")){
 	%>
 	<tr>

@@ -353,6 +353,17 @@ function settingPage(product_idx) {
 								</tr>
 							</tfoot>
 						</table>
+						<script>
+						function goLogin(){
+							var session_member_id = <%=session_member_id == null ? null : "'" + session_member_id + "'"%>;
+							if(session_member_id == null){
+								window.alert('로그인 후 사용 가능합니다.');
+								return;
+							}
+
+							window.alert('product_num, code, color 값 세팅 필요');
+						}
+						</script>
 						<div class="btn_div">
 							<ul class="btn_ul">
 								<li><a class="common-bt" href="javascript:goLogin();">BUY</a></li>
