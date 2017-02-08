@@ -11,7 +11,7 @@
 <meta charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<link rel="stylesheet" type="text/css" href="../css/mainLayout.css">
+<link rel="stylesheet" type="text/css" href="../../css/mainLayout.css">
 <style>
 h2{
 text-align:center;

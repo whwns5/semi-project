@@ -22,7 +22,7 @@ if(payment_idxs==null || payment_idxs.equals("")){
 	%>
 	<script>
 	window.alert('잘못된 접근경로 입니다.');
-	location.href="mypageOrder.jsp";
+	location.href="section/mypage/mypage.jsp";
 	</script>
 	<%
 }else{

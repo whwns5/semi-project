@@ -11,7 +11,7 @@ if(member_id==null || member_id.equals("")){
 	%>
 	<script>
 	window.alert('잘못된 접근경로 입니다.');
-	location.href="../index.jsp";
+	location.href="../../index.jsp";
 	</script>
 	<%
 	return;
@@ -35,5 +35,5 @@ String msg=result>0?"결재완료":"결재실패";
 %>
 <script>
 window.alert('<%=msg%>');
-location.href="../cart/product.jsp";
+location.href="../../index.jsp";
 </script>

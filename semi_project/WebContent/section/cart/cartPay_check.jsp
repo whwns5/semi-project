@@ -25,7 +25,7 @@ border:1px black solid;
     	%>
     	<script>
     	window.alert('선택한 상품이 없습니다.');
-    	location.href="cartShow.jsp";
+    	location.href="section/pay/pay.jsp";
     	</script>
     	<%
     	return;
@@ -100,6 +100,9 @@ border:1px black solid;
 <input type="hidden" name="payment_addr" value="<%=payment_addr%>">
 <input type="hidden" name="payment_tel" value="<%=payment_tel%>">
 <input type="hidden" name="cart_idx" value="<%=cart_idx%>">
+<input type="hidden" name="product_name" value="<%=product_name%>">
+<input type="hidden" name="product_code" value="<%=product_code%>">
+<input type="hidden" name="product_color" value="<%=product_color%>">
 </form>
 </article>
 </section>

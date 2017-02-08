@@ -10,16 +10,24 @@
 <!-- ------------------------------------------------장바구니 데이터 세팅 --------------------------------------------------------->
 <%
 String member_id=(String)session.getAttribute("session_member_id");
+if(member_id==null || member_id.equals("")){
+	%>
+	<script>
+	window.alert('로그인이 필요합니다.');
+	location.href="../../index.jsp";
+	</script>
+	<%
+	return;
+}
 DecimalFormat df=new DecimalFormat("#,##0");
 //결제창에서 가져올때 get param values
-String product_idx[]=request.getParameterValues("product_idx");
-String product_price[]=request.getParameterValues("product_price");
 String product_num[]=request.getParameterValues("product_num");
 String product_code[]=request.getParameterValues("product_code");
 String product_color[]=request.getParameterValues("product_color");
 
 /**장바구니 개수 구현: 개수 구하고 header.jsp에 붙힘 */
 ArrayList<CartDTO> arr=cdao.cartList(member_id);
+int sum=cdao.cartSum(member_id);
 int cartNumi=arr.size();
 String cartNum=String.valueOf(cartNumi);
 session.setAttribute("cart", cartNum);
@@ -28,9 +36,6 @@ session.setAttribute("cart", cartNum);
 int productidx[]=new int[arr.size()];
 ProductDTO pd=null;
 int cartNumber=1;
-
-/**가격 총합*/
-int sum=cdao.cartSum(member_id);
 %>    
 <!-- ----------------------------------------------END(장바구니 데이터 세팅) --------------------------------------------------->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -38,13 +43,12 @@ int sum=cdao.cartSum(member_id);
 <head>
 <meta charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../css/mainLayout.css">
+<link rel="stylesheet" type="text/css" href="../../css/mainLayout.css">
 </head>
 <style>
-table{
-width:680px;
-margin:0 auto;
-border:1px solid black;
+table.list_table{
+width:100%;
+
 }
 table tr, th, td{
 text-align:center;
@@ -54,7 +58,7 @@ border:1px solid black;
 <!-- ----------------------------------------------장바구니 전체 삭제 확인 창 --------------------------------------------------->
 <script>
 function cartDelAll(){
-	if(confirm('장바구니 모두 삭제 하시겠습니까?')){
+	if(confirm('장바구니 삭제 하시겠습니까?')){
 		location.href="cartDelAll.jsp";
 	}
 	return;
@@ -212,11 +216,17 @@ if(arr==null || arr.size()==0){
 		var paymentNum=document.cartOne<%=fcount%>.oneNum<%=fcount%>.value;
 		var cartidx=document.cartOne<%=fcount%>.oneCart<%=fcount%>.value;
 		var count=document.cartOne<%=fcount%>.count.value;
+		var productName=document.cartOne<%=fcount%>.product_name.value;
+		var product_code=document.cartOne<%=fcount%>.product_code.value;
+		var product_color=document.cartOne<%=fcount%>.product_color.value;
 		document.cartOne<%=fcount%>.action="cartPay.jsp";
 		document.cartOne<%=fcount%>.submit();
 	}
 	</script>
 	<form name="cartOne<%=fcount%>">
+	<input type="hidden" name="product_name" value="<%=pd.getProduct_name()%>">
+	<input type="hidden" name="product_code" value="<%=pd.getProduct_code()%>">
+	<input type="hidden" name="product_color" value="<%=pd.getProduct_color()%>">
 	<input type="hidden" name="onePrice<%=fcount%>" value="<%=arr.get(i).getProduct_price()%>">
 	<input type="hidden" name="oneNum<%=fcount%>" value="<%=arr.get(i).getCart_num()%>">
 	<input type="hidden" name="oneCart<%=fcount%>" value="<%=arr.get(i).getCart_idx()%>">
@@ -317,7 +327,11 @@ function arrTrans(){
 int pcount=0;
 for(int i=0; i<arr.size(); i++){
 	pcount++;
+	pd=pdao.productOne(productidx[i]);
 	%>
+	<input type="hidden" name="product_name" value="<%=pd.getProduct_name()%>">
+	<input type="hidden" name="product_code" value="<%=pd.getProduct_code()%>">
+	<input type="hidden" name="product_color" value="<%=pd.getProduct_color()%>">
 	<input type="hidden" name="product_price<%=pcount%>" value="<%=arr.get(i).getProduct_price()%>">
 	<input type="hidden" name="payment_num<%=pcount%>" value="<%=arr.get(i).getCart_num()%>">
 	<input type="hidden" name="cart_idx<%=pcount%>" value="<%=arr.get(i).getCart_idx() %>">

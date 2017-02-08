@@ -8,25 +8,12 @@
     <jsp:useBean id="pdto" class="semi.product.ProductDTO" scope="session"/>
     <jsp:setProperty property="*" name="pdto"/>
     <jsp:useBean id="pdao" class="semi.product.ProductDAO" scope="session"/>
-    <jsp:useBean id="mdto" class="semi.member.MemberDTO" scope="session"/>
-    <jsp:setProperty property="*" name="mdto"/>
     <jsp:useBean id="mdao" class="semi.member.MemberDAO" scope="session"/>
     <jsp:useBean id="cdao" class="semi.cart.CartDAO" scope="session"/>
 <%
-request.setCharacterEncoding("utf-8");
 //db 업데이트
-System.out.println("------------------------------------cartArrPay.jsp--------------------------------");
 String member_id=(String)session.getAttribute("session_member_id");
-System.out.println("member_id="+member_id);
 ArrayList<CartDTO> arr=cdao.cartList(member_id);
-if(arr==null || arr.size()==0){
-	%>
-	<script>
-	window.alert('잘못된 접근경로 입니다.');
-	location.href="cartShow.jsp";
-	</script>
-	<%
-}
 
 String product_idxs[]=new String[arr.size()];
 int product_idx[]=new int[arr.size()];
@@ -60,12 +47,17 @@ for(int i=0; i<arr.size(); i++){
 }
 %>
 <%
-MemberDTO md=mdao.memberGet(member_id);
+request.setCharacterEncoding("utf-8");
+MemberDTO mdto=mdao.memberGet(member_id);
 DecimalFormat df=new DecimalFormat("#,##0");
 CartDTO cd=cdao.show(member_id);
 String product_num[]=request.getParameterValues("product_num");
-String product_code[]=request.getParameterValues("product_code");
-String product_color[]=request.getParameterValues("product_color");
+String product_name[]=new String[arr.size()];
+product_name=request.getParameterValues("product_name");
+String product_code[]=new String[arr.size()];
+product_code=request.getParameterValues("product_code");
+String product_color[]=new String[arr.size()];
+product_color=request.getParameterValues("product_color");
 /*
 String product_idxs[]=request.getParameterValues("product_idx");
 String product_prices[]=request.getParameterValues("product_price");
@@ -106,7 +98,7 @@ for(int i=0; i<arr.size(); i++){
 <head>
 <meta charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../css/mainLayout.css">
+<link rel="stylesheet" type="text/css" href="../../css/mainLayout.css">
 </head>
 <style>
 .table-proinfo{
@@ -159,6 +151,8 @@ text-align:left;
 </thead>
 <tbody>
 <%
+ProductDTO pd=null;
+CartDTO cdto=null;
 if(arr==null || arr.size()==0){
 	%>
 	<tr>
@@ -168,8 +162,8 @@ if(arr==null || arr.size()==0){
 }else{
 	for(int i=0; i<arr.size(); i++){
 	//각 table 행에 맞는 cart와 product 불러오기
-	CartDTO cdto=cdao.showOneForPay(member_id, cart_idx[i]);
-	ProductDTO pd=pdao.productOne(product_idx[i]);
+	cdto=cdao.showOneForPay(member_id, cart_idx[i]);
+	pd=pdao.productOne(product_idx[i]);
 %>
 <tr>
 <td>
@@ -200,11 +194,11 @@ if(arr==null || arr.size()==0){
 <caption>02. 배송 및 결재정보</caption>
 <tr>
 <th>주문자 명</th>
-<td><input type="text" name="member_name" value="<%=md.getMember_name()%>" size="50" required="required"></td>
+<td><input type="text" name="member_name" value="<%=mdto.getMember_name()%>" size="50" required="required"></td>
 </tr>
 <tr>
 <th>휴대폰 번호</th>
-<td><input type="text" name="member_tel" value="<%=md.getMember_tel()%>" size="50"></td>
+<td><input type="text" name="member_tel" value="<%=mdto.getMember_tel()%>" size="50"></td>
 </tr>
 <tr>
 <th>전화 번호</th>
@@ -216,7 +210,7 @@ if(arr==null || arr.size()==0){
 </tr>
 <tr>
 <th>배송주소</th>
-<td><input type="text" name="payment_addr" value="<%=md.getMember_addr()%>" required="required" size="50"></td>
+<td><input type="text" name="payment_addr" value="<%=mdto.getMember_addr()%>" required="required" size="50"></td>
 </tr>
 </table>
 </article>
@@ -246,7 +240,22 @@ if(arr==null || arr.size()==0){
 <%
 int cartSum=cdao.cartSum(member_id);
 int cartNumSum=cdao.cartNumSum(member_id);
-System.out.println(cartNumSum);
+/*
+String cartPname="";
+String cartPcode="";
+String cartPcolor="";
+if(product_name.length>1){
+for(int i=0; i<arr.size(); i++){
+	cartPname+=product_name[i]+",";
+	cartPcode+=product_code[i]+",";
+	cartPcolor+=product_color[i]+",";
+}
+}else{
+	cartPname=product_name[0];
+	cartPcode=product_code[0];
+	cartPcolor=product_color[0];
+}
+*/
 %>
 <td><%=df.format(cartSum) %></td>
 </tr>
@@ -255,8 +264,26 @@ System.out.println(cartNumSum);
 </tr>
 </table>
 </article>
+<!-- -------------------------------------------------- 넘길값 ---------------------------------------------------->
 <input type="hidden" name="product_price" value="<%=cartSum%>">
-<input type="hidden" name="payment_num" value="<%=cartNumSum%>">
+<input type="hidden" name="payment_num" value="<%=cartNumSum%>"><br>
+<hr>
+<%
+int cartidx=0;
+for(int i=0; i<arr.size();i++){
+	cdto=cdao.showOneForPay(member_id, cart_idx[i]);
+	cartidx=cdto.getProduct_idx();
+	pd=pdao.productOne(cartidx);
+	%>
+<input type="hidden" name="product_idx" value="<%=cdto.getProduct_idx()%>">
+<input type="hidden" name="cart_num" value="<%=cdto.getCart_num()%>">
+<input type="hidden" name="product_name" value="<%=pd.getProduct_name()%>">
+<input type="hidden" name="product_code" value="<%=pd.getProduct_code()%>">
+<input type="hidden" name="product_price" value="<%=cdto.getProduct_price()%>">
+<input type="hidden" name="product_color" value="<%=pd.getProduct_color()%>"><br>
+	<%
+}
+%>
 </form>
 </section>
 <%@ include file="/footer/footer.jsp"%>

@@ -27,7 +27,7 @@ if(dto==null){
 <head>
 <meta charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../css/mainLayout.css">
+<link rel="stylesheet" type="text/css" href="../../css/mainLayout.css">
 </head>
 <script language="javaScript">
 function cart(){
@@ -36,17 +36,17 @@ function cart(){
 }
 </script>
 <body>
-<%@ include file="/header/header.jsp" %>
+<%@ include file="/header/header.jsp"%>
 <section>
 <article>
-<form name="f1" action="/myweb/pay/pay.jsp">
+<form name="f1" action="../pay/pay.jsp">
 <input type="hidden" name="product_idx" value="<%=dto.getProduct_idx()%>">
 <input type="hidden" name="smallcategory_id" value="<%=dto.getSmallcategory_id()%>">
 <input type="hidden" name="product_name" value="<%=dto.getProduct_name()%>">
 <input type="hidden" name="product_code" value="<%=dto.getProduct_code()%>">
 <input type="hidden" name="product_color" value="<%=dto.getProduct_color()%>">
 <input type="hidden" name="product_size" value="<%=dto.getProduct_size()%>">
-<input type="hidden" name="product_num" value="<%=dto.getProduct_num()%>">
+<input type="hidden" name="product_num" value="1">
 <input type="hidden" name="product_price" value="<%=dto.getProduct_price()%>">
 <input type="hidden" name="product_img" value="<%=dto.getProduct_img()%>">
 <table border="1" bordercolor="black" cellspacing="0">
@@ -76,7 +76,16 @@ function cart(){
 </tbody>
 <tr>
 <td colspan="10" align="right">
-<input type="button" value="장바구니" onclick="location='cartAdd.jsp?product_idx=<%=dto.getProduct_idx()%>'">
+<script>
+function cartArrPay(){
+	var product_num = document.f1.product_num.value;
+	var product_code = document.f1.product_code.value;
+	var product_color = document.f1.product_color .value;
+	document.f1.action="../cart/cartAdd.jsp";
+	document.f1.submit();
+}
+</script>
+<input type="button" value="장바구니" onclick="javascript:cartArrPay()">
 <input type="submit" value="결제">
 <!-- 
 <input type="image" src="/myweb/img/cart_button.gif" width="122" height="44" onClick="javascript:cart()">
@@ -88,6 +97,6 @@ function cart(){
 </article>
 </section>
 
-<%@ include file="/footer/footer.jsp" %>
+<%@ include file="/footer/footer.jsp"%>
 </body>
 </html>

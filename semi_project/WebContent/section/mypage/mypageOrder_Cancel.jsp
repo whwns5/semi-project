@@ -14,7 +14,7 @@
 		%>
 		<script>
 		window.alert('로그인 후 이용 바랍니다.');
-		location.href="/myweb/index.jsp";
+		location.href="../../index.jsp";
 		</script>
 		<%
 	}
@@ -25,7 +25,7 @@
 <head>
 <meta charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../css/mainLayout.css">
+<link rel="stylesheet" type="text/css" href="../../css/mainLayout.css">
 <style>
 table, table tr, table td, table th{
 border:1px solid black;

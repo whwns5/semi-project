@@ -24,7 +24,11 @@ String payment_tel=request.getParameter("payment_tel");
 String cart_idxs=request.getParameter("cart_idx");
 int cart_idx=Integer.parseInt(cart_idxs);
 
-int result = paydao.payInsert(member_id, product_idx, payment_totalprice, payment_num, payment_addr, payment_tel);	
+String product_name=request.getParameter("product_name");
+String product_code=request.getParameter("product_code");
+String product_color=request.getParameter("product_color");
+
+int result = paydao.payInsert(member_id, product_idx, payment_totalprice, payment_num, payment_addr, payment_tel, product_name, product_code, product_color);
 String msg=result>0?"결재완료":"결재실패";
 
 int result_CartDel = cdao.cartDel(cart_idx, member_id);
