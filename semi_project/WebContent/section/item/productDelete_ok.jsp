@@ -10,5 +10,5 @@
 %>
 <script>
 	window.alert('<%=msg%>');
-	location.href = 'productFind.jsp';
+	location.href = '/semi_project/section/member/adminPage.jsp?menu=product_list';
 </script>

@@ -4,8 +4,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
-<jsp:useBean id="pdto" class="semi.product.ProductDTO"/>
-<jsp:useBean id="pdao" class="semi.product.ProductDAO"/>
+<jsp:useBean id="qdto" class="semi.qna.QnaDTO" scope="session"/>
+<jsp:useBean id="pdao" class="semi.qna.QnaDAO" scope="session"/>
 <%
 	String fkey = request.getParameter("fkey");
 	String fvalue = request.getParameter("fvalue");

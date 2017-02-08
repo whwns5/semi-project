@@ -6,13 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/semi_project/css/default.css?ver=3">
-<link rel="stylesheet" type="text/css" href="/semi_project/css/member/mypage/mypage.css?ver=7">
-
+<link rel="stylesheet" type="text/css" href="/semi_project/css/commonButton.css?ver=9">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/member/mypage/mypage.css?ver=10">
 </head>
 <%
 	String menu = request.getParameter("menu");
 	if(menu == null){
-		menu = "product";
+		menu = "product_list";
 	}
 %>
 <body>
@@ -27,16 +27,20 @@
 						<dl>
 							<dt><a href="#">ADMIN PAGE</a></dt>
 							<dd><a href="/semi_project/section/member/adminPage.jsp?menu=member">회원 관리</a></dd>
-							<dd><a href="/semi_project/section/member/adminPage.jsp?menu=product">상품 관리</a></dd>
-							<dd><a href="/semi_project/section/member/adminPage.jsp?menu=qna">문의 답변</a></dd>
+							<dd><a href="/semi_project/section/member/adminPage.jsp?menu=product_list">상품 관리</a></dd>
+							<dd><a href="/semi_project/section/member/adminPage.jsp?menu=qna_list">문의 답변</a></dd>
 						</dl>
 					</div>
 					<div class="mypage_content"> <!-- 내용이 교체되는 부분 -->
 						<%
-							if(menu.equals("product")){
+							if(menu.equals("product_list")){
 						%>
 								<%@include file="/section/item/productFind.jsp" %>
 						<%		
+							} else if (menu.equals("qna_list")){
+						%>
+								<%@include file="/section/qna/qnaList.jsp" %>
+						<% 		
 							}
 						%>
 						

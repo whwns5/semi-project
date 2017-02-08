@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.util.*;
 
 import semi.sql.Sql;
+import semi.adminproduct.adminproductDTO;
 import semi.product.ProductDTO;
 /** 
  * 상품 관련 DAO
@@ -22,6 +23,78 @@ public class ProductDAO {
 	
 	public ProductDAO(){
 		
+	}
+	/** 
+	 * 총 갯수 조회 관련 메서드
+	 * @param category_id_s, category_type
+	 * @return count
+	 * */
+	public int getTotalCnt(){
+		try{
+			conn = semi.db.semiDB.getConn();
+			
+			ps = conn.prepareStatement(Sql.PRODUCT_TOTALCOUNT);
+	
+			rs = ps.executeQuery();
+			
+			rs.next();
+			
+			int count = rs.getInt(1);
+			
+			count = count == 0 ? 1 : count;
+		
+			return count;
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			return 1;
+		} finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)rs.close();
+				if(conn!=null)rs.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	
+	/** 
+	 * 관리자 검색 총 갯수 조회 관련 메서드
+	 * @param category_id_s, category_type
+	 * @return count
+	 * */
+	public int getFindTotalCnt(String fkey, String fvalue){
+		try{
+			conn = semi.db.semiDB.getConn();
+			
+			ps = conn.prepareStatement(Sql.getPRODUCT_FINDTOTALCOUNT(fkey));
+			ps.setString(1, fvalue);
+			
+			rs = ps.executeQuery();
+			
+			rs.next();
+			
+			int count = rs.getInt(1);
+			
+			count = count == 0 ? 1 : count;
+		
+			return count;
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			return 1;
+		} finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)rs.close();
+				if(conn!=null)rs.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
 	}
 	
 	/** 
@@ -112,6 +185,59 @@ public class ProductDAO {
 			conn = semi.db.semiDB.getConn();
 		
 			ps = conn.prepareStatement(Sql.PRODUCT_SELECT_ALL);
+			
+			rs = ps.executeQuery();
+			
+			ArrayList<ProductDTO> arr_pdto = new ArrayList<ProductDTO>();
+			
+			while(rs.next()){
+				int product_idx = rs.getInt("product_idx");
+				int smallcategory_id = rs.getInt("smallcategory_id");
+				String product_name = rs.getString("product_name");
+				String product_code = rs.getString("product_code");
+				String product_color = rs.getString("product_color");
+				String product_size = rs.getString("product_size");
+				int product_num = rs.getInt("product_num");
+				int product_price = rs.getInt("product_price");
+				String product_content = rs.getString("product_content");
+				String product_img = rs.getString("product_img");
+				int product_imgcount = rs.getInt("product_imgcount");
+				Date product_regdate = rs.getDate("product_regdate");
+				
+				
+				ProductDTO pdto = new ProductDTO(product_idx, smallcategory_id, product_name, 
+						product_code, product_color, product_size, product_num, product_price, 
+						product_content, product_img, product_imgcount, product_regdate);
+			
+				arr_pdto.add(pdto);
+			}
+			
+			return arr_pdto;
+
+		} catch(Exception e){
+			e.printStackTrace();
+			return null;
+		} finally {
+			try{
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	/** 
+	 * 상품 조회 페이징 메서드
+	 * @param void
+	 * @return ArrayList<ProductDTO>
+	 * */
+	public ArrayList<ProductDTO> productList(int cp, int listSize){
+		try{
+			conn = semi.db.semiDB.getConn();
+		
+			ps = conn.prepareStatement(Sql.getPRODUCT_SELECT_ALL(cp, listSize));
 			
 			rs = ps.executeQuery();
 			
@@ -310,6 +436,55 @@ public class ProductDAO {
 		}
 	}
 	
+	 /** 상품검색 관련 메서드 */
+	public ArrayList<ProductDTO> productFind(String fkey, String fvalue) {
+		try {
+			conn = semi.db.semiDB.getConn();
+			
+			ps = conn.prepareStatement(Sql.getPRODUCT_SEARCH_FIND(fkey));
+			
+			ps.setString(1, fvalue);
+			
+			rs = ps.executeQuery();
+			ArrayList<ProductDTO> arr = new ArrayList<ProductDTO>();
+			while (rs.next()) {
+				int product_idx = rs.getInt("product_idx");
+				int smallcategory_id=rs.getInt("smallcategory_id");
+				String product_name = rs.getString("product_name");
+				String product_code = rs.getString("product_code");
+				String product_color = rs.getString("product_color");
+				String product_size=rs.getString("product_size");
+				int product_num=rs.getInt("product_num");
+				int product_price= rs.getInt("product_price");
+				String product_content = rs.getString("product_content");
+				String product_img = rs.getString("product_img");
+				int product_imgcount = rs.getInt("product_imgcount");
+				Date product_regdate = rs.getDate("product_regdate");
+				
+				
+				ProductDTO dto = new ProductDTO(product_idx, smallcategory_id, product_name, product_code, product_color, product_size, product_num, product_price, product_content, product_img, product_imgcount, product_regdate);
+				arr.add(dto);
+			}
+			return arr;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+
+			}
+		}
+
+	}
+
+		
 	/** 
 	 * 상품 검색 조회 관련 메서드
 	 * @param category_id_s, category_typem, cp, listSize, column, orderByType
@@ -521,6 +696,7 @@ public class ProductDAO {
 			}
 		}
 	}
+	
 	/**1개의 상품 정보 불러오기 by 조승동*/
 	public ProductDTO productOne(int product_idx) {
 		try {
