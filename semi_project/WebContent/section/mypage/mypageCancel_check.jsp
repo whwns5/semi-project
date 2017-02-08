@@ -21,7 +21,7 @@ if(result>29){
 	%>
 	<script>
 	window.open('mypageCancel.jsp?payment_idx=<%=payment_idx%>','cancel','width=540, height=600, top=100, left=100');	
-	location.href="section/member/mypage.jsp";
+	location.href="/semi_project/section/member/mypage.jsp";
 	</script>
 	<%
 }
