@@ -5,6 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/semi_project/css/commonButton.css?ver=3">
+<script>
+function goDel(){
+	delfm.submit();
+}
+</script>
 </head>
 <style>
 .delete_section {
@@ -36,10 +42,10 @@ div.delete_input_wrap div.div_member_delete {
     height: 200px;
 }
 div.div_member_delete_input_area {
-    width: 300px;
+    width: 200px;
     height: auto;
-    margin-left: 50px;
-    margin-top: 80px;
+    margin-left: 30px;
+    margin-top: 110px;
     float: left;
     border:1px;
     border-collapse: collapse;
@@ -59,22 +65,27 @@ div.div_member_delete_input_area table tr {
 div.div_member_delete_input_area table td input.delete_input {
     border: 1px solid white;
 }
-div.div_member_submit{
-	margin-top: 60px;
-    margin-left: 40px;
+div.div_member_submit {
+	width: 105px;
+	float: right;
+	margin-left: 0px;
+	margin-top: 120px;
+	margin-right: 50px;
 }
-input.member_submit {
+a.common-bt {
+	display: block;
     color: #e8380d;
     width: 150px;
     border: 2px solid #e8380d;
-    padding: 12px 15px;
+    padding: 14px 15px;
     text-align: center;
     transition: all 0.3s;
     font-family: 'Lato', sans-serif;
-    margin-left: 300px;
 }
-form {
-	width: 300px;
+div.delete_alert_wrap{
+	margin-top: 40px;
+    margin-left: 180px;
+    width: 500px;
 }
 </style>
 <body>
@@ -88,7 +99,7 @@ form {
 			<div class="div_delete_box">
 				<div class="delete_input_wrap">
 					<div class="div_member_delete">
-						<form name="delfm" action="/semi_project/section/member/join/del_ok.jsp">
+						<form name="delfm" id="delfm" action="/semi_project/section/member/join/del_ok.jsp">
 							<div class="div_member_delete_input_area">
 								<table>
 									<tbody>
@@ -98,16 +109,19 @@ form {
 										</tr>
 										<tr>
 										<td>PWD</td>
-										<td><input type="text" name="member_pwd" class="delete_input"></td>
+										<td><input type="password" name="member_pwd" class="delete_input"></td>
 										</tr>
 									</tbody>
 								</table>
 							</div>
 							<div class="div_member_submit">
-								<input type="submit" value="회원탈퇴" class="member_submit">
+								<a class=common-bt style="text-decoration:none" href="javascript:goDel();">회원탈퇴</a>
 							</div>
 						</form>
 					</div>
+				</div>
+				<div class="delete_alert_wrap">
+						*회원님의 정보를 안전하게 보호하기 위해 패스워드를 확인해주세요.
 				</div>
 			</div>
 		</div>
