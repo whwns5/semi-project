@@ -18,7 +18,7 @@
 <link rel="stylesheet" type="text/css" href="/semi_project/css/commonButton.css?ver=8">
 <link rel="stylesheet" type="text/css" href="/semi_project/css/button/button.css?ver=8">
 <link rel="stylesheet" type="text/css" href="/semi_project/css/layer/layer.css?ver=9">
-<link rel="stylesheet" type="text/css" href="/semi_project/css/product/productDetail.css?ver=9">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/product/productDetail.css?ver=10">
 <script type="text/javascript" src="/semi_project/js/ajax.js?ver=4"></script>
 <script type="text/javascript" src="/semi_project/js/ajax_upload.js?ver=2"></script>
 <script>
