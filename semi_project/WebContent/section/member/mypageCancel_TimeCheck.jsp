@@ -13,15 +13,15 @@ if(result>29){
 	%>
 	<script>
 	window.alert('30일이 지난 상품은 환불을 받으실 수 없습니다.'+'\n'+'고객센터로 연락: 1588-1588');
-	location.href="section/member/mypage.jsp";
+	location.href="mypage.jsp";
 	</script>
 	<%
 	return;
 }else{
 	%>
 	<script>
-	window.open('mypageCancel.jsp?payment_idx=<%=payment_idx%>','cancel','width=540, height=600, top=100, left=100');	
-	location.href="/semi_project/section/member/mypage.jsp";
+	window.open('mypageCancel_Request.jsp?payment_idx=<%=payment_idx%>','cancel','width=540, height=600, top=100, left=100');	
+	location.href="mypage.jsp";
 	</script>
 	<%
 }

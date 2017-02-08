@@ -86,7 +86,7 @@
 							<dt><a href="#">MY PAGE</a></dt>
 							<dd><a href="/mypage/order_list.php">회원 정보 수정</a></dd>
 							<dd><a href="../member/mypage.jsp">주문 내역</a></dd>
-							<dd><a href="../mypage/mypageOrder_Cancel.jsp">취소 내역</a></dd>
+							<dd><a href="mypageCancel_Table.jsp">취소 내역</a></dd>
 							<dd><a href="/board/?db=counsel">문의 내역</a></dd>
 							<dd><a href="/mypage/withdraw_step1.php">회원 탈퇴</a></dd>
 						</dl>
@@ -106,8 +106,8 @@
 								</colgroup>
 								<thead>
 									<tr>
-										<th class="first">번호</th>
-										<th>주문번호</th>
+										<th >번호</th>
+										<th class="first">주문번호</th>
 										<th>상품명</th>
 										<th>상태</th>
 										<th>결제금액</th>

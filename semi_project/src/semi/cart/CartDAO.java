@@ -148,7 +148,7 @@ public class CartDAO {
 	public void insert(String member_id, int product_id, int product_price){
 		try {
 			conn=semi.db.semiDB.getConn();
-			String sql="insert into cart_table values(cart_table_cart_idx.nextval,?,?,?,?,?)";
+			String sql="insert into cart_table values(cart_table_idx.nextval,?,?,?,?,?)";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, member_id);
 			ps.setInt(2, product_id);

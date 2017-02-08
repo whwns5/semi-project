@@ -4,9 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <jsp:useBean id="paydao" class="semi.pay.PayDAO" scope="session"/>
-    <jsp:useBean id="rdto" class="semi.refund.RefundDTO" scope="session"/>
-    <jsp:setProperty property="*" name="rdto"/>
-    <jsp:useBean id="rdao" class="semi.refund.RefundDAO" scope="session"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -53,7 +50,7 @@ border:1px solid black;
 </tr>
 </table>
 <table>
-<form name="form" action="cancel_check.jsp">
+<form name="form" action="mypageCancel_check.jsp">
 <tr>
 <th>취소사유</th>
 <td>
