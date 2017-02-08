@@ -20,7 +20,7 @@ public class PayDAO {
 	public int payInsert(String member_id, int product_idx, int payment_totalprice, int payment_num, String payment_addr, String payment_tel, String product_name, String product_code, String product_color){
 		try {
 			conn=semi.db.semiDB.getConn();
-			String sql="insert into payment_table values(payment_table_idx.nextval,?,?,?,?,?,?,?,?,?,TO_DATE(sysdate,'YY/MM/DD HH:mi'))";
+			String sql="insert into payment_table values(payment_table_idx.nextval,?,?,?,?,?,?,?,?,?,TO_DATE(sysdate,'YY/MM/DD HH:mi'),1)";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, member_id);
 			ps.setInt(2, product_idx);
@@ -73,8 +73,8 @@ public class PayDAO {
 				String product_code = rs.getString("product_code");
 				String product_color = rs.getString("product_color");
 				java.sql.Date payment_date=rs.getDate("payment_date");
-				
-				PayDTO dto = new PayDTO(payment_idx, member_id, product_idx, payment_totalprice, payment_num, payment_addr, payment_tel, product_name, product_code, product_color, payment_date);
+				int payment_stat =rs.getInt("payment_stat");
+				PayDTO dto = new PayDTO(payment_idx, member_id, product_idx, payment_totalprice, payment_num, payment_addr, payment_tel, product_name, product_code, product_color, payment_date, payment_stat);
 				arr.add(dto);
 			}
 			return arr;
@@ -150,8 +150,10 @@ public class PayDAO {
 				String product_code = rs.getString("product_code");
 				String product_color = rs.getString("product_color");
 				java.sql.Date payment_date=rs.getDate("payment_date");
-				dto=new PayDTO(payment_idx, member_id, product_idx, payment_totalprice, payment_num, payment_addr, payment_tel, product_name, product_code, product_color, payment_date);
+				int payment_stat =rs.getInt("payment_stat");
+				dto=new PayDTO(payment_idx, member_id, product_idx, payment_totalprice, payment_num, payment_addr, payment_tel, product_name, product_code, product_color, payment_date, payment_stat);
 			}
+			System.out.println("paydao="+dto);
 			return dto;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -200,5 +202,34 @@ public class PayDAO {
 			}
 		}
 	}
+	
+	public int payStatChange(int payment_idx){
+		try {
+			conn=semi.db.semiDB.getConn();
+			String sql="update payment_table set payment_stat = 2 where payment_idx=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, payment_idx);
+			int count = ps.executeUpdate();
+			return count;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return error;
+		}finally{
+			try{
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			}catch(Exception e2){
+				
+			}
+		}
+	}
+	
 }
 

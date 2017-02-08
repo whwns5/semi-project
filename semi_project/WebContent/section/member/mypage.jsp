@@ -136,19 +136,41 @@
 								<td><%=i+1%></td>
 								<td><%=payarr.get(i).getPayment_idx() %></td>
 								<td><%=payarr.get(i).getProduct_name()%><%=payarr.get(i).getProduct_code()%>&nbsp;<%=payarr.get(i).getProduct_color()%></td>
-								<td>배송중</td>
+								<td>
+				<%
+				if(payarr.get(i).getPayment_stat()==1){
+					%>
+					배송중
+					<%
+				}else if(payarr.get(i).getPayment_stat()==2){
+					%>
+					주문취소중
+					<%
+				}
+				%>
+				</td>
 								<td><%=df.format(payarr.get(i).getPayment_totalprice())%>원</td>
 								<td><%=payarr.get(i).getPayment_date() %></td>
-								<td>
-								<script type="text/javascript">
+									<td><script type="text/javascript">
 									function cancelCheck<%=count%>(){
 									var payment_idx = document.payidx<%=count%>.payment_idx.value;
 									var payment_date = document.payidx<%=count%>.payment_date.value;
 									document.payidx<%=count%>.action="../mypage/mypageCancel_check.jsp";
 									document.payidx<%=count%>.submit();
 									}
-								</script>
-								<input type="button" value="주문취소" onclick="javascript:cancelCheck<%=count%>()">
+								</script> 
+								<%
+								if(payarr.get(i).getPayment_stat()==1){
+									%>
+									<input type="button" value="주문취소"
+					onclick="javascript:cancelCheck<%=count%>()">
+									<%
+								}else if(payarr.get(i).getPayment_stat()==2){
+									%>
+									주문취소중
+									<%
+								}
+								%>
 								</td>
 								</tr>
 									<%

@@ -18,8 +18,10 @@ int payment_idx=Integer.parseInt(payment_idxs);
 int result = rdao.refundInsert(member_id, product_idx, payment_idx, refund_subject, refund_content);
 String msg=result>0?"주문이 취소되었습니다.":"주문취소가 실패하였습니다.";
 
-int resultPayDel=paydao.payDel(payment_idx);
-String msgPay = resultPayDel>0?"paydel complete":"paydel fail";
+
+int resultPayChange=paydao.payStatChange(payment_idx);
+String msgPay = resultPayChange>0?"pay change complete":"change fail";
+
 %>
 <script>
 window.alert('<%=msg%>');

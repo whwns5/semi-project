@@ -98,6 +98,9 @@ border:1px black solid;
 <input type="hidden" name="payment_num" value="<%=payment_num%>">
 <input type="hidden" name="payment_addr" value="<%=payment_addr%>">
 <input type="hidden" name="payment_tel" value="<%=payment_tel%>">
+<input type="hidden" name="product_name" value="<%=product_name%>">
+<input type="hidden" name="product_code" value="<%=product_code%>">
+<input type="hidden" name="product_color" value="<%=product_color%>">
 </form>
 </article>
 </section>

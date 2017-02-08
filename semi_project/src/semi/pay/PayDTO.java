@@ -14,6 +14,7 @@ public class PayDTO {
 	private String product_code;
 	private String product_color;
 	private Date payment_date;
+	private int payment_stat;
 	public int getPayment_idx() {
 		return payment_idx;
 	}
@@ -80,16 +81,23 @@ public class PayDTO {
 	public void setPayment_date(Date payment_date) {
 		this.payment_date = payment_date;
 	}
+	public int getPayment_stat() {
+		return payment_stat;
+	}
+	public void setPayment_stat(int payment_stat) {
+		this.payment_stat = payment_stat;
+	}
 	@Override
 	public String toString() {
 		return "PayDTO [payment_idx=" + payment_idx + ", member_id=" + member_id + ", product_idx=" + product_idx
 				+ ", payment_totalprice=" + payment_totalprice + ", payment_num=" + payment_num + ", payment_addr="
 				+ payment_addr + ", payment_tel=" + payment_tel + ", product_name=" + product_name + ", product_code="
-				+ product_code + ", product_color=" + product_color + ", payment_date=" + payment_date + "]";
+				+ product_code + ", product_color=" + product_color + ", payment_date=" + payment_date
+				+ ", payment_stat=" + payment_stat + "]";
 	}
 	public PayDTO(int payment_idx, String member_id, int product_idx, int payment_totalprice, int payment_num,
 			String payment_addr, String payment_tel, String product_name, String product_code, String product_color,
-			Date payment_date) {
+			Date payment_date, int payment_stat) {
 		super();
 		this.payment_idx = payment_idx;
 		this.member_id = member_id;
@@ -102,11 +110,13 @@ public class PayDTO {
 		this.product_code = product_code;
 		this.product_color = product_color;
 		this.payment_date = payment_date;
+		this.payment_stat = payment_stat;
 	}
 	public PayDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	
 	
 	
