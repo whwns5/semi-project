@@ -82,24 +82,47 @@
 				</div>
 				<div class="mypage_content_wrap">
 					<div class="mypage_menu">
+					<script>
+					function showCancel(){
+						document.cancelForm.action="mypage.jsp"
+						document.cancelForm.submit();
+					}
+					</script>
+					<form name="cancelForm">
+					<input type="hidden" value="3" name="show">
+					</form>
 						<dl>
 							<dt><a href="#">MY PAGE</a></dt>
 							<dd><a href="/mypage/order_list.php">회원 정보 수정</a></dd>
 							<dd><a href="../member/mypage.jsp">주문 내역</a></dd>
-							<dd><a href="mypageCancel_Table.jsp">취소 내역</a></dd>
+							<dd><a href="#" onclick="javascript:showCancel()">취소 내역</a></dd>
 							<dd><a href="/board/?db=counsel">문의 내역</a></dd>
 							<dd><a href="/mypage/withdraw_step1.php">회원 탈퇴</a></dd>
 						</dl>
 					</div>
 					<div class="mypage_content"> <!-- 내용이 교체되는 부분 -->
 						<div class="content_wrap">
+						<%
+						String shows=request.getParameter("show");
+						int show =0;
+						if(shows==null||shows.equals("")){
+													
+						}else{
+							show=Integer.parseInt(shows);
+						}
+						if(show==3){
+							%>
+							<jsp:include page="mypageCancel_Table.jsp"></jsp:include>
+							<%
+						}else{
+						%>
 							<h3 class="mypage_tit">주문/배송조회</h3>
 							<table cellspacing="0" cellpadding="0" summary=""
 								class="table_style">
 								<colgroup>
 									<col width="8%">
 									<col width="20%">
-									<col width="*">
+								<co`l width="*">
 									<col width="14%">
 									<col width="10%">
 									<col width="10%">
@@ -177,6 +200,7 @@
 									<%
 								}
 								}
+						}
 								%>
 								</tbody>
 							</table>

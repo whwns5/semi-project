@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="semi.pay.*"%>
 <%@page import="semi.product.*"%>
 <%@page import="semi.refund.*"%>
@@ -33,7 +34,6 @@ border:1px solid black;
 </style>
 </head>
 <body>
-<%@ include file="/header/header.jsp"%>
 <section>
 <article>
 <table>
@@ -81,7 +81,5 @@ if(refarr==null || refarr.size()==0){
 </article>
 </section>
 <input type="button" value="my page" onclick="location='mypage.jsp'">
-<%@ include file="/footer/footer.jsp"%>
-
 </body>
 </html>
