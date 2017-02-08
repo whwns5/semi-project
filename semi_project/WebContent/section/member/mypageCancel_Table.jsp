@@ -26,7 +26,6 @@
 <head>
 <meta charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../../css/mainLayout.css">
 <style>
 table, table tr, table td, table th{
 border:1px solid black;
