@@ -142,6 +142,8 @@ public class Sql {
 	/////////////////// Q&A 테이블 관련 (qna_table) ///////////////////
 	/** Q&A 테이블 상품 별 총 갯수 조회 */
 	public static final String QNA_PRODUCTIDX_TOTALCOUNT = "SELECT COUNT(*) FROM qna_table WHERE product_idx = ?";
+	/** Q&A 테이블 상품 별 총 갯수 조회 */
+	public static final String QNA_ADMIN_TOTALCOUNT = "SELECT COUNT(*) FROM qna_table WHERE qna_state = 0";
 	/** Q&A 테이블 전체 조회 */
 	public static final String QNA_SELECT_ALL = "SELECT * FROM qna_table";
 	
@@ -157,6 +159,18 @@ public class Sql {
 				+ 	 "WHERE rnum >= (" + cp + "-1)*" + listSize + "+ 1 AND rnum <= " + cp + "*" + listSize;
 		return sql;
 	}
+	/** Q&A 테이블 관리자 페이징 조회 */
+	public static final String getQNA_ADMIN_SELECT_ALL_ORDERBY(int cp, int listSize){
+		String sql = "SELECT b.* "
+				+ 	 "FROM (SELECT rownum as rnum, a.* " 
+				+  		   "FROM (SELECT * "
+				+   	   		 "FROM qna_table "
+				+ 				 "WHERE qna_state = 0 "
+				+ 				 "ORDER BY qna_ref DESC, qna_sunbun ASC) a) b "
+				+ 	 "WHERE rnum >= (" + cp + "-1)*" + listSize + "+ 1 AND rnum <= " + cp + "*" + listSize;
+		return sql;
+	}
+	
 	/** Q&A 테이블 lef 최대값 조회 */
 	public static final String QNA_SELECT_MAX_REF = "SELECT MAX(qna_ref) FROM qna_table";
 	/** Q&A 테이블 삽입 */

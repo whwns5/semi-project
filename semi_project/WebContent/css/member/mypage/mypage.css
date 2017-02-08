@@ -166,17 +166,44 @@ div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap
     font-size: 12px;
     font-weight: normal;
 }
+div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap table.table_style tbody td.td_subject{
+	font: bold 12px dotum;
+    color: #585858;
+   	text-align: left;
+   	vertical-align: top;
+}
+div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap table.table_style tbody td.td_top{
+	text-align: center;
+    vertical-align: top;  
+}
+	table.table_style tbody td.td_subject a.subject_a{
+		color: #585858;
+	}
+	table.table_style tbody td.td_subject div.qna_content{
+		display: none;
+		padding: 10px 0px;
+	    font: 12px dotum;
+	    color: #585858;
+	    position: relative;
+	}
+	table.table_style tbody td.td_subject div.qna_content div.rqna_reply_div{
+		position: absolute;
+	    right: 10px;
+	    bottom: 0px;
+	}
 div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap table.table_style tbody td div.admin_bt_area{	
 	margin: 0px auto;
 }
 div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap table.table_style tbody td div.admin_bt_area a{
 	display: inline-block;		
 	width: 50px;
-	
 }
 div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap table.table_style tbody td div.admin_bt_area a:FIRST-CHILD{
 	margin-bottom: 10px;	
 }
+
+
+
 	
 /** 페이지 부분 */
 div.item_page{
