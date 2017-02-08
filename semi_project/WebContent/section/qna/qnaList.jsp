@@ -8,6 +8,8 @@
 <jsp:useBean id="qdto" class="semi.qna.QnaDTO" scope="session"/>
 <jsp:useBean id="qdao" class="semi.qna.QnaDAO" scope="session"/>
 <%
+	String session_member_id_adminpage = (String)session.getAttribute("session_member_id"); // 로그인 정보를 받아온다.
+
 	String fkey = request.getParameter("fkey");
 	String fvalue = request.getParameter("fvalue");
 	
@@ -48,9 +50,14 @@
 				}
 			}
 		}
+		function submitDelete(fm_id){
+			var fm = document.getElementById(fm_id);
+			fm.setAttribute('action', '/semi_project/section/qna/qnaDelete_ok.jsp');
+			fm.submit();
+		}
+		
 	</script>
-	<table cellspacing="0" cellpadding="0" summary=""
-		class="table_style">
+	<table cellspacing="0" cellpadding="0" summary="" class="table_style">
 		<colgroup>
 			<col width="8%">
 			<col width="20%">
@@ -70,77 +77,147 @@
 			</tr>
 		</thead>
 		<tbody>
-<%
+			<%
 		if(arry_qdto.size() != 0){ // 데이터가 있을경우 
 %>
-<%
+			<%
 			for(int i = 0 ; i < arry_qdto.size(); i++){
 %>
-				<tr>
-					<td class="td_top">
-						<form id="fm_<%=i%>" method="post">
+			<tr>
+				<td class="td_top">
+					<form id="fm_<%=i%>" method="post">
 						<%=arry_qdto.get(i).getQna_idx()%>
-						<input type="hidden" value="<%=arry_qdto.get(i).getQna_idx()%>" name="qna_idx">
-						</form>
-					</td>
-					<td class="td_top"><%=arry_qdto.get(i).getQna_regdate()%></td>
-					<td class="td_subject">
-						<a class="subject_a" href="javascript:showContent(<%=i%>,'qna_content');"><%=arry_qdto.get(i).getQna_subject()%></a> 
-						<div class="qna_content">
-							<%=arry_qdto.get(i).getQna_content()%>	
-							<div class="rqna_reply_div">
-								<a class="common-bt bt_writereply_small" href="#">REPLY</a>
-							</div>	
+						<input type="hidden" value="<%=arry_qdto.get(i).getQna_idx()%>"
+							name="qna_idx">
+					</form>
+				</td>
+				<td class="td_top"><%=arry_qdto.get(i).getQna_regdate()%></td>
+				<td class="td_subject"><a class="subject_a"
+					href="javascript:showContent(<%=i%>,'qna_content');"><%=arry_qdto.get(i).getQna_subject()%></a>
+					<div class="qna_content">
+						<%=arry_qdto.get(i).getQna_content()%>
+						<div class="rqna_reply_div">
+							<a class="common-bt bt_writereply_small" href="javascript:openQnaLayer();">REPLY</a>
 						</div>
-					</td>
-					<td class="td_top"><%=arry_qdto.get(i).getMember_id()%></td>
-					<td class="td_top"><%=arry_qdto.get(i).getProduct_idx()%></td>
-					<td class="td_top"><div class="admin_bt_area">
+					</div></td>
+				<td class="td_top"><%=arry_qdto.get(i).getMember_id()%></td>
+				<td class="td_top"><%=arry_qdto.get(i).getProduct_idx()%></td>
+				<td class="td_top"><div class="admin_bt_area">
 						<%-- <a class="common-bt bt_writereply" href="javascript:submitUpdate('fm_<%=i%>');">ANSWER</a> --%>
-						<a class="common-bt bt_writereply" href="javascript:submitDelete('fm_<%=i%>');">DELETE</a>
-						</div>
-					</td>	
-				</tr>
-<%			
+						<a class="common-bt bt_writereply"
+							href="javascript:submitDelete('fm_<%=i%>');">DELETE</a>
+					</div></td>
+			</tr>
+			<%			
 			}		
 		} else {
 %>
 			<tr>
 				<td colspan="6" align="center">데이터가 없습니다.</td>
 			</tr>
-<%			
+			<%			
 		}
-%>	
+%>
 		</tbody>
 	</table>
-	<div class="item_page"> <!-- 페이징 -->
-<%
+	<div class="item_page">
+		<!-- 페이징 -->
+		<%
 		if(userGroup != 0){ // 현재 그룹이 첫 페이지 그룹이 아닌 경우
 %>
-			<a href="/semi_project/section/member/adminPage.jsp?menu=qna_list&cp=<%= (userGroup-1)*pageSize + pageSize %>">이전</a>
-<%
+		<a
+			href="/semi_project/section/member/adminPage.jsp?menu=qna_list&cp=<%= (userGroup-1)*pageSize + pageSize %>">이전</a>
+		<%
 		} else {
 %>
-			<a href="#">이전</a>
-<%
+		<a href="#">이전</a>
+		<%
 		}
 			
 		for(int i = (userGroup * pageSize) + 1 ; i <= (userGroup * pageSize) + pageSize ; i++){
 %>
-			<a class="num <%= i==cp ? "on" : "" %>" href="/semi_project/section/member/adminPage.jsp?menu=qna_list&cp=<%=i%>"><%=i%></a>
-<%
+		<a class="num <%= i==cp ? "on" : "" %>"
+			href="/semi_project/section/member/adminPage.jsp?menu=qna_list&cp=<%=i%>"><%=i%></a>
+		<%
 			if(i == totalPage)break;
 		}
 			
 		if(userGroup != (totalPage / pageSize) - (totalPage % pageSize == 0 ? 1 : 0)){ // 현재 그룹이 마지막 페이지가 해당하는 그룹에 해당되지 않는 경우
 %>
-			<a href="/semi_project/section/member/adminPage.jsp?menu=qna_list&cp=<%= ((userGroup+1)*pageSize) + 1 %>">다음</a>
-<%
+		<a
+			href="/semi_project/section/member/adminPage.jsp?menu=qna_list&cp=<%= ((userGroup+1)*pageSize) + 1 %>">다음</a>
+		<%
 		} else {
 %>
-			<a href="#">다음</a>
-<%
+		<a href="#">다음</a>
+		<%
 		}
 %>
+	</div>
+	<script>
+		function openQnaLayer() {
+			var qna_layer = document.getElementById('id_qna_layer');
+			qna_layer.style.display = 'block';
+		}
+		function closeQnaLayer() {
+			var qna_layer = document.getElementById('id_qna_layer');
+			document.getElementById('qna_subject').value = '';
+			document.getElementById('qna_content').value = '';
+			qna_layer.style.display = '';
+		}
+		function submitQnaLayer() {
+			var product_idx = document.getElementById('qna_product_idx').value;
+			var member_id = document.getElementById('qna_member_id').value;
+			var qna_subject = document.getElementById('qna_subject').value;
+			var qna_content = document.getElementById('qna_content').value;
+
+			var param = 'product_idx=' + product_idx + '&member_id='
+					+ member_id + '&qna_subject=' + qna_subject
+					+ '&qna_content=' + qna_content;
+			action_ajax('/semi_project/section/qna/qnaWrite_ok.jsp', param,
+					'GET', 'QNA_INSERT'); // 해당 페이지로 ajax통신 시작
+			//var f = document.getElementById('id_qnaWrite_ok');
+			//f.submit();
+		}
+	</script>
+	<div class="qna_layer" id="id_qna_layer">
+		<div class="qna_layer_bg" onclick="closeQnaLayer();"></div>
+		<div class="qna_layer_pop">
+			<div class="qna_layer_content">
+				<form class="layer-form-container" name="qnaReWrite_ok"
+					id="id_qnaReWrite_ok"
+					action="/semi_project/section/qna/qnaReWrite_ok.jsp">
+					<div class="layer-form-title">
+						<h2>문의 답변</h2>
+					</div>
+					<br />
+					<!--  차후 session 값으로 교체 -->
+					<div class="layer-form-title">
+						아이디<input class="layer-form-field layer-form-field-id" type="text"
+							name="qna_member_id" id="qna_member_id" value="<%=session_member_id_adminpage%>"
+							readonly="readonly" />
+					</div>
+					<br />
+					<div class="layer-form-title">
+						제목<input class="layer-form-field layer-form-field-subject"
+							type="text" name="qna_subject" id="qna_subject"
+							required="required" />
+					</div>
+					<br />
+					<div class="layer-form-title">
+						답변 내용
+						<textarea class="layer-form-field-content" rows="20" cols="68"
+							name="qna_content" id="qna_content" required="required"></textarea>
+					</div>
+					<div class="layer-submit-container">
+						<a class="common-bt bt_write" style="margin-left: 15px;"
+							href="javascript:closeQnaLayer();">CLOSE</a> <a
+							class="common-bt bt_write" href="javascript:submitQnaLayer();">WRITE</a>
+						<input class="layer-submit-button" style="visibility: hidden;"
+							type="button" value="나가기" onclick="closeQnaLayer();">
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
 </div>

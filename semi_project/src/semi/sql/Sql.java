@@ -199,7 +199,8 @@ public class Sql {
 			+ "?, " // qna_ref
 			+ "?, " // qna_lev
 			+ "?)"; // qna_sunbun 
-			
+	/**  Q&A 테이블 삭제 */
+	public static final String QNA_DELETE = "DELETE FROM qna_table WHERE qna_idx = ?";
 	
 	//////////////////////////////////////////////////////////////////
 	

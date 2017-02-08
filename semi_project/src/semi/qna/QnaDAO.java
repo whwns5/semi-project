@@ -358,4 +358,34 @@ public class QnaDAO {
 			}
 		}
 	}
+	
+	/** 
+	 * Q&A 답변 입력 관련 메서드
+	 * @param QnaDTO
+	 * @return int (실행횟수 혹은 에러)
+	 * */
+	public int qnaDel(QnaDTO qdto){
+		try{
+			conn = semi.db.semiDB.getConn();
+		
+			ps = conn.prepareStatement(Sql.QNA_DELETE);
+			
+			ps.setInt(1, qdto.getQna_idx());
+		
+			int count = ps.executeUpdate();
+			
+			return count;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			try{
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
 }
