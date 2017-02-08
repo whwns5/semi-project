@@ -6,13 +6,11 @@ CREATE TABLE member_table(
 	member_type VARCHAR2(10),
 	member_name VARCHAR2(20),
 	member_pwd VARCHAR2(40),
-	member_birthday DATE,
 	member_sex VARCHAR2(10),
 	member_email VARCHAR2(40),
 	member_tel VARCHAR2(20),
 	member_addr VARCHAR2(100),
-	member_coupon VARCHAR2(20),
-	member_regdate DATE
+	member_coupon VARCHAR2(20)
   );
 /* 회원 IDX 시퀀스 */
 CREATE SEQUENCE member_table_idx MINVALUE 0 START WITH 1;

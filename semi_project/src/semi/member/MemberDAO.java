@@ -17,7 +17,7 @@ public class MemberDAO {
 	public static final int ERROR=-1;
 	
 	public MemberDAO(){
-		System.out.println("MemberDAO()객체 생성됨!!");
+	
 	}
 	
 	/**회원 가입 관련 메서드*/

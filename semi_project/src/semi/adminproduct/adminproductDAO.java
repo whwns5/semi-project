@@ -15,9 +15,7 @@ public class adminproductDAO {
     ResultSet rs;
     
     public adminproductDAO(){
-    	System.out.println("adminproductDAO 생성");
-    	
-    	
+   
     }
     /** 상품검색 관련 메서드 */
 	public ArrayList<adminproductDTO> productFind(String fkey, String fvalue) {
