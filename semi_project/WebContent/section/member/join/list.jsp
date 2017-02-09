@@ -11,6 +11,7 @@
 <meta charset=UTF-8>
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/semi_project/css/member/list/list.css?ver=3">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/commonButton.css?ver=3">
 <script>
 function memberUpdate(){
 	var member_pwd_bf = document.name.member_pwd_bf.value;
@@ -47,6 +48,7 @@ div.containerBody {
     text-align: left;
     position: relative;
 	border: 2px;
+	border: 1px solid silver;
 }
 h3{
     color: #333;
@@ -66,6 +68,9 @@ table.th_left th {
     color: #666;
     height: 30px;
     cellpacing: 0px;
+}
+table.th_left{
+	margin-left: 50px;
 }
 table.th_left td input[type="text"], table.th_left td select, table.th_left td textarea {
     border: 1px solid #c5c5c5;
@@ -98,8 +103,22 @@ table.th_left td input[type="password"] {
 .mt_40 {
     margin-top: 40px !important;
 }
-table_wrap_button{
-
+div.table_wrap_button a {
+    margin: 0px auto;
+    color: #e8380d;
+    margin-top: 50px;
+    margin-bottom: 60px;
+}
+a.common-bt {
+    display: block;
+    color: #e8380d;
+    width: 150px;
+    height: 20px;
+    border: 2px solid #e8380d;
+    padding: 14px 15px;
+    text-align: center;
+    transition: all 0.3s;
+    font-family: 'Lato', sans-serif;
 }
 </style>
 <%request.setCharacterEncoding("utf-8"); %>
@@ -130,7 +149,7 @@ table_wrap_button{
 <%@include file="/header/header.jsp" %>
 <section>
 <div class="containerBody">
-	<h3>나의 정보수정</h3>
+	<h3>회원 정보수정</h3>
 		<div class="table_wrap mt_30">
 		<form name="name" action="/semi_project/section/member/join/change.jsp" method="post">
 		<input type="hidden" name="member_pwd_bf" value="<%=member_pwd%>">
@@ -172,13 +191,12 @@ table_wrap_button{
 					<th>E-MAIL</th>
 					<td><input type="text" name="member_email" value="<%=member_email %>" required="required"></td>
 				</tr>
-			<div class="table_wrap_button">
-				<p align="center"><input type="button" value="정보수정" onclick="memberUpdate();"></p>
-			</div>
-		</tbody>
-	</table>
-							
-</form>
+			</tbody>
+		</table>
+	</form>
+		<div class="table_wrap_button">
+				<p align="center"><a class="common-bt" href="javascript:memberUpdate();">정보수정</a></p>
+		</div>
 </div>
 </div>
 </section>
