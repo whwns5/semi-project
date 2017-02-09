@@ -353,6 +353,11 @@ function settingPage(product_idx) {
 								</tr>
 							</tfoot>
 						</table>
+						<form name="buy">
+						<input type="hidden" name="product_idx" value="">
+						<input type="hidden" name="product_num" value="">
+						<input type="hidden" name="product_price" value="">
+						</form>
 						<script>
 						function goLogin(){
 							var session_member_id = <%=session_member_id == null ? null : "'" + session_member_id + "'"%>;
@@ -361,7 +366,9 @@ function settingPage(product_idx) {
 								return;
 							}
 
-							window.alert('product_num, code, color 값 세팅 필요');
+							var f = document.cart_fm;
+							f.setAttribute('action', '/semi_project/section/cart/cartArrPay.jsp');
+							f.submit();
 						}
 						</script>
 						<div class="btn_div">

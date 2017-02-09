@@ -28,6 +28,15 @@ if(member_id==null || member_id.equals("")){
 System.out.println("id last: "+member_id);
 //넘겨받은 제품 param값 가져오기
 String product_nums[]=request.getParameterValues("product_num");
+if(product_nums==null || product_nums.length==0){
+	%>
+	<script>
+	window.alert('제품이 선택되지 않았습니다.');
+	history.back();
+	</script>
+	<%
+	return;
+}
 int product_num[]=new int[product_nums.length];
 for(int i=0; i<product_nums.length;i++){
 	product_num[i]=Integer.parseInt(product_nums[i]);
