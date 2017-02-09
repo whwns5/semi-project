@@ -12,7 +12,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/semi_project/css/product/productByItemList.css?ver=6">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/default.css?ver=3">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/product/productByItemList.css?ver=7">
 </head>
 <%
 	int totalCnt = 1;// 총 게시글 수
@@ -71,9 +72,37 @@
 		
 		</div>
 		<div class="container_body">
-			<ul class="main_middle_banner">
-				<li><img src="/semi_project/img/header/nav_depth_menu_totebag.jpg"></li>
-			</ul>
+			
+			<div class="banner_div">
+				<ul class="main_middle_banner">
+					<li><div class="banner_img_div"><img src="/semi_project/img/header/nav_depth_menu_totebag.jpg"></div></li>
+					<li><div class="banner_img_div"><img src="/semi_project/img/header/nav_depth_menu_totebag.jpg"></div></li>
+					<li><div class="banner_img_div"><img src="/semi_project/img/header/nav_depth_menu_totebag.jpg"></div></li>
+					<li><div class="banner_img_div"><img src="/semi_project/img/header/nav_depth_menu_totebag.jpg"></div></li>
+				</ul>
+			</div>
+			<script>
+			var banner_index = 0;
+			function showSlideImg() {
+				var banner_divs = document.getElementsByClassName('banner_img_div');
+				for(var i = 0 ; i < banner_divs.length ; i++){
+					if( i == banner_index ){
+						banner_divs[i].style.display = 'block';
+					}
+					else {
+						banner_divs[i].style.display = '';
+					}
+				}
+				
+				if(banner_index == 3){
+					banner_index = 0;
+				}
+				banner_index = banner_index + 1;
+				
+				setTimeout(showSlideImg, 1000);
+			}
+			showSlideImg();
+			</script>
 			<div class="product_list_wrap">
 				<div class="item_sort">
 					<div class="sort">

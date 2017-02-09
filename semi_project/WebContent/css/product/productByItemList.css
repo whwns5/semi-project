@@ -5,15 +5,27 @@ div.container_body{
     text-align: left;
     position: relative;
 }
-ul.main_middle_banner{
+div.container_body div.banner_div{
+	
+}
+div.container_body div.banner_div ul.main_middle_banner{
 	display: block;
 	width: 1100px;
 	margin: 0px;
 	padding: 0px;
 	list-style: none;
 }
-ul.main_middle_banner li img{
+div.container_body div.banner_div ul.main_middle_banner li{
+	
+}
+div.container_body div.banner_div ul.main_middle_banner li div.banner_img_div{
+	display: none;
 	width: 1100px;
+	height: 460px;
+}
+div.container_body div.banner_div ul.main_middle_banner li div.banner_img_div img{
+	width: 1100px;
+	height: 460px;
 }
 
 div.product_list_wrap{
