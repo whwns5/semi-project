@@ -11,8 +11,8 @@
     <% 
     
     request.setCharacterEncoding("utf-8");
-	String member_id=(String)session.getAttribute("session_member_id");
-	if(member_id==null || member_id.equals("")){
+	String member_id2=(String)session.getAttribute("session_member_id");
+	if(member_id2==null || member_id2.equals("")){
 		%>
 		<script>
 		window.alert('로그인 후 이용 바랍니다.');
@@ -20,7 +20,7 @@
 		</script>
 		<%
 	}
-	ArrayList<RefundDTO> refarr=refdao.refundInfo(member_id);
+	ArrayList<RefundDTO> refarr=refdao.refundInfo(member_id2);
 	DecimalFormat df = new DecimalFormat("#,##0");
 	%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -29,7 +29,7 @@
 <meta charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<link rel="stylesheet" type="text/css" href="/myweb/css/member/mypage/mypageOrder.css">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/member/mypage/mypageOrder.css">
 <body>
 <h3 class="title">주문취소 조회</h3>
 	<table border="0" cellpadding="0" cellspacing="0" width="100%">

@@ -99,7 +99,7 @@
 								<a href="../member/mypage.jsp?menu=myorder">주문 내역</a>
 							</dd>
 							<dd>
-								<a href="../mypage/mypage.jsp?menu=cancel">취소 내역</a>
+								<a href="../member/mypage.jsp?menu=cancel">취소 내역</a>
 							</dd>
 							<dd>
 								<a href="/board/?db=counsel">문의 내역</a>
@@ -121,9 +121,8 @@
 							%>
 							<%@ include file="mypageCancel_Table.jsp" %>
 							<%
-						}else{
-						%>
 						}
+						%>
 						</div>
 					</div>
 				</div>
