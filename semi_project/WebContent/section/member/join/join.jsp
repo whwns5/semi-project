@@ -98,9 +98,6 @@ function openCheck(){
 		document.joinfm.member_pwdCheck.value = '';
 		document.joinfm.member_pwd.focus();
 	}
-function memberAdd(){
-	joinfm.submit();
-	}
 }
 </script>
 </head>
@@ -172,6 +169,11 @@ function memberAdd(){
 				</table>
 				</div>
 			<div class="bt_join">
+			<script>
+			function memberAdd(){
+				joinfm.submit();
+				}
+			</script>
 				<p align="center">
 					<a class="common-bt bt_writereply" style=float:left; href="javascript:memberAdd();">회원 가입</a>
 					<a class="common-bt bt_writereply" href="/semi_project/section/home.jsp">다음에 하기</a>
