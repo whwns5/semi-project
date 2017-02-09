@@ -17,7 +17,7 @@
 <meta charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<link rel="stylesheet" type="text/css" href="/myweb/css/member/mypage/mypageOrder.css">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/member/mypage/mypageOrder.css">
 <%
 	DecimalFormat df = new DecimalFormat("#,##0");
 	String member_id1 = (String) session.getAttribute("session_member_id");
