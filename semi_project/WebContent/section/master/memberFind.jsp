@@ -39,17 +39,17 @@ function goProductFind() {
 </script>
 <div class="content_wrap">
 	<h3 class="mypage_tit">고객 관리</h3>
-	
-	<fieldset>
-		<select id="fkey">
+
+	<select id="fkey">
 			<option value="member_id">아이디</option>
 			<option value="member_name">이름</option>
 			<option value="member_tel">전화번호</option>
 			<option value="member_addr">주소</option>
 		</select> 
+	<div class="div_search">
 		<input type="text" id="fvalue">
-		<input type="button" value="검색" onclick="goProductFind();">
-	</fieldset>
+		<a href="javascript:goProductFind();" class="a_search" title="검색"></a>
+	</div>
 				
 	<table cellspacing="0" cellpadding="0" summary="" class="table_style">
 		<colgroup>
@@ -91,9 +91,10 @@ System.out.println("test223="+arry_mdto.size());
 					<td><%=arry_mdto.get(i).getMember_name()%>_<%=arry_mdto.get(i).getMember_pwd()%>_<%=arry_mdto.get(i).getMember_email()%>_<%=arry_mdto.get(i).getMember_tel()%></td>
 					<td><%=arry_mdto.get(i).getMember_sex()%></td>
 					<td><%=arry_mdto.get(i).getMember_addr()%></td>
-					<td>
-						<input type="button" value="수정" onclick="submitUpdate('fm_<%=i%>');">
-						<input type="button" value="삭제" onclick="submitDelete('fm_<%=i%>');">
+					<td><div class="admin_bt_area">
+						<a class="common-bt bt_writereply" href="javascript:submitUpdate('fm_<%=i%>');">UPDATE</a>
+						<a class="common-bt bt_writereply" href="javascript:submitDelete('fm_<%=i%>');">DELETE</a>
+						</div>
 					</td>	
 				</tr>
 <%			
