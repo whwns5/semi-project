@@ -63,6 +63,7 @@ function cartDelAll(){
 </script>
 <body>
 <%@ include file="/header/header.jsp"%>
+<%@include file="/aside/aside.jsp"%>
 	<div class="main_wrap">
 		<div class="cart_wrap">
 			<h3 class="title mt_20">
@@ -129,7 +130,7 @@ if(arr==null || arr.size()==0){
 						<a href="#">
 									<%=pd.getProduct_name()%>&nbsp;<%=pd.getProduct_code()%>
 									</a> <br>
-									 <span class="option">옵션 : <%=pd.getProduct_color() %></span>
+									 <span class="option">색상 : <%=pd.getProduct_color() %></span>
 						</span>
 						</td>
 						<td><strong><%=df.format(pd.getProduct_price())%>원</strong></td>
@@ -287,14 +288,14 @@ if(arr==null || arr.size()==0){
 					<tr>
 						<td colspan="9" bgcolor="#fafafa">
 							<div class="result_box">
-								<span class="total"> <span class="txt">총 판매가</span> 
+								<%-- <span class="total"> <span class="txt">총 판매가</span> 
 								<strong 	class="number"><span id="sum"><%=df.format(sum) %>원</span></strong>
 								</span>
 								<img class="icon" src="/semi_project/img/btn/cart_list_icon_plus.gif"  alt="+"> 
 								<span class="total"> <span class="txt">총 배송비	</span> 
 								<strong class="number">0 원</strong>
 								</span> 
-								<img class="icon" src="/semi_project/img/btn/cart_list_icon_equals.gif" alt="="> 
+								<img class="icon" src="/semi_project/img/btn/cart_list_icon_equals.gif" alt="=">  --%>
 								<span class="total_payment"> 
 								<span class="txt">총 결제 금액</span> 
 								<strong class="number"><span id="sumTotal" style="	margin-top: 5px;color: #E8380D;font-weight:bold;;font: 22px/1 "Tahoma""><%=df.format(sum) %></span><span>원</span></strong>

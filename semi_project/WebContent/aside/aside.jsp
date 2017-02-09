@@ -23,9 +23,9 @@
 			<ul id="navigation">
 		       <li class="navigation_li"><div class="li_div"><a class="nav_menu_a" href="/semi_project/section/member/logout/logout_ok.jsp" title="로그아웃"><img class="nav_menu_icon" src="/semi_project/img/icon/icon_brand_cate.png"/><p>로그아웃</p></a></div></li>
 		       <li class="navigation_li"><div class="li_div"><a class="nav_menu_a" href="/semi_project/section/member/mypage.jsp" title="내정보보기"><img class="nav_menu_icon" src="/semi_project/img/icon/icon_mypage.png"><p>내정보보기</p></a></div></li>
-		       <li class="navigation_li"><div class="li_div"><a class="nav_menu_a" href="" title="이벤트"><img class="nav_menu_icon" src="/semi_project/img/icon/icon_event.png"><p>이벤트</p></a></div></li>
-		       <li class="navigation_li"><div class="li_div"><a class="nav_menu_a" href="" title="쿠폰"><img class="nav_menu_icon" src="/semi_project/img/icon/icon_coupon.png"><p>쿠폰</p></a></div></li>
-		       <li class="navigation_li"><div class="li_div"><a class="nav_menu_a" href="" title="장바구니"><img class="nav_menu_icon" src="/semi_project/img/icon/icon_cart.png"><p>장바구니</p></a></div></li>
+		       <li class="navigation_li"><div class="li_div"><a class="nav_menu_a" href="/semi_project/section/member/event.jsp" title="이벤트"><img class="nav_menu_icon" src="/semi_project/img/icon/icon_event.png"><p>이벤트</p></a></div></li>
+		       <li class="navigation_li"><div class="li_div"><a class="nav_menu_a" href="#" title="쿠폰"><img class="nav_menu_icon" src="/semi_project/img/icon/icon_coupon.png"><p>쿠폰</p></a></div></li>
+		       <li class="navigation_li"><div class="li_div"><a class="nav_menu_a" href="/semi_project/section/cart/cartShow.jsp" title="장바구니"><img class="nav_menu_icon" src="/semi_project/img/icon/icon_cart.png"><p>장바구니</p></a></div></li>
 		       <li class="navigation_li" >
 		       	<div class="li_div" onmouseover="showTodayLinkImg();" onmouseout="closeTodayLinkImg();">
 		       		<img class="nav_menu_icon" src="/semi_project/img/icon/icon_today.png">

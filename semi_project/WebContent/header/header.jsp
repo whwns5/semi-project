@@ -290,7 +290,6 @@ document.onclick = mclose;
 			</div>
 		</div>
 	</div>
-	<hr>
 </header>
 
 
