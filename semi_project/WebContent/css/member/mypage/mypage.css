@@ -142,11 +142,46 @@ div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap
     text-align: left;
     line-height: 100%;
 }
+div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap select{
+	width: 85px;
+	height: 33px;
+	font-size: 13px;
+	float:left;
+}
+
+div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap div.div_search{
+	display: block;
+	height: 32px;
+    width: 239px;
+    border-bottom: 1px solid #ffd8ce;
+    margin-left: 10px;
+    float:left;
+}
+div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap div.div_search input{
+	width: 211px;
+    border: none;
+    height: 30px;
+    font: 12px/30px dotum;
+    color: #ccc;
+    text-indent: 10px;
+    float:left;
+}
+div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap div.div_search a{
+	display: block;
+    width: 26px;
+    height: 26px;
+    background-image: url(/semi_project/img/icon/gnb_search.gif);
+    background-repeat: no-repeat;
+    float:left;
+}
+
+
 div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap table.table_style{
 	width: 100%;
     margin: 0 auto;
     border-collapse: collapse;
     border-bottom: 1px solid #000;
+    margin-top: 60px;
 }
 div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap table.table_style thead th{
 	padding: 12px 0;
