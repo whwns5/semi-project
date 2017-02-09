@@ -222,7 +222,7 @@ if(arr==null || arr.size()==0){
 		//총합 올리기
 		//총합 올리기-현재 총액 불러오기
 		var PriceSetting = Number(x);
-		var priceSumCom=document.getElementById("sum").innerHTML;
+		//var priceSumCom=document.getElementById("sum").innerHTML;
 		var priceSumCom=document.getElementById("sumTotal").innerHTML;
 		//현재 총액 콤마지우기
 		var str1=String(priceSumCom);
@@ -233,7 +233,7 @@ if(arr==null || arr.size()==0){
 		//콤마채워서 표시하기
 		var sumStr=String(priceSum);
 		var priceTotal = sumStr.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
-		document.getElementById("sum").innerHTML=priceTotal;
+		//document.getElementById("sum").innerHTML=priceTotal;
 		document.getElementById("sumTotal").innerHTML=priceTotal;
 		//수량 result에 세팅하기
 		var payNum=document.form<%=fcount%>.payment_num<%=fcount%>.value;
