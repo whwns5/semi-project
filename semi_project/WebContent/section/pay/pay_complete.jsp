@@ -5,7 +5,7 @@
 <jsp:useBean id="paydao" class="semi.pay.PayDAO" scope="session"/>
     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
-
+request.setCharacterEncoding("utf-8");
 String member_id=request.getParameter("member_id");
 if(member_id==null || member_id.equals("")){
 	%>

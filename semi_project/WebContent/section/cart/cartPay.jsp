@@ -148,7 +148,7 @@ if(dto==null || dto.equals("")){
 					<a href="../front/basket.php" target="_self"><img
 						src="/semi_project/img/btn/cart_order_move_btn.gif" alt="장바구니로 이동"></a>
 				</div>
-				<div class="order_area">
+				<div class="order_area" style="margin-bottom:30px;">
 					<!-- 고객정보 -->
 					<div class="orderer_area">
 						<table class="info_table"

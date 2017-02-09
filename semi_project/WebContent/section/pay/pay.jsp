@@ -88,7 +88,7 @@ if(pdto.getProduct_name()==null || pdto.getProduct_name().equals("")){
 									<img src="/semi_project/img/product/<%=lgname%>/<%=smname%>/<%=pdto.getProduct_code()%>_<%=pdto.getProduct_color()%>/<%=pdto.getProduct_img()%>.jpg"
 									width="126" height="126">
 							</a> <span class="name"> <a
-									href="#">
+									href="#" style="color:#585858">
 									<%=pdto.getProduct_name() %>&nbsp;<%=pdto.getProduct_code() %></a> <br> <span class="option">옵션 : <%=pdto.getProduct_color() %>
 									</span><span class="option">(<%=pdto.getProduct_num() %>개&nbsp;0원)</span>
 							</span></td>
@@ -126,7 +126,7 @@ if(pdto.getProduct_name()==null || pdto.getProduct_name().equals("")){
 					<a href="../front/basket.php" target="_self"><img
 						src="/semi_project/img/btn/cart_order_move_btn.gif" alt="장바구니로 이동"></a>
 				</div>
-				<div class="order_area">
+				<div class="order_area" style="margin-bottom:30px;">
 					<!-- 고객정보 -->
 					<div class="orderer_area">
 						<table class="info_table"
