@@ -72,6 +72,7 @@ function goProductFind() {
 		</thead>
 		<tbody>
 <%
+System.out.println("test223="+arry_mdto.size());
 			if (arry_mdto.size() != 0) {
 %>
 			

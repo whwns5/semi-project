@@ -8,11 +8,14 @@
 
 <%
 	request.setCharacterEncoding("utf-8");
-    String member_id=request.getParameter("member_id");
+    String member_idx=request.getParameter("Member_idx");
+    
 
-	ArrayList<MemberDTO> arr = mdao.memberFind("member_id",member_id);
-	System.out.println(arr);
-
+	ArrayList<MemberDTO> arr = mdao.memberFind("member_idx",member_idx);
+	
+	for(int i=0; i<arr.size(); i++){
+		System.out.println("test=-"+arr.get(i).getMember_name());
+	}
 
 %>
 
