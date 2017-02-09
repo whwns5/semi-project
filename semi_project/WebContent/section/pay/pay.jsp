@@ -25,11 +25,13 @@ String product_nums[]=request.getParameterValues("product_num");
 String product_code[]=request.getParameterValues("product_code");
 String product_color[]=request.getParameterValues("product_color");
 int product_num[]=new int[product_nums.length];
+ProductDTO pdto=null;
 for(int i=0; i<product_nums.length; i++){
 product_num[i]=Integer.parseInt(product_nums[i]);
+pdto=pdao.getIdx(product_code[i], product_color[i]);
 }
-ProductDTO pdto=null;
 int cartSum=0;
+int cartSunNum=0;
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -78,6 +80,7 @@ if(pdto.getProduct_name()==null || pdto.getProduct_name().equals("")){
 	<td colspan="4" align="center">선택한 상품이 없습니다.</td>
 	</tr>
 	<%
+	return;
 }else{
 	int lgnum=0;
 	String lgname="";
@@ -88,6 +91,7 @@ if(pdto.getProduct_name()==null || pdto.getProduct_name().equals("")){
 	lgnum=pdao.LargecategoryId(pdto.getSmallcategory_id(), smname);
 	lgname=pdao.LargecategoryName(lgnum);
 	cartSum+=product_num[i]*pdto.getProduct_price();
+	cartSunNum+=product_num[i];
 %>
 						<tr>
 							<td class="info"><a
@@ -100,8 +104,8 @@ if(pdto.getProduct_name()==null || pdto.getProduct_name().equals("")){
 									</span><span class="option">(<%=pdto.getProduct_num() %>개&nbsp;0원)</span>
 							</span></td>
 							<td><strong><%=df.format(pdto.getProduct_price()) %></strong></td>
-							<td><%=pdto.getProduct_num() %></td>
-							<td><%=df.format(pdto.getProduct_price()) %></td>
+							<td><%=product_num[i]%></td>
+							<td><%=df.format(pdto.getProduct_price()*product_num[i]) %></td>
 						</tr>
 						<%
 }
@@ -267,7 +271,7 @@ if(pdto.getProduct_name()==null || pdto.getProduct_name().equals("")){
 					<!-- // 결제하기 -->
 <input type="hidden" name="member_id" value="<%=member_id%>">
 <input type="hidden" name="product_idx" value="<%=pdto.getProduct_idx()%>">
-<input type="hidden" name="payment_num" value="<%=pdto.getProduct_num()%>">
+<input type="hidden" name="payment_num" value="<%=cartSunNum%>">
 <input type="hidden" name="product_name" value="<%=pdto.getProduct_name()%>">
 <input type="hidden" name="product_color" value="<%=pdto.getProduct_color()%>">
 <input type="hidden" name="product_code" value="<%=pdto.getProduct_code()%>">
