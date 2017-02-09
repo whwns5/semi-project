@@ -2,26 +2,6 @@
 <%@page import="semi.pay.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-	request.setCharacterEncoding("utf-8");
-
-	//주문정보 불러오기
-	String member_id = (String) session.getAttribute("session_member_id");
-	if (member_id == null || member_id.equals("")) {
-%>
-<script>
-    	window.alert('로그인 후 이용 바랍니다.');
-    	location.href="../index.jsp";
-    	</script>
-<%
-	}
-	
-	String menu = request.getParameter("menu");
-	if(menu==null){
-		menu="myorder";
-	}
-	
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +11,26 @@
 <link rel="stylesheet" type="text/css" href="/semi_project/css/member/mypage/mypage.css?ver=11">
 
 </head>
+<%
+	request.setCharacterEncoding("utf-8");
+
+	//주문정보 불러오기
+	String member_id_mypage = (String) session.getAttribute("session_member_id");
+	if (member_id_mypage == null || member_id_mypage.equals("")) {
+%>
+		<script>
+		    	window.alert('로그인 후 이용 바랍니다.');
+		    	location.href="../index.jsp";
+		</script>
+<%
+	}
+	
+	String menu = request.getParameter("menu");
+	if(menu==null){
+		menu="myorder";
+	}
+	
+%>
 <body>
 	<%@include file="/header/header.jsp"%>
 	<%@include file="/aside/aside.jsp"%>
@@ -91,7 +91,7 @@
 								<a href="#">MY PAGE</a>
 							</dt>
 							<dd>
-								<a href="/mypage/order_list.php">회원 정보 수정</a>
+								<a href="/semi_project/section/member/mypage.jsp?menu=myupdate">회원 정보 수정</a>
 							</dd>
 							<dd>
 								<a href="/semi_project/section/member/mypage.jsp?menu=myorder">주문 내역</a>
@@ -122,6 +122,10 @@
 								}else if(menu.equals("memberdel")){
 							%>
 								<%@ include file="/section/member/join/del.jsp"%>
+							<%
+								}else if(menu.equals("myupdate")){
+							%>
+								<%@ include file="/section/member/join/list.jsp"%>
 							<%
 								}
 							%>
