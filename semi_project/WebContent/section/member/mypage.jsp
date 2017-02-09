@@ -2,13 +2,14 @@
 <%@page import="semi.pay.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<jsp:useBean id="mdao" class="semi.member.MemberDAO" scope="session"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/semi_project/css/default.css?ver=3">
-<link rel="stylesheet" type="text/css" href="/semi_project/css/member/mypage/mypage.css?ver=11">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/member/mypage/mypage.css?ver=12">
 
 </head>
 <%
@@ -29,6 +30,9 @@
 	if(menu==null){
 		menu="myorder";
 	}
+	
+	MemberDTO[] mdto = mdao.userInfo(member_id_mypage);
+	
 	
 %>
 <body>
@@ -71,15 +75,15 @@
 						<tbody>
 							<tr>
 								<th>연락처</th>
-								<td>031-791-0915</td>
+								<td>-</td>
 							</tr>
 							<tr>
 								<th>휴대폰</th>
-								<td>010-4140-6421</td>
+								<td><%=mdto[0].getMember_tel() %></td>
 							</tr>
 							<tr>
 								<th class="last">주소</th>
-								<td class="last">경기도 하남시 대청로 62-2 511- 11</td>
+								<td class="last"><%=mdto[0].getMember_addr() %></td>
 							</tr>
 						</tbody>
 					</table>

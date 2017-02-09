@@ -32,6 +32,7 @@
 	int userGroup = cp / pageSize; // 해당 페이지의 페이지 그룹
 	if(cp % pageSize == 0)userGroup--;  
 %>
+
 <link rel="stylesheet" type="text/css" href="/semi_project/css/member/mypage/mypageOrder.css">
 
 <div class="table_wrap">
