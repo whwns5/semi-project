@@ -37,6 +37,38 @@ function goProductFind() {
 }
 
 </script>
+<style>
+table.th_top {
+	width: 100%;
+	border-spacing: 0
+}
+table.th_top th {
+	border-top: 1px solid #76787E;
+	border-bottom: 1px solid #ddd;
+	font-size: 12px;
+	color: #666;
+	padding: 10px 0px;
+	font-weight: lighter;
+	text-align: center;
+	background-color: #fafafa
+}
+table.th_top td {
+	text-align: center;
+	color: #666;
+	padding: 0px 0px;
+	font-size: 12px;
+	border-bottom: 1px solid #ddd
+}
+.admin_bt_area{	
+	margin: 0px auto;
+	padding:2px;
+	
+}
+.admin_bt_area a{
+	display: inline-block;		
+	width: 50px;
+}
+</style>
 <div class="content_wrap">
 	<h3 class="mypage_tit">고객 관리</h3>
 
@@ -51,7 +83,7 @@ function goProductFind() {
 		<a href="javascript:goProductFind();" class="a_search" title="검색"></a>
 	</div>
 				
-	<table cellspacing="0" cellpadding="0" summary="" class="table_style">
+	<table cellspacing="0" cellpadding="0" summary="" class="th_top">
 		<colgroup>
 			<col width="8%">
 			<col width="20%">

@@ -85,24 +85,69 @@ table.th_top td {
 	display: inline-block;		
 	width: 50px;
 }
-	table.th_top tbody td.td_subject a.subject_a{
+div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap table.table_style{
+	width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    border-bottom: 1px solid #000;
+    margin-top: 60px;
+}
+div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap table.table_style thead th{
+	padding: 12px 0;
+    text-align: center;
+    border-top: 2px solid #000;
+    border-bottom: 1px solid #000;
+    color: #4c4c4c;
+    font-size: 12px;
+    font-weight: normal;
+}
+div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap table.table_style tbody td{
+	padding: 12px 0;
+    text-align: center;
+    border-top: 2px solid #000;
+    border-bottom: 1px solid #000;
+    color: #4c4c4c;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap table.table_style tbody td.td_subject{
+	font: bold 12px dotum;
+    color: #585858;
+   	text-align: left;
+   	vertical-align: top;
+}
+div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap table.table_style tbody td.td_top{
+	text-align: center;
+    vertical-align: top;  
+}
+	table.table_style tbody td.td_subject a.subject_a{
 		color: #585858;
 	}
-	table.th_top tbody td.td_subject div.qna_content{
+	table.table_style tbody td.td_subject div.qna_content{
 		display: none;
 		padding: 10px 0px;
 	    font: 12px dotum;
 	    color: #585858;
 	    position: relative;
 	}
-	table.th_top tbody td.td_subject div.qna_content div.rqna_reply_div{
+	table.table_style tbody td.td_subject div.qna_content div.rqna_reply_div{
 		position: absolute;
-	    right: 0px;
+	    right: 10px;
 	    bottom: 0px;
 	}
-
+div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap table.table_style tbody td div.admin_bt_area{	
+	margin: 0px auto;
+}
+div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap table.table_style tbody td div.admin_bt_area a{
+	display: inline-block;		
+	width: 50px;
+}
+div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap table.table_style tbody td div.admin_bt_area a:FIRST-CHILD{
+	margin-bottom: 10px;	
+}
 	</style>
-	<table cellspacing="0" cellpadding="0" summary="" class="th_top">
+	<table cellspacing="0" cellpadding="0" summary="" class="table_style">
 		<colgroup>
 			<col width="8%">
 			<col width="20%">
