@@ -16,7 +16,7 @@ if(member_id==null || member_id.equals("")){
 	%>
 	<script>
 	window.alert('로그인이 필요합니다.');
-	location.href="../../index.jsp";
+	location.href="semi_project/index.jsp";
 	</script>
 	<%
 	return;

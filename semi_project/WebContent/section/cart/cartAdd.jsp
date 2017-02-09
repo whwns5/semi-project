@@ -19,7 +19,7 @@ if(member_id==null || member_id.equals("")){
 	%>
 	<script>
 	window.alert('login is needed');
-	location.href="../../index.jsp"
+	location.href="/semi_project/index.jsp"
 	</script>
 	<!--  
 	-->

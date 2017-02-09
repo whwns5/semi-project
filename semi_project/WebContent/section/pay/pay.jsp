@@ -14,7 +14,7 @@ if(member_id==null|| member_id.equals("")){
 %>
 <script>
 window.alert('로그인 후 이용바랍니다.');
-location.href="../../index.jsp";
+location.href="/semi_project/index.jsp";
 </script>
 <%
 return;
@@ -246,7 +246,7 @@ if(pdto.getProduct_name()==null || pdto.getProduct_name().equals("")){
 								}
 								function cancel(){
 									window.alert('취소하였습니다.');
-									location.href="../../index.jsp";
+									location.href="/semi_project/index.jsp";
 								}
 								</script>
 								<a href="javascript:submit()"
