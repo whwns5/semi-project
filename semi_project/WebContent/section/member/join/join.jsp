@@ -22,6 +22,48 @@ a.common-bt {
     transition: all 0.3s;
     font-family: 'Lato', sans-serif;
 }
+a.bt_writereply{
+	width: 80px;
+	padding: 8px 11px;
+	font-size: 15px;
+	color: #e8380d;
+}
+bt_join{
+	margin:0px auto;
+}
+div.bt_join{
+	margin:0px auto;
+	width:330px;
+}
+div.table_wrap h3 {
+    font-family: ngb;
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: lighter;
+    color: #666;
+}
+div.table_wrap h3 {
+    font-family: ngb;
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: lighter;
+    color: #666;
+}
+table.th_left {
+    width: 100%;
+    border-spacing: 0;
+}
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+tr {
+    font-family: "돋움,굴림";
+    color: #4B4B4B;
+    font-size: 12px;
+    line-height: 17px;
+}
 </style>
 <script>
 function openIdCheck(){
@@ -44,19 +86,25 @@ function memberAdd(){
 <body>
 <%@include file="/header/header.jsp" %>
 <h1>회원가입</h1>
-<h3>정보 입력</h3>
+<div class="table_wrap mt_30">
+	<h3>정보 입력</h3>
+</div>
 <hr>
 <section>
 <article>
 	<form name="joinfm" action="/semi_project/section/member/join/join_ok.jsp" method="post">
-	<table border="1" cellspacing="0" width="980" bordercolordark="#FFFFFF" align="center">
+	<table class="th_left" >
+	<colgroup>
+		<col style="width:121px">
+		<col style="width:auto">
+	</colgroup>
 		<tbody>
 			<tr>
-				<td height="145" valign="top">
-				<table width="970" border="0" cellspacing="0" cellpadding="0" align="center">
+				<td>
+				<table>
 					<tbody>
 						<tr>
-							<td height="20" align="right" style="padding-right:20px">* 표시는 필수입력 사항입니다.</td>
+							<td height="20" align="right" style="padding-right:20px; margin-bottom:20px;" >* 표시는 필수입력 사항입니다.</td>
 						</tr>
 					</tbody>
 				</table>
@@ -119,9 +167,6 @@ function memberAdd(){
 						</tr>
 					</tbody>
 				</table>
-				<p align="center">
-					<a class="common-bt" href="javascript:memberAdd();">회원 가입</a>
-				</p>
 				<table width="970" border="0" cellspacing="0" cellpadding="0" align="center">
 					<tbody>
 						<tr>
@@ -133,6 +178,12 @@ function memberAdd(){
 			</tr>
 		</tbody>
 	</table>
+	<div class="bt_join">
+		<p align="center">
+			<a class="common-bt bt_writereply" style=float:left; href="javascript:memberAdd();">회원 가입</a>
+			<a class="common-bt bt_writereply" href="/semi_project/section/home.jsp">다음에 하기</a>
+		</p>
+	</div>
 	<table width="980" border="0" cellspacing="0" cellpadding="0" align="center">
 		<tr>
 			<td height="15"></td>
