@@ -449,7 +449,7 @@ function settingPage(product_idx) {
 								<form class="layer-form-container" name="reviewWrite_ok" id="id_reviewWrite_ok" action="/semi_project/section/review/reviewWrite_ok.jsp">
 									<div class="layer-form-title"><h2>상품 리뷰</h2></div>
 									<br />																					<!--  차후 session 값으로 교체 -->
-									<div class="layer-form-title">아이디<input class="layer-form-field layer-form-field-id" type="text" name="member_id" id="member_id" value="whwns5" readonly="readonly"/>
+									<div class="layer-form-title">아이디<input class="layer-form-field layer-form-field-id" type="text" name="member_id" id="member_id" value="<%=session_member_id %>" readonly="readonly"/>
 																	평점<select class="layer-form-field layer-form-field-grade" id="review_grade" name="review_grade">
 																		<option value="5">♥♥♥♥♥</option>
 																		<option value="4">♥♥♥♥</option>
@@ -481,6 +481,12 @@ function settingPage(product_idx) {
 					</div>
 					<script>
 						function openReviewReplyLayer(ref, lef, sunbun) {
+							var session_member_id = <%=session_member_id == null ? null : "'" + session_member_id + "'"%>;
+							if(session_member_id == null){
+								window.alert('로그인 후 사용 가능합니다.');
+								return;
+							}
+							
 							var review_reply_layer = document.getElementById('id_review_reply_layer');
 							document.getElementById('review_reply_ref').value = ref;
 							document.getElementById('review_reply_lev').value = lef;
@@ -521,7 +527,7 @@ function settingPage(product_idx) {
 								<form class="layer-form-container" name="reviewWrite_ok" id="id_reviewReplyWrite_ok" action="/semi_project/section/review/reviewReplyWrite_ok.jsp">
 									<div class="layer-form-title"><h2>댓글 달기</h2></div>
 									<br />																															<!--  차후 session 값으로 교체 -->
-									<div class="layer-form-title">아이디<input class="layer-form-field layer-form-field-id" type="text" name="review_reply_member_id" id="review_reply_member_id" value="whwns5" readonly="readonly"/>								
+									<div class="layer-form-title">아이디<input class="layer-form-field layer-form-field-id" type="text" name="review_reply_member_id" id="review_reply_member_id" value="<%=session_member_id %>" readonly="readonly"/>								
 																  <input type="hidden" name="review_reply_product_idx" id="review_reply_product_idx" value="<%=product_idx%>">
 																  <input type="hidden" name="review_reply_ref" id="review_reply_ref">
 																  <input type="hidden" name="review_reply_lev" id="review_reply_lev">
@@ -590,7 +596,7 @@ function settingPage(product_idx) {
 								<form class="layer-form-container" name="qnaWrite_ok" id="id_qnaWrite_ok" action="/semi_project/section/qna/qnaWrite_ok.jsp">
 									<div class="layer-form-title"><h2>상품 Q&A</h2></div>
 									<br />																								<!--  차후 session 값으로 교체 -->
-									<div class="layer-form-title">아이디<input class="layer-form-field layer-form-field-id" type="text" name="qna_member_id" id="qna_member_id" value="whwns5" readonly="readonly"/>			
+									<div class="layer-form-title">아이디<input class="layer-form-field layer-form-field-id" type="text" name="qna_member_id" id="qna_member_id" value="<%=session_member_id %>" readonly="readonly"/>			
 																  <input type="hidden" name="qna_product_idx" id="qna_product_idx" value="<%=product_idx%>">
 									</div>
 									<br />
