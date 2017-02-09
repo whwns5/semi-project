@@ -36,7 +36,6 @@ int resultPayChange=paydao.payStatChange(payment_idx);
 
 %>
 <script>
-window.alert('<%=msg%>');
 opener.location.reload();
 window.self.close();
 </script>
