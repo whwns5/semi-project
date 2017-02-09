@@ -137,7 +137,7 @@ div.cart_order_wrap div.button_area{margin-top:15px}
 }
 
 /* 장바구니 > 주문결제 - 정보테이블 */
-div.cart_order_wrap div.order_area{position:relative;width:777px;margin-bottom:30px}
+div.cart_order_wrap div.order_area{position:relative;width:777px;margin-bottom:30px;}
 div.cart_order_wrap table.info_table{width:100%;border-top:1px solid #76787E;border-collapse:collapse;border-spacing:0;margin-top:40px}
 div.cart_order_wrap table.info_table caption{padding-bottom:10px;color:#333;font:16px/1 ngb;text-align:left;letter-spacing:-1px}
 
