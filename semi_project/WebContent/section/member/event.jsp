@@ -18,6 +18,7 @@ div.container_body{
 </head>
 <body>
 <%@include file="/header/header.jsp" %>
+<%@include file="/aside/aside.jsp" %>
 <section>
 <article id="eventimg">
 	<div class="container_body">

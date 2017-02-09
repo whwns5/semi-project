@@ -27,10 +27,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css"
-	href="/semi_project/css/default.css?ver=3">
-<link rel="stylesheet" type="text/css"
-	href="/semi_project/css/member/mypage/mypage.css?ver=11">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/default.css?ver=3">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/member/mypage/mypage.css?ver=11">
 
 </head>
 <body>
@@ -96,7 +94,7 @@
 								<a href="/mypage/order_list.php">회원 정보 수정</a>
 							</dd>
 							<dd>
-								<a href="../member/mypage.jsp?menu=myorder">주문 내역</a>
+								<a href="/semi_project/section/member/mypage.jsp?menu=myorder">주문 내역</a>
 							</dd>
 							<dd>
 								<a href="../member/mypage.jsp?menu=cancel">취소 내역</a>
@@ -105,24 +103,28 @@
 								<a href="/board/?db=counsel">문의 내역</a>
 							</dd>
 							<dd>
-								<a href="/mypage/withdraw_step1.php">회원 탈퇴</a>
+								<a href="/semi_project/section/member/mypage.jsp?menu=memberdel">회원 탈퇴</a>
 							</dd>
 						</dl>
 					</div>
 					<div class="mypage_content">
 						<!-- 내용이 교체되는 부분 -->
 						<div class="content_wrap">
-						<%
-						if(menu.equals("myorder")){
-							%>
-							<%@ include file="mypageOrder.jsp" %>
 							<%
-						}else if(menu.equals("cancel")){
+								if(menu.equals("myorder")){
 							%>
-							<%@ include file="mypageCancel_Table.jsp" %>
+								<%@ include file="mypageOrder.jsp"%>
 							<%
-						}
-						%>
+								}else if(menu.equals("cancel")){
+							%>
+								<%@ include file="mypageCancel_Table.jsp"%>
+							<%
+								}else if(menu.equals("memberdel")){
+							%>
+								<%@ include file="/section/member/join/del.jsp"%>
+							<%
+								}
+							%>
 						</div>
 					</div>
 				</div>
