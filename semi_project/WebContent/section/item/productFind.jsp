@@ -60,15 +60,18 @@ function goProductFind() {
 </script>
 <div class="content_wrap">
 	<h3 class="mypage_tit">상품 관리</h3>
-	<fieldset>
-		<select id="fkey">
-			<option value="product_idx">상품번호</option>
-			<option value="product_code">상품코드</option>
-			<option value="product_name">상품이름</option>
-		</select> 
+
+	
+	<select id="fkey">
+		<option value="product_idx">상품번호</option>
+		<option value="product_code">상품코드</option>
+		<option value="product_name">상품이름</option>
+	</select> 
+	<div class="div_search">
 		<input type="text" id="fvalue">
-		<input type="button" value="검색" onclick="goProductFind();">
-	</fieldset>
+		<a href="javascript:goProductFind();" class="a_search" title="검색"></a>
+	</div>
+
 				
 	<table cellspacing="0" cellpadding="0" summary=""
 		class="table_style">
