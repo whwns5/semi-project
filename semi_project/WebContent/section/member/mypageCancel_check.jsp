@@ -16,11 +16,23 @@ int product_idx=Integer.parseInt(product_idxs);
 int payment_idx=Integer.parseInt(payment_idxs);
 
 int result = rdao.refundInsert(member_id, product_idx, payment_idx, refund_subject, refund_content);
-String msg=result>0?"주문이 취소되었습니다.":"주문취소가 실패하였습니다.";
+String msg="";
 
+if(result>0){
+	%>
+	<script>
+	window.alert('주문 취소요청이 완료되었습니다. '+'\n'+'등록하신 연락처 및 메일로 연락드리겠습니다.'+'\n'+'고객센터:1588-1588');
+	</script>
+	<%
+}else{
+	%>
+	<script>
+	window.alert('주문 취소가 실패하였습니다. '+'\n'+'고객센터:1588-1588');
+	</script>
+	<%
+}
 
 int resultPayChange=paydao.payStatChange(payment_idx);
-String msgPay = resultPayChange>0?"pay change complete":"change fail";
 
 %>
 <script>

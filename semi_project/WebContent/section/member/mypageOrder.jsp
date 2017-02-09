@@ -98,11 +98,11 @@
 				<%
 				if(payarr.get(i).getPayment_stat()==1){
 					%>
-					배송중
+					<span style="color:#4d4d4d; font-weight:bold">배송중</span>
 					<%
 				}else if(payarr.get(i).getPayment_stat()==2){
 					%>
-					주문취소중
+					<span style="color:#e60000; font-weight:bold">주문취소중</span>
 					<%
 				}
 				%>
@@ -125,7 +125,7 @@
 									<%
 								}else if(payarr.get(i).getPayment_stat()==2){
 									%>
-									주문취소중
+									<span style="color:#e60000; font-weight:bold">주문취소중</span>
 									<%
 								}
 								%>
