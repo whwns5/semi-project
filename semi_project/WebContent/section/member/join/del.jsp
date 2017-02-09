@@ -1,22 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/semi_project/css/commonButton.css?ver=3">
 <script>
 function goDel(){
 	delfm.submit();
 }
 </script>
-</head>
 <style>
-.delete_section {
-    width: 1100px;
-    margin: 0px auto;
-    font-family: 'Lato', sans-serif;
+div.delete_container{
+	width: 900px;
 }
 div.delete_container div.delete_container_title h1 {
     text-align: center;
@@ -87,14 +79,16 @@ div.delete_alert_wrap{
     margin-left: 180px;
     width: 500px;
 }
+h3{
+    font: lighter 24px/30px ngb;
+    color: #333;
+    margin-bottom: 50px;
+    background: url(../img/icon/h3_ico.gif) no-repeat;
+    text-indent: 42px;
+}
 </style>
-<body>
-<section class="delete_section">
-<article>
+<h3>회원 탈퇴</h3>
 	<div class="delete_container">
-		<div class="delete_container_title">
-			<h1>회원 탈퇴</h1>
-		</div>
 		<div class="delete_container_content">
 			<div class="div_delete_box">
 				<div class="delete_input_wrap">
@@ -126,10 +120,6 @@ div.delete_alert_wrap{
 			</div>
 		</div>
 	</div>
-</article>
-</section>
-</body>
-</html>
 
 
 
