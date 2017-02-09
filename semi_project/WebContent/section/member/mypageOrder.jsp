@@ -75,7 +75,7 @@
 				if (payarr == null || payarr.size() == 0) {
 			%>
 			<tr>
-				<td colspan="4">주문상품이 없습니다.</td>
+				<td colspan="7">주문상품이 없습니다.</td>
 			</tr>
 			<%
 				} else {
