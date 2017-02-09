@@ -1,7 +1,7 @@
 <%@page import="java.sql.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <jsp:useBean id="rdao" class="semi.refund.RefundDAO" scope="session"/>
+    <jsp:useBean id="refdao" class="semi.refund.RefundDAO" scope="session"/>
     <jsp:useBean id="paydao" class="semi.pay.PayDAO" scope="session"/>
 <%
 request.setCharacterEncoding("utf-8");
@@ -15,7 +15,7 @@ String refund_content=request.getParameter("refund_content");
 int product_idx=Integer.parseInt(product_idxs);
 int payment_idx=Integer.parseInt(payment_idxs);
 
-int result = rdao.refundInsert(member_id, product_idx, payment_idx, refund_subject, refund_content);
+int result = refdao.refundInsert(member_id, product_idx, payment_idx, refund_subject, refund_content);
 String msg="";
 
 if(result>0){
