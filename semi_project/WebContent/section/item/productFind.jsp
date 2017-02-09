@@ -58,7 +58,8 @@ function goProductFind() {
 	location.href = '/semi_project/section/member/adminPage.jsp?menu=product_list&fkey=' + fkey + '&fvalue=' + fvalue;
 }
 </script>
-<div class="content_wrap">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/member/mypage/mypageOrder.css">
+<div class="table_wrap">
 	<h3 class="mypage_tit">상품 관리</h3>
 
 	
@@ -74,7 +75,7 @@ function goProductFind() {
 
 				
 	<table cellspacing="0" cellpadding="0" summary=""
-		class="table_style">
+		class="th_top">
 		<colgroup>
 			<col width="8%">
 			<col width="20%">

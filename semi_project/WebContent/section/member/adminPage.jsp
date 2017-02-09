@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="/semi_project/css/commonButton.css?ver=10">
 <link rel="stylesheet" type="text/css" href="/semi_project/css/member/mypage/mypage.css?ver=14">
 <link rel="stylesheet" type="text/css" href="/semi_project/css/layer/layer.css?ver=9">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/member/mypage/mypageOrder.css">
 </head>
 <%
 	String menu = request.getParameter("menu");
