@@ -32,7 +32,9 @@
 	int userGroup = cp / pageSize; // 해당 페이지의 페이지 그룹
 	if(cp % pageSize == 0)userGroup--;  
 %>
-<div class="content_wrap">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/member/mypage/mypageOrder.css">
+
+<div class="table_wrap">
 	<h3 class="mypage_tit">문의 내역</h3>
 	<script>
 		function showContent(cnt, content) {
@@ -50,7 +52,7 @@
 			}
 		}	
 	</script>
-	<table cellspacing="0" cellpadding="0" summary="" class="table_style">
+	<table cellspacing="0" cellpadding="0" summary="" class="th_top">
 		<colgroup>
 			<col width="8%">
 			<col width="20%">
