@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8"%><%@page import="java.text.DecimalFormat"%>
     <%@ page import="semi.member.*" %>
     <%@ page import="semi.product.*" %>
-    <jsp:useBean id="pdto" class="semi.product.ProductDTO" scope="session"/>
-    <jsp:setProperty property="*" name="pdto"/>
     <jsp:useBean id="pdao" class="semi.product.ProductDAO" scope="session"/>
     <jsp:useBean id="mdao" class="semi.member.MemberDAO" scope="session"/>
     <jsp:useBean id="mt" class="semi.member.MemberDTO" scope="session"/>
@@ -23,7 +21,15 @@ return;
 }
 MemberDTO mdto=mdao.memberGet(member_id);
 DecimalFormat df=new DecimalFormat("#,##0");
-System.out.println("pay.jsp AFTER id="+member_id);
+String product_nums[]=request.getParameterValues("product_num");
+String product_code[]=request.getParameterValues("product_code");
+String product_color[]=request.getParameterValues("product_color");
+int product_num[]=new int[product_nums.length];
+for(int i=0; i<product_nums.length; i++){
+product_num[i]=Integer.parseInt(product_nums[i]);
+}
+ProductDTO pdto=null;
+int cartSum=0;
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -66,8 +72,6 @@ System.out.println("pay.jsp AFTER id="+member_id);
 					</thead>
 					<tbody>
 					<%
-pdto.setProduct_num(1);
-int cartSum=pdto.getProduct_price()*pdto.getProduct_num();
 if(pdto.getProduct_name()==null || pdto.getProduct_name().equals("")){
 	%>
 	<tr>
@@ -78,9 +82,12 @@ if(pdto.getProduct_name()==null || pdto.getProduct_name().equals("")){
 	int lgnum=0;
 	String lgname="";
 	String smname="";
+	for(int i=0; i<product_num.length; i++){
+		pdto=pdao.getIdx(product_code[i], product_color[i]);
 	smname=pdao.SmallcategoryName(pdto.getSmallcategory_id());
 	lgnum=pdao.LargecategoryId(pdto.getSmallcategory_id(), smname);
 	lgname=pdao.LargecategoryName(lgnum);
+	cartSum+=product_num[i]*pdto.getProduct_price();
 %>
 						<tr>
 							<td class="info"><a
@@ -97,6 +104,7 @@ if(pdto.getProduct_name()==null || pdto.getProduct_name().equals("")){
 							<td><%=df.format(pdto.getProduct_price()) %></td>
 						</tr>
 						<%
+}
 }
 %>
 					</tbody>
