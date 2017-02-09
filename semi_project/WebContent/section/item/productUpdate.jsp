@@ -34,14 +34,20 @@ a.bt_writereply{
 	padding: 8px 11px;
 	font-size: 12px;
 	color: #e8380d;
-	float: left;
 }
 section{
 	text-align: -webkit-center;
 }
+p {
+	margin: 0px auto;
+	width: 180px;
+}
+div.btChange{
+	margin: 0px auto;
+}
 </style>
 <script>
-function javascript:proCh(){
+function proCh(){
 	update.submit();
 }
 </script>
@@ -132,10 +138,10 @@ function javascript:proCh(){
 				
 			</tbody>
 		</table>
-		<div>
-			<p align="center">
-				<a class="common-bt bt_writereply bt_ch" href="javascript:proCh();">수정하기</a>&nbsp;&nbsp;&nbsp;
-				<a class="common-bt bt_writereply" href="productFind.jsp">나가기</a>
+		<div class="btChange">
+			<p>
+				<a class="common-bt bt_writereply bt_ch" style="float:left;" href="javascript:proCh();">수정하기</a>
+				<a class="common-bt bt_writereply"  style="float:left; margin-left: 10px;" href="productFind.jsp">나가기</a>
 			</p>
 		</div>
 	</fieldset>
