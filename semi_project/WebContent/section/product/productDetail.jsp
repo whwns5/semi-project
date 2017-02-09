@@ -367,7 +367,7 @@ function settingPage(product_idx) {
 							}
 
 							var f = document.cart_fm;
-							f.setAttribute('action', '/semi_project/section/cart/Pay.jsp');
+							f.setAttribute('action', '/semi_project/section/pay/pay.jsp');
 							f.submit();
 						}
 						</script>
