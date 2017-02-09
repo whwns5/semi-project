@@ -9,12 +9,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset=UTF-8">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
 .m_title    { BACKGROUND-COLOR: #F7F7F7; PADDING-LEFT: 15px; PADDING-top: 5px; PADDING-BOTTOM: 5px; }
 .m_padding  { PADDING-LEFT: 15px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; }
+h1{
+	margin-left: 100px
+}
+a.common-bt{
+	display: block;
+	color: #e8380d;
+	width: 150px;
+	height: 20px;
+	border: 2px solid #e8380d;
+	padding: 14px 15px;
+	text-align: center;
+	transition: all 0.3s;
+	font-family: 'Lato', sans-serif;
+}
+a.bt_writereply{
+	width: 50px;
+    height: 18px;
+	padding: 8px 11px;
+	font-size: 12px;
+	color: #e8380d;
+	float: left;
+}
+section{
+	text-align: -webkit-center;
+}
 </style>
+<script>
+function javascript:proCh(){
+	update.submit();
+}
+</script>
 </head>
 <%
 	request.setCharacterEncoding("utf-8");
@@ -23,7 +53,7 @@
 %>
 <body>
 <%@include file="/header/header.jsp" %>
-<h1>수정하기</h1>
+<h1>상품수정</h1>
 <hr>
 
 <form name="update" action="productupdate_ok.jsp" method="post">
@@ -99,12 +129,15 @@
 						</tr>
 					</tbody>
 				</table>
-					<p align="center">
-						<a><input type="submit" value="수정하기"></a>
-						<a><input type ="button" value="나가기" onclick="location.href='productFind.jsp';"></a>
-					</p>
-				</tbody>
+				
+			</tbody>
 		</table>
+		<div>
+			<p align="center">
+				<a class="common-bt bt_writereply bt_ch" href="javascript:proCh();">수정하기</a>&nbsp;&nbsp;&nbsp;
+				<a class="common-bt bt_writereply" href="productFind.jsp">나가기</a>
+			</p>
+		</div>
 	</fieldset>
 </form>
 </article>

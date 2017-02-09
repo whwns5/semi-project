@@ -5,16 +5,28 @@
 <head>
 <meta charset="UTF-8">
 <title>khSHOPseoul-회원가입</title>
+<link rel="stylesheet" type="text/css" href="/semi_project/css/commonButton.css?ver=3">
 <style type="text/css">
 .m_title    { BACKGROUND-COLOR: #F7F7F7; PADDING-LEFT: 15px; PADDING-top: 5px; PADDING-BOTTOM: 5px; }
 .m_padding  { PADDING-LEFT: 15px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; }
 .m_padding2 { PADDING-LEFT: 0px; PADDING-top: 5px; PADDING-BOTTOM: 0px; }
 .m_padding3 { PADDING-LEFT: 0px; PADDING-top: 5px; PADDING-BOTTOM: 5px; }
+a.common-bt {
+    display: block;
+    color: #e8380d;
+    width: 150px;
+    height: 20px;
+    border: 2px solid #e8380d;
+    padding: 14px 15px;
+    text-align: center;
+    transition: all 0.3s;
+    font-family: 'Lato', sans-serif;
+}
 </style>
 <script>
 function openIdCheck(){
 	window.open('idCheck.jsp','idCheck','width=400,height=150');
-}
+	}
 
 function openCheck(){
 	if(document.joinfm.member_pwd.value != document.joinfm.member_pwdCheck.value){
@@ -22,6 +34,9 @@ function openCheck(){
 		document.joinfm.member_pwd.value = '';
 		document.joinfm.member_pwdCheck.value = '';
 		document.joinfm.member_pwd.focus();
+	}
+function memberAdd(){
+	joinfm.submit();
 	}
 }
 </script>
@@ -105,7 +120,7 @@ function openCheck(){
 					</tbody>
 				</table>
 				<p align="center">
-					<a><input type="submit" name="memberadd" value="회원 가입"></a>
+					<a class="common-bt" href="javascript:memberAdd();">회원 가입</a>
 				</p>
 				<table width="970" border="0" cellspacing="0" cellpadding="0" align="center">
 					<tbody>
