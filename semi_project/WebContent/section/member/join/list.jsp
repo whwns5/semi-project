@@ -11,20 +11,17 @@
 
 <style>
 div.containerBody {
-    width: 1100px;
+    width: 900px;
     margin: 0 auto;
     text-align: left;
     position: relative;
-	border: 2px;
-	border: 1px solid silver;
 }
 h3{
+    font: lighter 24px/30px ngb;
     color: #333;
     margin-bottom: 50px;
-    margin-top: 50px;
     background: url(../img/icon/h3_ico.gif) no-repeat;
     text-indent: 42px;
-    
 }
 table.th_left th {
     background-color: #f7f7f7;
