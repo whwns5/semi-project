@@ -78,7 +78,9 @@ if(refarr==null || refarr.size()==0){
 }else{
 	ProductDTO pdto=null;
 	PayDTO paydto=null;
+	int count=0;
 	for(int i=0; i<refarr.size(); i++){
+		count++;
 		pdto=pdao1.productOne(refarr.get(i).getProduct_idx());
 		paydto=paydao1.payInfoOne(refarr.get(i).getPayment_idx());
 		%>
@@ -86,7 +88,14 @@ if(refarr==null || refarr.size()==0){
 		<td><%=paydto.getPayment_idx() %></td>
 		<td colspan="2"><%=paydto.getProduct_name()%><%=paydto.getProduct_code()%>&nbsp;<%=paydto.getProduct_color()%></td>
 		<td><%=df.format(paydto.getPayment_totalprice())%> 원/ <%=paydto.getPayment_num()%>개</td>
-		<td colspan="2"><%=refarr.get(i).getRefund_subject()%></td>
+		<td colspan="3">
+		<script>
+		function cancelContent<%=count%>(){
+			window.open('mypageCancel_content.jsp?refund_idx=<%=refarr.get(i).getRefund_idx()%>','cancel content','width=540, height=650, top=100, left=100')
+		}
+		</script>
+		<a href="javascript:cancelContent<%=count%>()" style="color:#b30000"><%=refarr.get(i).getRefund_subject()%></a>
+		</td>
 		<td><%=refarr.get(i).getRefund_date()%></td>
 		</tr>
 		<%
