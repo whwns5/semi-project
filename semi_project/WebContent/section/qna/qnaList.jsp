@@ -85,14 +85,23 @@
 					</form>
 				</td>
 				<td class="td_top"><%=arry_qdto.get(i).getQna_regdate()%></td>
-				<td class="td_subject"><a class="subject_a"
-					href="javascript:showContent(<%=i%>,'qna_content');"><%=arry_qdto.get(i).getQna_subject()%></a>
+				<td class="td_subject">
+<%
+					for(int z = 0 ; z < arry_qdto.get(i).getQna_lev() ; z++){
+						out.println("&nbsp;"); // lev 만큼 간격을 띠워준다. (답글)
+					}
+					if(arry_qdto.get(i).getQna_lev() != 0){
+%>
+						<img src="/semi_project/img/icon/ioc_reply.gif">
+<%
+					}
+%>
+					<a class="subject_a" href="javascript:showContent(<%=i%>,'qna_content');"><%=arry_qdto.get(i).getQna_subject()%></a>
 					<div class="qna_content">
 						<%=arry_qdto.get(i).getQna_content()%>
-						<div class="rqna_reply_div">
-							<a class="common-bt bt_writereply_small" href="javascript:openQnaLayer(<%=arry_qdto.get(i).getQna_idx()%>,<%=arry_qdto.get(i).getProduct_idx()%>,<%=arry_qdto.get(i).getQna_ref()%>,<%=arry_qdto.get(i).getQna_lev()%>,<%=arry_qdto.get(i).getQna_sunbun()%>);">REPLY</a>
-						</div>
-					</div></td>
+					
+					</div>
+				</td>
 				<td class="td_top"><%=arry_qdto.get(i).getMember_id()%></td>
 				<td class="td_top"><%=arry_qdto.get(i).getProduct_idx()%></td>
 				<td class="td_top"></td>

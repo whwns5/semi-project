@@ -46,7 +46,7 @@
 						<div class="right_section">
 							<!-- 주문/배송 -->
 							<div class="table_wrap mt_30">
-								<h3>주문/배송</h3>
+								<h3>주문/배송 내역</h3>
 								<div class="right_info">
 									<div class="select_type ta_l" style="width: 100px; z-index: 70">
 									</div>

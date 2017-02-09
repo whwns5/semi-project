@@ -100,7 +100,7 @@
 								<a href="../member/mypage.jsp?menu=cancel">취소 내역</a>
 							</dd>
 							<dd>
-								<a href="/board/?db=counsel">문의 내역</a>
+								<a href="/semi_project/section/member/mypage.jsp?menu=qnalist">문의 내역</a>
 							</dd>
 							<dd>
 								<a href="/semi_project/section/member/mypage.jsp?menu=memberdel">회원 탈퇴</a>
@@ -126,6 +126,10 @@
 								}else if(menu.equals("myupdate")){
 							%>
 								<%@ include file="/section/member/join/list.jsp"%>
+							<%
+								}else if(menu.equals("qnalist")){
+							%>
+								<%@ include file="/section/qna/qnaList.jsp"%>
 							<%
 								}
 							%>
