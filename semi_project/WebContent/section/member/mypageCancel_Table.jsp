@@ -62,7 +62,7 @@
 											<th>주문정보</th>
 											<th colspan="2">상품정보</th>
 											<th>주문금액 / 수량</th>
-											<th colspan="2">취소사유</th>
+											<th colspan="3">취소사유</th>
 											<th>취소날짜</th>
 										</tr>
 									</tbody>
