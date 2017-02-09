@@ -24,6 +24,7 @@ if(result==0){
 		window.alert('회원이 탈퇴되었습니다. 이용해주셔서 감사합니다.');
 	</script>
 	<%
+	session.invalidate();
 }
 %>
 <script>
