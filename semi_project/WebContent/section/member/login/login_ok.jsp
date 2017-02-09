@@ -37,8 +37,8 @@
 		/* Cookie ck = new Cookie("user_id", member_id);
 		ck.setMaxAge(60*60*24*30);
 		response.addCookie(ck); */
-		msg="로그인에 성공하셨습니다.";
-		url="/semi_project/section/home.jsp";
+		msg = member_id+"님 반갑습니다. 환영합니다.";
+		url = "/semi_project/section/home.jsp";
 	}
 %>
 <script>
