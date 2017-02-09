@@ -15,12 +15,12 @@
     	</script>
 <%
 	}
-	ArrayList<PayDTO> payarr = paydao.payInfo(member_id);
-	DecimalFormat df = new DecimalFormat("#,##0");
+	
 	String menu = request.getParameter("menu");
 	if(menu==null){
 		menu="myorder";
 	}
+	
 %>
 <!DOCTYPE html>
 <html>

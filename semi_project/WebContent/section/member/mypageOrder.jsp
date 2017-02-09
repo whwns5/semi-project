@@ -20,8 +20,8 @@
 <link rel="stylesheet" type="text/css" href="/myweb/css/member/mypage/mypageOrder.css">
 <%
 	DecimalFormat df = new DecimalFormat("#,##0");
-	String member_id = (String) session.getAttribute("session_member_id");
-	if (member_id == null || member_id.equals("")) {
+	String member_id1 = (String) session.getAttribute("session_member_id");
+	if (member_id1 == null || member_id1.equals("")) {
 %>
 <script>
 	window.alert("로그인이 필요합니다.");
@@ -31,7 +31,7 @@
 	return;
 	}
 
-	ArrayList<PayDTO> payarr = paydao.payInfo(member_id);
+	ArrayList<PayDTO> payarr = paydao.payInfo(member_id1);
 	PayDTO pdto = null;
 %>
 <body>
