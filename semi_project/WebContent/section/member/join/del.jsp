@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="/semi_project/css/commonButton.css?ver=3">
-<script>
-function goDel(){
-	delfm.submit();
-}
-</script>
+
+<%
+	String member_id = (String)session.getAttribute("session_member_id");
+%>
 <style>
 div.delete_container{
 	width: 900px;
@@ -87,6 +86,11 @@ h3{
     text-indent: 42px;
 }
 </style>
+<script>
+function goDel(){
+	delfm.submit();
+}
+</script>
 <h3>회원 탈퇴</h3>
 	<div class="delete_container">
 		<div class="delete_container_content">
@@ -99,7 +103,7 @@ h3{
 									<tbody>
 										<tr>
 										<td>ID</td>
-										<td><input type="text" name="member_id" class="delete_input"></td>
+										<td><input type="text" name="member_id" class="delete_input" value="<%=member_id %>" readonly></td>
 										</tr>
 										<tr>
 										<td>PWD</td>
