@@ -6,7 +6,7 @@ div.container_body{
     position: relative;
 }
 div.container_body div.banner_div{
-	
+	margin-top: 20px;
 }
 div.container_body div.banner_div ul.main_middle_banner{
 	display: block;
@@ -14,18 +14,29 @@ div.container_body div.banner_div ul.main_middle_banner{
 	margin: 0px;
 	padding: 0px;
 	list-style: none;
-}
-div.container_body div.banner_div ul.main_middle_banner li{
 	
 }
-div.container_body div.banner_div ul.main_middle_banner li div.banner_img_div{
-	display: none;
+div.container_body div.banner_div ul.main_middle_banner li{
+	display: block;
 	width: 1100px;
-	height: 460px;
+	height: 520px;
+	position: absolute;
+	top:0;
+	left:0;
+}
+div.container_body div.banner_div ul.main_middle_banner li:FIRST-CHILD{
+	position: relative;
+}
+div.container_body div.banner_div ul.main_middle_banner li div.banner_img_div{
+	display: block;
+	width: 1100px;
+	height: 520px;
+	opacity: 0;
+	transition: opacity 2.5s;
 }
 div.container_body div.banner_div ul.main_middle_banner li div.banner_img_div img{
 	width: 1100px;
-	height: 460px;
+	height: 520px;
 }
 
 div.product_list_wrap{

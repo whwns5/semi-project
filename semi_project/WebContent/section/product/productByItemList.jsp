@@ -13,7 +13,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/semi_project/css/default.css?ver=3">
-<link rel="stylesheet" type="text/css" href="/semi_project/css/product/productByItemList.css?ver=7">
+<link rel="stylesheet" type="text/css" href="/semi_project/css/product/productByItemList.css?ver=8">
 </head>
 <%
 	int totalCnt = 1;// 총 게시글 수
@@ -75,10 +75,13 @@
 			
 			<div class="banner_div">
 				<ul class="main_middle_banner">
-					<li><div class="banner_img_div"><img src="/semi_project/img/header/nav_depth_menu_totebag.jpg"></div></li>
-					<li><div class="banner_img_div"><img src="/semi_project/img/header/nav_depth_menu_totebag.jpg"></div></li>
-					<li><div class="banner_img_div"><img src="/semi_project/img/header/nav_depth_menu_totebag.jpg"></div></li>
-					<li><div class="banner_img_div"><img src="/semi_project/img/header/nav_depth_menu_totebag.jpg"></div></li>
+					<li><div class="banner_img_div"><img src="/semi_project/img/slidebanner/slide_banner_1.jpg"></div></li>
+					<li><div class="banner_img_div"><img src="/semi_project/img/slidebanner/slide_banner_2.png"></div></li>
+					<li><div class="banner_img_div"><img src="/semi_project/img/slidebanner/slide_banner_3.png"></div></li>
+					<li><div class="banner_img_div"><img src="/semi_project/img/slidebanner/slide_banner_4.png"></div></li>
+					<li><div class="banner_img_div"><img src="/semi_project/img/slidebanner/slide_banner_5.png"></div></li>
+					<li><div class="banner_img_div"><img src="/semi_project/img/slidebanner/slide_banner_6.png"></div></li>
+					<li><div class="banner_img_div"><img src="/semi_project/img/slidebanner/slide_banner_7.png"></div></li>
 				</ul>
 			</div>
 			<script>
@@ -87,10 +90,14 @@
 				var banner_divs = document.getElementsByClassName('banner_img_div');
 				for(var i = 0 ; i < banner_divs.length ; i++){
 					if( i == banner_index ){
-						banner_divs[i].style.display = 'block';
+						
+						banner_divs[i].style.opacity = 1;
+						//banner_divs[i].style.display = 'block';
 					}
 					else {
-						banner_divs[i].style.display = '';
+						
+						banner_divs[i].style.opacity = 0;
+						//banner_divs[i].style.display = '';
 					}
 				}
 				
@@ -99,7 +106,7 @@
 				}
 				banner_index = banner_index + 1;
 				
-				setTimeout(showSlideImg, 1000);
+				setTimeout(showSlideImg, 4000);
 			}
 			showSlideImg();
 			</script>

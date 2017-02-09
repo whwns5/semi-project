@@ -4,11 +4,13 @@
     margin: 0 auto;
     text-align: left;
     position: relative;
+    padding-bottom: 20px;
 }
 .container_body div.eventGrid{
 	width: 100%;
 	overflow: hidden;
     position: relative;
+    margin-top: 20px;
     height: 350px;
 }
 .container_body div.eventGrid ul{
