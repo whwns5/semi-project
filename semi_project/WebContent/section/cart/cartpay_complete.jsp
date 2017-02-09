@@ -36,6 +36,5 @@ String msgCart=result_CartDel>0?"cartdel success":"cartdel fail";
 %>
 <script>
 window.alert('<%=msg%>');
-window.alert('<%=msgCart%>');
 location.href="cartShow.jsp";
 </script>
