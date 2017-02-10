@@ -19,9 +19,9 @@ INSERT INTO qna_table VALUES(qna_table_idx.NEXTVAL, 23, 'admin', '답변입니�
 INSERT INTO qna_table VALUES(qna_table_idx.NEXTVAL, 23, 'youfds', '상품 문의드려요..', '와인 색상을 받았는데 생각보다 색상이 너무 연합니다. 바꿔주세요.', 1, TO_DATE('2017/01/04','YYYY/MM/DD'), 6, 0, 0);
 INSERT INTO qna_table VALUES(qna_table_idx.NEXTVAL, 23, 'admin', '답변입니다.', '고객 변심에 의한 교환은 하실 수 없습니다. 죄송합니다.', 2, TO_DATE('2017/01/04','YYYY/MM/DD'), 6, 1, 1);
 
-INSERT INTO qna_table VALUES(qna_table_idx.NEXTVAL, 23, 'ashsadh', '배송문의', '금요일에 주문하면 월요일날 도착하나요?', 1, TO_DATE('2017/02/09','YYYY/MM/DD'), 7, 0, 0);
+INSERT INTO qna_table VALUES(qna_table_idx.NEXTVAL, 23, 'wjjss', '배송문의', '금요일에 주문하면 월요일날 도착하나요?', 1, TO_DATE('2017/02/09','YYYY/MM/DD'), 7, 0, 0);
 INSERT INTO qna_table VALUES(qna_table_idx.NEXTVAL, 23, 'admin', '답변입니다.', '오후 5시 이후로 주문한 건은 월요일날 출고 처리 됩니다. 이점 유의해 주시기 바랍니다.', 2, TO_DATE('2017/02/09','YYYY/MM/DD'), 7, 1, 1);
 
-INSERT INTO qna_table VALUES(qna_table_idx.NEXTVAL, 23, 'ashsadh', '빠른 문의 답변 부탁드려요', '할인 안되요? 이거?', 0, TO_DATE('2017/02/09','YYYY/MM/DD'), 8, 0, 0);
-INSERT INTO qna_table VALUES(qna_table_idx.NEXTVAL, 23, 'ashsadh', '제품에 대해 물어볼게 있어요', '그레이 색상은 안나오나요?', 0, TO_DATE('2017/02/09','YYYY/MM/DD'), 9, 0, 0);
-INSERT INTO qna_table VALUES(qna_table_idx.NEXTVAL, 23, 'ashsadh', '제품 문의', '가격이 왜 이렇게 비싸요? 대채?', 0, TO_DATE('2017/02/09','YYYY/MM/DD'), 10, 0, 0);
+INSERT INTO qna_table VALUES(qna_table_idx.NEXTVAL, 23, 'youmn', '빠른 문의 답변 부탁드려요', '할인 안되요? 이거?', 0, TO_DATE('2017/02/09','YYYY/MM/DD'), 8, 0, 0);
+INSERT INTO qna_table VALUES(qna_table_idx.NEXTVAL, 23, 'kakao', '제품에 대해 물어볼게 있어요', '그레이 색상은 안나오나요?', 0, TO_DATE('2017/02/09','YYYY/MM/DD'), 9, 0, 0);
+INSERT INTO qna_table VALUES(qna_table_idx.NEXTVAL, 23, 'naver', '제품 문의', '가격이 왜 이렇게 비싸요? 대채?', 0, TO_DATE('2017/02/09','YYYY/MM/DD'), 10, 0, 0);

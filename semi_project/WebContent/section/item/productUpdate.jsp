@@ -141,7 +141,7 @@ function proCh(){
 		<div class="btChange">
 			<p>
 				<a class="common-bt bt_writereply bt_ch" style="float:left;" href="javascript:proCh();">수정하기</a>
-				<a class="common-bt bt_writereply"  style="float:left; margin-left: 10px;" href="productFind.jsp">나가기</a>
+				<a class="common-bt bt_writereply"  style="float:left; margin-left: 10px;" href="/semi_project/section/member/adminPage.jsp?menu=product_list">나가기</a>
 			</p>
 		</div>
 	</fieldset>
