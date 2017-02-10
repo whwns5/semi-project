@@ -9,5 +9,5 @@
 %>
 <script>
 window.alert('<%=msg%>');
-location.href='customerFind.jsp'
+location.href='/semi_project/section/member/adminPage.jsp?menu=member_list';
 </script>

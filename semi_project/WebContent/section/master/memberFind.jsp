@@ -115,7 +115,7 @@ System.out.println("test223="+arry_mdto.size());
 					<td>
 						<form id="fm_<%=i%>" method="post">
 						<%=arry_mdto.get(i).getMember_idx()%>
-						<input type="hidden" value="<%=arry_mdto.get(i).getMember_idx()%>" name="Member_idx">
+						<input type="hidden" value="<%=arry_mdto.get(i).getMember_idx()%>" name="member_idx">
 						
 						</form>
 					</td>
@@ -124,7 +124,6 @@ System.out.println("test223="+arry_mdto.size());
 					<td><%=arry_mdto.get(i).getMember_sex()%></td>
 					<td><%=arry_mdto.get(i).getMember_addr()%></td>
 					<td><div class="admin_bt_area">
-						<a class="common-bt bt_writereply" href="javascript:submitUpdate('fm_<%=i%>');">UPDATE</a>
 						<a class="common-bt bt_writereply" href="javascript:submitDelete('fm_<%=i%>');">DELETE</a>
 						</div>
 					</td>	

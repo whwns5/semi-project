@@ -234,10 +234,6 @@ div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap
 	display: inline-block;		
 	width: 50px;
 }
-div.mypage_container div.mypage_content_wrap div.mypage_content div.content_wrap table tbody td div.admin_bt_area a:FIRST-CHILD{
-	margin-bottom: 10px;	
-}
-
 
 /* qna 문의 하기 레이어 */
 div.qna_layer{
