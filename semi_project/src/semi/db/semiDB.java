@@ -18,8 +18,44 @@ public class semiDB {
 		}
 	}
 	
-	public static Connection getConn()
+/*	public static Connection getConn()
 	throws Exception{
 		return ds.getConnection();
+	}*/
+	
+	public static Connection getConn(){
+		try{
+			Connection conn2 = null;
+			
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+			String user = "scott";
+			String pwd = "1234";
+			
+			conn2 = DriverManager.getConnection(url, user, pwd);
+			
+			return conn2;
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
 	}
+	
+	/*public static Connection dbConnect(){
+		try{
+			Connection conn2 = null;
+			
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+			String user = "scott";
+			String pwd = "1234";
+			
+			conn2 = DriverManager.getConnection(url, user, pwd);
+			
+			return conn2;
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}*/
 }
