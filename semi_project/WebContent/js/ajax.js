@@ -29,7 +29,7 @@ function sendRequest(url, params, callback, method, ctype) {
 	var httpUrl = url;
 	if (httpMethod == 'GET' && httpParams != null) { // GET 방식일 경우 URL에 추가적으로 파라미터를 삽입해 준다.
 		httpUrl = httpUrl + "?" + httpParams;
-	}
+	}               // method,  url,  동기 or 비동기(true)
 	httpRequest.open(httpMethod, httpUrl, true); // 연결 (POST 또는 GET)
 	httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // POST 방식일 때 등록
 	httpRequest.onreadystatechange = callback(httpRequest, ctype); // 콜백 함수 등록
