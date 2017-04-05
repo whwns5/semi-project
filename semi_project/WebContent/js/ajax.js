@@ -22,7 +22,7 @@ function getXMLHttpRequest() {// XMLHttpRequest 객체 얻기
 function sendRequest(url, params, callback, method, ctype) {
 	var httpRequest = getXMLHttpRequest(); // XMLHttpRequest 객체 얻기
 	var httpMethod = method ? method : 'GET'; // 넘어온 method 가 없으면 기본값으로 GET
-	if (httpMethod != 'GET' && httpMethod != 'POST') { // 이외의 문자열도 GET
+	if (httpMethod != 'GET' && httpMethod != 'POST') { // 이외의 문자열도 GET으로 초기화
 		httpMethod = 'GET';
 	}
 	var httpParams = (params == null || params == '') ? null : params; // parms 셋팅
